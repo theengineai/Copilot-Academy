@@ -27,6 +27,11 @@
               "body": "**Researcher** es un agente de Microsoft 365 Copilot para preguntas complejas: **planifica** la investigación, busca en tus datos de trabajo y en la web, **razona** en varios pasos y entrega un **informe con citas**.\n\nTarda varios minutos y suele hacerte preguntas antes de empezar para acotar el alcance. Según tu licencia puede tener límites de uso."
             },
             {
+              "type": "callout",
+              "tone": "finance",
+              "body": "En el comité, Ana pidió alternativas al transporte antes del día 15. Compras ha reunido tres ofertas en **Ofertas_transporte.xlsx**: es el punto de partida de esta investigación."
+            },
+            {
               "type": "compare",
               "left": {
                 "title": "Chat normal",

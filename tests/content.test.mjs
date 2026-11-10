@@ -188,3 +188,25 @@ test('las lecciones y misiones apuntan a lecciones que existen y las misiones se
   const ids = new Set(course.lessons.map(l => l.id));
   for (const m of course.missions) for (const r of m.requires) assert.ok(ids.has(r), `${m.id}: requiere ${r}`);
 });
+
+test('nada aparece sin contexto: personas, interfaz del chat y formato de agentes se explican antes de usarse', () => {
+  const steps = course.lessons.flatMap(l => l.steps.map(s => ({ ...s, lesson: l.id })));
+  const firstIndex = pred => steps.findIndex(pred);
+  const text = s => JSON.stringify(s);
+  for (const name of ['Ana', 'Luis', 'Marta', 'Brisa Alimentación']) {
+    const first = firstIndex(s => new RegExp(`\\b${name}\\b`).test(text(s)));
+    assert.ok(first >= 0 && steps[first].type === 'card', `${name} aparece por primera vez en un ejercicio (${steps[first]?.id}) sin haberse presentado`);
+  }
+  const firstCopilot = firstIndex(s => s.type === 'copilot');
+  assert.ok(firstIndex(s => s.type === 'card' && s.kicker === 'En esta app') < firstCopilot, 'el chat simulado se explica antes del primer ejercicio con él');
+  const firstAgentEdit = firstIndex(s => s.type === 'copilot' && s.solution.some(x => /^::editar .*\.agent\.md/.test(x)));
+  assert.ok(firstIndex(s => s.type === 'card' && /\.agent\.md/.test(text(s))) < firstAgentEdit, 'el formato de un agente se muestra antes de editarlo');
+  // Cada archivo que pide un ejercicio con Copilot existe en su configuración (nunca se pide algo que no está).
+  for (const ex of exercises.filter(e => e.type === 'copilot')) {
+    const cp = copilotFromSetup(ex.setup);
+    for (const [, name] of ex.prompt.matchAll(/\*\*\/?([\w-]+\.(docx|xlsx|pptx|eml|meet))\*\*/g)) {
+      const created = (ex.setup.actions || []).some(a => (a.writes || []).some(w => w.path.endsWith(name)));
+      assert.ok(cp.find(name) || created, `${ex.id}: el enunciado menciona ${name}, que no existe`);
+    }
+  }
+});

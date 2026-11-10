@@ -19,6 +19,34 @@
       "steps": [
         {
           "type": "card",
+          "kicker": "Tu papel",
+          "title": "Bienvenida al departamento financiero",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Durante toda la academia trabajarás en el departamento financiero de **Brisa Alimentación**, una empresa de distribución **ficticia**. Estamos cerrando **octubre** y estas son las personas con las que hablarás:\n- **Ana**, directora financiera: decide y presenta al comité de dirección.\n- **Luis**, control de gestión: márgenes, presupuestos y proveedores.\n- **Marta**, tesorería: cobros, pagos y provisiones.\n\nEl problema del mes: **vendemos más de lo previsto, pero el margen cae** porque el transporte se ha encarecido."
+            },
+            {
+              "type": "tree",
+              "lines": [
+                "OneDrive/Cierre octubre/",
+                "  Informe_cierre_octubre.docx  # el informe del cierre",
+                "  Ventas_octubre.xlsx  # ventas, coste y presupuesto por región",
+                "Outlook/Hilo_tarifa_logistica.eml  # Compras avisa de una subida del transporte",
+                "Teams/Comite_cierre_3nov.meet  # reunión del comité, con transcripción",
+                "SharePoint/Finanzas/Politica_gastos_viaje.docx  # una política del equipo"
+              ],
+              "title": "Los archivos que irás usando"
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "body": "**OneDrive** es tu espacio de archivos de trabajo y **SharePoint**, el de los equipos. Todo lo que verás (empresa, personas, cifras y documentos) es inventado."
+            }
+          ]
+        },
+        {
+          "type": "card",
           "kicker": "Idea clave",
           "title": "Un nombre, varios productos",
           "blocks": [
@@ -286,6 +314,52 @@
           ]
         },
         {
+          "type": "card",
+          "kicker": "En esta app",
+          "title": "Cómo se usa el Copilot de la academia",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "A partir de ahora practicarás con un **Copilot simulado** que imita al de verdad, con los archivos de Brisa Alimentación:"
+            },
+            {
+              "type": "cmds",
+              "items": [
+                {
+                  "cmd": "Barra superior",
+                  "desc": "Dónde usas Copilot (Chat, Word, Excel…), el selector **Trabajo / Web** y **+** para un chat nuevo.",
+                  "where": "En la app"
+                },
+                {
+                  "cmd": "Caja de texto",
+                  "desc": "Escribe tu petición como lo harías en Copilot y pulsa **Enviar**.",
+                  "where": "En la app"
+                },
+                {
+                  "cmd": "/ y @",
+                  "desc": "El botón **/** añade un archivo como contexto; **@**, un agente. También puedes escribirlos.",
+                  "where": "En la app"
+                },
+                {
+                  "cmd": "Archivos",
+                  "desc": "Abre cualquier documento para comprobar lo que dice Copilot.",
+                  "where": "En la app"
+                },
+                {
+                  "cmd": "Objetivos",
+                  "desc": "Encima del chat verás lo que tienes que conseguir; se marcan solos. Después pulsa **Comprobar**.",
+                  "where": "En la app"
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "body": "No hay IA real: Copilot responde con textos preparados para cada ejercicio, y te dice qué le falta si tu petición no basta."
+            }
+          ]
+        },
+        {
           "id": "m1l2e2",
           "type": "copilot",
           "concept": "fund.grounding",
@@ -451,6 +525,10 @@
           "kicker": "El chat",
           "title": "Las piezas del chat",
           "blocks": [
+            {
+              "type": "text",
+              "body": "En la lección anterior ya cambiaste entre Trabajo y Web. Ahora vas a usar las piezas que más se repiten en el día a día:"
+            },
             {
               "type": "cmds",
               "items": [

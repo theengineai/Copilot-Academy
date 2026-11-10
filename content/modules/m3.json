@@ -497,7 +497,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Copilot en PowerPoint puede crear una presentación **a partir de un archivo** (por ejemplo, la nota de Word), añadir diapositivas, resumir una presentación larga u organizarla en secciones.\n\nLa calidad depende del documento de partida: **una buena nota da una buena presentación**."
+              "body": "Ana tiene que presentar el cierre al comité y quiere partir de la **nota para dirección** que redactaste en la lección 3.1 (ya revisada).\n\nCopilot en PowerPoint puede crear una presentación **a partir de un archivo** (por ejemplo, esa nota de Word), añadir diapositivas, resumir una presentación larga u organizarla en secciones.\n\nLa calidad depende del documento de partida: **una buena nota da una buena presentación**."
             },
             {
               "type": "callout",

@@ -296,6 +296,49 @@
           "explain": "Propósito, fuente, formato y límites. «Muy listo» no se puede comprobar; «máximo 3 frases y cita el apartado», sí."
         },
         {
+          "type": "card",
+          "kicker": "En esta app",
+          "title": "Así está definido un agente",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "En la app, cada agente es un archivo de la carpeta **Agentes**. Arriba, entre las líneas `---`, van sus datos; debajo, las instrucciones. Es lo mismo que rellenas en los campos de Agent Builder."
+            },
+            {
+              "type": "code",
+              "lang": "texto",
+              "code": "---\nname: Viajes\ndescription: Responde dudas sobre la política de gastos de viaje de Brisa Alimentación\nknowledge:\n  - Politica_gastos_viaje.docx\n---\nInstrucciones:\n- Responde dudas sobre la política de gastos de viaje.\n- Cita el apartado de la política en cada respuesta.\n- Responde en un máximo de 3 frases.\n",
+              "file": "Agentes/Viajes.agent.md"
+            },
+            {
+              "type": "cmds",
+              "items": [
+                {
+                  "cmd": "name",
+                  "desc": "Nombre con el que lo invocas: @Viajes."
+                },
+                {
+                  "cmd": "description",
+                  "desc": "Para qué sirve, en una frase."
+                },
+                {
+                  "cmd": "knowledge",
+                  "desc": "Sus fuentes, una por línea con un guion."
+                },
+                {
+                  "cmd": "Instrucciones",
+                  "desc": "Todo lo que va después del segundo `---`."
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Para cambiarlo: **Archivos → Editar** en el agente, escribe y pulsa **Guardar**. Para crear uno nuevo: **Archivos → Nuevo agente**, que te da esta plantilla vacía."
+            }
+          ]
+        },
+        {
           "id": "m7l2e2",
           "type": "copilot",
           "concept": "agent.instructions",
