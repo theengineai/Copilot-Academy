@@ -1,43 +1,113 @@
 {
   "id": "m4",
-  "title": "Excel y análisis de datos",
-  "subtitle": "Datos preparados, fórmulas que entiendes, análisis con preguntas concretas y cifras que cuadran.",
+  "title": "Excel avanzado",
+  "subtitle": "Limpieza de exportaciones, fórmulas entre tablas, modelos de escenarios con el modo agente y auditoría de cifras.",
   "level": "L3 → L4",
   "icon": "chart",
   "color": "#3F7D4E",
   "lessons": [
     {
       "id": "l4-1",
-      "title": "Prepara los datos",
-      "summary": "Copilot en Excel rinde mucho mejor con datos ordenados: una tabla, encabezados claros y sin huecos.",
-      "minutes": 6,
+      "title": "Limpiar datos importados",
+      "summary": "Las exportaciones del ERP y del banco llegan sucias: Copilot las limpia, tú defines las reglas y revisas.",
+      "minutes": 7,
       "objectives": [
-        "Preparar un rango como tabla",
-        "Detectar problemas que confunden a Copilot",
-        "Saber dónde guardar el libro"
+        "Limpiar una exportación con reglas explícitas",
+        "Detectar problemas que distorsionan un análisis",
+        "Revisar qué ha cambiado la limpieza"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Datos ordenados, respuestas fiables",
+          "title": "Reglas de limpieza, no «límpialo»",
           "blocks": [
             {
               "type": "text",
-              "body": "Copilot entiende mejor tus datos cuando están en **formato de tabla** (Insertar → Tabla, o Ctrl+T):\n- **Una fila de encabezados** con nombres claros («Ventas (€)», no «Col3»).\n- **Sin celdas combinadas** ni filas en blanco en medio.\n- **Un tipo de dato por columna**: si es un importe, solo números.\n- **Sin totales dentro** de los datos: los totales, aparte."
+              "body": "Una exportación típica trae importes y fechas como texto, duplicados, unidades mezcladas y totales intercalados. Pide la limpieza con **reglas explícitas** y una **lista de cambios**:\n«Elimina duplicados por nº de factura, convierte fechas e importes a número, pasa todo a € y lista cada cambio que hagas»."
             },
             {
               "type": "callout",
-              "tone": "tip",
-              "body": "Guarda el libro en OneDrive o SharePoint: algunas funciones de Copilot lo necesitan y tendrás historial de versiones para deshacer cambios."
+              "tone": "finance",
+              "body": "«Duplicado» debe definirse: mismo nº de factura. Mismo importe y cliente no basta: podría ser una segunda factura legítima."
             }
           ]
         },
         {
           "id": "m4l1e1",
+          "type": "copilot",
+          "concept": "datos.prep",
+          "prompt": "Abre **Export_ERP_facturas.xlsx** en Excel y pide una **limpieza con reglas explícitas** (duplicados por nº de factura, texto a número, todo en €) y la **lista de cambios**. Revisa el resultado",
+          "setup": {
+            "files": {
+              "OneDrive/Cierre octubre/Export_ERP_facturas.xlsx": "Exportación del ERP · facturas de octubre (sin limpiar)\nNº factura | Fecha | Cliente | Importe\nF-0412 | 03/10/2026 (texto) | Delta | \"8.450,00 €\" (texto)\nF-0412 | 03/10/2026 (texto) | Delta | \"8.450,00 €\" (texto)\nF-0431 | 15/10/2026 (texto) | Delta | \"8.450,00 €\" (texto)\nF-0440 | 22/10/2026 (texto) | Omega | 12,3 (miles de €)\n",
+              "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€)\nNorte | 118.000 | 84.200 | 110.000\nCentro | 162.000 | 109.900 | 150.000\nSur | 132.000 | 88.100 | 128.000\n"
+            },
+            "actions": [
+              {
+                "id": "limpia",
+                "when": [
+                  [
+                    "limpia",
+                    "convierte",
+                    "duplicad",
+                    "normaliza"
+                  ]
+                ],
+                "reply": [
+                  "Plan: 1) quitar duplicados por nº de factura, 2) convertir fechas e importes de texto a número, 3) unificar unidades en €.",
+                  "Hecho. He eliminado 1 duplicado (F-0412), convertido fechas e importes y pasado el importe de Omega de miles de € a € (12.300,00).",
+                  "Atención: F-0412 y F-0431 tienen el mismo importe y cliente pero distinto número: no son duplicados y las he mantenido."
+                ],
+                "needs": {
+                  "app": "excel",
+                  "open": "Export_ERP_facturas.xlsx",
+                  "say": {
+                    "app": "Abre Export_ERP_facturas.xlsx en Excel.",
+                    "open": "Abre Export_ERP_facturas.xlsx en Excel."
+                  }
+                },
+                "writes": [
+                  {
+                    "path": "OneDrive/Cierre octubre/Export_ERP_facturas.xlsx",
+                    "content": "Exportación del ERP · facturas de octubre (limpia con Copilot: duplicados eliminados)\nNº factura | Fecha | Cliente | Importe (€)\nF-0412 | 03/10/2026 | Delta | 8.450,00\nF-0431 | 15/10/2026 | Delta | 8.450,00\nF-0440 | 22/10/2026 | Omega | 12.300,00\nCambios: 1 duplicado eliminado (F-0412), fechas e importes convertidos a número, Omega pasado de miles de € a €.\n"
+                  }
+                ]
+              }
+            ]
+          },
+          "goals": [
+            {
+              "type": "action",
+              "label": "Limpieza con reglas desde Excel",
+              "id": "limpia",
+              "hint": "Abre el archivo en Excel: elimina duplicados por nº de factura, convierte fechas e importes a número y pasa todo a €"
+            },
+            {
+              "type": "viewed",
+              "label": "Revisar el archivo limpio",
+              "path": "Export_ERP_facturas.xlsx",
+              "hint": "Archivos → Ver Export_ERP_facturas.xlsx"
+            }
+          ],
+          "solution": [
+            "::app excel Export_ERP_facturas.xlsx",
+            "Elimina duplicados por nº de factura, convierte fechas e importes a número, pasa todo a € y lista cada cambio",
+            "::ver Export_ERP_facturas.xlsx"
+          ],
+          "explain": "Con «duplicado = mismo nº de factura», Copilot conserva F-0431 (otro pedido). Es el caso de la reclamación del cliente Delta que verás en una misión.",
+          "suggestions": [
+            "::app excel Export_ERP_facturas.xlsx",
+            "Limpia esto",
+            "Elimina duplicados por nº de factura, convierte fechas e importes a número, pasa todo a € y lista cada cambio",
+            "::ver Export_ERP_facturas.xlsx"
+          ]
+        },
+        {
+          "id": "m4l1e2",
           "type": "spot",
           "concept": "datos.prep",
-          "prompt": "Esta hoja va a usarse con Copilot. Señala las filas que darán problemas",
+          "prompt": "Esta hoja va a analizarse con Copilot. Señala las filas que darán problemas",
           "file": "Ventas_octubre.xlsx",
           "lines": [
             "Región | Ventas (€) | Coste (€)",
@@ -55,107 +125,56 @@
           "notes": {
             "2": "Una fila vacía corta la tabla.",
             "3": "Texto en una columna numérica.",
-            "5": "El total mezclado con los datos (y además no suma bien)."
+            "5": "Total mezclado con los datos (y además no suma bien)."
           },
           "fixed": "Región | Ventas (€) | Coste (€)\nNorte | 118.000 | 84.200\nCentro | 162.000 | 109.900\nSur | 132.000 | 88.100",
-          "explain": "Filas vacías, textos en columnas numéricas y totales dentro de los datos son las causas más frecuentes de análisis erróneos."
-        },
-        {
-          "id": "m4l1e2",
-          "type": "multi",
-          "concept": "datos.prep",
-          "prompt": "¿Qué mejora la preparación de los datos?",
-          "options": [
-            {
-              "text": "Convertir el rango en una tabla",
-              "correct": true
-            },
-            {
-              "text": "Usar encabezados descriptivos con la unidad",
-              "correct": true
-            },
-            {
-              "text": "Combinar celdas para que quede más bonito",
-              "feedback": "Las celdas combinadas dificultan el análisis."
-            },
-            {
-              "text": "Poner subtotales entre las filas de datos",
-              "feedback": "Los subtotales van aparte."
-            }
-          ],
-          "explain": "Tabla, encabezados claros y datos homogéneos."
-        },
-        {
-          "type": "card",
-          "kicker": "Más allá de Excel",
-          "title": "Datos que vienen de otros sistemas",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Si exportas datos del ERP o del banco, revisa antes: separadores de miles y decimales, fechas en formato texto y columnas con unidades mezcladas (€ y miles de €). Copilot puede ayudarte a limpiarlos («convierte la columna Fecha a formato fecha»), pero comprueba el resultado."
-            },
-            {
-              "type": "callout",
-              "tone": "finance",
-              "body": "Indica la unidad en el encabezado: «Importe (miles €)». Evita que alguien multiplique o divida por mil sin querer."
-            }
-          ]
+          "explain": "Filas vacías, textos en columnas numéricas y totales intercalados: las causas más frecuentes de análisis erróneos."
         },
         {
           "id": "m4l1e3",
           "type": "choice",
           "concept": "datos.prep",
-          "prompt": "Copilot da un total de ventas distinto del que conoces. ¿Qué miras primero?",
+          "prompt": "Copilot da un total de ventas mayor que el del informe. ¿Qué miras primero?",
           "options": [
             {
-              "text": "Si hay una fila de total o subtotales dentro de los datos que se esté sumando dos veces",
+              "text": "Si hay una fila de total o subtotales dentro de los datos que se suma dos veces",
               "correct": true
             },
             {
-              "text": "Si el color de la tabla es el adecuado",
+              "text": "El color de la tabla",
               "feedback": "El formato visual no cambia la suma."
             },
             {
-              "text": "Si la pregunta era lo bastante educada",
-              "feedback": "La cortesía no cambia el cálculo."
+              "text": "Si la petición fue educada",
+              "feedback": "No cambia el cálculo."
             }
           ],
-          "explain": "Un total dentro de los datos se suma como una región más y duplica importes."
+          "explain": "Un total dentro de los datos se suma como una fila más."
         },
         {
           "id": "m4l1e4",
-          "type": "fill",
+          "type": "multi",
           "concept": "datos.prep",
-          "prompt": "Completa",
-          "code": false,
-          "template": "Antes de usar Copilot, convierto el rango en {{0}} con una sola fila de {{1}} y sin filas {{2}}.",
-          "blanks": [
+          "prompt": "¿Qué reglas pondrías en una petición de limpieza?",
+          "options": [
             {
-              "options": [
-                "tabla",
-                "gráfico",
-                "imagen"
-              ],
-              "answer": "tabla"
+              "text": "Qué define un duplicado",
+              "correct": true
             },
             {
-              "options": [
-                "encabezados",
-                "totales",
-                "colores"
-              ],
-              "answer": "encabezados"
+              "text": "Formato y unidad final de cada columna",
+              "correct": true
             },
             {
-              "options": [
-                "vacías",
-                "numéricas",
-                "ordenadas"
-              ],
-              "answer": "vacías"
+              "text": "Que liste los cambios realizados",
+              "correct": true
+            },
+            {
+              "text": "«Que quede bonito»",
+              "feedback": "No es una regla verificable."
             }
           ],
-          "explain": "Tabla, encabezados y sin huecos: la base de un buen análisis."
+          "explain": "Reglas explícitas y una lista de cambios que puedas revisar."
         },
         {
           "type": "card",
@@ -164,7 +183,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Preparar un rango como tabla\n- Detectar problemas que confunden a Copilot\n- Saber dónde guardar el libro"
+              "body": "Con esta lección deberías poder:\n- Limpiar una exportación con reglas explícitas\n- Detectar problemas que distorsionan un análisis\n- Revisar qué ha cambiado la limpieza"
             },
             {
               "type": "callout",
@@ -177,35 +196,50 @@
     },
     {
       "id": "l4-2",
-      "title": "Fórmulas y columnas",
-      "summary": "Pide la columna que necesitas, entiende la fórmula que propone y comprueba una fila a mano.",
+      "title": "Fórmulas avanzadas",
+      "summary": "BUSCARX, SUMAR.SI.CONJUNTO y control de errores: pide la fórmula, entiéndela y depura sus fallos.",
       "minutes": 7,
       "objectives": [
-        "Pedir una columna calculada a Copilot",
-        "Pedir que explique una fórmula",
-        "Comprobar el cálculo con una fila"
+        "Pedir búsquedas y agregaciones entre tablas",
+        "Entender y depurar una fórmula anidada",
+        "Controlar los errores de forma explícita"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Describe el cálculo; Copilot escribe la fórmula",
+          "title": "Describe el cálculo; exige la fórmula explicada",
           "blocks": [
             {
-              "type": "text",
-              "body": "Puedes pedir: «Añade una columna con el margen sobre ventas». Copilot propone la fórmula, explica qué hace y la añade a la tabla.\n\nTambién puede **explicarte** fórmulas ajenas: «¿Qué hace la fórmula de la columna F?»."
-            },
-            {
-              "type": "code",
-              "lang": "Excel",
-              "code": "=([@[Ventas (€)]]-[@[Coste (€)]])/[@[Ventas (€)]]",
-              "file": "Margen %",
-              "caption": "En una tabla, las fórmulas usan los nombres de columna: son más fáciles de leer."
+              "type": "cmds",
+              "items": [
+                {
+                  "cmd": "BUSCARX",
+                  "desc": "Traer un dato de otra tabla: el objetivo de cada región.",
+                  "where": "Excel"
+                },
+                {
+                  "cmd": "SUMAR.SI.CONJUNTO",
+                  "desc": "Sumar con varias condiciones: ventas de Norte en octubre.",
+                  "where": "Excel"
+                },
+                {
+                  "cmd": "SI.ERROR / 4.º argumento de BUSCARX",
+                  "desc": "Qué mostrar si algo falla, en lugar de #N/D.",
+                  "where": "Excel"
+                },
+                {
+                  "cmd": "LET",
+                  "desc": "Poner nombre a pasos intermedios en fórmulas largas.",
+                  "where": "Excel"
+                }
+              ],
+              "title": "Las funciones que más vas a pedir"
             },
             {
               "type": "callout",
               "tone": "info",
-              "body": "La función de hoja =COPILOT(), que estuvo en vista previa, dejó de estar disponible el 14 de septiembre de 2026. Para este tipo de tareas se usa el panel de Copilot o el modo agente."
+              "body": "La función de hoja =COPILOT(), que estuvo en vista previa, dejó de estar disponible el 14 de septiembre de 2026. Estas tareas se hacen desde el panel de Copilot o el modo agente."
             }
           ]
         },
@@ -213,36 +247,39 @@
           "id": "m4l2e1",
           "type": "copilot",
           "concept": "datos.formulas",
-          "prompt": "Abre **Ventas_octubre.xlsx** en Excel y pide una **columna con el margen** sobre ventas. Después pide que te **explique** la fórmula",
+          "prompt": "Abre **Ventas_clientes_octubre.xlsx** en Excel y pide una columna que **traiga el objetivo** de cada región desde la tabla Objetivos (con BUSCARX y un valor si no lo encuentra). Después pide que **explique** el resultado de Beta",
           "setup": {
             "files": {
-              "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€)\nNorte | 118.000 | 84.200 | 110.000\nCentro | 162.000 | 109.900 | 150.000\nSur | 132.000 | 88.100 | 128.000\n",
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
+              "OneDrive/Cierre octubre/Ventas_clientes_octubre.xlsx": "Hoja Ventas (tabla Ventas)\nCliente | Región | Ventas (€)\nDelta | Norte | 61.000\nOmega | Centro | 50.200\nAlfa | Sur | 40.000\nBeta | Norte  | 57.000\n\nHoja Objetivos (tabla Objetivos)\nRegión | Objetivo (€)\nNorte | 110.000\nCentro | 150.000\nSur | 128.000\n",
+              "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€)\nNorte | 118.000 | 84.200 | 110.000\nCentro | 162.000 | 109.900 | 150.000\nSur | 132.000 | 88.100 | 128.000\n"
             },
             "actions": [
               {
-                "id": "margen",
+                "id": "buscarx",
                 "when": [
                   [
-                    "margen"
+                    "buscarx",
+                    "objetivo",
+                    "trae"
                   ]
                 ],
                 "reply": [
-                  "Propongo una columna «Margen %» con la fórmula =([@[Ventas (€)]]-[@[Coste (€)]])/[@[Ventas (€)]].",
-                  "Resultado: Norte 28,6 %, Centro 32,2 %, Sur 33,3 %. He añadido la columna a la tabla."
+                  "He añadido «Objetivo región (€)» con:",
+                  "=BUSCARX([@Región];Objetivos[Región];Objetivos[Objetivo (€)];\"Sin objetivo\")",
+                  "Atención: Beta devuelve «Sin objetivo» porque su región está escrita «Norte » con un espacio al final."
                 ],
                 "needs": {
                   "app": "excel",
-                  "open": "Ventas_octubre.xlsx",
+                  "open": "Ventas_clientes_octubre.xlsx",
                   "say": {
-                    "app": "Abre Ventas_octubre.xlsx en Excel para añadir la columna.",
-                    "open": "Abre Ventas_octubre.xlsx en Excel para añadir la columna."
+                    "app": "Abre Ventas_clientes_octubre.xlsx en Excel.",
+                    "open": "Abre Ventas_clientes_octubre.xlsx en Excel."
                   }
                 },
                 "writes": [
                   {
-                    "path": "OneDrive/Cierre octubre/Ventas_octubre.xlsx",
-                    "content": "Región | Ventas (€) | Coste (€) | Presupuesto (€) | Margen %\nNorte | 118.000 | 84.200 | 110.000 | 28,6 %\nCentro | 162.000 | 109.900 | 150.000 | 32,2 %\nSur | 132.000 | 88.100 | 128.000 | 33,3 %\n"
+                    "path": "OneDrive/Cierre octubre/Ventas_clientes_octubre.xlsx",
+                    "content": "Hoja Ventas (tabla Ventas)\nCliente | Región | Ventas (€) | Objetivo región (€)\nDelta | Norte | 61.000 | 110.000\nOmega | Centro | 50.200 | 150.000\nAlfa | Sur | 40.000 | 128.000\nBeta | Norte  | 57.000 | Sin objetivo\n\nHoja Objetivos (tabla Objetivos)\nRegión | Objetivo (€)\nNorte | 110.000\nCentro | 150.000\nSur | 128.000\n"
                   }
                 ]
               },
@@ -252,12 +289,12 @@
                   [
                     "explica",
                     "como funciona",
-                    "que hace"
+                    "por que"
                   ]
                 ],
                 "reply": [
-                  "La fórmula resta el coste a las ventas de cada fila y divide el resultado entre las ventas.",
-                  "Así se obtiene el margen sobre ventas. Si se dividiera entre el coste, se obtendría otro indicador (el recargo o markup)."
+                  "BUSCARX busca la región de cada fila en la tabla Objetivos y devuelve su objetivo. El cuarto argumento («Sin objetivo») evita el error #N/D cuando no la encuentra.",
+                  "Para Beta, la solución es limpiar el texto: =BUSCARX(ESPACIOS([@Región]);…) o corregir el dato de origen."
                 ],
                 "needs": {
                   "app": "excel",
@@ -268,70 +305,96 @@
           },
           "goals": [
             {
-              "type": "app",
-              "label": "Tener abierto Ventas_octubre.xlsx en Excel",
-              "app": "excel",
-              "open": "Ventas_octubre.xlsx",
-              "hint": "Barra superior → Excel → Ventas_octubre.xlsx"
-            },
-            {
               "type": "file",
-              "label": "La tabla tiene la columna Margen %",
-              "path": "OneDrive/Cierre octubre/Ventas_octubre.xlsx",
+              "label": "La tabla tiene la columna del objetivo",
+              "path": "OneDrive/Cierre octubre/Ventas_clientes_octubre.xlsx",
               "checks": [
                 {
-                  "label": "columna",
-                  "pattern": "Margen %"
+                  "label": "objetivo",
+                  "pattern": "Objetivo región"
                 }
               ]
             },
             {
               "type": "action",
-              "label": "Pedir la explicación de la fórmula",
+              "label": "Explicación de la fórmula y del caso Beta",
               "id": "explica",
-              "hint": "Explica cómo funciona la fórmula"
+              "hint": "¿Por qué Beta no tiene objetivo? Explica la fórmula"
             }
           ],
           "solution": [
-            "::app excel Ventas_octubre.xlsx",
-            "Añade una columna con el margen sobre ventas de cada región",
-            "Explica cómo funciona la fórmula"
+            "::app excel Ventas_clientes_octubre.xlsx",
+            "Añade una columna que traiga el objetivo de cada región desde la tabla Objetivos con BUSCARX y muestre «Sin objetivo» si no lo encuentra",
+            "¿Por qué Beta no tiene objetivo? Explica cómo funciona la fórmula"
           ],
-          "explain": "Entender la fórmula te permite detectar errores de concepto, como dividir entre el coste en lugar de entre las ventas.",
+          "explain": "Un espacio invisible en «Norte » rompe la búsqueda. Pedir la explicación convierte un error silencioso en un dato que se corrige.",
           "suggestions": [
-            "::app excel Ventas_octubre.xlsx",
-            "Añade una columna con el margen sobre ventas de cada región",
-            "Explica cómo funciona la fórmula"
+            "::app excel Ventas_clientes_octubre.xlsx",
+            "Añade una columna que traiga el objetivo de cada región desde la tabla Objetivos con BUSCARX ",
+            "¿Por qué Beta no tiene objetivo? Explica cómo funciona la fórmula"
           ]
         },
         {
           "id": "m4l2e2",
           "type": "fill",
           "concept": "datos.formulas",
-          "prompt": "Completa la fórmula del margen sobre ventas (fila 2: B = ventas, C = coste)",
-          "template": "=(B2-{{0}})/{{1}}",
+          "prompt": "Completa la fórmula que trae el objetivo de la región",
+          "template": "=BUSCARX([@Región];Objetivos[{{0}}];Objetivos[{{1}}];\"{{2}}\")",
           "blanks": [
             {
               "options": [
-                "C2",
-                "B2",
-                "D2"
+                "Región",
+                "Cliente",
+                "Ventas (€)"
               ],
-              "answer": "C2"
+              "answer": "Región"
             },
             {
               "options": [
-                "B2",
-                "C2",
-                "D2"
+                "Objetivo (€)",
+                "Región",
+                "Cliente"
               ],
-              "answer": "B2"
+              "answer": "Objetivo (€)"
+            },
+            {
+              "options": [
+                "Sin objetivo",
+                "#N/D",
+                "0"
+              ],
+              "answer": "Sin objetivo"
             }
           ],
-          "explain": "(Ventas − Coste) / Ventas. Dividir entre el coste daría el *markup*, otro indicador."
+          "explain": "Valor buscado, columna donde buscar, columna que devolver y qué mostrar si no lo encuentra."
         },
         {
           "id": "m4l2e3",
+          "type": "match",
+          "concept": "datos.formulas",
+          "prompt": "Empareja cada necesidad con la función",
+          "pairs": [
+            [
+              "Traer el objetivo de cada región",
+              "BUSCARX"
+            ],
+            [
+              "Ventas de Norte en octubre de clientes nuevos",
+              "SUMAR.SI.CONJUNTO"
+            ],
+            [
+              "Mostrar «Sin dato» en lugar de un error",
+              "SI.ERROR"
+            ],
+            [
+              "Dar nombre a pasos de una fórmula larga",
+              "LET"
+            ]
+          ],
+          "explain": "Saber qué función hay detrás te permite revisar lo que propone Copilot."
+        },
+        {
+          "id": "m4l2e4",
           "type": "choice",
           "concept": "datos.formulas",
           "prompt": "Norte: ventas 118.000 € y coste 84.200 €. ¿Cuál es su margen sobre ventas?",
@@ -342,55 +405,14 @@
             },
             {
               "text": "40,1 %",
-              "feedback": "Es (118.000 − 84.200) / 84.200: el recargo sobre el coste, no el margen."
+              "feedback": "Es (118.000 − 84.200) / 84.200: el recargo sobre el coste."
             },
             {
               "text": "71,4 %",
               "feedback": "Es el coste entre las ventas."
             }
           ],
-          "explain": "(118.000 − 84.200) / 118.000 = 33.800 / 118.000 ≈ 28,6 %. Comprobar una fila a mano es la mejor defensa ante una fórmula mal planteada."
-        },
-        {
-          "type": "card",
-          "kicker": "Comprobación",
-          "title": "Una fila a mano",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Antes de dar por buena una columna nueva:\n- Calcula **una fila** a mano o con la calculadora.\n- Comprueba que la fórmula se aplica a **todas** las filas.\n- Fíjate en los casos raros: ventas a cero, importes negativos, celdas vacías."
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Pide a Copilot: «¿Qué pasa con la fórmula si las ventas son cero?». Te propondrá controlar el error (por ejemplo, con SI.ERROR)."
-            }
-          ]
-        },
-        {
-          "id": "m4l2e4",
-          "type": "match",
-          "concept": "datos.formulas",
-          "prompt": "Empareja la petición con lo que obtendrás",
-          "pairs": [
-            [
-              "«Añade una columna con el margen»",
-              "Una columna calculada nueva"
-            ],
-            [
-              "«Explica la fórmula de la columna F»",
-              "Una explicación paso a paso"
-            ],
-            [
-              "«¿Qué pasa si las ventas son cero?»",
-              "Un control de errores"
-            ],
-            [
-              "«Calcula la desviación frente al presupuesto»",
-              "Diferencia entre real y presupuesto"
-            ]
-          ],
-          "explain": "Copilot crea, explica y mejora fórmulas. Tú compruebas que el concepto es correcto."
+          "explain": "(118.000 − 84.200) / 118.000 ≈ 28,6 %. Comprueba siempre que la fórmula mide lo que crees."
         },
         {
           "type": "card",
@@ -399,7 +421,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Pedir una columna calculada a Copilot\n- Pedir que explique una fórmula\n- Comprobar el cálculo con una fila"
+              "body": "Con esta lección deberías poder:\n- Pedir búsquedas y agregaciones entre tablas\n- Entender y depurar una fórmula anidada\n- Controlar los errores de forma explícita"
             },
             {
               "type": "callout",
@@ -412,54 +434,59 @@
     },
     {
       "id": "l4-3",
-      "title": "Analizar y visualizar",
-      "summary": "Pide patrones, resalta lo importante y crea gráficos que respondan a una pregunta.",
-      "minutes": 6,
+      "title": "Modelos y escenarios con el modo agente",
+      "summary": "Pide a Copilot que construya un modelo en varios pasos y audita sus supuestos.",
+      "minutes": 7,
       "objectives": [
-        "Pedir análisis con una pregunta concreta",
-        "Resaltar datos con un criterio",
-        "Crear gráficos útiles"
+        "Pedir un modelo con supuestos separados de los cálculos",
+        "Leer el plan del modo agente",
+        "Exigir que declare sus supuestos"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Pregunta como lo haría dirección",
+          "title": "Un modelo, no un número",
           "blocks": [
             {
               "type": "text",
-              "body": "Copilot puede encontrar patrones, resaltar valores, ordenar y filtrar, crear gráficos y tablas dinámicas. Funciona mejor con preguntas concretas:\n- «¿Qué región tiene el margen más bajo y por qué?»\n- «Resalta en rojo los márgenes inferiores al 30 %»\n- «Gráfico de columnas: ventas frente a presupuesto por región»"
+              "body": "El **modo agente** de Excel construye en varios pasos: crea hojas, fórmulas, tablas dinámicas y gráficos, y te enseña el plan. Para un modelo útil, pide:\n- **Supuestos** en una hoja aparte (las entradas que cambiarás).\n- **Cálculos enlazados** a esos supuestos, sin valores fijos.\n- **Escenarios** definidos por ti y un gráfico que los compare.\n- La **lista de supuestos** y limitaciones del modelo."
             },
             {
               "type": "callout",
-              "tone": "warn",
-              "body": "Un gráfico atractivo no garantiza que los datos estén bien. Revisa qué rango ha usado y si incluye filas de total."
+              "tone": "finance",
+              "body": "Un modelo con valores fijos escondidos en las fórmulas deja de funcionar en cuanto cambia un supuesto. Pide siempre «sin valores fijos»."
             }
           ]
         },
         {
           "id": "m4l3e1",
           "type": "copilot",
-          "concept": "datos.analysis",
-          "prompt": "En **Ventas_octubre.xlsx**, pide que **resalte** las regiones con **margen inferior al 30 %** y crea un **gráfico** de ventas frente a presupuesto",
+          "concept": "datos.model",
+          "prompt": "Con **Ventas_octubre.xlsx** abierto en Excel, pide un **modelo de escenarios** del margen con subidas de transporte del **0, 6, 9 y 12 %**, con supuestos en hoja aparte. Después pide sus **supuestos** y revisa el libro",
           "setup": {
             "files": {
-              "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€) | Margen %\nNorte | 118.000 | 84.200 | 110.000 | 28,6 %\nCentro | 162.000 | 109.900 | 150.000 | 32,2 %\nSur | 132.000 | 88.100 | 128.000 | 33,3 %\n"
+              "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€) | Margen %\nNorte | 118.000 | 84.200 | 110.000 | 28,6 %\nCentro | 162.000 | 109.900 | 150.000 | 32,2 %\nSur | 132.000 | 88.100 | 128.000 | 33,3 %\n",
+              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
+              "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n"
             },
             "actions": [
               {
-                "id": "resalta",
+                "id": "escenarios",
                 "when": [
                   [
-                    "resalta",
-                    "destaca",
-                    "formato condicional",
-                    "marca"
+                    "escenario",
+                    "modelo",
+                    "sensibilidad"
                   ]
                 ],
                 "reply": [
-                  "He aplicado formato condicional a la columna Margen %: se resaltan en rojo los valores inferiores al 30 %.",
-                  "Resultado: solo Norte (28,6 %) queda por debajo del umbral."
+                  "Modo agente · plan:",
+                  "1. Crear la hoja Supuestos con ventas, coste y transporte del mes.",
+                  "2. Crear la hoja Escenarios con subidas del 0, 6, 9 y 12 %.",
+                  "3. Calcular coste adicional y margen enlazando con Supuestos.",
+                  "4. Añadir un gráfico del margen por escenario.",
+                  "Hecho: libro creado. Revisa que ninguna celda de Escenarios tenga valores fijos."
                 ],
                 "needs": {
                   "app": "excel",
@@ -468,113 +495,129 @@
                     "expectations"
                   ],
                   "say": {
-                    "expectations": "Indica el criterio: por ejemplo, «margen inferior al 30 %»."
+                    "app": "Abre Ventas_octubre.xlsx en Excel.",
+                    "open": "Abre Ventas_octubre.xlsx en Excel.",
+                    "expectations": "Indica los escenarios exactos (por ejemplo, subidas del 0, 6, 9 y 12 %) y cómo los quieres."
                   }
-                }
+                },
+                "writes": [
+                  {
+                    "path": "OneDrive/Cierre octubre/Escenarios_transporte.xlsx",
+                    "content": "Modelo de escenarios (creado con el modo agente)\n\nHoja Supuestos\nVentas mensuales (€) | 412.000\nCoste mensual (€) | 282.200\nTransporte mensual (€) | 58.400\n\nHoja Escenarios\nSubida de tarifa | Coste adicional (€) | Margen bruto %\n0 % | 0 | 31,5 %\n+6 % | 3.504 | 30,7 %\n+9 % | 5.256 | 30,2 %\n+12 % | 7.008 | 29,8 %\nTodas las celdas de Escenarios calculan a partir de la hoja Supuestos (sin valores fijos).\n"
+                  }
+                ]
               },
               {
-                "id": "grafico",
+                "id": "supuestos",
                 "when": [
                   [
-                    "grafico"
+                    "supuesto",
+                    "hipotesis",
+                    "limitacion"
                   ]
                 ],
                 "reply": [
-                  "He creado un gráfico de columnas con Ventas y Presupuesto por región.",
-                  "Las tres regiones superan el presupuesto: Centro +12.000 €, Norte +8.000 € y Sur +4.000 €."
+                  "Supuestos del modelo: 1) las ventas no cambian con la tarifa; 2) la subida se aplica a todo el transporte del mes; 3) el resto de costes no varía.",
+                  "Limitación: no incluye la condición de 24 meses de la oferta del 9 %."
                 ],
                 "needs": {
                   "app": "excel",
-                  "open": "Ventas_octubre.xlsx"
+                  "turn": 2
                 }
               }
             ]
           },
           "goals": [
             {
-              "type": "action",
-              "label": "Resaltar los márgenes por debajo del 30 %",
-              "id": "resalta",
-              "hint": "Abre el libro en Excel: Resalta en rojo los márgenes inferiores al 30 %"
+              "type": "exists",
+              "label": "Existe el modelo Escenarios_transporte.xlsx",
+              "path": "OneDrive/Cierre octubre/Escenarios_transporte.xlsx"
             },
             {
               "type": "action",
-              "label": "Crear el gráfico de ventas frente a presupuesto",
-              "id": "grafico",
-              "hint": "Crea un gráfico de columnas con ventas y presupuesto por región"
+              "label": "Pedir los supuestos y limitaciones",
+              "id": "supuestos",
+              "hint": "¿Qué supuestos y limitaciones tiene el modelo?"
+            },
+            {
+              "type": "viewed",
+              "label": "Revisar el modelo",
+              "path": "Escenarios_transporte.xlsx",
+              "hint": "Archivos → Ver Escenarios_transporte.xlsx"
             }
           ],
           "solution": [
             "::app excel Ventas_octubre.xlsx",
-            "Resalta en rojo los márgenes inferiores al 30 %",
-            "Crea un gráfico de columnas con ventas y presupuesto por región"
+            "Crea un modelo de escenarios del margen bruto con subidas de transporte del 0, 6, 9 y 12 %, con los supuestos en una hoja aparte, cálculos enlazados sin valores fijos y un gráfico",
+            "¿Qué supuestos y limitaciones tiene el modelo?",
+            "::ver Escenarios_transporte.xlsx"
           ],
-          "explain": "Un criterio explícito (30 %) hace el resaltado comprobable. El gráfico responde a una pregunta: ¿superamos el presupuesto en todas las regiones?",
+          "explain": "Margen del 31,5 % al 29,8 % con un +12 %. Y la limitación importa: la oferta del 9 % exige 24 meses, algo que el modelo no recoge.",
           "suggestions": [
             "::app excel Ventas_octubre.xlsx",
-            "Resalta los márgenes bajos",
-            "Resalta en rojo los márgenes inferiores al 30 %",
-            "Crea un gráfico de columnas con ventas y presupuesto por región"
+            "Crea un modelo de escenarios del margen bruto con subidas de transporte del 0, 6, 9 y 12 % ",
+            "¿Qué supuestos y limitaciones tiene el modelo?",
+            "::ver Escenarios_transporte.xlsx"
           ]
         },
         {
           "id": "m4l3e2",
-          "type": "match",
-          "concept": "datos.analysis",
-          "prompt": "Empareja cada pregunta con la herramienta de Excel que usará Copilot",
-          "pairs": [
-            [
-              "«¿Qué región destaca?»",
-              "Análisis de datos"
-            ],
-            [
-              "«Marca en rojo los valores < 30 %»",
-              "Formato condicional"
-            ],
-            [
-              "«Ventas por región y mes»",
-              "Tabla dinámica"
-            ],
-            [
-              "«Compara real y presupuesto»",
-              "Gráfico"
-            ]
+          "type": "fill",
+          "concept": "datos.model",
+          "prompt": "Comprueba el escenario del +12 %: transporte mensual 58.400 €, margen bruto base 129.800 € y ventas 412.000 €",
+          "code": false,
+          "template": "Coste adicional: {{0}} €. Margen: {{1}} %.",
+          "blanks": [
+            {
+              "accept": [
+                "7.008",
+                "7008"
+              ]
+            },
+            {
+              "accept": [
+                "29,8",
+                "29.8",
+                "29,80"
+              ]
+            }
           ],
-          "explain": "Saber qué herramienta hay detrás te ayuda a revisar el resultado."
+          "explain": "58.400 × 12 % = 7.008 €; (129.800 − 7.008) / 412.000 ≈ 29,8 %."
         },
         {
           "id": "m4l3e3",
           "type": "order",
-          "concept": "datos.analysis",
-          "prompt": "Ordena un análisis rápido para el comité",
+          "concept": "datos.model",
+          "prompt": "Ordena la construcción de un modelo con el modo agente",
           "items": [
-            "Formular la pregunta de negocio",
-            "Pedir el análisis o el gráfico a Copilot",
-            "Comprobar el rango y los datos usados",
-            "Escribir la conclusión con tus palabras"
+            "Describir el objetivo y los escenarios",
+            "Revisar el plan que propone",
+            "Dejar que construya supuestos, cálculos y gráfico",
+            "Pedir supuestos y limitaciones",
+            "Recalcular un escenario a mano"
           ],
-          "explain": "Pregunta → análisis → comprobación → conclusión. La conclusión es tuya."
+          "explain": "Plan revisado, construcción, supuestos explícitos y una comprobación independiente."
         },
         {
           "id": "m4l3e4",
           "type": "choice",
-          "concept": "datos.analysis",
-          "prompt": "Copilot dice: «Norte tiene el margen más bajo por los costes de transporte». ¿Qué valoras?",
+          "concept": "datos.model",
+          "prompt": "Copilot concluye: «el margen cae por el transporte de la región Norte». ¿Qué valoras?",
           "options": [
             {
-              "text": "El dato del margen sale de la tabla, pero la causa no: hay que contrastarla con otra fuente",
+              "text": "La tabla no tiene transporte por región: es una hipótesis, no un dato",
               "correct": true
             },
             {
-              "text": "Todo está en la tabla, así que es seguro",
-              "feedback": "La tabla no tiene información de transporte por región."
+              "text": "Es seguro porque viene del modelo",
+              "feedback": "El modelo no tiene esa información."
             },
             {
               "text": "Copilot no puede analizar márgenes",
-              "feedback": "Sí puede; lo que no puede es deducir causas que no están en los datos."
+              "feedback": "Sí puede; lo que no puede es deducir lo que no está en los datos."
             }
           ],
-          "explain": "Distingue lo que **está en los datos** de lo que es una **hipótesis**."
+          "explain": "Distingue lo que está en los datos de lo que es una hipótesis."
         },
         {
           "type": "card",
@@ -583,7 +626,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Pedir análisis con una pregunta concreta\n- Resaltar datos con un criterio\n- Crear gráficos útiles"
+              "body": "Con esta lección deberías poder:\n- Pedir un modelo con supuestos separados de los cálculos\n- Leer el plan del modo agente\n- Exigir que declare sus supuestos"
             },
             {
               "type": "callout",
@@ -596,8 +639,8 @@
     },
     {
       "id": "l4-4",
-      "title": "Verificar las cifras",
-      "summary": "Antes de usar un análisis, cuadra totales, revisa una fila y comprueba las unidades.",
+      "title": "Auditar cifras y modelos",
+      "summary": "Cuadra totales, recalcula, comprueba unidades y busca valores fijos antes de enviar.",
       "minutes": 6,
       "objectives": [
         "Cuadrar totales con una fuente independiente",
@@ -689,6 +732,27 @@
           "explain": "Independiente = otra fuente u otro método distinto del que generó el resultado."
         },
         {
+          "id": "m4l4e5",
+          "type": "choice",
+          "concept": "datos.check",
+          "prompt": "En un modelo, la celda del margen del escenario +6 % contiene «=0,307». ¿Qué problema hay?",
+          "options": [
+            {
+              "text": "Es un valor fijo: no cambiará si cambian los supuestos",
+              "correct": true
+            },
+            {
+              "text": "Ninguno, el número es correcto",
+              "feedback": "Hoy lo es; mañana, con otro supuesto, no."
+            },
+            {
+              "text": "Debería estar en negrita",
+              "feedback": "El formato no es el problema."
+            }
+          ],
+          "explain": "Los valores fijos escondidos son el error de modelo más común."
+        },
+        {
           "id": "m4l4e3",
           "type": "choice",
           "concept": "datos.check",
@@ -759,22 +823,43 @@
         "id": "m4x1",
         "type": "choice",
         "concept": "datos.prep",
-        "prompt": "¿Qué formato ayuda más a Copilot a entender tus datos?",
+        "prompt": "¿Cómo defines un duplicado en una exportación de facturas?",
         "options": [
           {
-            "text": "Una tabla de Excel con encabezados claros",
+            "text": "Mismo número de factura",
             "correct": true
           },
           {
-            "text": "Celdas combinadas con títulos decorativos",
-            "feedback": "Dificultan el análisis."
+            "text": "Mismo cliente e importe",
+            "feedback": "Puede ser una segunda factura legítima."
           },
           {
-            "text": "Una imagen de la tabla",
-            "feedback": "Una imagen no tiene datos que analizar."
+            "text": "Misma fecha",
+            "feedback": "Puede haber muchas facturas el mismo día."
           }
         ],
-        "explain": "Tabla + encabezados claros + datos homogéneos."
+        "explain": "La regla de duplicado se define con la clave única."
+      },
+      {
+        "id": "m4x5",
+        "type": "choice",
+        "concept": "datos.model",
+        "prompt": "¿Qué pides para que un modelo de escenarios siga siendo útil?",
+        "options": [
+          {
+            "text": "Supuestos en hoja aparte y cálculos enlazados sin valores fijos",
+            "correct": true
+          },
+          {
+            "text": "Que ponga los resultados en negrita",
+            "feedback": "No afecta."
+          },
+          {
+            "text": "Un solo escenario",
+            "feedback": "Un modelo compara escenarios."
+          }
+        ],
+        "explain": "Supuestos separados y fórmulas enlazadas."
       },
       {
         "id": "m4x2",
@@ -825,27 +910,27 @@
       {
         "id": "m4x4",
         "type": "match",
-        "concept": "datos.analysis",
-        "prompt": "Empareja cada petición con su resultado",
+        "concept": "datos.formulas",
+        "prompt": "Empareja cada petición con la función",
         "pairs": [
           [
-            "«Resalta los márgenes < 30 %»",
-            "Formato condicional"
+            "Traer un dato de otra tabla",
+            "BUSCARX"
           ],
           [
-            "«Añade una columna de desviación»",
-            "Columna calculada"
+            "Sumar con varias condiciones",
+            "SUMAR.SI.CONJUNTO"
           ],
           [
-            "«Ventas por región en barras»",
-            "Gráfico"
+            "Evitar #N/D en el informe",
+            "SI.ERROR"
           ],
           [
-            "«Resume por región y mes»",
-            "Tabla dinámica"
+            "Nombrar pasos de una fórmula larga",
+            "LET"
           ]
         ],
-        "explain": "Cada petición se traduce en una herramienta de Excel que puedes revisar."
+        "explain": "Cada petición se traduce en una función que puedes revisar."
       }
     ]
   }

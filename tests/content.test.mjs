@@ -1,7 +1,7 @@
 // Integridad del temario: estructura, cantidades mínimas y que cada ejercicio tenga solución válida.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { loadCourse, allExercises, runSolution } from './helpers.mjs';
+import { loadCourse, loadRaw, allExercises, runSolution } from './helpers.mjs';
 import { EXERCISE_TYPES, isExercise } from '../js/core/course.js';
 import { validate, runChecks } from '../js/core/validate.js';
 import { evaluateGoals, GOAL_TYPES } from '../js/sim/goals.js';
@@ -24,6 +24,14 @@ test('cantidades mínimas del programa', () => {
 });
 
 test('IDs únicos y conceptos existentes', () => {
+  // Se cuentan los ejercicios tal como están en los JSON: el índice del curso es un mapa y ocultaría duplicados.
+  const raw = loadRaw();
+  const rawIds = [
+    ...raw.modules.flatMap(m => [...m.lessons.flatMap(l => l.steps.filter(s => s.id).map(s => s.id)), ...m.exam.extra.map(e => e.id)]),
+    ...raw.missions.flatMap(m => m.steps.map(s => s.id)),
+  ];
+  const dup = rawIds.filter((id, i) => rawIds.indexOf(id) !== i);
+  assert.deepEqual(dup, [], `ids de ejercicio duplicados: ${dup.join(', ')}`);
   const ids = new Set();
   for (const ex of exercises) {
     assert.ok(ex.id, 'ejercicio sin id');
@@ -168,7 +176,7 @@ test('sin datos sensibles reales en el contenido', () => {
 
 test('el alumno dirige y revisa: los editores son peticiones o instrucciones, no código', () => {
   for (const ex of exercises.filter(e => e.type === 'editor')) {
-    assert.ok(['Tu petición a Copilot', 'Instrucciones del agente', 'Tu respuesta'].includes(ex.file), `${ex.id}: editor inesperado (${ex.file})`);
+    assert.ok(['Tu petición a Copilot', 'Instrucciones del agente', 'Instrucciones personalizadas', 'Tu respuesta'].includes(ex.file), `${ex.id}: editor inesperado (${ex.file})`);
     assert.ok(!ex.checks.some(c => c.json), `${ex.id}: no debe exigir JSON`);
   }
   for (const ex of exercises.filter(e => e.type === 'copilot')) {

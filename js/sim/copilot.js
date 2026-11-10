@@ -20,6 +20,10 @@ export const APPS = {
 };
 export const APP_IDS = Object.keys(APPS);
 
+/** Etiquetas de confidencialidad, de menos a más restrictiva (como las de Microsoft Purview). */
+export const LABELS = ['General', 'Confidencial', 'Altamente confidencial'];
+const labelRank = l => LABELS.indexOf(l);
+
 /** Agentes integrados (además de los que el alumno define en Agentes/*.agent.md). */
 export const BUILTIN_AGENTS = {
   Researcher: 'Investiga en varios pasos combinando datos de trabajo y web; pregunta antes de empezar y entrega un informe con citas.',
@@ -68,8 +72,10 @@ export class Copilot {
    * files: { 'OneDrive/Cierre/Informe.docx': 'texto' } · actions: respuestas que sabe dar este ejercicio
    * restricted: rutas que existen pero a las que el alumno NO tiene permiso (Copilot no las ve)
    */
-  constructor({ files = {}, app = 'chat', open = null, scope = 'work', actions = [], restricted = [], snapshot = null } = {}) {
+  constructor({ files = {}, app = 'chat', open = null, scope = 'work', actions = [], restricted = [], labels = {}, snapshot = null } = {}) {
     this.actions = actions;
+    /** Etiqueta de cada archivo: { ruta absoluta: 'Confidencial' }. */
+    this.labels = Object.fromEntries(Object.entries(snapshot?.labels || labels).map(([k, v]) => [resolvePath(k, '/'), v]));
     this.restricted = restricted.map(p => resolvePath(p, '/'));
     if (snapshot) {
       this.fs = VirtualFS.fromJSON(snapshot.fs);
@@ -88,13 +94,22 @@ export class Copilot {
   }
 
   toJSON() {
-    return { fs: this.fs.toJSON(), app: this.app, open: this.open, scope: this.scope, history: this.history.slice(-50) };
+    return { fs: this.fs.toJSON(), app: this.app, open: this.open, scope: this.scope, labels: this.labels, history: this.history.slice(-50) };
   }
 
   /** Texto corto de dónde estás: «Word · Informe.docx · Trabajo». */
   where() {
     const app = APPS[this.app].label;
     return `${app}${this.open ? ` · ${basename(this.open)}` : ''}${this.agent ? ` · @${this.agent}` : ''}`;
+  }
+
+  labelOf(path) {
+    return this.labels[path] || null;
+  }
+
+  /** La etiqueta más restrictiva entre varias rutas (la que hereda el contenido generado a partir de ellas). */
+  strongestLabel(paths) {
+    return paths.map(p => this.labelOf(p)).filter(Boolean).sort((a, b) => labelRank(b) - labelRank(a))[0] || null;
   }
 
   /** Todos los archivos visibles (sin las rutas restringidas). */
@@ -189,7 +204,8 @@ export class Copilot {
         if (!path) return { lines: [line(`No existe «${arg}».`, 'err')] };
         if (this.isRestricted(path)) return { lines: [line(`No tienes permiso para abrir ${basename(path)}.`, 'err')] };
         this.events.push({ type: 'view', path });
-        return { lines: [line(`📄 ${displayPath(path)}`, 'file'), ...this.fs.read(path).replace(/\n$/, '').split('\n').map(t => line(t, 'doc'))] };
+        const label = this.labelOf(path);
+        return { lines: [line(`📄 ${displayPath(path)}${label ? ` · 🔒 ${label}` : ''}`, 'file'), ...this.fs.read(path).replace(/\n$/, '').split('\n').map(t => line(t, 'doc'))] };
       }
       case 'editar': {
         const path = arg ? (this.find(arg) || resolvePath(arg, '/')) : null;
@@ -286,7 +302,10 @@ export class Copilot {
 
   matchAction(text) {
     const t = normalize(text);
-    return this.actions.find(a => (a.when || []).every(group => group.some(p => new RegExp(p, 'i').test(t)))) || null;
+    const matches = this.actions.filter(a => (a.when || []).every(group => group.some(p => new RegExp(p, 'i').test(t))));
+    // Si encajan varias, se prefiere una que aún no se haya completado en esta conversación.
+    const done = new Set(this.events.filter(ev => ev.type === 'prompt' && ev.action).map(ev => ev.action));
+    return matches.find(a => !done.has(a.id)) || matches[0] || null;
   }
 
   /** Qué le falta a una petición para que la acción se pueda hacer. */
@@ -321,12 +340,19 @@ export class Copilot {
       const path = this.find(c);
       out.push(line(`[${(action.cites.indexOf(c) + 1)}] ${path ? displayPath(path) : c}`, 'cite'));
     }
+    // El contenido generado hereda la etiqueta más restrictiva de sus fuentes (archivos citados y archivo abierto).
+    const inherited = this.strongestLabel([...event.refs, ...(event.open ? [event.open] : [])]);
     for (const w of action.writes || []) {
       const path = resolvePath(w.path, '/');
       this.fs.mkdir(dirname(path), { parents: true });
       const prev = w.append ? (this.fs.read(path) || '') : '';
       this.fs.write(path, prev + w.content);
       out.push(line(`✎ ${w.append ? 'Añadido a' : 'Creado'} ${displayPath(path)} · ábrelo en Archivos para revisarlo`, 'ok'));
+      const current = this.labelOf(path);
+      if (inherited && (!current || labelRank(inherited) > labelRank(current))) {
+        this.labels[path] = inherited;
+        out.push(line(`🔒 Etiqueta heredada: ${inherited} (la más restrictiva de sus fuentes)`, 'ctx'));
+      }
     }
     this.lastReply = reply;
     return out;
@@ -371,7 +397,7 @@ export class Copilot {
 
 /** Crea el simulador a partir del «setup» de un ejercicio del temario. */
 export function copilotFromSetup(setup = {}) {
-  return new Copilot({ files: setup.files || {}, app: setup.app, open: setup.open, scope: setup.scope, actions: setup.actions || [], restricted: setup.restricted || [] });
+  return new Copilot({ files: setup.files || {}, app: setup.app, open: setup.open, scope: setup.scope, actions: setup.actions || [], restricted: setup.restricted || [], labels: setup.labels || {} });
 }
 
 export const GCES_HINTS = {

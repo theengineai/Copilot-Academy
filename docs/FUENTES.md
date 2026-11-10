@@ -12,6 +12,10 @@ Contenido contrastado el **10 de noviembre de 2026** con la documentación de Mi
 | [Use Researcher in Microsoft 365 Copilot Notebooks](https://support.microsoft.com/microsoft-365-copilot/use-researcher-in-microsoft-365-copilot-notebooks) | Researcher (investigación en varios pasos), Analyst, Notebooks y «Editar en Pages» | M6 |
 | [Agent Builder / Copilot Studio agent builder](https://learn.microsoft.com/microsoft-365-copilot/extensibility/copilot-studio-agent-builder-build) | Agentes declarativos: nombre, descripción, instrucciones, conocimiento, prompts de inicio; diferencias con Copilot Studio | M7 |
 | [Microsoft 365 Copilot blog: Agent Mode](https://techcommunity.microsoft.com/blog/microsoft365copilotblog/agent-mode-general-availability/4488916) | Modo agente en Word, Excel y PowerPoint, disponible de forma general en abril de 2026 | M3 |
+| [Customize how Microsoft 365 Copilot responds to you](https://support.microsoft.com/microsoft-365-copilot/customize-how-microsoft-365-copilot-responds-to-you) y avisos MC1158329 / RM574111 | Instrucciones personalizadas y memoria en Configuración → Personalización; ver y borrar recuerdos; fuentes de memoria en la respuesta; el administrador puede desactivarlo | M1 |
+| [Classify and protect Copilot content with sensitivity labels](https://learn.microsoft.com/training/modules/purview-ai-secure-copilot/sensitivity-labels-copilot) | El contenido generado hereda la etiqueta más restrictiva de sus fuentes; el cifrado sin derechos impide a Copilot usar el documento; DLP basado en etiquetas | M1 |
+| [Schedule your most used Copilot prompts](https://support.microsoft.com/microsoft-365-copilot/schedule-your-most-used-copilot-prompts) | «Programar este prompt», licencia necesaria, resultados en los chats, también en Teams y Outlook | M2, M5 |
+| [Autonomous agents (Copilot Studio)](https://learn.microsoft.com/microsoft-copilot-studio/guidance/autonomous-agents) | Disparadores, instrucciones y guardarraíles; flujos como herramientas; aprobación humana en los flujos de agente | M7 |
 | Avisos del centro de mensajes sobre `=COPILOT()` (MC1454373) | La función de hoja `=COPILOT()` (vista previa) deja de estar disponible el 14 de septiembre de 2026 | M4 |
 | Anuncio de disponibilidad general de Copilot Cowork (16 de junio de 2026) | Requiere licencia de Microsoft 365 Copilot y consume Copilot Credits | M7 (mención) |
 
@@ -27,4 +31,6 @@ Contenido contrastado el **10 de noviembre de 2026** con la documentación de Mi
 - Nombre y comportamiento del selector Trabajo/Web (Work IQ).
 - Disponibilidad de Researcher, Analyst, Notebooks y Pages según licencia.
 - Funciones del modo agente en cada app.
-- Novedades de Agent Builder y Copilot Studio (tipos de conocimiento, acciones y publicación).
+- Novedades de Agent Builder y Copilot Studio (tipos de conocimiento, acciones, disparadores y publicación).
+- Comportamiento de la herencia de etiquetas en cada app (varía según la documentación consultada).
+- Disponibilidad de la memoria y de los prompts programados según licencia y configuración.

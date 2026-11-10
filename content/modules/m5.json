@@ -1,112 +1,79 @@
 {
   "id": "m5",
-  "title": "Outlook y Teams",
-  "subtitle": "Correo bajo control, reuniones con memoria y seguimientos que acaban en tareas.",
+  "title": "Outlook y Teams avanzado",
+  "subtitle": "Compromisos bajo control, correos delicados, reuniones preparadas y seguimiento entre reuniones.",
   "level": "L4",
   "icon": "chat",
   "color": "#9A5BA5",
   "lessons": [
     {
       "id": "l5-1",
-      "title": "Correo: resumir y priorizar",
-      "summary": "Ponte al día con un hilo largo en segundos y pregunta qué se espera de ti.",
+      "title": "La bandeja y los compromisos bajo control",
+      "summary": "Pregunta a tu correo como a una base de datos: peticiones, plazos y lo que tú has prometido.",
       "minutes": 6,
       "objectives": [
-        "Resumir un hilo en Outlook",
-        "Preguntar por plazos y peticiones",
-        "Saber qué puede faltar en un resumen"
+        "Consultar varios correos a la vez por persona, tema y periodo",
+        "Extraer compromisos propios y ajenos con plazo",
+        "Convertirlo en una rutina programada"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Del hilo eterno a tres líneas",
+          "title": "De leer correos a consultarlos",
           "blocks": [
             {
               "type": "text",
-              "body": "En Outlook, Copilot puede **resumir un hilo** completo: quién ha dicho qué, qué está decidido y qué queda pendiente. Con la licencia y en modo Trabajo también puedes preguntar desde el chat: «¿Qué correos de esta semana requieren una respuesta mía?»."
+              "body": "Resumir un hilo ya lo dominas. El salto es **preguntar a todo tu correo** en modo Trabajo, o a varios correos con /:\n- «Peticiones que me ha hecho Ana desde el 1 de noviembre, con plazo».\n- «Compromisos que **yo** he adquirido por correo esta semana».\n- «Correos de clientes sin respuesta desde hace más de 3 días».\n\nPide siempre una **tabla** con plazo y origen: es tu lista de tareas."
             },
             {
-              "type": "cmds",
-              "items": [
-                {
-                  "cmd": "Resumir",
-                  "desc": "Arriba del hilo: un resumen con las ideas clave.",
-                  "where": "Outlook"
-                },
-                {
-                  "cmd": "«¿Qué se espera de mí y para cuándo?»",
-                  "desc": "Extrae peticiones y plazos.",
-                  "where": "Outlook"
-                },
-                {
-                  "cmd": "«¿Qué está decidido y qué sigue abierto?»",
-                  "desc": "Separa acuerdos de propuestas.",
-                  "where": "Outlook"
-                }
-              ]
+              "type": "callout",
+              "tone": "tip",
+              "body": "Los compromisos que adquieres tú («te lo paso el viernes») son los que más se olvidan. Pide que los distinga."
             }
           ]
         },
         {
           "id": "m5l1e1",
           "type": "copilot",
-          "concept": "com.mail-summary",
-          "prompt": "Abre el hilo **Hilo_tarifa_logistica.eml** en Outlook, **resúmelo** y pregunta **qué se espera de ti y para cuándo**",
+          "concept": "com.inbox",
+          "prompt": "Pide una **tabla de compromisos** (qué, con quién, plazo y origen) a partir de **/Peticiones_Ana_noviembre.eml** y **/Hilo_tarifa_logistica.eml**, incluidos los que **has prometido tú**",
           "setup": {
             "files": {
+              "Outlook/Peticiones_Ana_noviembre.eml": "De: Ana (dirección financiera) · Para: ti · Asunto: Pendientes de noviembre\n\n[Ana, 4 nov] Necesito la provisión del cliente Norte confirmada antes del día 10.\n[Ana, 4 nov] Revisa la comparativa de proveedores de Luis antes de que la presente el 12.\n[Tú, 5 nov] De acuerdo, te paso también el impacto de la tarifa en el margen el viernes.\n",
               "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n",
               "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
             },
             "actions": [
               {
-                "id": "resumen",
+                "id": "compromisos",
                 "when": [
                   [
-                    "resum"
-                  ]
-                ],
-                "reply": [
-                  "Resumen del hilo «Nueva tarifa logística»:",
-                  "• Compras informa de una subida del 12 % desde noviembre, pendiente de firma.",
-                  "• Finanzas señala que no está en el presupuesto; dirección quiere ver el impacto en el margen antes de firmar.",
-                  "Qué se espera de ti: una respuesta con el impacto en el margen, antes del viernes (plazo del proveedor)."
-                ],
-                "needs": {
-                  "app": "outlook",
-                  "open": "Hilo_tarifa_logistica.eml",
-                  "gces": [
-                    "goal"
-                  ],
-                  "say": {
-                    "app": "Abre el hilo en Outlook para resumirlo.",
-                    "open": "Abre el hilo en Outlook para resumirlo."
-                  }
-                },
-                "cites": [
-                  "Hilo_tarifa_logistica.eml"
-                ]
-              },
-              {
-                "id": "pendiente",
-                "when": [
-                  [
-                    "espera de mi",
-                    "tengo que",
-                    "debo",
+                    "compromis",
+                    "peticion",
                     "pendiente",
-                    "para cuando",
-                    "plazo"
+                    "me han pedido",
+                    "he prometido"
                   ]
                 ],
                 "reply": [
-                  "Te piden una valoración del impacto en el margen. Plazo: el proveedor necesita respuesta antes del viernes."
+                  "Compromiso | Con quién | Plazo | Origen",
+                  "Confirmar la provisión del cliente Norte | Ana | 10 nov | Correo [1]",
+                  "Revisar la comparativa de proveedores | Ana | antes del 12 nov | Correo [1]",
+                  "Enviar el impacto de la tarifa en el margen | Ana (lo ofreciste tú) | viernes | Correo [1]",
+                  "Responder a Compras sobre la tarifa | Compras | antes del viernes | Hilo [2]"
                 ],
                 "needs": {
-                  "app": "outlook",
-                  "open": "Hilo_tarifa_logistica.eml"
+                  "refs": [
+                    "Peticiones_Ana_noviembre.eml",
+                    "Hilo_tarifa_logistica.eml"
+                  ],
+                  "gces": [
+                    "expectations"
+                  ]
                 },
                 "cites": [
+                  "Peticiones_Ana_noviembre.eml",
                   "Hilo_tarifa_logistica.eml"
                 ]
               }
@@ -114,123 +81,93 @@
           },
           "goals": [
             {
-              "type": "app",
-              "label": "Tener el hilo abierto en Outlook",
-              "app": "outlook",
-              "open": "Hilo_tarifa_logistica.eml",
-              "hint": "Barra superior → Outlook → Hilo_tarifa_logistica.eml"
+              "type": "prompt",
+              "label": "Consultar los dos correos a la vez",
+              "refs": [
+                "Peticiones_Ana_noviembre.eml",
+                "Hilo_tarifa_logistica.eml"
+              ]
             },
             {
               "type": "action",
-              "label": "Obtener el resumen del hilo",
-              "id": "resumen",
-              "hint": "Resume este hilo"
-            },
-            {
-              "type": "action",
-              "label": "Preguntar qué se espera de ti y el plazo",
-              "id": "pendiente",
-              "hint": "¿Qué se espera de mí y para cuándo?"
+              "label": "Obtener la tabla de compromisos",
+              "id": "compromisos"
             }
           ],
           "solution": [
-            "::app outlook Hilo_tarifa_logistica.eml",
-            "Resume este hilo",
-            "¿Qué se espera de mí y para cuándo?"
+            "Haz una tabla con los compromisos pendientes (qué, con quién, plazo y origen), incluidos los que he prometido yo, a partir de /Peticiones_Ana_noviembre.eml y /Hilo_tarifa_logistica.eml"
           ],
-          "explain": "El resumen te pone al día; la segunda pregunta te dice **qué hacer**. Juntas convierten un hilo en una tarea con plazo.",
+          "explain": "Cuatro compromisos, uno de ellos tuyo («te paso el impacto el viernes»), que no aparecería en una lista de «lo que me piden».",
           "suggestions": [
-            "::app outlook Hilo_tarifa_logistica.eml",
-            "Resume este hilo",
-            "¿Qué se espera de mí y para cuándo?"
+            "Haz una tabla con los compromisos pendientes (qué, con quién, plazo y origen), incluidos los que he prometido yo, a partir de /Peticiones_Ana_noviembre.eml y /Hilo_tarifa_logistica.eml"
           ]
         },
         {
           "id": "m5l1e2",
           "type": "multi",
-          "concept": "com.mail-summary",
-          "prompt": "¿Qué conviene comprobar en el hilo original aunque tengas el resumen?",
+          "concept": "com.inbox",
+          "prompt": "¿Qué consultas aprovechan bien Copilot sobre tu correo?",
           "options": [
             {
-              "text": "Los importes y porcentajes",
+              "text": "«Peticiones de dirección desde el lunes, con plazo»",
               "correct": true
             },
             {
-              "text": "Los plazos comprometidos",
+              "text": "«Lo que he prometido por correo esta semana»",
               "correct": true
             },
             {
-              "text": "Si hay adjuntos importantes",
+              "text": "«Clientes sin respuesta desde hace más de 3 días»",
               "correct": true
             },
             {
-              "text": "El saludo inicial de cada mensaje",
-              "feedback": "No suele afectar a la decisión."
+              "text": "«Lee todos mis correos»",
+              "feedback": "Sin objetivo ni estructura."
             }
           ],
-          "explain": "Un resumen condensa: comprueba en el original lo que tiene consecuencias (importes, plazos, adjuntos)."
-        },
-        {
-          "type": "card",
-          "kicker": "Prioridades",
-          "title": "Pregunta por tu bandeja",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Con Microsoft 365 Copilot puedes preguntar en modo Trabajo por tu correo en general:\n- «Correos de clientes sin respuesta de los últimos 3 días»\n- «Peticiones de dirección de esta semana, con su plazo»\n\nCopilot no lee el correo de otras personas: solo el tuyo y lo compartido contigo."
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Pide siempre el **plazo** y **quién** lo pide: así el resumen se convierte en una lista de tareas."
-            }
-          ]
+          "explain": "Persona, tema, periodo y estructura."
         },
         {
           "id": "m5l1e3",
           "type": "choice",
-          "concept": "com.mail-summary",
-          "prompt": "El resumen dice «la tarifa está aprobada», pero en el hilo aparece «pendiente de firma». ¿Qué haces?",
+          "concept": "prompt.reuse",
+          "prompt": "¿Cómo conviertes esa tabla en una rutina?",
           "options": [
             {
-              "text": "Te fías del hilo original y corriges el resumen",
+              "text": "Programando el prompt para que se ejecute cada lunes",
               "correct": true
             },
             {
-              "text": "Te fías del resumen: es más reciente",
-              "feedback": "El resumen sale del hilo; si contradice el original, el error está en el resumen."
+              "text": "Copiándolo a mano cada semana",
+              "feedback": "Funciona, pero lo puedes automatizar."
             },
             {
-              "text": "Reenvías el resumen a dirección",
-              "feedback": "Difundirías un dato erróneo."
+              "text": "Pidiendo a Copilot que conteste los correos solo",
+              "feedback": "Responder sigue siendo decisión tuya."
             }
           ],
-          "explain": "Ante una contradicción, manda la **fuente original**."
+          "explain": "Los prompts programados convierten una buena consulta en un hábito."
         },
         {
           "id": "m5l1e4",
-          "type": "match",
-          "concept": "com.mail-summary",
-          "prompt": "Empareja la pregunta con lo que obtienes",
-          "pairs": [
-            [
-              "«Resume este hilo»",
-              "Las ideas clave"
-            ],
-            [
-              "«¿Qué se espera de mí?»",
-              "Las peticiones dirigidas a ti"
-            ],
-            [
-              "«¿Qué está decidido?»",
-              "Los acuerdos, separados de las propuestas"
-            ],
-            [
-              "«¿Para cuándo?»",
-              "Los plazos"
-            ]
+          "type": "choice",
+          "concept": "com.inbox",
+          "prompt": "La tabla dice que la provisión vence «el 12», pero el correo de Ana dice «antes del día 10». ¿Qué haces?",
+          "options": [
+            {
+              "text": "Mandas el correo original y corriges la tabla",
+              "correct": true
+            },
+            {
+              "text": "Te quedas con la tabla, que es más cómoda",
+              "feedback": "La fuente es el correo."
+            },
+            {
+              "text": "Usas la fecha que te venga mejor",
+              "feedback": "Un plazo no es opinable."
+            }
           ],
-          "explain": "Pregunta por lo que necesitas para actuar."
+          "explain": "Ante una contradicción, manda la fuente original. Los plazos son lo primero que se comprueba."
         },
         {
           "type": "card",
@@ -239,7 +176,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Resumir un hilo en Outlook\n- Preguntar por plazos y peticiones\n- Saber qué puede faltar en un resumen"
+              "body": "Con esta lección deberías poder:\n- Consultar varios correos a la vez por persona, tema y periodo\n- Extraer compromisos propios y ajenos con plazo\n- Convertirlo en una rutina programada"
             },
             {
               "type": "callout",
@@ -252,8 +189,8 @@
     },
     {
       "id": "l5-2",
-      "title": "Correo: redactar con criterio",
-      "summary": "Copilot redacta el borrador; tú decides qué se compromete y cuándo se envía.",
+      "title": "Correos delicados",
+      "summary": "Negociar, reclamar o decir que no: Copilot redacta y te da coaching; tú decides qué se compromete.",
       "minutes": 7,
       "objectives": [
         "Pedir un borrador con tono y límites",
@@ -490,201 +427,195 @@
     },
     {
       "id": "l5-3",
-      "title": "Reuniones con Copilot",
-      "summary": "Copilot en Teams trabaja con la transcripción: pregunta durante la reunión y consulta los acuerdos después.",
-      "minutes": 6,
+      "title": "Preparar y dirigir reuniones",
+      "summary": "Llega con un brief de una página y usa Copilot durante la reunión para no perder el hilo.",
+      "minutes": 7,
       "objectives": [
-        "Saber qué necesita Copilot para funcionar en una reunión",
-        "Hacer buenas preguntas durante y después",
-        "Usar la transcripción con respeto"
+        "Preparar un brief cruzando correo, archivos y reuniones",
+        "Usar Copilot durante la reunión con preguntas útiles",
+        "Configurar bien la transcripción"
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Idea clave",
-          "title": "Sin transcripción, no hay memoria",
+          "kicker": "Antes",
+          "title": "Un brief de una página",
           "blocks": [
-            {
-              "type": "text",
-              "body": "En una reunión de Teams, Copilot se basa en la **transcripción**. Si se activa, puedes preguntarle durante la reunión y consultar el resumen después.\n\nSegún cómo esté configurada la reunión, Copilot puede funcionar **solo durante la reunión** sin guardar la transcripción: en ese caso, al terminar no podrás preguntarle."
-            },
             {
               "type": "cmds",
               "items": [
                 {
-                  "cmd": "«¿Qué me he perdido?»",
-                  "desc": "Si llegas tarde.",
-                  "where": "Teams"
+                  "cmd": "Objetivo",
+                  "desc": "Qué quieres conseguir en la reunión."
                 },
                 {
-                  "cmd": "«¿Qué dudas siguen sin resolver?»",
-                  "desc": "Antes de cerrar la reunión.",
-                  "where": "Teams"
+                  "cmd": "Antecedentes",
+                  "desc": "Lo dicho y acordado antes, con fuente."
                 },
                 {
-                  "cmd": "«Acuerdos con responsable y fecha»",
-                  "desc": "Al terminar.",
-                  "where": "Teams"
+                  "cmd": "Cifras",
+                  "desc": "Los datos que necesitarás tener a mano."
+                },
+                {
+                  "cmd": "Preguntas abiertas",
+                  "desc": "Lo que hay que aclarar."
+                },
+                {
+                  "cmd": "Líneas rojas",
+                  "desc": "Lo que no debes comprometer."
                 }
-              ]
+              ],
+              "title": "Estructura del brief"
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Pide «señala contradicciones entre las fuentes»: llegar sabiendo que dos documentos no coinciden cambia la reunión."
             }
           ]
         },
         {
           "id": "m5l3e1",
           "type": "copilot",
-          "concept": "com.meetings",
-          "prompt": "Abre la reunión **Comite_cierre_3nov.meet** en Teams y pregunta por los **acuerdos y responsables** y por lo que **sigue sin resolver**",
+          "concept": "com.meetprep",
+          "prompt": "Prepara un **brief** de una página para la reunión con el proveedor, con objetivo, antecedentes, cifras, preguntas y líneas rojas, usando **/Hilo_tarifa_logistica.eml**, **/Oferta_renovacion_logistica.eml** e **/Informe_cierre_octubre.docx**. Revísalo",
           "setup": {
             "files": {
-              "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n",
-              "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n"
+              "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n",
+              "Outlook/Oferta_renovacion_logistica.eml": "De: Proveedor actual de transporte · Para: Compras · Asunto: Renovación 2027\n\nLes confirmamos la nueva tarifa: subida del 9 % desde el 1 de enero de 2027 (no desde noviembre).\nCondición: contrato de 24 meses.\n",
+              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
+              "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
             },
             "actions": [
               {
-                "id": "acuerdos",
+                "id": "brief",
                 "when": [
                   [
-                    "acuerdo",
-                    "decidi",
-                    "responsable"
+                    "brief",
+                    "prepara",
+                    "preparame"
                   ]
                 ],
                 "reply": [
-                  "Acuerdos del comité del 3 de noviembre:",
-                  "• Luis presenta una comparativa de tres proveedores el 12 de noviembre.",
-                  "• Marta confirma la provisión del cliente Norte antes del cierre del día 10.",
-                  "Petición abierta: Ana quiere alternativas al transporte antes del día 15."
+                  "He preparado un brief de una página: objetivo, antecedentes, cifras, preguntas y lo que no debemos comprometer.",
+                  "Señalo la contradicción entre el hilo (+12 % desde noviembre) y la oferta escrita (+9 % desde enero con 24 meses)."
                 ],
                 "needs": {
-                  "app": "teams",
-                  "open": "Comite_cierre_3nov.meet",
-                  "say": {
-                    "app": "Abre la reunión en Teams.",
-                    "open": "Abre la reunión del comité en Teams."
+                  "refs": [
+                    "Hilo_tarifa_logistica.eml",
+                    "Oferta_renovacion_logistica.eml",
+                    "Informe_cierre_octubre.docx"
+                  ],
+                  "gces": [
+                    "expectations"
+                  ]
+                },
+                "cites": [
+                  "Hilo_tarifa_logistica.eml",
+                  "Oferta_renovacion_logistica.eml",
+                  "Informe_cierre_octubre.docx"
+                ],
+                "writes": [
+                  {
+                    "path": "OneDrive/Logistica/Brief_reunion_proveedor.docx",
+                    "content": "Brief · Reunión con el proveedor de transporte (generado con Copilot)\n\nObjetivo: mantener la tarifa hasta tener la comparativa (14 nov).\nAntecedentes: Compras habla de +12 % desde noviembre [1]; la oferta escrita dice +9 % desde enero con 24 meses [2].\nCifras: transporte de octubre 58.400 €; cada punto de subida ≈ 584 € al mes [3].\nPreguntas: ¿cuál de las dos condiciones es la válida? ¿Aceptan 12 meses?\nNo comprometer: firma, duración ni exclusividad.\n"
                   }
-                },
-                "cites": [
-                  "Comite_cierre_3nov.meet"
-                ]
-              },
-              {
-                "id": "dudas",
-                "when": [
-                  [
-                    "duda",
-                    "sin resolver",
-                    "abierto",
-                    "pendiente"
-                  ]
-                ],
-                "reply": [
-                  "Sin resolver: qué alternativa de transporte se elegirá y si se mantendrá la tarifa actual mientras tanto."
-                ],
-                "needs": {
-                  "app": "teams",
-                  "open": "Comite_cierre_3nov.meet"
-                },
-                "cites": [
-                  "Comite_cierre_3nov.meet"
                 ]
               }
             ]
           },
           "goals": [
             {
-              "type": "app",
-              "label": "Tener la reunión abierta en Teams",
-              "app": "teams",
-              "open": "Comite_cierre_3nov.meet",
-              "hint": "Barra superior → Teams → Comite_cierre_3nov.meet"
+              "type": "prompt",
+              "label": "Pedir el brief con las tres fuentes",
+              "refs": [
+                "Hilo_tarifa_logistica.eml",
+                "Oferta_renovacion_logistica.eml",
+                "Informe_cierre_octubre.docx"
+              ]
             },
             {
-              "type": "action",
-              "label": "Obtener los acuerdos con responsable",
-              "id": "acuerdos",
-              "hint": "¿Qué acuerdos se tomaron y quién es responsable?"
+              "type": "exists",
+              "label": "Existe el brief",
+              "path": "OneDrive/Logistica/Brief_reunion_proveedor.docx"
             },
             {
-              "type": "action",
-              "label": "Preguntar qué sigue sin resolver",
-              "id": "dudas",
-              "hint": "¿Qué dudas siguen sin resolver?"
+              "type": "viewed",
+              "label": "Revisar el brief",
+              "path": "Brief_reunion_proveedor.docx"
             }
           ],
           "solution": [
-            "::app teams Comite_cierre_3nov.meet",
-            "¿Qué acuerdos se tomaron y quién es responsable?",
-            "¿Qué dudas siguen sin resolver?"
+            "Prepara un brief de una página para la reunión con el proveedor de transporte, con objetivo, antecedentes, cifras, preguntas abiertas y lo que no debo comprometer, usando /Hilo_tarifa_logistica.eml, /Oferta_renovacion_logistica.eml e /Informe_cierre_octubre.docx",
+            "::ver Brief_reunion_proveedor.docx"
           ],
-          "explain": "Separar **acuerdos** de **peticiones abiertas** es lo que convierte una reunión en un seguimiento útil.",
+          "explain": "El brief llega con la contradicción detectada y con «líneas rojas»: lo que te protege de comprometer algo en caliente.",
           "suggestions": [
-            "::app teams Comite_cierre_3nov.meet",
-            "¿Qué acuerdos se tomaron y quién es responsable?",
-            "¿Qué dudas siguen sin resolver?"
+            "Prepara un brief de una página para la reunión con el proveedor de transporte, con objetivo, antecedentes, cifras, preguntas abiertas y lo que no debo comprometer, usando /Hilo_tarifa_logistica.eml, /Oferta_renovacion_logistica.eml e /Informe_cierre_octubre.docx",
+            "::ver Brief_reunion_proveedor.docx"
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Durante",
+          "title": "Copilot en la reunión",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con la transcripción activa, Copilot en Teams responde sobre lo que se está diciendo: «¿Qué dudas siguen sin resolver?», «resume los argumentos a favor y en contra», «¿qué me he perdido?».\n\nSi la reunión se configura para que Copilot funcione **solo durante la reunión**, no se guarda la transcripción y después no podrás consultarla. Para consultas posteriores, la transcripción debe estar activa."
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "body": "Transcribir es tratar datos personales. En reuniones sensibles (evaluaciones, salud, conflictos) lo prudente es no transcribir."
+            }
           ]
         },
         {
           "id": "m5l3e2",
+          "type": "multi",
+          "concept": "com.meetings",
+          "prompt": "¿Qué preguntas son útiles durante una negociación?",
+          "options": [
+            {
+              "text": "«¿Qué condiciones ha aceptado ya el proveedor?»",
+              "correct": true
+            },
+            {
+              "text": "«¿Qué preguntas del brief siguen sin respuesta?»",
+              "correct": true
+            },
+            {
+              "text": "«¿Quién ha hablado peor?»",
+              "feedback": "No evalúa personas; además, no es apropiado."
+            },
+            {
+              "text": "«Resume los argumentos de cada parte»",
+              "correct": true
+            }
+          ],
+          "explain": "Pregunta por contenido y decisiones."
+        },
+        {
+          "id": "m5l3e3",
           "type": "choice",
           "concept": "com.meetings",
-          "prompt": "Al día siguiente quieres preguntar a Copilot por una reunión en la que nadie activó la transcripción. ¿Qué pasará?",
+          "prompt": "Al día siguiente quieres preguntar por una reunión en la que nadie activó la transcripción. ¿Qué pasará?",
           "options": [
             {
               "text": "Copilot no tendrá lo que se dijo: como mucho, el chat de la reunión",
               "correct": true
             },
             {
-              "text": "Copilot lo reconstruirá a partir del audio",
-              "feedback": "Sin transcripción no hay texto de lo dicho."
+              "text": "Lo reconstruirá a partir del audio",
+              "feedback": "Sin transcripción no hay texto."
             },
             {
-              "text": "Copilot preguntará a los asistentes",
+              "text": "Preguntará a los asistentes",
               "feedback": "Copilot no hace eso."
             }
           ],
-          "explain": "Para consultar una reunión después, la **transcripción** debe estar activada durante la reunión."
-        },
-        {
-          "type": "card",
-          "kicker": "Respeto",
-          "title": "Transcribir es tratar datos",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "La transcripción recoge lo que dicen todas las personas. Teams avisa a los asistentes cuando se activa, pero hay reuniones (salud, evaluaciones, conflictos) en las que lo prudente es **no** transcribir.\n\nY recuerda: el resumen puede atribuir mal una frase. Revisa los acuerdos con quien los asumió."
-            },
-            {
-              "type": "callout",
-              "tone": "warn",
-              "body": "Sigue las normas de tu organización sobre grabación y transcripción."
-            }
-          ]
-        },
-        {
-          "id": "m5l3e3",
-          "type": "multi",
-          "concept": "com.meetings",
-          "prompt": "¿Qué preguntas son útiles durante una reunión?",
-          "options": [
-            {
-              "text": "«¿Qué dudas siguen sin resolver?»",
-              "correct": true
-            },
-            {
-              "text": "«Resume los argumentos a favor y en contra»",
-              "correct": true
-            },
-            {
-              "text": "«¿Quién ha hablado peor?»",
-              "feedback": "Copilot no evalúa a las personas; además no es apropiado."
-            },
-            {
-              "text": "«¿Qué me he perdido en los últimos 10 minutos?»",
-              "correct": true
-            }
-          ],
-          "explain": "Pregunta por contenido y decisiones, no por valoraciones de personas."
+          "explain": "Para consultar después, transcripción activa durante la reunión."
         },
         {
           "type": "card",
@@ -693,7 +624,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Saber qué necesita Copilot para funcionar en una reunión\n- Hacer buenas preguntas durante y después\n- Usar la transcripción con respeto"
+              "body": "Con esta lección deberías poder:\n- Preparar un brief cruzando correo, archivos y reuniones\n- Usar Copilot durante la reunión con preguntas útiles\n- Configurar bien la transcripción"
             },
             {
               "type": "callout",
@@ -706,45 +637,23 @@
     },
     {
       "id": "l5-4",
-      "title": "De la reunión a las tareas",
-      "summary": "Convierte los acuerdos en un correo de seguimiento y en tareas con responsable y fecha.",
+      "title": "Seguimiento entre reuniones",
+      "summary": "Cruza varias reuniones para saber qué está cerrado, qué se retrasa y qué nadie ha asumido.",
       "minutes": 6,
       "objectives": [
-        "Preparar un seguimiento con acuerdos, responsables y fechas",
-        "Detectar tareas sin responsable",
-        "Elegir dónde gestionar las tareas"
+        "Cruzar acuerdos de varias reuniones",
+        "Clasificar acuerdos en cerrados, retrasados y abiertos",
+        "Llevar el seguimiento a las herramientas del equipo"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Una reunión acaba en tareas",
+          "title": "El estado de los acuerdos, no el acta",
           "blocks": [
             {
-              "type": "flow",
-              "steps": [
-                {
-                  "title": "Acuerdos",
-                  "text": "Qué se decidió, separado de lo que solo se habló."
-                },
-                {
-                  "title": "Responsables y fechas",
-                  "text": "Cada acuerdo, con una persona y un plazo."
-                },
-                {
-                  "title": "Seguimiento",
-                  "text": "Un correo o un componente de Loop para el equipo."
-                },
-                {
-                  "title": "Tareas",
-                  "text": "En Planner o To Do, donde el equipo las gestione."
-                }
-              ]
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Pide explícitamente «marca los acuerdos sin responsable». Es lo que más se escapa en las reuniones."
+              "type": "text",
+              "body": "Un acta resume una reunión. El valor está en el **seguimiento**: «¿Qué acuerdos del comité del 3 siguen abiertos tras la reunión del 10?». Pide una tabla con **acuerdo, responsable y estado**, y que marque lo que no tiene responsable.\n\nDespués llévalo a donde trabaja el equipo: un correo, un componente de **Loop** o tareas en **Planner**."
             }
           ]
         },
@@ -752,42 +661,45 @@
           "id": "m5l4e1",
           "type": "copilot",
           "concept": "com.followup",
-          "prompt": "Desde la reunión en Teams, pide un **correo de seguimiento** con los acuerdos **en una tabla** (acuerdo, responsable y fecha). Revisa el borrador",
+          "prompt": "Cruza **/Comite_cierre_3nov.meet** y **/Comite_cierre_10nov.meet**: pide qué acuerdos siguen **abiertos**, en una **tabla** con acuerdo, responsable y estado, y prepara el seguimiento. Revísalo",
           "setup": {
             "files": {
-              "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
+              "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n",
+              "Teams/Comite_cierre_10nov.meet": "Reunión: Comité de cierre · 10 nov 2026 · Transcripción activada\n\nMarta: provisión del cliente Norte confirmada: 9.800 €.\nLuis: la comparativa de proveedores se aplaza al 14 de noviembre; falta una oferta.\nAna: sigo sin alternativas al transporte; las quiero antes del día 15.\n",
+              "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n"
             },
             "actions": [
               {
                 "id": "seguimiento",
                 "when": [
                   [
+                    "abiert",
+                    "pendient",
                     "seguimiento",
-                    "correo",
-                    "acta"
+                    "estado"
                   ]
                 ],
                 "reply": [
-                  "He preparado un correo de seguimiento con una tabla de acuerdos, responsables y fechas.",
-                  "Atención: la petición de Ana (alternativas antes del día 15) no tiene responsable asignado; lo he marcado como pendiente."
+                  "He cruzado las dos reuniones: 1 acuerdo cerrado, 1 retrasado y 1 abierto sin responsable.",
+                  "He preparado un borrador de seguimiento con la tabla. La petición de Ana sigue sin responsable: no lo he asignado."
                 ],
                 "needs": {
-                  "app": "teams",
-                  "open": "Comite_cierre_3nov.meet",
+                  "refs": [
+                    "Comite_cierre_3nov.meet",
+                    "Comite_cierre_10nov.meet"
+                  ],
                   "gces": [
                     "expectations"
-                  ],
-                  "say": {
-                    "expectations": "Indica el formato: por ejemplo, una tabla con acuerdo, responsable y fecha."
-                  }
+                  ]
                 },
                 "cites": [
-                  "Comite_cierre_3nov.meet"
+                  "Comite_cierre_3nov.meet",
+                  "Comite_cierre_10nov.meet"
                 ],
                 "writes": [
                   {
                     "path": "Outlook/Borradores/Seguimiento_comite.eml",
-                    "content": "Para: asistentes del comité · Asunto: Seguimiento del comité de cierre (BORRADOR, no enviado)\n\nAcuerdo | Responsable | Fecha\nComparativa de tres proveedores | Luis | 12 nov\nConfirmar la provisión del cliente Norte | Marta | 10 nov\nAlternativas al transporte | (pendiente de asignar) | 15 nov\n"
+                    "content": "Para: asistentes del comité · Asunto: Seguimiento de acuerdos (BORRADOR, no enviado)\n\nAcuerdo (3 nov) | Responsable | Estado tras el 10 nov\nConfirmar la provisión del cliente Norte | Marta | Cerrado: 9.800 €\nComparativa de tres proveedores | Luis | Retrasado: nueva fecha 14 nov\nAlternativas al transporte | (sin responsable) | Abierto: Ana las quiere antes del 15\n"
                   }
                 ]
               }
@@ -796,12 +708,11 @@
           "goals": [
             {
               "type": "prompt",
-              "label": "Pedir el seguimiento desde la reunión indicando el formato",
-              "app": "teams",
-              "gces": [
-                "expectations"
-              ],
-              "hint": "Prepara un correo de seguimiento con una tabla de acuerdo, responsable y fecha"
+              "label": "Cruzar las dos reuniones",
+              "refs": [
+                "Comite_cierre_3nov.meet",
+                "Comite_cierre_10nov.meet"
+              ]
             },
             {
               "type": "exists",
@@ -810,20 +721,17 @@
             },
             {
               "type": "viewed",
-              "label": "Revisar el borrador",
-              "path": "Seguimiento_comite.eml",
-              "hint": "Archivos → Ver Seguimiento_comite.eml"
+              "label": "Revisar el seguimiento",
+              "path": "Seguimiento_comite.eml"
             }
           ],
           "solution": [
-            "::app teams Comite_cierre_3nov.meet",
-            "Prepara un correo de seguimiento para los asistentes con una tabla de acuerdo, responsable y fecha",
+            "¿Qué acuerdos de /Comite_cierre_3nov.meet siguen abiertos tras /Comite_cierre_10nov.meet? Prepara un seguimiento con una tabla de acuerdo, responsable y estado",
             "::ver Seguimiento_comite.eml"
           ],
-          "explain": "La tabla deja a la vista un hueco: la petición de Ana no tiene responsable. Un buen seguimiento lo señala en lugar de inventar uno.",
+          "explain": "Cerrado, retrasado y abierto sin responsable: la tabla dice dónde actuar. Y no inventa un responsable para la petición de Ana.",
           "suggestions": [
-            "::app teams Comite_cierre_3nov.meet",
-            "Prepara un correo de seguimiento ",
+            "¿Qué acuerdos de /Comite_cierre_3nov.meet siguen abiertos tras /Comite_cierre_10nov.meet? Prepara un seguimiento con una tabla de acuerdo, responsable y estado",
             "::ver Seguimiento_comite.eml"
           ]
         },
@@ -831,14 +739,15 @@
           "id": "m5l4e2",
           "type": "order",
           "concept": "com.followup",
-          "prompt": "Ordena el seguimiento de una reunión",
+          "prompt": "Ordena el seguimiento semanal de acuerdos",
           "items": [
-            "Pedir los acuerdos con responsable y fecha",
-            "Revisar y completar lo que falte",
-            "Enviar el seguimiento a los asistentes",
-            "Crear las tareas donde el equipo las gestione"
+            "Cruzar las reuniones de la semana",
+            "Clasificar cerrados, retrasados y abiertos",
+            "Pedir responsable para lo que no lo tiene",
+            "Enviar el seguimiento",
+            "Actualizar las tareas en Planner"
           ],
-          "explain": "De la transcripción a tareas gestionadas, con tu revisión en medio."
+          "explain": "Cruzar, clasificar, completar, comunicar y gestionar."
         },
         {
           "id": "m5l4e3",
@@ -847,7 +756,7 @@
           "prompt": "Un acuerdo no tiene responsable. ¿Qué pides a Copilot?",
           "options": [
             {
-              "text": "Que lo marque como «pendiente de asignar»",
+              "text": "Que lo marque como «sin responsable» para resolverlo con quien corresponda",
               "correct": true
             },
             {
@@ -855,7 +764,7 @@
               "feedback": "Asignaría una tarea que nadie ha aceptado."
             },
             {
-              "text": "Que lo elimine para que la tabla quede completa",
+              "text": "Que lo elimine",
               "feedback": "Perderías un acuerdo."
             }
           ],
@@ -867,23 +776,23 @@
           "concept": "com.followup",
           "prompt": "Completa",
           "code": false,
-          "template": "Cada acuerdo necesita un {{0}} y una {{1}}. Las tareas del equipo se gestionan en {{2}} o To Do.",
+          "template": "Clasifico cada acuerdo en {{0}}, retrasado o {{1}}, y las tareas del equipo las gestiono en {{2}}.",
           "blanks": [
             {
               "options": [
-                "responsable",
-                "color",
-                "adjunto"
+                "cerrado",
+                "bonito",
+                "largo"
               ],
-              "answer": "responsable"
+              "answer": "cerrado"
             },
             {
               "options": [
-                "fecha",
-                "firma",
-                "foto"
+                "abierto",
+                "secreto",
+                "antiguo"
               ],
-              "answer": "fecha"
+              "answer": "abierto"
             },
             {
               "options": [
@@ -894,7 +803,7 @@
               "answer": "Planner"
             }
           ],
-          "explain": "Responsable, fecha y una herramienta de seguimiento compartida."
+          "explain": "Estado de cada acuerdo y una herramienta compartida."
         },
         {
           "type": "card",
@@ -903,7 +812,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Preparar un seguimiento con acuerdos, responsables y fechas\n- Detectar tareas sin responsable\n- Elegir dónde gestionar las tareas"
+              "body": "Con esta lección deberías poder:\n- Cruzar acuerdos de varias reuniones\n- Clasificar acuerdos en cerrados, retrasados y abiertos\n- Llevar el seguimiento a las herramientas del equipo"
             },
             {
               "type": "callout",
@@ -967,7 +876,7 @@
       {
         "id": "m5x3",
         "type": "match",
-        "concept": "com.mail-summary",
+        "concept": "com.inbox",
         "prompt": "Empareja la herramienta con su uso",
         "pairs": [
           [
@@ -992,23 +901,44 @@
       {
         "id": "m5x4",
         "type": "choice",
-        "concept": "gob.human",
-        "prompt": "¿Quién envía el correo que redacta Copilot en Outlook?",
+        "concept": "com.meetprep",
+        "prompt": "¿Qué apartado del brief te protege de comprometer algo en caliente?",
         "options": [
           {
-            "text": "Tú, después de revisarlo",
+            "text": "Las líneas rojas: lo que no debes comprometer",
             "correct": true
           },
           {
-            "text": "Copilot, automáticamente",
-            "feedback": "Copilot deja un borrador."
+            "text": "Los antecedentes",
+            "feedback": "Informan, pero no te protegen."
           },
           {
-            "text": "Nadie: se envía al cerrar Outlook",
-            "feedback": "No funciona así."
+            "text": "El saludo inicial",
+            "feedback": "No forma parte del brief."
           }
         ],
-        "explain": "Copilot redacta; tú revisas y envías."
+        "explain": "Objetivo, antecedentes, cifras, preguntas y líneas rojas."
+      },
+      {
+        "id": "m5x5",
+        "type": "choice",
+        "concept": "com.inbox",
+        "prompt": "¿Qué compromisos se olvidan con más facilidad?",
+        "options": [
+          {
+            "text": "Los que adquieres tú mismo («te lo paso el viernes»)",
+            "correct": true
+          },
+          {
+            "text": "Los que te pide dirección",
+            "feedback": "Suelen tener seguimiento."
+          },
+          {
+            "text": "Los que tienen fecha en el calendario",
+            "feedback": "El calendario los recuerda."
+          }
+        ],
+        "explain": "Pide explícitamente los compromisos que has adquirido tú."
       }
     ]
   }

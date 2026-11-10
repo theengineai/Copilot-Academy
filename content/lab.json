@@ -4,7 +4,7 @@
     "title": "Trabajo o Web",
     "summary": "Elige el modo adecuado para cada pregunta.",
     "requires": [
-      "l1-2"
+      "l1-1"
     ],
     "exercise": {
       "type": "copilot",
@@ -92,7 +92,7 @@
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "prompt.refs",
+      "concept": "fund.verify",
       "prompt": "Resume **/Informe_cierre_octubre.docx** en **3 viñetas** y abre el informe para comprobarlo",
       "setup": {
         "files": {
@@ -129,15 +129,15 @@
   },
   {
     "id": "lab-gces",
-    "title": "Cuatro de cuatro",
-    "summary": "Consigue una petición con los cuatro elementos en el medidor.",
+    "title": "Precisión máxima",
+    "summary": "Cuatro de cuatro en el medidor y la regla de los huecos.",
     "requires": [
       "l2-1"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "prompt.gces",
-      "prompt": "Escribe una petición sobre el **transporte** que encienda los **cuatro elementos** del medidor",
+      "concept": "prompt.spec",
+      "prompt": "Escribe una petición sobre el **transporte** que encienda los **cuatro elementos** del medidor e incluya qué hacer con los datos que falten",
       "setup": {
         "files": {
           "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
@@ -150,10 +150,15 @@
           "label": "Una petición con objetivo, contexto, expectativas y fuente",
           "pattern": "transporte",
           "gces": 4
+        },
+        {
+          "type": "prompt",
+          "label": "Con la regla para los datos que falten",
+          "pattern": "pendiente|no (lo )?estimes|no inventes"
         }
       ],
       "solution": [
-        "Resume el aumento del transporte para el comité de dirección, en 3 viñetas, a partir de /Informe_cierre_octubre.docx"
+        "Resume el aumento del transporte para el comité de dirección, en 3 viñetas, a partir de /Informe_cierre_octubre.docx; si falta un dato escribe [pendiente]"
       ],
       "explain": "Objetivo, contexto, expectativas y fuente.",
       "suggestions": [
@@ -166,11 +171,11 @@
     "title": "Itera y cambia de tema",
     "summary": "Ajusta una respuesta y abre un chat nuevo al cambiar de tema.",
     "requires": [
-      "l2-2"
+      "l2-3"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "prompt.iterate",
+      "concept": "prompt.chain",
       "prompt": "Pide un resumen de **/Informe_cierre_octubre.docx**, pide que sea **más breve** y abre un **chat nuevo**",
       "setup": {
         "files": {
@@ -252,7 +257,7 @@
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "docs.rewrite",
+      "concept": "docs.compare",
       "prompt": "Abre **Politica_gastos_viaje.docx** en Word y pregunta por el **kilometraje**",
       "setup": {
         "files": {
@@ -329,8 +334,8 @@
               "app": "excel",
               "open": "Ventas_octubre.xlsx",
               "say": {
-                "app": "Abre Ventas_octubre.xlsx en Excel para añadir la columna.",
-                "open": "Abre Ventas_octubre.xlsx en Excel para añadir la columna."
+                "app": "Abre Ventas_octubre.xlsx en Excel.",
+                "open": "Abre Ventas_octubre.xlsx en Excel."
               }
             },
             "writes": [
@@ -350,8 +355,7 @@
               ]
             ],
             "reply": [
-              "La fórmula resta el coste a las ventas de cada fila y divide el resultado entre las ventas.",
-              "Así se obtiene el margen sobre ventas. Si se dividiera entre el coste, se obtendría otro indicador (el recargo o markup)."
+              "La fórmula resta el coste a las ventas de cada fila y divide entre las ventas: margen sobre ventas. Dividir entre el coste daría el recargo (markup)."
             ],
             "needs": {
               "app": "excel",

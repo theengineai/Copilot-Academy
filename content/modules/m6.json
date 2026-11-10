@@ -159,6 +159,44 @@
           ]
         },
         {
+          "type": "card",
+          "kicker": "Encargo",
+          "title": "Un buen encargo a Researcher",
+          "blocks": [
+            {
+              "type": "cmds",
+              "items": [
+                {
+                  "cmd": "Pregunta de decisión",
+                  "desc": "«¿Renovamos con el proveedor actual o cambiamos en 2027?», mejor que «investiga el transporte»."
+                },
+                {
+                  "cmd": "Alcance",
+                  "desc": "Ámbito, horizonte y qué queda fuera."
+                },
+                {
+                  "cmd": "Criterios",
+                  "desc": "Qué pesa más: precio, plazo, penalizaciones, riesgo."
+                },
+                {
+                  "cmd": "Fuentes",
+                  "desc": "Qué priorizar (tus ofertas, el informe) y qué descartar (foros, blogs sin autor)."
+                },
+                {
+                  "cmd": "Entregable",
+                  "desc": "Estructura del informe: resumen, comparativa, recomendación, limitaciones."
+                }
+              ],
+              "title": "Cinco piezas"
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Si contestas a sus preguntas de alcance con estas cinco piezas, el informe sale a la primera."
+            }
+          ]
+        },
+        {
           "id": "m6l1e2",
           "type": "choice",
           "concept": "inv.researcher",

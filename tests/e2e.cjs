@@ -95,7 +95,7 @@ async function copilotInput(page, root, ex, input) {
   if (!m) { await textarea.fill(input); await textarea.press('Enter'); return; }
   const [, cmd, arg] = m;
   if (cmd === 'modo') { await root.locator('.cp-scope button', { hasText: arg === 'web' ? 'Web' : 'Trabajo' }).click(); return; }
-  if (cmd === 'nuevo') { await root.getByRole('button', { name: 'Nuevo chat' }).click(); return; }
+  if (cmd === 'nuevo') { await root.locator('.cp-bar .cp-icon-btn').click(); return; }
   if (cmd === 'app') {
     const [app, ...file] = arg.split(' ');
     const label = { chat: 'Copilot Chat', word: 'Word', excel: 'Excel', powerpoint: 'PowerPoint', outlook: 'Outlook', teams: 'Teams' }[app];
@@ -144,6 +144,8 @@ async function playActivity(page, { failFirst = null } = {}) {
         if (wrong) failed.add(id);
         await page.locator('.act-foot .btn-primary').click({ timeout: 5000 });
       } catch (e) {
+        if (process.env.FAIL_SHOT) console.error(e.message.split('\n').slice(0, 25).join('\n'));
+        if (process.env.FAIL_SHOT) await page.screenshot({ path: process.env.FAIL_SHOT, fullPage: true }).catch(() => {});
         throw new Error(`[${id} · ${ex.type}] ${e.message.split('\n')[0]}`);
       }
       const fb = page.locator('.feedback');
@@ -193,12 +195,12 @@ async function openRoute(page, route) {
 
   console.log('2. Lección 1.1 con un fallo intencionado (se repite al final)');
   await openRoute(page, '#/lesson/l1-1');
-  await playActivity(page, { failFirst: 'm1l1e1' });
+  await playActivity(page, { failFirst: 'm1l1e3' });
   const xp1 = await finishResults(page);
   log('XP ganada en la lección:', xp1);
   const state1 = await page.evaluate(() => JSON.parse(localStorage.getItem('cpa.state')));
   assert.ok(state1.xp > 0 && state1.xp < 30, 'XP proporcional a la precisión');
-  assert.ok(state1.mistakes.m1l1e1, 'el error queda registrado para repaso');
+  assert.ok(state1.mistakes.m1l1e3, 'el error queda registrado para repaso');
 
   console.log('3. Persistencia tras recargar');
   await page.reload({ waitUntil: 'networkidle' });
@@ -231,8 +233,8 @@ async function openRoute(page, route) {
   await page.locator('.act-head .close').click();
   log('atrás, modo repaso y reanudación correctos');
 
-  console.log('4. Lecciones con Copilot simulado (l1-2, l1-3, l1-4) y evaluación del módulo 1');
-  for (const id of ['l1-2', 'l1-3', 'l1-4']) {
+  console.log('4. Lecciones con Copilot simulado (l1-2 a l1-5) y evaluación del módulo 1');
+  for (const id of ['l1-2', 'l1-3', 'l1-4', 'l1-5']) {
     await openRoute(page, `#/lesson/${id}`);
     await playActivity(page);
     await finishResults(page);
@@ -262,11 +264,11 @@ async function openRoute(page, route) {
 
   console.log('7. Repaso inteligente con el error registrado');
   await openRoute(page, '#/review');
-  await page.locator('[data-ex-id="m1l1e1"]').waitFor();
+  await page.locator('[data-ex-id="m1l1e3"]').waitFor();
   await playActivity(page);
   await finishResults(page);
   const state4 = await page.evaluate(() => JSON.parse(localStorage.getItem('cpa.state')));
-  assert.ok(!state4.mistakes.m1l1e1, 'el error se elimina al acertarlo en repaso');
+  assert.ok(!state4.mistakes.m1l1e3, 'el error se elimina al acertarlo en repaso');
 
   console.log('8. Laboratorio: peticiones, medidor y persistencia');
   await openRoute(page, '#/lab');

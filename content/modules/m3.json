@@ -1,59 +1,60 @@
 {
   "id": "m3",
-  "title": "Word y PowerPoint",
-  "subtitle": "Borradores con fuentes, reescrituras seguras, presentaciones con una historia y el modo agente.",
+  "title": "Word y PowerPoint avanzado",
+  "subtitle": "Documentos largos con método, comparar versiones, presentaciones para dirección y modo agente.",
   "level": "L3",
   "icon": "file",
   "color": "#3F6E9C",
   "lessons": [
     {
       "id": "l3-1",
-      "title": "Un borrador en Word desde tus archivos",
-      "summary": "Describe el documento, apóyalo en tus fuentes y revisa antes de conservarlo.",
+      "title": "Documentos largos con método",
+      "summary": "Estructura primero, secciones con su fuente, estilo coherente y resumen al final.",
       "minutes": 7,
       "objectives": [
-        "Pedir un borrador en Word con fuentes",
-        "Revisar y decidir si conservar, regenerar o descartar",
-        "Trabajar por partes: primero la estructura"
+        "Construir un documento largo por fases",
+        "Mantener la coherencia de cifras entre secciones",
+        "Aplicar una guía de estilo"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Del documento en blanco al primer borrador",
+          "title": "Un documento largo no se pide de una vez",
           "blocks": [
-            {
-              "type": "text",
-              "body": "En un documento nuevo, Copilot te propone **redactar con Copilot**. Describes qué necesitas y, con **/**, indicas los archivos en los que debe basarse."
-            },
             {
               "type": "flow",
               "steps": [
                 {
-                  "title": "Describe",
-                  "text": "Qué documento, para quién y con qué estructura."
+                  "title": "Índice",
+                  "text": "Pide la estructura y ajústala antes de redactar nada."
                 },
                 {
-                  "title": "Aporta fuentes",
-                  "text": "Con / añades el informe, la reunión o el correo."
+                  "title": "Secciones",
+                  "text": "Redacta cada apartado con su fuente (/archivo) y la regla [pendiente]."
                 },
                 {
-                  "title": "Revisa",
-                  "text": "Lee el borrador completo y compáralo con las fuentes."
+                  "title": "Coherencia",
+                  "text": "«Comprueba que las cifras coinciden en todas las secciones y lista las que no»."
                 },
                 {
-                  "title": "Decide",
-                  "text": "Conservar, regenerar con más detalle o descartar."
+                  "title": "Resumen",
+                  "text": "El resumen ejecutivo, al final, cuando el contenido ya es correcto."
                 }
               ]
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Una guía de estilo breve en la petición («frases cortas, cifras con un decimal, sin adjetivos») ahorra muchas rondas de edición."
             }
           ]
         },
         {
           "id": "m3l1e1",
           "type": "copilot",
-          "concept": "docs.draft",
-          "prompt": "Abre **Word** (sin archivo) y pide un **borrador de nota para dirección** basado en **/Informe_cierre_octubre.docx** y **/Comite_cierre_3nov.meet**. Después **abre el borrador** para revisarlo",
+          "concept": "docs.longform",
+          "prompt": "En **Word**, pide primero el **índice** de una nota para dirección basada en **/Informe_cierre_octubre.docx** y **/Comite_cierre_3nov.meet**. Después pide que **redacte** siguiendo ese índice y revisa el resultado",
           "setup": {
             "files": {
               "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
@@ -61,18 +62,22 @@
             },
             "actions": [
               {
-                "id": "nota",
+                "id": "indice",
                 "when": [
                   [
-                    "redacta",
-                    "borrador",
-                    "nota",
-                    "prepara"
+                    "indice",
+                    "estructura",
+                    "esquema"
                   ]
                 ],
                 "reply": [
-                  "He redactado un borrador de nota para dirección con cinco apartados: resultado, margen, decisiones en curso, pendientes y riesgos.",
-                  "Revisa las cifras con las fuentes antes de conservarlo."
+                  "Propuesta de índice para la nota a dirección:",
+                  "1. Resultado del mes",
+                  "2. Margen y su causa",
+                  "3. Decisiones en curso",
+                  "4. Pendientes",
+                  "5. Riesgos",
+                  "¿Lo ajustamos antes de redactar?"
                 ],
                 "needs": {
                   "app": "word",
@@ -81,7 +86,32 @@
                     "Comite_cierre_3nov.meet"
                   ],
                   "say": {
-                    "app": "Para crear el documento, abre Word (sin archivo) y pide el borrador desde allí."
+                    "app": "Abre Word (sin archivo) para trabajar el documento."
+                  }
+                },
+                "cites": [
+                  "Informe_cierre_octubre.docx",
+                  "Comite_cierre_3nov.meet"
+                ]
+              },
+              {
+                "id": "nota",
+                "when": [
+                  [
+                    "redacta",
+                    "desarrolla",
+                    "escribe"
+                  ]
+                ],
+                "reply": [
+                  "He redactado la nota siguiendo el índice acordado. Los datos que no figuran en las fuentes van marcados como [pendiente].",
+                  "Revisa cifras, responsables y fechas antes de conservarla."
+                ],
+                "needs": {
+                  "app": "word",
+                  "turn": 2,
+                  "say": {
+                    "turn": "Primero acordemos el índice: pídeme la estructura y después la redacción."
                   }
                 },
                 "cites": [
@@ -99,124 +129,97 @@
           },
           "goals": [
             {
-              "type": "prompt",
-              "label": "Pedir el borrador desde Word con las dos fuentes",
-              "app": "word",
-              "refs": [
-                "Informe_cierre_octubre.docx",
-                "Comite_cierre_3nov.meet"
-              ],
-              "hint": "Abre Word y escribe: Redacta una nota para dirección a partir de /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet"
+              "type": "action",
+              "label": "1. Acordar el índice con las dos fuentes",
+              "id": "indice",
+              "hint": "Abre Word: propón el índice de una nota para dirección a partir de /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet"
             },
             {
-              "type": "exists",
-              "label": "Existe el borrador Nota_direccion_octubre.docx",
-              "path": "OneDrive/Cierre octubre/Nota_direccion_octubre.docx"
+              "type": "action",
+              "label": "2. Redactar siguiendo el índice",
+              "id": "nota",
+              "hint": "Redacta la nota siguiendo ese índice"
             },
             {
               "type": "viewed",
-              "label": "Abrir el borrador para revisarlo",
+              "label": "3. Revisar el documento",
               "path": "Nota_direccion_octubre.docx",
               "hint": "Archivos → Ver Nota_direccion_octubre.docx"
             }
           ],
           "solution": [
             "::app word",
-            "Redacta una nota para dirección sobre el cierre de octubre, en 5 apartados breves, a partir de /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet",
+            "Propón el índice de una nota para dirección sobre el cierre de octubre a partir de /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet",
+            "Redacta la nota siguiendo ese índice, frases cortas y [pendiente] en lo que no esté en las fuentes",
             "::ver Nota_direccion_octubre.docx"
           ],
-          "explain": "Copilot en Word redacta sobre tus fuentes, pero el documento es tuyo: revisa cifras, responsables y fechas antes de conservarlo.",
+          "explain": "Acordar el índice antes de redactar evita reescribir un documento entero por un enfoque equivocado.",
           "suggestions": [
             "::app word",
-            "Redacta una nota para dirección ",
+            "Propón el índice de una nota para dirección sobre el cierre de octubre a partir de /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet",
+            "Redacta la nota siguiendo ese índice ",
             "::ver Nota_direccion_octubre.docx"
           ]
         },
         {
           "id": "m3l1e2",
           "type": "order",
-          "concept": "docs.draft",
-          "prompt": "Ordena un documento largo hecho por partes",
+          "concept": "docs.longform",
+          "prompt": "Ordena la elaboración de un informe de 10 páginas",
           "items": [
-            "Pedir solo el índice y ajustarlo",
+            "Acordar el índice",
             "Redactar cada sección con su fuente",
-            "Revisar cifras y nombres con las fuentes",
-            "Pedir un resumen inicial de todo el documento"
+            "Comprobar la coherencia de cifras entre secciones",
+            "Escribir el resumen ejecutivo",
+            "Revisión final con las fuentes"
           ],
-          "explain": "Para documentos largos, **estructura primero**. El resumen se escribe al final, cuando el contenido ya es correcto."
+          "explain": "El resumen se escribe al final, sobre contenido ya correcto."
         },
         {
           "id": "m3l1e3",
-          "type": "choice",
-          "concept": "docs.draft",
-          "prompt": "El borrador tiene buena estructura, pero un apartado es demasiado genérico. ¿Qué haces?",
+          "type": "multi",
+          "concept": "docs.longform",
+          "prompt": "En un informe largo, ¿qué pides para mantener la coherencia?",
           "options": [
             {
-              "text": "Conservarlo y pedir que reescriba ese apartado con datos de la fuente",
+              "text": "«Lista las cifras que aparecen en más de una sección y si coinciden»",
               "correct": true
             },
             {
-              "text": "Descartar todo y empezar de cero",
-              "feedback": "Perderías lo que ya está bien."
+              "text": "«Aplica esta guía de estilo: frases cortas, un decimal, sin adjetivos»",
+              "correct": true
             },
             {
-              "text": "Enviarlo tal cual: ya lo revisará dirección",
-              "feedback": "El documento es tu responsabilidad."
+              "text": "«Marca [pendiente] lo que no esté en las fuentes»",
+              "correct": true
+            },
+            {
+              "text": "«Hazlo más largo para que parezca completo»",
+              "feedback": "La extensión no aporta coherencia."
             }
           ],
-          "explain": "Conserva lo que funciona y pide cambios **delimitados**."
-        },
-        {
-          "type": "card",
-          "kicker": "Consejos",
-          "title": "Buenas peticiones para Word",
-          "blocks": [
-            {
-              "type": "cmds",
-              "items": [
-                {
-                  "cmd": "«Propón un índice de 5 apartados para…»",
-                  "desc": "Empieza por la estructura.",
-                  "where": "Word"
-                },
-                {
-                  "cmd": "«Redacta el apartado 2 usando /…»",
-                  "desc": "Una sección cada vez, con su fuente.",
-                  "where": "Word"
-                },
-                {
-                  "cmd": "«Señala entre corchetes los datos que no estén en las fuentes»",
-                  "desc": "Hace visibles los huecos.",
-                  "where": "Word"
-                }
-              ]
-            }
-          ]
+          "explain": "Coherencia de cifras, estilo uniforme y huecos visibles."
         },
         {
           "id": "m3l1e4",
-          "type": "multi",
-          "concept": "docs.draft",
-          "prompt": "¿Qué compruebas antes de conservar un borrador?",
+          "type": "choice",
+          "concept": "docs.longform",
+          "prompt": "La sección 2 dice «margen 31,5 %» y el resumen ejecutivo «margen del 33 %». ¿Qué ha pasado probablemente?",
           "options": [
             {
-              "text": "Que las cifras coinciden con las fuentes",
+              "text": "El resumen se generó mezclando el dato real con el presupuesto: hay que regenerarlo desde las secciones revisadas",
               "correct": true
             },
             {
-              "text": "Que los responsables y las fechas son los acordados",
-              "correct": true
+              "text": "Ambos son correctos",
+              "feedback": "No pueden serlo a la vez."
             },
             {
-              "text": "Que no afirma como hecho algo pendiente",
-              "correct": true
-            },
-            {
-              "text": "Que tiene muchas palabras",
-              "feedback": "La extensión no garantiza la calidad."
+              "text": "Es un redondeo",
+              "feedback": "1,5 puntos no es un redondeo."
             }
           ],
-          "explain": "Cifras, responsables, fechas y lo pendiente: lo que más daño hace si está mal."
+          "explain": "El resumen debe salir del contenido revisado, no de las fuentes en bruto."
         },
         {
           "type": "card",
@@ -225,7 +228,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Pedir un borrador en Word con fuentes\n- Revisar y decidir si conservar, regenerar o descartar\n- Trabajar por partes: primero la estructura"
+              "body": "Con esta lección deberías poder:\n- Construir un documento largo por fases\n- Mantener la coherencia de cifras entre secciones\n- Aplicar una guía de estilo"
             },
             {
               "type": "callout",
@@ -238,164 +241,146 @@
     },
     {
       "id": "l3-2",
-      "title": "Reescribir, resumir y preguntar",
-      "summary": "Con un documento abierto, Copilot lo resume, responde preguntas sobre él y reescribe lo que selecciones.",
-      "minutes": 6,
+      "title": "Revisar y comparar documentos",
+      "summary": "Compara versiones, extrae obligaciones y vigila que una reescritura no cambie el significado.",
+      "minutes": 7,
       "objectives": [
-        "Preguntar a un documento abierto",
-        "Transformar texto en una tabla",
-        "Pedir reescrituras con un criterio claro"
+        "Comparar dos versiones de un documento en una tabla",
+        "Priorizar lo que hay que negociar",
+        "Detectar cambios de significado al reescribir"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Copilot sobre el documento abierto",
+          "title": "Comparar con estructura",
           "blocks": [
             {
               "type": "text",
-              "body": "Con un documento abierto, el panel de Copilot trabaja **sobre ese archivo**: puedes pedir un resumen, hacerle preguntas o transformar partes del texto."
+              "body": "Para comparar documentos (contratos, políticas, ofertas) no pidas «¿qué cambia?»: pide una **tabla** con cláusula, versión A, versión B y **efecto para ti**. Después, en la misma conversación, prioriza."
             },
             {
-              "type": "cmds",
-              "items": [
-                {
-                  "cmd": "Resumir",
-                  "desc": "«Resume este documento en 5 viñetas».",
-                  "where": "Word"
-                },
-                {
-                  "cmd": "Preguntar",
-                  "desc": "«¿Qué dice sobre las excepciones?»",
-                  "where": "Word"
-                },
-                {
-                  "cmd": "Reescribir",
-                  "desc": "Selecciona un párrafo y pide «más claro y breve».",
-                  "where": "Word"
-                },
-                {
-                  "cmd": "Transformar",
-                  "desc": "«Convierte los límites en una tabla».",
-                  "where": "Word"
-                }
-              ]
+              "type": "callout",
+              "tone": "warn",
+              "body": "Copilot ayuda a encontrar y ordenar cambios; no sustituye la revisión jurídica de un contrato. Comprueba siempre el texto original de cada cláusula."
             }
           ]
         },
         {
           "id": "m3l2e1",
           "type": "copilot",
-          "concept": "docs.rewrite",
-          "prompt": "Abre **Politica_gastos_viaje.docx** en Word, pregunta el **límite de hotel en el extranjero** y pide los límites **en una tabla**",
+          "concept": "docs.compare",
+          "prompt": "Compara **/Contrato_logistica_v1.docx** con **/Contrato_logistica_v2_propuesta.docx** en una **tabla** (cláusula, v1, v2 y efecto) y después pide los **puntos a negociar** por prioridad",
           "setup": {
             "files": {
-              "SharePoint/Finanzas/Politica_gastos_viaje.docx": "Política de gastos de viaje (versión 4, enero 2026) · documento ficticio\n\n1. Hotel: máximo 120 € por noche en España y 160 € en el extranjero.\n2. Dietas: 45 € diarios con justificante.\n3. Kilometraje: 0,26 € por km en vehículo propio.\n4. Plazo: las notas de gasto se presentan en los 30 días siguientes al viaje.\n5. Excepciones: las aprueba la dirección financiera por escrito.\n",
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
+              "SharePoint/Compras/Contrato_logistica_v1.docx": "Contrato de transporte · versión 1 (vigente hasta diciembre de 2026) · documento ficticio\n\n1. Duración: 12 meses, prorrogable por acuerdo de ambas partes.\n2. Tarifa: 37,5 € por palé, revisable una vez al año según el IPC.\n3. Pago: a 60 días desde la recepción de la factura.\n4. Penalización por retraso: 5 % del servicio por cada entrega fuera de plazo.\n5. Resolución: con un preaviso de 30 días.\n",
+              "SharePoint/Compras/Contrato_logistica_v2_propuesta.docx": "Contrato de transporte · versión 2 (propuesta del proveedor para 2027) · documento ficticio\n\n1. Duración: 24 meses, con renovación automática salvo aviso.\n2. Tarifa: 40,9 € por palé, revisable cada seis meses según el IPC más dos puntos.\n3. Pago: a 30 días desde la emisión de la factura.\n4. Penalización por retraso: se elimina.\n5. Resolución: con un preaviso de 90 días y una compensación de tres meses de servicio.\n",
+              "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n"
             },
             "actions": [
               {
-                "id": "hotel",
+                "id": "cambios",
                 "when": [
                   [
-                    "hotel",
-                    "extranjero",
-                    "alojamiento"
+                    "compara",
+                    "cambios",
+                    "diferencias"
                   ]
                 ],
                 "reply": [
-                  "Según la política, el límite de hotel es de 160 € por noche en el extranjero (120 € en España). [1]"
+                  "Cambio | Versión 1 | Propuesta 2027 | Efecto para nosotros",
+                  "Duración | 12 meses | 24 meses con renovación automática | Menos flexibilidad",
+                  "Tarifa | 37,5 €/palé, IPC anual | 40,9 €/palé, IPC + 2 puntos cada 6 meses | Más caro y sube más rápido",
+                  "Pago | 60 días desde recepción | 30 días desde emisión | Empeora la tesorería",
+                  "Penalización | 5 % por retraso | Eliminada | Perdemos protección",
+                  "Resolución | 30 días | 90 días + 3 meses de servicio | Salir cuesta más",
+                  "Revisa el texto original de cada cláusula: este resumen no es asesoramiento jurídico."
                 ],
                 "needs": {
-                  "app": "word",
-                  "open": "Politica_gastos_viaje.docx"
+                  "refs": [
+                    "Contrato_logistica_v1.docx",
+                    "Contrato_logistica_v2_propuesta.docx"
+                  ],
+                  "gces": [
+                    "expectations"
+                  ]
                 },
                 "cites": [
-                  "Politica_gastos_viaje.docx"
+                  "Contrato_logistica_v1.docx",
+                  "Contrato_logistica_v2_propuesta.docx"
                 ]
               },
               {
-                "id": "tabla",
+                "id": "negociar",
                 "when": [
                   [
-                    "tabla"
+                    "negocia",
+                    "prioridad",
+                    "priorizar",
+                    "puntos"
                   ]
                 ],
                 "reply": [
-                  "Concepto | Límite",
-                  "Hotel en España | 120 €/noche",
-                  "Hotel en el extranjero | 160 €/noche",
-                  "Dietas | 45 €/día",
-                  "Kilometraje | 0,26 €/km",
-                  "Plazo | 30 días"
+                  "Puntos a negociar, por impacto económico:",
+                  "1. Pago a 60 días desde recepción (tesorería).",
+                  "2. Mantener una penalización por retraso.",
+                  "3. Revisión anual según IPC, sin los dos puntos.",
+                  "4. Sin renovación automática."
                 ],
                 "needs": {
-                  "app": "word",
-                  "open": "Politica_gastos_viaje.docx"
-                },
-                "cites": [
-                  "Politica_gastos_viaje.docx"
-                ]
+                  "turn": 2
+                }
               }
             ]
           },
           "goals": [
             {
-              "type": "app",
-              "label": "Tener abierta la política en Word",
-              "app": "word",
-              "open": "Politica_gastos_viaje.docx",
-              "hint": "Toca la barra superior y elige Word → Politica_gastos_viaje.docx"
+              "type": "action",
+              "label": "Tabla de cambios con su efecto",
+              "id": "cambios",
+              "hint": "Compara las dos versiones en una tabla con cláusula, versión 1, versión 2 y efecto para nosotros"
             },
             {
               "type": "action",
-              "label": "Respuesta sobre el límite de hotel",
-              "id": "hotel",
-              "hint": "¿Cuál es el límite de hotel en el extranjero?"
-            },
-            {
-              "type": "action",
-              "label": "Los límites en una tabla",
-              "id": "tabla",
-              "hint": "Convierte los límites en una tabla"
+              "label": "Puntos a negociar por prioridad",
+              "id": "negociar",
+              "hint": "Con esos cambios, ¿qué puntos negociamos primero?"
             }
           ],
           "solution": [
-            "::app word Politica_gastos_viaje.docx",
-            "¿Cuál es el límite de hotel en el extranjero?",
-            "Convierte los límites de la política en una tabla"
+            "Compara /Contrato_logistica_v1.docx con /Contrato_logistica_v2_propuesta.docx en una tabla con cláusula, versión 1, versión 2 y efecto para nosotros",
+            "Con esos cambios, prioriza los puntos a negociar por impacto económico"
           ],
-          "explain": "Con el documento abierto no hace falta citarlo con /: Copilot ya trabaja sobre él. Comprueba siempre la versión de la política (aquí, la 4 de enero de 2026).",
+          "explain": "La tabla deja ver cambios que en una lectura rápida pasan desapercibidos: el pago a 30 días desde emisión y la eliminación de la penalización.",
           "suggestions": [
-            "::app word Politica_gastos_viaje.docx",
-            "¿Cuál es el límite de hotel en el extranjero?",
-            "Convierte los límites en una tabla"
+            "Compara /Contrato_logistica_v1.docx con /Contrato_logistica_v2_propuesta.docx en una tabla con cláusula, versión 1, versión 2 y efecto para nosotros",
+            "Con esos cambios, prioriza los puntos a negociar por impacto económico"
           ]
         },
         {
           "id": "m3l2e2",
           "type": "match",
-          "concept": "docs.rewrite",
-          "prompt": "Empareja la necesidad con la petición",
+          "concept": "docs.compare",
+          "prompt": "Empareja cada cambio con su efecto principal",
           "pairs": [
             [
-              "El párrafo es largo y técnico",
-              "«Reescríbelo en 3 frases sin tecnicismos»"
+              "Pago de 60 a 30 días",
+              "Tesorería"
             ],
             [
-              "Necesitas comparar límites",
-              "«Conviértelo en una tabla»"
+              "Se elimina la penalización",
+              "Pérdida de protección ante retrasos"
             ],
             [
-              "Dudas sobre un caso concreto",
-              "«¿Qué dice sobre las excepciones?»"
+              "Renovación automática",
+              "Riesgo de quedar atado sin decidir"
             ],
             [
-              "Ponerte al día rápido",
-              "«Resume el documento en 5 viñetas»"
+              "IPC + 2 puntos cada 6 meses",
+              "Coste creciente"
             ]
           ],
-          "explain": "Resumir, preguntar, reescribir y transformar: las cuatro operaciones básicas sobre un documento."
+          "explain": "Traducir cada cláusula a su efecto es lo que permite priorizar."
         },
         {
           "type": "card",
@@ -404,23 +389,18 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Al «mejorar» un texto, Copilot puede suavizar una obligación («debe» → «se recomienda») o eliminar un matiz. En textos con efectos (políticas, contratos, condiciones) compara siempre el antes y el después."
-            },
-            {
-              "type": "callout",
-              "tone": "finance",
-              "body": "En importes, plazos y porcentajes, una palabra cambia mucho: «hasta 120 €» no es lo mismo que «120 €»."
+              "body": "Al pedir «más claro» o «más amable», Copilot puede suavizar una obligación («debe» → «se recomienda»), quitar un plazo o redondear un importe. En textos con efectos (contratos, políticas, condiciones), pide: «**Reescribe sin cambiar obligaciones, plazos ni importes, y lista lo que hayas modificado**»."
             }
           ]
         },
         {
           "id": "m3l2e3",
           "type": "choice",
-          "concept": "docs.rewrite",
-          "prompt": "Pides «hazlo más amable» y la frase «las notas **se presentan** en 30 días» pasa a «**intenta** presentarlas en unos 30 días». ¿Qué ocurre?",
+          "concept": "docs.compare",
+          "prompt": "Pides «hazlo más amable» y «las notas **se presentan** en 30 días» pasa a «**intenta** presentarlas en unos 30 días». ¿Qué ocurre?",
           "options": [
             {
-              "text": "La reescritura ha cambiado una obligación en una sugerencia: hay que corregirla",
+              "text": "La reescritura ha convertido una obligación en una sugerencia: hay que corregirla",
               "correct": true
             },
             {
@@ -429,37 +409,45 @@
             },
             {
               "text": "Es mejor así porque es más amable",
-              "feedback": "La amabilidad no puede cambiar la norma."
+              "feedback": "La forma no puede cambiar la norma."
             }
           ],
-          "explain": "Al reescribir, revisa **obligaciones, plazos e importes**."
+          "explain": "Obligaciones, plazos e importes no se tocan al reescribir."
         },
         {
           "id": "m3l2e4",
           "type": "fill",
-          "concept": "docs.rewrite",
-          "prompt": "Completa",
+          "concept": "docs.compare",
+          "prompt": "Completa la petición segura",
           "code": false,
-          "template": "Con el documento {{0}}, Copilot trabaja sobre él sin usar /. Para cambiar solo un párrafo, primero lo {{1}}.",
+          "template": "Reescribe sin cambiar {{0}}, plazos ni {{1}}, y {{2}} lo que hayas modificado.",
           "blanks": [
             {
               "options": [
-                "abierto",
-                "cerrado",
-                "impreso"
+                "obligaciones",
+                "colores",
+                "títulos"
               ],
-              "answer": "abierto"
+              "answer": "obligaciones"
             },
             {
               "options": [
-                "selecciono",
-                "borro",
-                "imprimo"
+                "importes",
+                "saludos",
+                "párrafos"
               ],
-              "answer": "selecciono"
+              "answer": "importes"
+            },
+            {
+              "options": [
+                "lista",
+                "oculta",
+                "borra"
+              ],
+              "answer": "lista"
             }
           ],
-          "explain": "Documento abierto = contexto automático. Seleccionar delimita el cambio."
+          "explain": "Restricciones explícitas y una lista de cambios para revisar."
         },
         {
           "type": "card",
@@ -468,7 +456,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Preguntar a un documento abierto\n- Transformar texto en una tabla\n- Pedir reescrituras con un criterio claro"
+              "body": "Con esta lección deberías poder:\n- Comparar dos versiones de un documento en una tabla\n- Priorizar lo que hay que negociar\n- Detectar cambios de significado al reescribir"
             },
             {
               "type": "callout",
@@ -481,8 +469,8 @@
     },
     {
       "id": "l3-3",
-      "title": "Presentaciones con PowerPoint",
-      "summary": "Crea una presentación desde un documento y cuida que cada diapositiva tenga un único mensaje.",
+      "title": "Presentaciones para dirección",
+      "summary": "De la nota revisada a una historia con un mensaje por diapositiva, notas del orador y las preguntas que vendrán.",
       "minutes": 7,
       "objectives": [
         "Crear una presentación desde un archivo",
@@ -500,9 +488,30 @@
               "body": "Ana tiene que presentar el cierre al comité y quiere partir de la **nota para dirección** que redactaste en la lección 3.1 (ya revisada).\n\nCopilot en PowerPoint puede crear una presentación **a partir de un archivo** (por ejemplo, esa nota de Word), añadir diapositivas, resumir una presentación larga u organizarla en secciones.\n\nLa calidad depende del documento de partida: **una buena nota da una buena presentación**."
             },
             {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Pide la historia antes que el diseño: «Propón 5 diapositivas, una idea por diapositiva, terminando con las decisiones que pedimos»."
+              "type": "cmds",
+              "items": [
+                {
+                  "cmd": "Historia primero",
+                  "desc": "«Propón 5 diapositivas, una idea por diapositiva, terminando con las decisiones que pedimos».",
+                  "where": "PowerPoint"
+                },
+                {
+                  "cmd": "Plantilla corporativa",
+                  "desc": "Crea la presentación desde la plantilla de tu empresa para conservar la identidad visual.",
+                  "where": "PowerPoint"
+                },
+                {
+                  "cmd": "Notas del orador",
+                  "desc": "«Añade notas del orador de 60 segundos por diapositiva».",
+                  "where": "PowerPoint"
+                },
+                {
+                  "cmd": "Preguntas difíciles",
+                  "desc": "«¿Qué 5 preguntas hará el comité y con qué dato respondo?»",
+                  "where": "PowerPoint"
+                }
+              ],
+              "title": "Para una presentación a dirección"
             }
           ]
         },
@@ -822,23 +831,44 @@
       {
         "id": "m3x1",
         "type": "choice",
-        "concept": "docs.draft",
-        "prompt": "¿Qué petición da un mejor borrador en Word?",
+        "concept": "docs.longform",
+        "prompt": "¿Cuándo pides el resumen ejecutivo de un informe largo?",
         "options": [
           {
-            "text": "«Redacta una nota para dirección, en 5 apartados, a partir de /Informe_cierre_octubre.docx, y marca lo pendiente»",
+            "text": "Al final, a partir de las secciones ya revisadas",
             "correct": true
           },
           {
-            "text": "«Escribe algo sobre el cierre»",
-            "feedback": "Sin estructura, público ni fuente."
+            "text": "Al principio, para orientar el resto",
+            "feedback": "Arrastraría errores de las fuentes en bruto."
           },
           {
-            "text": "«Hazme un documento largo y completo»",
-            "feedback": "«Largo» no es un criterio de calidad."
+            "text": "Nunca: lo escribe dirección",
+            "feedback": "Forma parte del entregable."
           }
         ],
-        "explain": "Tipo de documento, público, estructura, fuente y regla para lo pendiente."
+        "explain": "El resumen resume contenido ya correcto."
+      },
+      {
+        "id": "m3x5",
+        "type": "choice",
+        "concept": "docs.compare",
+        "prompt": "¿Qué petición compara mejor dos versiones de un contrato?",
+        "options": [
+          {
+            "text": "«Tabla con cláusula, versión 1, versión 2 y efecto para nosotros»",
+            "correct": true
+          },
+          {
+            "text": "«¿Qué ha cambiado?»",
+            "feedback": "La respuesta será desordenada e incompleta."
+          },
+          {
+            "text": "«Dime si es bueno»",
+            "feedback": "No es una comparación."
+          }
+        ],
+        "explain": "Estructura y efecto: lo que permite priorizar la negociación."
       },
       {
         "id": "m3x2",
@@ -889,7 +919,7 @@
       {
         "id": "m3x4",
         "type": "fill",
-        "concept": "docs.rewrite",
+        "concept": "docs.compare",
         "prompt": "Completa",
         "code": false,
         "template": "Al reescribir una política, compruebo que no cambian las {{0}}, los plazos ni los {{1}}.",

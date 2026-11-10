@@ -258,3 +258,25 @@ test('Copilot simulado: el editor guarda agentes y el estado del laboratorio se 
   assert.equal(copy.scope, 'web');
   assert.ok(copy.fs.isFile('/Agentes/Gastos.agent.md'));
 });
+
+test('Copilot simulado: etiquetas de confidencialidad heredadas por el contenido generado', () => {
+  const actions = [{ id: 'p', when: [['propuesta']], reply: 'ok', writes: [{ path: 'OneDrive/Propuesta.docx', content: 'x\n' }] }];
+  const cp = new Copilot({ files: FILES, actions, labels: { 'OneDrive/Cierre/Informe.docx': 'Confidencial', 'OneDrive/Cierre/Ventas.xlsx': 'Altamente confidencial' } });
+  const out = cp.run('Redacta la propuesta con /Informe.docx y /Ventas.xlsx').lines.map(l => l.text).join('\n');
+  assert.match(out, /Etiqueta heredada: Altamente confidencial/);
+  assert.ok(evaluateGoals([{ type: 'label', path: 'Propuesta.docx', value: 'Altamente confidencial' }], cp)[0].passed);
+  assert.match(cp.run('::ver Propuesta.docx').lines[0].text, /Altamente confidencial/);
+  const copy = new Copilot({ snapshot: JSON.parse(JSON.stringify(cp.toJSON())) });
+  assert.equal(copy.labelOf('/OneDrive/Propuesta.docx'), 'Altamente confidencial', 'la etiqueta se conserva');
+  const plain = new Copilot({ files: FILES, actions });
+  plain.run('Redacta la propuesta con /Informe.docx');
+  assert.equal(plain.labelOf('/OneDrive/Propuesta.docx'), null, 'sin etiquetas en las fuentes no se inventa ninguna');
+});
+
+test('Copilot simulado: si encajan varias respuestas, prefiere la que aún no ha dado', () => {
+  const actions = [{ id: 'a', when: [['plan']], reply: 'preguntas' }, { id: 'b', when: [['adelante']], reply: 'resultado', needs: { turn: 2 } }];
+  const cp = new Copilot({ files: FILES, actions });
+  cp.run('Hazme un plan');
+  cp.run('Adelante con el plan');
+  assert.deepEqual(cp.events.filter(e => e.action).map(e => e.action), ['a', 'b']);
+});

@@ -5,7 +5,7 @@ import { parseFrontmatter } from './parse.js';
 import { runChecks } from '../core/validate.js';
 import { normalize } from '../core/util.js';
 
-export const GOAL_TYPES = ['prompt', 'ran', 'app', 'scope', 'viewed', 'exists', 'absent', 'file', 'frontmatter', 'newchat', 'action'];
+export const GOAL_TYPES = ['prompt', 'ran', 'app', 'scope', 'viewed', 'exists', 'absent', 'file', 'frontmatter', 'newchat', 'action', 'label'];
 
 function expectMatches(actual, expected) {
   if (expected && typeof expected === 'object' && !Array.isArray(expected)) {
@@ -68,6 +68,8 @@ export function checkGoal(goal, cp) {
       const i = cp.events.findIndex(ev => ev.type === 'new');
       return i > 0 && cp.events.slice(0, i).some(ev => ev.type === 'prompt');
     }
+    case 'label':
+      return cp.labelOf(cp.find(goal.path) || path) === goal.value;
     case 'action':
       return cp.events.some(ev => ev.type === 'prompt' && ev.action === goal.id);
     default:

@@ -1,15 +1,15 @@
 {
   "id": "m7",
-  "title": "Agentes con Copilot Studio",
-  "subtitle": "Diseña, prueba y mantén agentes útiles: instrucciones, conocimiento, acciones y gobierno.",
+  "title": "Agentes y Copilot Studio a fondo",
+  "subtitle": "Diseño, instrucciones, conocimiento y acciones, agentes autónomos con flujos, pruebas y gobierno.",
   "level": "L5",
   "icon": "agents",
   "color": "#2F8C8C",
   "lessons": [
     {
       "id": "l7-1",
-      "title": "Qué es un agente",
-      "summary": "Copilot con instrucciones, conocimiento y acciones para una tarea concreta. Y dónde se crea cada tipo.",
+      "title": "Diseñar un agente: cuándo y con qué",
+      "summary": "Las piezas de un agente, cuándo compensa crearlo y si basta Agent Builder o necesitas Copilot Studio.",
       "minutes": 7,
       "objectives": [
         "Explicar las piezas de un agente",
@@ -52,7 +52,7 @@
         {
           "id": "m7l1e1",
           "type": "copilot",
-          "concept": "agent.what",
+          "concept": "agent.design",
           "prompt": "Tu equipo ya tiene un agente **Viajes**. Invócalo con **@Viajes** y pregúntale por el importe de las **dietas**",
           "setup": {
             "files": {
@@ -109,7 +109,7 @@
         {
           "id": "m7l1e2",
           "type": "choice",
-          "concept": "agent.what",
+          "concept": "agent.design",
           "prompt": "¿En qué caso merece más la pena crear un agente?",
           "options": [
             {
@@ -163,7 +163,7 @@
         {
           "id": "m7l1e3",
           "type": "match",
-          "concept": "agent.what",
+          "concept": "agent.design",
           "prompt": "Empareja cada pieza con su función",
           "pairs": [
             [
@@ -188,7 +188,7 @@
         {
           "id": "m7l1e4",
           "type": "multi",
-          "concept": "agent.builder",
+          "concept": "agent.design",
           "prompt": "¿Qué necesidades apuntan a Copilot Studio en lugar de Agent Builder?",
           "options": [
             {
@@ -646,6 +646,191 @@
     },
     {
       "id": "l7-4",
+      "title": "Copilot Studio: herramientas, flujos y agentes autónomos",
+      "summary": "Orquestación, temas, herramientas y agentes que actúan solos ante un evento, con aprobación humana.",
+      "minutes": 8,
+      "objectives": [
+        "Elegir entre conocimiento, tema, herramienta y disparador",
+        "Diseñar un agente autónomo con guardarraíles",
+        "Situar la aprobación humana donde corresponde"
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Idea clave",
+          "title": "Cómo decide un agente de Copilot Studio",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con la **orquestación generativa**, el agente decide qué usar en cada momento leyendo las **descripciones** de lo que tiene disponible. Por eso una descripción vaga produce un agente que elige mal."
+            },
+            {
+              "type": "cmds",
+              "items": [
+                {
+                  "cmd": "Conocimiento",
+                  "desc": "Responder con documentos, sitios o datos.",
+                  "where": "Copilot Studio"
+                },
+                {
+                  "cmd": "Temas",
+                  "desc": "Conversaciones guiadas que siguen siempre el mismo camino (por ejemplo, abrir una incidencia).",
+                  "where": "Copilot Studio"
+                },
+                {
+                  "cmd": "Herramientas",
+                  "desc": "Conectores, flujos de agente o de Power Automate, servidores MCP: actuar en otros sistemas con una conexión y sus permisos.",
+                  "where": "Copilot Studio"
+                },
+                {
+                  "cmd": "Disparadores",
+                  "desc": "Lo que hace que un agente autónomo actúe sin que nadie le escriba: un correo, un archivo nuevo, una hora.",
+                  "where": "Copilot Studio"
+                }
+              ],
+              "title": "Las piezas"
+            }
+          ]
+        },
+        {
+          "id": "m7l4e1",
+          "type": "match",
+          "concept": "agent.studio",
+          "prompt": "Empareja cada necesidad con la pieza de Copilot Studio",
+          "pairs": [
+            [
+              "Responder dudas con la política vigente",
+              "Conocimiento"
+            ],
+            [
+              "Recoger siempre los mismos datos para abrir una incidencia",
+              "Tema"
+            ],
+            [
+              "Registrar la factura en el ERP",
+              "Herramienta (flujo o conector)"
+            ],
+            [
+              "Actuar cuando llega una factura al buzón",
+              "Disparador"
+            ]
+          ],
+          "explain": "Conocimiento para saber, temas para guiar, herramientas para actuar y disparadores para empezar solo."
+        },
+        {
+          "type": "card",
+          "kicker": "Autónomos",
+          "title": "Agentes que actúan solos",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Un **agente autónomo** reacciona a un evento con sus instrucciones y guardarraíles, sin que nadie le escriba. Lo crítico:\n- **Aprobación humana** dentro del flujo antes de cualquier acción con consecuencias (en los flujos de agente existe una acción específica para pedir información o aprobación a una persona).\n- **Credenciales**: con qué cuenta y permisos actúa; el mínimo imprescindible.\n- **Supervisión**: registro de actividad y revisión periódica de lo que ha hecho."
+            },
+            {
+              "type": "callout",
+              "tone": "finance",
+              "body": "Un caso típico en finanzas: un agente que lee las facturas que llegan, las compara con el pedido y prepara el registro. La aprobación del pago sigue siendo de una persona."
+            }
+          ]
+        },
+        {
+          "id": "m7l4e2",
+          "type": "order",
+          "concept": "agent.studio",
+          "prompt": "Ordena el diseño del agente autónomo de facturas",
+          "items": [
+            "Disparador: llega una factura al buzón de cuentas a pagar",
+            "Extraer proveedor, importe y nº de pedido",
+            "Compararlo con el pedido en el ERP",
+            "Si hay discrepancias, pedir aprobación a la persona responsable",
+            "Registrar el resultado y dejar constancia"
+          ],
+          "explain": "Evento → extracción → validación → aprobación humana → registro."
+        },
+        {
+          "id": "m7l4e3",
+          "type": "editor",
+          "concept": "agent.studio",
+          "prompt": "Escribe las **instrucciones** del agente autónomo de facturas: disparador, tarea, aprobación humana, límites y registro",
+          "file": "Instrucciones del agente",
+          "starter": "Procesa las facturas.",
+          "rows": 7,
+          "checks": [
+            {
+              "label": "Dice qué lo dispara",
+              "pattern": "(cuando (llegue|se reciba|entre)|al recibir|cada (d[ií]a|lunes|mes)|disparador)",
+              "hint": "Por ejemplo: «Cuando llegue una factura al buzón de cuentas a pagar»."
+            },
+            {
+              "label": "Describe la tarea",
+              "pattern": "(extrae|valida|comprueba|compara|registra los datos)",
+              "hint": "Por ejemplo: «extrae proveedor, importe y nº de pedido y compáralos con el pedido»."
+            },
+            {
+              "label": "Exige aprobación humana en lo que tiene consecuencias",
+              "pattern": "(aprobaci[oó]n|aprueb|confirm|revis(e|ión) (una persona|humana)|persona autorizada)",
+              "hint": "Por ejemplo: «si hay discrepancias, pide aprobación a la persona responsable»."
+            },
+            {
+              "label": "Fija límites claros",
+              "pattern": "(nunca|no (pagues|pague|modifiques|modifique|cambies|cambie|apruebes|apruebe))",
+              "hint": "Por ejemplo: «nunca aprueba pagos ni cambia datos bancarios»."
+            },
+            {
+              "label": "Deja registro de lo que hace",
+              "pattern": "(registr|deja constancia|log|anota)",
+              "hint": "Por ejemplo: «registra cada factura procesada y su resultado»."
+            }
+          ],
+          "solution": "Cuando llegue una factura al buzón de cuentas a pagar, extrae proveedor, importe y nº de pedido y compáralos con el pedido del ERP.\nSi coinciden, prepara el registro; si hay discrepancias, pide aprobación a la persona responsable antes de continuar.\nNunca apruebes pagos ni cambies datos bancarios de un proveedor.\nRegistra cada factura procesada y su resultado.",
+          "explain": "Disparador, tarea, aprobación, límites y registro: lo mínimo para dejar a un agente trabajar solo."
+        },
+        {
+          "id": "m7l4e4",
+          "type": "spot",
+          "concept": "gob.permissions",
+          "prompt": "Revisa el diseño de este agente autónomo y señala los problemas",
+          "file": "Diseño del agente de facturas",
+          "lines": [
+            "Disparador: nueva factura en el buzón de cuentas a pagar.",
+            "Se conecta al ERP con la cuenta de un administrador para evitar errores de permisos.",
+            "Compara importe y pedido.",
+            "Aprueba automáticamente los pagos de menos de 50.000 €.",
+            "No guarda registro para no ocupar espacio."
+          ],
+          "faulty": [
+            1,
+            3,
+            4
+          ],
+          "notes": {
+            "1": "Contradice el mínimo privilegio.",
+            "3": "Un pago debe aprobarlo una persona.",
+            "4": "Sin registro no hay supervisión ni auditoría."
+          },
+          "fixed": "Disparador: nueva factura en el buzón de cuentas a pagar.\nConexión al ERP con una cuenta de servicio con permisos mínimos.\nCompara importe y pedido.\nLas discrepancias y los pagos requieren aprobación humana.\nRegistra cada actuación.",
+          "explain": "Privilegios mínimos, aprobación humana y registro: los tres guardarraíles de un agente autónomo."
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Lo esencial de esta lección",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con esta lección deberías poder:\n- Elegir entre conocimiento, tema, herramienta y disparador\n- Diseñar un agente autónomo con guardarraíles\n- Situar la aprobación humana donde corresponde"
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l7-5",
       "title": "Probar, publicar y mantener",
       "summary": "Un agente es un pequeño producto: se prueba antes de compartirlo y se mantiene mientras se use.",
       "minutes": 7,
@@ -672,7 +857,7 @@
           ]
         },
         {
-          "id": "m7l4e1",
+          "id": "m7l5e1",
           "type": "match",
           "concept": "agent.test",
           "prompt": "Empareja cada prueba con su tipo",
@@ -697,7 +882,7 @@
           "explain": "Las cuatro familias de pruebas cubren lo previsto, lo confuso, lo ajeno y lo malicioso."
         },
         {
-          "id": "m7l4e2",
+          "id": "m7l5e2",
           "type": "order",
           "concept": "agent.test",
           "prompt": "Ordena el ciclo de vida de un agente",
@@ -727,7 +912,7 @@
           ]
         },
         {
-          "id": "m7l4e3",
+          "id": "m7l5e3",
           "type": "choice",
           "concept": "agent.test",
           "prompt": "Se publica la versión 5 de la política de viajes. ¿Qué haces con el agente?",
@@ -748,7 +933,7 @@
           "explain": "Fuente vigente y pruebas repetidas tras cada cambio."
         },
         {
-          "id": "m7l4e4",
+          "id": "m7l5e4",
           "type": "multi",
           "concept": "agent.test",
           "prompt": "¿Qué decisiones forman parte de publicar un agente con cabeza?",
@@ -773,7 +958,7 @@
           "explain": "Piloto, responsable y mejora continua."
         },
         {
-          "id": "m7l4e5",
+          "id": "m7l5e5",
           "type": "fill",
           "concept": "agent.test",
           "prompt": "Completa",
@@ -832,7 +1017,7 @@
       {
         "id": "m7x1",
         "type": "choice",
-        "concept": "agent.what",
+        "concept": "agent.design",
         "prompt": "¿Qué define el comportamiento de un agente?",
         "options": [
           {
@@ -899,7 +1084,7 @@
       {
         "id": "m7x4",
         "type": "match",
-        "concept": "agent.builder",
+        "concept": "agent.design",
         "prompt": "Empareja la necesidad con la herramienta",
         "pairs": [
           [
@@ -920,6 +1105,27 @@
           ]
         ],
         "explain": "Agent Builder para lo sencillo; Copilot Studio para acciones, flujos y gobierno."
+      },
+      {
+        "id": "m7x6",
+        "type": "choice",
+        "concept": "agent.studio",
+        "prompt": "Un agente autónomo detecta una discrepancia en una factura. ¿Qué debe hacer?",
+        "options": [
+          {
+            "text": "Pedir aprobación a la persona responsable antes de continuar y registrarlo",
+            "correct": true
+          },
+          {
+            "text": "Corregir la factura él mismo",
+            "feedback": "Una acción con consecuencias sin supervisión."
+          },
+          {
+            "text": "Ignorarla",
+            "feedback": "Perdería el control."
+          }
+        ],
+        "explain": "Aprobación humana y registro."
       },
       {
         "id": "m7x5",

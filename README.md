@@ -1,6 +1,6 @@
 # Copilot Academy
 
-Aplicación web progresiva (PWA) para aprender **Microsoft 365 Copilot y Copilot Studio** de nivel L2 a L5 con sesiones cortas desde el iPhone: microlecciones, un **Copilot simulado** con archivos ficticios, misiones evaluables, evaluaciones por módulo, repaso espaciado y gamificación.
+Aplicación web progresiva (PWA) para **dominar Microsoft 365 Copilot y Copilot Studio** partiendo de un nivel L2-L3 (ya usas el chat, resumes y referencias archivos) hasta L5 con sesiones cortas desde el iPhone: microlecciones, un **Copilot simulado** con archivos ficticios, misiones evaluables, evaluaciones por módulo, repaso espaciado y gamificación.
 
 Es la app hermana de [Claude Code Academy](https://github.com/theengineai/Claude-Academy): mismo motor, mismo diseño y misma forma de aprender, con una paleta propia.
 
@@ -37,22 +37,22 @@ No abras `index.html` con doble clic (`file://`): los módulos JavaScript y el S
 | | |
 |---|---|
 | Módulos | 7, con evaluación final cada uno (aprobado: 75 %) |
-| Microlecciones | 28, de 6–7 minutos: 1–3 ideas nuevas cada una, ejemplo antes de practicar y resumen final |
+| Microlecciones | 31, de 6–8 minutos: 1–3 ideas nuevas cada una, ejemplo antes de practicar y resumen final. No explica lo básico |
 | Formatos de ejercicio | opción única/decisión, selección múltiple, ordenar, emparejar, completar, encontrar el error, redactar una petición con criterios y **Copilot simulado con objetivos** |
-| Misiones | 13, incluido el proyecto final integrador (el cierre de noviembre) |
+| Misiones | 14, incluido el proyecto final integrador (el cierre de noviembre) |
 | Laboratorio | Copilot simulado libre y persistente + 8 retos |
 | Gamificación | XP por precisión, rangos, nivel de dominio L2→L5, racha diaria, objetivo diario, 17 logros, mapa con desbloqueos |
 | Aprendizaje adaptativo | Dominio por competencia (8) basado en aciertos, repaso espaciado (cajas de Leitner) y recomendaciones |
 
 ### Programa
 
-1. **Copilot y tu entorno de trabajo** (L2 → L3): qué Copilot tienes y qué añade la licencia, modo Trabajo o Web, permisos, primer chat con `/`, verificar y protección de datos empresariales.
-2. **Prompts que funcionan** (L3): objetivo, contexto, expectativas y fuente; iterar; contexto con archivos, correos y reuniones; instrucciones ocultas; prompts reutilizables.
-3. **Word y PowerPoint** (L3): borradores con fuentes, preguntar y reescribir un documento, presentaciones con una historia y modo agente.
-4. **Excel y análisis de datos** (L3 → L4): datos preparados, columnas y fórmulas, análisis y gráficos, cuadrar las cifras.
-5. **Outlook y Teams** (L4): resumir hilos, redactar con criterio y coaching, reuniones con transcripción, de la reunión a las tareas.
-6. **Investigar y analizar en profundidad** (L4 → L5): Researcher, Analyst, Pages, Notebooks y fiabilidad de las fuentes.
-7. **Agentes con Copilot Studio** (L5): qué es un agente, Agent Builder frente a Copilot Studio, instrucciones, conocimiento y acciones, pruebas, publicación y mantenimiento.
+1. **Cómo funciona Copilot por dentro** (L2 → L3): qué entra en el contexto y dónde busca, por qué no encuentra algo o se equivoca, verificación profesional (trazabilidad, triangulación), instrucciones personalizadas y memoria, permisos y etiquetas de confidencialidad heredadas.
+2. **Prompting avanzado** (L3): especificar el resultado (estructura, criterios, ejemplos, huecos), que pregunte y planifique antes, encadenar tareas y traspasar el estado, varias fuentes y contradicciones, autocrítica, biblioteca de prompts y prompts programados.
+3. **Word y PowerPoint avanzado** (L3): documentos largos por fases, comparar versiones de un contrato, presentaciones para dirección y modo agente.
+4. **Excel avanzado** (L3 → L4): limpiar exportaciones del ERP, BUSCARX y SUMAR.SI.CONJUNTO, modelos de escenarios con el modo agente y auditoría de cifras y modelos.
+5. **Outlook y Teams avanzado** (L4): compromisos de la bandeja, correos delicados, brief para reuniones y seguimiento entre reuniones.
+6. **Investigar y analizar en profundidad** (L4 → L5): encargos a Researcher, Analyst, Pages y Notebooks, y fiabilidad de las fuentes.
+7. **Agentes y Copilot Studio a fondo** (L5): diseño, instrucciones, conocimiento y acciones, orquestación, temas, herramientas, agentes autónomos con aprobación humana, pruebas, publicación, gobierno y Copilot Cowork.
 
 Los casos usan una empresa ficticia (Brisa Alimentación) y un departamento financiero: cierre mensual, tesorería, proveedores, auditoría y gastos de viaje.
 
@@ -64,7 +64,7 @@ En lugar de la terminal de Claude Code Academy, aquí se practica con una **vent
 - **Trabajo / Web**: en Web no se usan los archivos de trabajo, y la app lo avisa.
 - **`/archivo`** añade un documento, correo o reunión como contexto; **`@agente`** invoca a Researcher, Analyst o un agente propio (que sigue activo en esa conversación).
 - **Medidor de la petición**: cada respuesta muestra qué elementos tiene tu petición (objetivo, contexto, expectativas y fuente). Es una heurística didáctica, no una evaluación con IA.
-- **Archivos**: ver documentos, abrirlos en su app y crear o editar agentes (`Agentes/*.agent.md`). Hay archivos **restringidos** para practicar los permisos.
+- **Archivos**: ver documentos, abrirlos en su app y crear o editar agentes (`Agentes/*.agent.md`). Hay archivos **restringidos** para practicar los permisos y archivos con **etiquetas de confidencialidad**: lo que Copilot genera a partir de ellos hereda la más restrictiva.
 - **Nuevo chat** y **Editar en Pages**.
 - Cada respuesta termina con «Contenido generado por IA: revísalo» y «Simulación: aquí no hay IA real».
 
@@ -115,12 +115,12 @@ copilot-academy/
 | `match` | `pairs: [[izquierda, derecha], …]` |
 | `fill` | `template` con `{{0}}`, `blanks: [{ options, answer }]` o `[{ accept: [...] }]`; `code: false` para texto normal |
 | `spot` | `lines`, `faulty` (índices desde 0), `notes { índice: explicación }`, `fixed`, `file`, `context?` |
-| `editor` | Redactar una petición o unas instrucciones: `file` «Tu petición a Copilot» o «Instrucciones del agente», `starter` (versión vaga), `solution` (modelo), `checks: [{ label, pattern, flags?, negate?, hint? }]` |
-| `copilot` | `setup { files, app?, open?, scope?, restricted?, actions? }`, `goals`, `solution`, `solutionFiles?` (solo agentes o páginas), `suggestions`, `intro` |
+| `editor` | Redactar una petición o unas instrucciones: `file` «Tu petición a Copilot», «Instrucciones del agente» o «Instrucciones personalizadas», `starter` (versión vaga), `solution` (modelo), `checks: [{ label, pattern, flags?, negate?, hint? }]` |
+| `copilot` | `setup { files, app?, open?, scope?, restricted?, labels?, actions? }`, `goals`, `solution`, `solutionFiles?` (solo agentes o páginas), `suggestions`, `intro` |
 
 **Soluciones de `copilot`**: cada entrada es una petición o un control de la interfaz: `::app word [archivo]`, `::modo web|trabajo`, `::nuevo`, `::ver archivo`, `::editar Agentes/X.agent.md`, `::pages Título`. En la app el alumno usa botones; en la solución que se muestra aparecen como `[Abrir…]`, `[Modo…]`, etc.
 
-**Objetivos (`goals`)**: `prompt` (una petición que cumpla `pattern`, `app`, `open`, `scope`, `agent`, `refs`, `minRefs`, `gces` —número o lista de elementos— y `turn`), `action` (se completó una acción), `app`, `scope`, `viewed`, `exists`, `absent`, `file` (regex sobre el contenido), `frontmatter` (campos del agente y `body`), `newchat` y `ran`. Todos llevan `label` y, opcionalmente, `hint`.
+**Objetivos (`goals`)**: `prompt` (una petición que cumpla `pattern`, `app`, `open`, `scope`, `agent`, `refs`, `minRefs`, `gces` —número o lista de elementos— y `turn`), `action` (se completó una acción), `app`, `scope`, `viewed`, `exists`, `absent`, `file` (regex sobre el contenido), `frontmatter` (campos del agente y `body`), `newchat`, `label` (etiqueta de un archivo) y `ran`. Todos llevan `label` y, opcionalmente, `hint`.
 
 **Respuestas simuladas (`setup.actions`)**: si la petición cumple los grupos de `when` (regex sobre el texto sin tildes ni mayúsculas) y lo que exige `needs` (`app`, `open`, `scope`, `refs`, `agent`, `gces`, `turn`), Copilot responde con `reply`, añade las citas de `cites` y escribe los archivos de `writes`. Si falta algo, explica qué falta (personalizable con `needs.say`). No hay IA: es una respuesta definida en el JSON.
 

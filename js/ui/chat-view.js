@@ -24,6 +24,20 @@ function controlLabel(cmd) {
   return null;
 }
 
+/** Texto de un atajo (botón) que ejecuta un control «::». */
+function chipLabel(cmd) {
+  const [name, ...rest] = cmd.slice(2).trim().split(/\s+/);
+  const arg = rest.join(' ');
+  if (name === 'app') { const [app, ...f] = rest; return `Abrir ${APPS[app]?.label || app}${f.length ? ` · ${f.join(' ')}` : ''}`; }
+  if (name === 'modo') return `Modo ${arg}`;
+  if (name === 'nuevo') return 'Nuevo chat';
+  if (name === 'ver') return `Ver ${arg}`;
+  if (name === 'editar') return `Editar ${arg.split('/').pop()}`;
+  if (name === 'pages') return `Editar en Pages${arg ? `: ${arg}` : ''}`;
+  if (name === 'ayuda') return 'Ayuda';
+  return cmd;
+}
+
 /** Resalta /referencias y @agentes en el texto del alumno. */
 function richPrompt(text) {
   const parts = [];
@@ -105,7 +119,7 @@ export function createChat({ copilot, suggestions = [], intro = [], onRun, compa
     clear(chips);
     for (const s of suggestions) {
       // Un atajo que termina en espacio se escribe para completarlo; si no, se envía directamente.
-      chips.append(h('button', { class: 'chip', type: 'button', onclick: () => { if (s.endsWith(' ')) { input.value = s; input.focus(); } else exec(s); } }, s.startsWith('::') ? (controlLabel(s) || s) : s.trim()));
+      chips.append(h('button', { class: 'chip', type: 'button', onclick: () => { if (s.endsWith(' ')) { input.value = s; input.focus(); } else exec(s); } }, s.startsWith('::') ? chipLabel(s) : s.trim()));
     }
   }
 
@@ -165,7 +179,7 @@ export function createChat({ copilot, suggestions = [], intro = [], onRun, compa
       const app = appForFile(p);
       return h('div', { class: 'cp-file' },
         h('span', { class: 'list-icon k-lab' }, icon(KIND_ICON[kind], { size: 18 })),
-        h('div', { class: 'grow cp-file-name' }, h('strong', {}, basename(p)), h('span', { class: 'small muted' }, `${KIND_LABEL[kind]} · ${displayPath(p)}`)),
+        h('div', { class: 'grow cp-file-name' }, h('strong', {}, basename(p)), h('span', { class: 'small muted' }, `${KIND_LABEL[kind]} · ${displayPath(p)}`), copilot.labelOf(p) ? h('span', { class: 'cp-label' }, icon('lock', { size: 12 }), copilot.labelOf(p)) : null),
         h('div', { class: 'cp-file-actions' },
           h('button', { class: 'btn btn-soft btn-sm', type: 'button', onclick: () => go(`::ver ${basename(p)}`) }, 'Ver'),
           app ? h('button', { class: 'btn btn-ghost btn-sm', type: 'button', onclick: () => go(`::app ${app} ${basename(p)}`) }, 'Abrir') : null,

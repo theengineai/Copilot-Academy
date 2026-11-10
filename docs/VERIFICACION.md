@@ -2,13 +2,13 @@
 
 Fecha: 10 de noviembre de 2026. Entorno: Node 22, Python 3 y Chromium con Playwright emulando un **iPhone 13**.
 
-## Tests automáticos (`npm test`): 36/36 superados
+## Tests automáticos (`npm test`): 38/38 superados
 
 - **Motor**: XP proporcional a la precisión y sin duplicar al repetir; un examen suspendido no desbloquea; desbloqueo secuencial; niveles L2→L5 (L5 exige el proyecto final); racha por días locales; repaso espaciado; dominio por competencia que sube y baja; logros; recomendaciones.
 - **Persistencia**: guardar y recargar, datos corruptos, exportar e importar (la XP de una copia manipulada se recalcula).
-- **Copilot simulado**: medidor de la petición; referencias con `/`; archivos restringidos (no aparecen y Copilot no los lee); modo Web sin datos de trabajo; apps y archivo abierto; agentes integrados y propios (el agente sigue activo hasta un chat nuevo); acciones que exigen lo que declaran y escriben archivos; editor de agentes; restauración del laboratorio.
-- **Temario**: 7 módulos, 28 lecciones (todas con 2+ tarjetas, 3+ ejercicios, 3+ formatos, ≤ 4 conceptos, ≤ 12 pasos y resumen final), 13 misiones, 8 retos, evaluaciones con banco suficiente, IDs únicos, los 33 conceptos practicados, y que cada respuesta correcta valida y cada incorrecta no.
-- **Soluciones ejecutadas**: cada uno de los 43 ejercicios con Copilot se reproduce en el simulador. Se comprueba que el estado inicial **no** aprueba, que la solución **sí**, que cada respuesta preparada se alcanza y que una petición vaga **no** basta. Los editores: el texto inicial no aprueba y la solución sí.
+- **Copilot simulado**: medidor de la petición; referencias con `/`; archivos restringidos (no aparecen y Copilot no los lee); modo Web sin datos de trabajo; apps y archivo abierto; agentes integrados y propios (el agente sigue activo hasta un chat nuevo); acciones que exigen lo que declaran y escriben archivos; preferencia por la respuesta aún no dada; etiquetas de confidencialidad heredadas; editor de agentes; restauración del laboratorio.
+- **Temario**: 7 módulos, 31 lecciones (todas con 2+ tarjetas, 3+ ejercicios, 3+ formatos, ≤ 4 conceptos, ≤ 12 pasos y resumen final), 14 misiones, 8 retos, evaluaciones con banco suficiente, IDs únicos (contados en los JSON, para que no se oculten duplicados), los 36 conceptos practicados, y que cada respuesta correcta valida y cada incorrecta no.
+- **Soluciones ejecutadas**: cada uno de los 48 ejercicios con Copilot se reproduce en el simulador. Se comprueba que el estado inicial **no** aprueba, que la solución **sí**, que cada respuesta preparada se alcanza y que una petición vaga **no** basta. Los editores: el texto inicial no aprueba y la solución sí.
 - **Nada sin contexto**: las personas y la empresa del caso se presentan en una tarjeta antes de aparecer en un ejercicio; la interfaz del chat y el formato de los agentes se explican antes de su primer ejercicio; cada archivo que menciona un enunciado existe.
 - **Datos**: sin IBAN, DNI, claves de API ni direcciones de correo en el contenido.
 - **PWA**: el Service Worker precachea todos los archivos de ejecución; el manifest y los iconos existen; no hay recursos externos; todas las importaciones JS resuelven.
@@ -29,7 +29,7 @@ Pasos superados, sin errores de JavaScript:
 11. Logros, perfil y reinicio del progreso.
 
 ### Recorrido íntegro (`FULL=1`)
-Las 28 lecciones, las 7 evaluaciones, las 13 misiones (incluido el proyecto final) y los 8 retos, hasta **nivel L5** (2.405 XP, 14 logros). Captura: `docs/screenshots/perfil-l5.png`.
+Las 31 lecciones, las 7 evaluaciones, las 14 misiones (incluido el proyecto final) y los 8 retos, hasta **nivel L5** (2.585 XP, 14 logros). Captura: `docs/screenshots/perfil-l5.png`.
 
 ## Revisión visual
 Inicio, Academia, lección, ejercicio con Copilot, laboratorio y hojas de selección en modo claro y oscuro, a ancho de iPhone. Capturas en `docs/screenshots/`.

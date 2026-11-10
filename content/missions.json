@@ -2,47 +2,53 @@
   {
     "id": "ms01",
     "module": "m1",
-    "title": "Primer día con Copilot",
-    "summary": "Sitúate: qué Copilot tienes, de dónde salen las respuestas y cómo comprobarlas.",
-    "difficulty": 1,
-    "xp": 40,
+    "title": "Una cifra que no cuadra",
+    "summary": "Diagnostica por qué Copilot dio a dirección un margen equivocado y evita que se repita.",
+    "difficulty": 2,
+    "xp": 50,
     "requires": [
       "l1-2"
     ],
-    "brief": "Te incorporas al equipo de tesorería. Antes de nada quieres saber qué se decidió en la última reunión y comprobarlo en la fuente.",
-    "scenario": "Reunión de tesorería del 5 de noviembre con transcripción y una previsión de tesorería del trimestre (datos ficticios).",
-    "debrief": "Modo Trabajo para lo interno, la fuente exacta con / y la comprobación en el original: tres hábitos que usarás a diario.",
+    "brief": "Ana pidió a Copilot «el margen de octubre» y obtuvo un 30 %. El informe final dice 31,5 %. Te pide averiguar qué ha pasado.",
+    "scenario": "Un borrador antiguo y el informe final del cierre de octubre, ambos en OneDrive (ficticios).",
+    "debrief": "Sin fuente explícita, Copilot eligió un borrador. La solución inmediata es fijar la fuente; la de fondo, que los borradores estén identificados y apartados.",
     "steps": [
       {
         "id": "ms01s1",
         "type": "copilot",
-        "concept": "fund.grounding",
-        "prompt": "En modo **Trabajo**, pregunta qué se **acordó** en **/Reunion_tesoreria_5nov.meet** y abre la reunión para comprobarlo",
+        "concept": "fund.limits",
+        "prompt": "Pide a Copilot que liste **qué documentos** mencionan el margen de octubre y **qué valor y fecha** tiene cada uno, usando **/Informe_cierre_octubre.docx** y **/Informe_cierre_octubre_v1_borrador.docx**",
         "setup": {
           "files": {
-            "Teams/Reunion_tesoreria_5nov.meet": "Reunión de tesorería · 5 nov 2026 · Transcripción activada\n\nMarta (tesorería): en diciembre bajamos del mínimo de seguridad por la paga extra.\nAna (dirección financiera): estudiemos adelantar cobros o usar la póliza de crédito.\nAcuerdo: Marta propone dos alternativas antes del 20 de noviembre.\n",
-            "OneDrive/Tesoreria/Prevision_tesoreria_Q4.xlsx": "Mes | Cobros (€) | Pagos (€) | Saldo final (€)\nOctubre | 405.000 | 380.000 | 125.000\nNoviembre | 390.000 | 415.000 | 100.000\nDiciembre | 450.000 | 470.000 | 80.000\nNota: saldo mínimo de seguridad acordado: 90.000 €.\n"
+            "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
+            "OneDrive/Cierre octubre/Borradores/Informe_cierre_octubre_v1_borrador.docx": "BORRADOR v1 (2 de noviembre, sin revisar) · Informe de cierre de octubre\n\nVentas: 405.000 € (dato provisional).\nMargen bruto: 30 % (cálculo provisional).\nTransporte: pendiente de facturas.\n",
+            "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€)\nNorte | 118.000 | 84.200 | 110.000\nCentro | 162.000 | 109.900 | 150.000\nSur | 132.000 | 88.100 | 128.000\n"
           },
-          "scope": "web",
           "actions": [
             {
-              "id": "acuerdo",
+              "id": "versiones",
               "when": [
                 [
-                  "acord"
+                  "margen",
+                  "valor",
+                  "version"
                 ]
               ],
               "reply": [
-                "En la reunión se acordó que Marta propondrá dos alternativas antes del 20 de noviembre para no bajar del saldo mínimo en diciembre."
+                "Documento | Margen | Estado",
+                "Informe_cierre_octubre_v1_borrador.docx | 30 % | Borrador provisional, 2 nov [2]",
+                "Informe_cierre_octubre.docx | 31,5 % | Informe final [1]",
+                "La respuesta de Ana usó el borrador."
               ],
               "needs": {
-                "scope": "work",
                 "refs": [
-                  "Reunion_tesoreria_5nov.meet"
+                  "Informe_cierre_octubre.docx",
+                  "Informe_cierre_octubre_v1_borrador.docx"
                 ]
               },
               "cites": [
-                "Reunion_tesoreria_5nov.meet"
+                "Informe_cierre_octubre.docx",
+                "Informe_cierre_octubre_v1_borrador.docx"
               ]
             }
           ]
@@ -50,84 +56,74 @@
         "goals": [
           {
             "type": "prompt",
-            "label": "Preguntar por el acuerdo en modo Trabajo citando la reunión",
-            "pattern": "acord",
-            "scope": "work",
+            "label": "Comparar las dos versiones",
             "refs": [
-              "Reunion_tesoreria_5nov.meet"
-            ],
-            "hint": "¿Qué se acordó en /Reunion_tesoreria_5nov.meet?"
+              "Informe_cierre_octubre.docx",
+              "Informe_cierre_octubre_v1_borrador.docx"
+            ]
           },
           {
-            "type": "viewed",
-            "label": "Abrir la reunión para comprobarlo",
-            "path": "Reunion_tesoreria_5nov.meet",
-            "hint": "Archivos → Ver Reunion_tesoreria_5nov.meet"
+            "type": "action",
+            "label": "Copilot muestra el valor de cada versión",
+            "id": "versiones"
           }
         ],
         "solution": [
-          "::modo trabajo",
-          "¿Qué se acordó en /Reunion_tesoreria_5nov.meet?",
-          "::ver Reunion_tesoreria_5nov.meet"
+          "Lista qué valor de margen de octubre da cada documento y su fecha y estado, usando /Informe_cierre_octubre.docx y /Informe_cierre_octubre_v1_borrador.docx"
         ],
-        "explain": "Pregunta concreta, fuente exacta y comprobación: Marta propone dos alternativas antes del 20 de noviembre.",
+        "explain": "El 30 % viene de un borrador provisional del 2 de noviembre. El dato válido es el 31,5 % del informe final.",
         "suggestions": [
-          "::modo trabajo",
-          "¿Qué se acordó en /Reunion_tesoreria_5nov.meet?",
-          "::ver Reunion_tesoreria_5nov.meet"
+          "Lista qué valor de margen de octubre da cada documento y su fecha y estado, usando /Informe_cierre_octubre.docx y /Informe_cierre_octubre_v1_borrador.docx"
         ],
-        "intro": [
-          "Ojo: el chat está ahora en modo Web."
-        ],
-        "title": "Pregunta con la fuente exacta"
+        "title": "Encuentra el origen"
       },
       {
         "id": "ms01s2",
         "type": "choice",
-        "concept": "fund.licenses",
-        "prompt": "Quieres preguntar «¿qué correos de tesorería tengo pendientes de responder?». ¿Qué necesitas?",
+        "concept": "fund.grounding",
+        "prompt": "¿Qué le dices a Ana para sus próximas consultas?",
         "options": [
           {
-            "text": "Microsoft 365 Copilot (licencia) en modo Trabajo",
+            "text": "Que referencie el informe final con / cuando pregunte por cifras del cierre",
             "correct": true
           },
           {
-            "text": "Copilot Chat en modo Web",
-            "feedback": "La web no conoce tu correo."
+            "text": "Que pregunte dos veces y haga la media",
+            "feedback": "No corrige la fuente."
           },
           {
-            "text": "Copilot personal",
-            "feedback": "No tiene acceso a tu correo de trabajo."
+            "text": "Que deje de usar Copilot para cifras",
+            "feedback": "Con la fuente fijada es fiable."
           }
         ],
-        "explain": "Buscar por tu cuenta en el correo necesita la licencia y el modo Trabajo.",
-        "title": "¿Qué licencia necesitas?"
+        "explain": "Cifras oficiales, siempre con la fuente exacta.",
+        "title": "La solución inmediata"
       },
       {
         "id": "ms01s3",
         "type": "multi",
-        "concept": "gob.permissions",
-        "prompt": "¿Qué es cierto sobre los permisos?",
+        "concept": "fund.limits",
+        "prompt": "¿Qué evita que vuelva a pasar en el equipo?",
         "options": [
           {
-            "text": "Copilot solo usa lo que tú puedes abrir",
+            "text": "Identificar los borradores en el nombre y guardarlos en una carpeta aparte",
             "correct": true
           },
           {
-            "text": "Un archivo compartido de más puede aparecer en las respuestas",
+            "text": "Una plantilla de prompt de cierre que referencie el informe final",
             "correct": true
           },
           {
-            "text": "Copilot puede saltarse los permisos si se lo pides",
-            "feedback": "Nunca."
+            "text": "Borrar todos los borradores antiguos sin revisar",
+            "feedback": "Puede que alguno haya que conservarlo; ordénalos."
           },
           {
-            "text": "Los permisos los decide Copilot",
-            "feedback": "Los decide quien comparte el archivo y la organización."
+            "text": "Prohibir Copilot en el cierre",
+            "feedback": "Desproporcionado."
           }
         ],
-        "explain": "Copilot hereda tus permisos; compartir con cuidado es tarea de todos.",
-        "title": "Los permisos"
+        "explain": "Orden en las fuentes y plantillas con la fuente fijada.",
+        "title": "La solución de fondo"
       }
     ]
   },
@@ -139,7 +135,7 @@
     "difficulty": 1,
     "xp": 45,
     "requires": [
-      "l1-4"
+      "l1-3"
     ],
     "brief": "Un compañero ha pedido a Copilot un resumen de la previsión de tesorería y quiere enviarlo a dirección. Te pide que lo revises.",
     "scenario": "Previsión de tesorería del cuarto trimestre (datos ficticios) y un resumen generado por Copilot.",
@@ -174,7 +170,7 @@
       {
         "id": "ms02s2",
         "type": "choice",
-        "concept": "gob.edp",
+        "concept": "gob.labels",
         "prompt": "Tu compañero quiere rehacer el resumen en su Copilot personal porque «va más rápido». ¿Qué le dices?",
         "options": [
           {
@@ -212,8 +208,8 @@
   {
     "id": "ms03",
     "module": "m2",
-    "title": "De petición vaga a petición evaluable",
-    "summary": "Convierte una petición vaga en otra que se pueda comprobar.",
+    "title": "Una especificación para dirección",
+    "summary": "Convierte un encargo vago en una petición precisa y comprueba el resultado.",
     "difficulty": 2,
     "xp": 50,
     "requires": [
@@ -221,46 +217,51 @@
     ],
     "brief": "Dirección te pide «algo sobre la tesorería de diciembre». Vas a preparar una petición a Copilot que dé un resultado útil y comprobable.",
     "scenario": "Previsión de tesorería y reunión de tesorería (datos ficticios).",
-    "debrief": "Objetivo, contexto, expectativas y fuente. Con los cuatro elementos la respuesta se puede evaluar en segundos.",
+    "debrief": "Estructura exacta, criterio, ejemplo, regla para huecos y fuente: la respuesta se revisa en segundos y es comparable mes a mes.",
     "steps": [
       {
         "id": "ms03s1",
         "type": "editor",
-        "concept": "prompt.gces",
-        "prompt": "Escribe la petición con los **cuatro elementos** para analizar la tesorería de diciembre",
+        "concept": "prompt.spec",
+        "prompt": "Escribe una petición **precisa** para analizar la tesorería de diciembre: estructura, criterio, ejemplo, regla para huecos y fuente",
         "file": "Tu petición a Copilot",
         "starter": "Dime algo de la tesorería.",
-        "rows": 6,
+        "rows": 7,
         "checks": [
           {
-            "label": "Objetivo: qué quieres",
-            "pattern": "\\b(resume|prepara|analiza|explica|identifica|prop[oó]n|elabora)",
-            "hint": "Empieza con un verbo."
+            "label": "Define la estructura (columnas o apartados)",
+            "pattern": "(columnas?|apartados?|filas)",
+            "hint": "Por ejemplo: «tabla con mes, cobros, pagos, saldo y margen sobre el mínimo»."
           },
           {
-            "label": "Contexto: para quién o para qué",
-            "pattern": "\\b(para (que|el|la|los|las|direcci[oó]n|decidir|presentar)|porque|ya que)",
-            "hint": "Por ejemplo: «para dirección»."
+            "label": "Fija un criterio o un límite",
+            "pattern": "(m[aá]ximo|solo|ordenad|marca|resalta)",
+            "hint": "Por ejemplo: «resalta los meses por debajo del mínimo»."
           },
           {
-            "label": "Expectativas: formato",
-            "pattern": "(tabla|vi[ñn]etas|puntos|palabras|m[aá]ximo|\\d+\\s*(ideas|puntos|opciones))",
-            "hint": "Por ejemplo: «en 4 viñetas»."
+            "label": "Incluye un ejemplo",
+            "pattern": "ejemplo",
+            "hint": "Por ejemplo: «Ejemplo de fila: Octubre | 405.000 | 380.000 | 125.000 | +35.000»."
           },
           {
-            "label": "Fuente: qué datos usar",
-            "pattern": "(/\\S+|a partir de|usando|seg[uú]n|bas[aá]ndote)",
+            "label": "Regla para datos que falten",
+            "pattern": "(pendiente|no (lo )?estimes|no inventes|si falta)",
+            "hint": "Por ejemplo: «si falta un dato, escribe [pendiente]»."
+          },
+          {
+            "label": "Fuente",
+            "pattern": "(/\\S+|a partir de|usando|seg[uú]n)",
             "hint": "Añade /Prevision_tesoreria_Q4.xlsx."
           }
         ],
-        "solution": "Analiza si en diciembre bajamos del saldo mínimo, para que dirección decida, en 4 viñetas, a partir de /Prevision_tesoreria_Q4.xlsx y /Reunion_tesoreria_5nov.meet.",
-        "explain": "Objetivo (analiza), contexto (para que dirección decida), expectativas (4 viñetas) y fuentes.",
-        "title": "Redacta la petición"
+        "solution": "Prepara para dirección una tabla con columnas mes, cobros, pagos, saldo final y diferencia con el mínimo, solo de octubre a diciembre, y resalta los meses por debajo del mínimo, a partir de /Prevision_tesoreria_Q4.xlsx. Ejemplo de fila: Octubre | 405.000 | 380.000 | 125.000 | +35.000. Si falta un dato, escribe [pendiente].",
+        "explain": "Estructura, criterio, ejemplo, huecos y fuente.",
+        "title": "Redacta la especificación"
       },
       {
         "id": "ms03s2",
         "type": "copilot",
-        "concept": "prompt.gces",
+        "concept": "prompt.spec",
         "prompt": "Envía a Copilot una petición sobre el **saldo de diciembre** con los cuatro elementos, usando **/Prevision_tesoreria_Q4.xlsx**",
         "setup": {
           "files": {
@@ -307,13 +308,18 @@
             "hint": "Analiza el saldo de diciembre para dirección, en 4 viñetas, a partir de /Prevision_tesoreria_Q4.xlsx"
           },
           {
+            "type": "prompt",
+            "label": "Incluye la regla para datos que falten",
+            "pattern": "pendiente|no (lo )?estimes|no inventes"
+          },
+          {
             "type": "action",
             "label": "Copilot entrega el análisis",
             "id": "saldo"
           }
         ],
         "solution": [
-          "Analiza si el saldo de diciembre baja del mínimo, para que dirección decida, en 4 viñetas, a partir de /Prevision_tesoreria_Q4.xlsx"
+          "Analiza si el saldo de diciembre baja del mínimo, para que dirección decida, en 4 viñetas, a partir de /Prevision_tesoreria_Q4.xlsx; si falta un dato escribe [pendiente]"
         ],
         "explain": "Con los cuatro elementos, Copilot entrega justo lo que dirección necesita: el problema, la cifra y las opciones.",
         "suggestions": [
@@ -325,28 +331,28 @@
       {
         "id": "ms03s3",
         "type": "match",
-        "concept": "prompt.gces",
-        "prompt": "Empareja cada fragmento de tu petición con su elemento",
+        "concept": "prompt.spec",
+        "prompt": "Empareja cada fragmento con la técnica de especificación",
         "pairs": [
           [
-            "«Analiza si el saldo baja del mínimo»",
-            "Objetivo"
+            "«Columnas: mes, cobros, pagos, saldo»",
+            "Estructura exacta"
           ],
           [
-            "«para que dirección decida»",
-            "Contexto"
+            "«Resalta los meses bajo el mínimo»",
+            "Criterio"
           ],
           [
-            "«en 4 viñetas»",
-            "Expectativas"
+            "«Ejemplo de fila: Octubre | 405.000 | …»",
+            "Ejemplo"
           ],
           [
-            "«a partir de /Prevision_tesoreria_Q4.xlsx»",
-            "Fuente"
+            "«Si falta un dato, escribe [pendiente]»",
+            "Regla para huecos"
           ]
         ],
-        "explain": "Objetivo, contexto, expectativas y fuente.",
-        "title": "Los cuatro elementos"
+        "explain": "Las cuatro técnicas que hacen comparable el resultado.",
+        "title": "Las técnicas"
       }
     ]
   },
@@ -358,7 +364,7 @@
     "difficulty": 2,
     "xp": 50,
     "requires": [
-      "l2-3"
+      "l2-4"
     ],
     "brief": "Llega un correo de un supuesto proveedor que pide cambiar su cuenta bancaria. Lo vas a analizar con Copilot sin caer en la trampa.",
     "scenario": "Un correo sospechoso y el procedimiento de pago a proveedores (ficticios).",
@@ -394,7 +400,7 @@
       {
         "id": "ms04s2",
         "type": "copilot",
-        "concept": "prompt.refs",
+        "concept": "prompt.multisource",
         "prompt": "Pregunta a Copilot qué dice **/Procedimiento_pago_proveedores.docx** sobre los **cambios de cuenta bancaria**",
         "setup": {
           "files": {
@@ -488,7 +494,7 @@
       {
         "id": "ms05s1",
         "type": "copilot",
-        "concept": "docs.draft",
+        "concept": "docs.longform",
         "prompt": "Abre **Word** y pide una **nota para el comité** sobre la tesorería de diciembre con **/Prevision_tesoreria_Q4.xlsx** y **/Reunion_tesoreria_5nov.meet**. Ábrela para revisarla",
         "setup": {
           "files": {
@@ -566,7 +572,7 @@
       {
         "id": "ms05s2",
         "type": "multi",
-        "concept": "docs.draft",
+        "concept": "docs.longform",
         "prompt": "¿Qué compruebas en la nota antes de enviarla?",
         "options": [
           {
@@ -592,7 +598,7 @@
       {
         "id": "ms05s3",
         "type": "choice",
-        "concept": "docs.rewrite",
+        "concept": "docs.compare",
         "prompt": "El apartado de alternativas es muy genérico. ¿Qué pides?",
         "options": [
           {
@@ -1522,6 +1528,113 @@
   {
     "id": "ms13",
     "module": "m7",
+    "title": "Un agente autónomo para las facturas",
+    "summary": "Diseña un agente que procese las facturas entrantes con guardarraíles y aprobación humana.",
+    "difficulty": 3,
+    "xp": 80,
+    "requires": [
+      "l7-4"
+    ],
+    "brief": "Cuentas a pagar recibe 400 facturas al mes. Dirección quiere un agente que las procese al llegar, sin perder el control.",
+    "scenario": "Buzón de cuentas a pagar, ERP con pedidos y procedimiento de pago a proveedores (ficticios).",
+    "debrief": "Disparador claro, privilegios mínimos, aprobación humana en lo que tiene consecuencias y registro de todo: así un agente autónomo es una ayuda y no un riesgo.",
+    "steps": [
+      {
+        "id": "ms13s1",
+        "type": "editor",
+        "concept": "agent.studio",
+        "prompt": "Escribe las **instrucciones** del agente: disparador, tarea, aprobación humana, límites y registro",
+        "file": "Instrucciones del agente",
+        "starter": "Encárgate de las facturas.",
+        "rows": 7,
+        "checks": [
+          {
+            "label": "Disparador",
+            "pattern": "(cuando (llegue|se reciba|entre)|al recibir)",
+            "hint": "Cuando llegue una factura al buzón…"
+          },
+          {
+            "label": "Tarea",
+            "pattern": "(extrae|valida|comprueba|compara)",
+            "hint": "Extrae y compara con el pedido."
+          },
+          {
+            "label": "Aprobación humana",
+            "pattern": "(aprobaci[oó]n|aprueb|persona responsable|confirm)",
+            "hint": "Las discrepancias, a una persona."
+          },
+          {
+            "label": "Límites",
+            "pattern": "(nunca|no (pagues|pague|cambies|cambie|apruebes|apruebe))",
+            "hint": "Nunca aprueba pagos ni cambia datos bancarios."
+          },
+          {
+            "label": "Registro",
+            "pattern": "(registr|deja constancia)",
+            "hint": "Registra cada factura procesada."
+          }
+        ],
+        "solution": "Cuando llegue una factura al buzón de cuentas a pagar, extrae proveedor, importe y nº de pedido y compáralos con el pedido del ERP.\nSi hay discrepancias, pide aprobación a la persona responsable.\nNunca apruebes pagos ni cambies datos bancarios.\nRegistra cada factura procesada y su resultado.",
+        "explain": "Las cinco piezas de un agente autónomo seguro.",
+        "title": "Las instrucciones"
+      },
+      {
+        "id": "ms13s2",
+        "type": "match",
+        "concept": "agent.studio",
+        "prompt": "Empareja cada parte del diseño con la pieza de Copilot Studio",
+        "pairs": [
+          [
+            "Llega una factura al buzón",
+            "Disparador"
+          ],
+          [
+            "Consultar el pedido en el ERP",
+            "Herramienta (conector o flujo)"
+          ],
+          [
+            "Dudas de proveedores sobre plazos de pago",
+            "Conocimiento (procedimiento)"
+          ],
+          [
+            "Discrepancia de importe",
+            "Aprobación humana en el flujo"
+          ]
+        ],
+        "explain": "Cada necesidad, con su pieza.",
+        "title": "¿Qué pieza usas?"
+      },
+      {
+        "id": "ms13s3",
+        "type": "multi",
+        "concept": "agent.test",
+        "prompt": "¿Qué haces antes de activarlo para todo el buzón?",
+        "options": [
+          {
+            "text": "Probarlo con facturas reales anonimizadas, incluidas discrepancias y duplicados",
+            "correct": true
+          },
+          {
+            "text": "Activarlo primero en piloto con un grupo de proveedores",
+            "correct": true
+          },
+          {
+            "text": "Revisar sus registros la primera semana",
+            "correct": true
+          },
+          {
+            "text": "Darle permisos de administrador para que no falle",
+            "feedback": "Contradice el mínimo privilegio."
+          }
+        ],
+        "explain": "Pruebas, piloto y supervisión.",
+        "title": "Antes de activarlo"
+      }
+    ]
+  },
+  {
+    "id": "ms14",
+    "module": "m7",
     "final": true,
     "title": "Proyecto final: el cierre de noviembre con Copilot",
     "summary": "Integra contexto, Word, Excel, Teams, revisión y un agente en un cierre completo.",
@@ -1533,9 +1646,9 @@
     "debrief": "Has integrado todo: contexto exacto, peticiones con método, documentos con fuentes, cifras que cuadran, revisión humana y un agente con límites. Es el patrón que puedes repetir cada mes en tu trabajo real.",
     "steps": [
       {
-        "id": "ms13s1",
+        "id": "ms14s1",
         "type": "copilot",
-        "concept": "prompt.refs",
+        "concept": "prompt.multisource",
         "prompt": "Pide un resumen de situación combinando **/Prevision_tesoreria_Q4.xlsx** y **/Comite_auditoria_7nov.meet**, con los cuatro elementos",
         "setup": {
           "files": {
@@ -1592,9 +1705,9 @@
         "title": "Reúne la información"
       },
       {
-        "id": "ms13s2",
+        "id": "ms14s2",
         "type": "copilot",
-        "concept": "docs.draft",
+        "concept": "docs.longform",
         "prompt": "Abre **Word** y redacta la **nota de cierre** para dirección con las mismas fuentes. Revísala",
         "setup": {
           "files": {
@@ -1659,7 +1772,7 @@
         "title": "La nota en Word"
       },
       {
-        "id": "ms13s3",
+        "id": "ms14s3",
         "type": "copilot",
         "concept": "datos.formulas",
         "prompt": "En **Gastos_estructura_2026.xlsx**, añade la **desviación** en euros y en % sobre el presupuesto",
@@ -1716,7 +1829,7 @@
         "title": "Las cifras de gastos"
       },
       {
-        "id": "ms13s4",
+        "id": "ms14s4",
         "type": "spot",
         "concept": "fund.verify",
         "prompt": "Antes de enviar la nota, señala las líneas incorrectas",
@@ -1741,7 +1854,7 @@
         "title": "Revisión final"
       },
       {
-        "id": "ms13s5",
+        "id": "ms14s5",
         "type": "copilot",
         "concept": "agent.instructions",
         "prompt": "Crea el agente **Proveedores** con el procedimiento como conocimiento y una regla de derivación, y pruébalo con una pregunta **fuera de tema**",
@@ -1798,7 +1911,7 @@
         "title": "Un agente para el equipo"
       },
       {
-        "id": "ms13s6",
+        "id": "ms14s6",
         "type": "choice",
         "concept": "gob.human",
         "prompt": "¿Qué hábito te llevas a tu trabajo real?",
