@@ -230,6 +230,13 @@ export class Copilot {
         this.events.push({ type: 'pages', path });
         return { lines: [line(`✎ Creada la página ${displayPath(path)}: un lienzo editable que puedes compartir y seguir trabajando.`, 'ok')] };
       }
+      case 'programar': {
+        const last = [...this.events].reverse().find(ev => ev.type === 'prompt');
+        if (!last) return { lines: [line('Primero escribe la petición que quieres programar.', 'err')] };
+        const freq = arg || 'cada semana';
+        this.events.push({ type: 'schedule', text: last.text, freq, action: last.action || null });
+        return { lines: [line(`⏰ Prompt programado (${freq}): «${last.text}». Cada ejecución dejará su resultado en tus chats.`, 'ok')] };
+      }
       case 'ayuda':
         return { lines: this.helpLines() };
       default:

@@ -37,24 +37,24 @@ No abras `index.html` con doble clic (`file://`): los módulos JavaScript y el S
 | | |
 |---|---|
 | Módulos | 7, con evaluación final cada uno (aprobado: 75 %) |
-| Microlecciones | 31, de 6–8 minutos: 1–3 ideas nuevas cada una, ejemplo antes de practicar y resumen final. No explica lo básico |
+| Microlecciones | 30, de 6–8 minutos: 1–3 ideas nuevas cada una, ejemplo antes de practicar y resumen final. Nivel profesional: no enseña a usar Excel, Word o PowerPoint ni lo básico de Copilot |
 | Formatos de ejercicio | opción única/decisión, selección múltiple, ordenar, emparejar, completar, encontrar el error, redactar una petición con criterios y **Copilot simulado con objetivos** |
 | Misiones | 14, incluido el proyecto final integrador (el cierre de noviembre) |
 | Laboratorio | Copilot simulado libre y persistente + 8 retos |
-| Gamificación | XP por precisión, rangos, nivel de dominio L2→L5, racha diaria, objetivo diario, 17 logros, mapa con desbloqueos |
+| Gamificación | XP por precisión, rangos, nivel de dominio L2→L5, racha diaria, objetivo diario, 18 logros, mapa con desbloqueos |
 | Aprendizaje adaptativo | Dominio por competencia (8) basado en aciertos, repaso espaciado (cajas de Leitner) y recomendaciones |
 
 ### Programa
 
 1. **Cómo funciona Copilot por dentro** (L2 → L3): qué entra en el contexto y dónde busca, por qué no encuentra algo o se equivoca, verificación profesional (trazabilidad, triangulación), instrucciones personalizadas y memoria, permisos y etiquetas de confidencialidad heredadas.
-2. **Prompting avanzado** (L3): especificar el resultado (estructura, criterios, ejemplos, huecos), que pregunte y planifique antes, encadenar tareas y traspasar el estado, varias fuentes y contradicciones, autocrítica, biblioteca de prompts y prompts programados.
-3. **Word y PowerPoint avanzado** (L3): documentos largos por fases, comparar versiones de un contrato, presentaciones para dirección y modo agente.
-4. **Excel avanzado** (L3 → L4): limpiar exportaciones del ERP, BUSCARX y SUMAR.SI.CONJUNTO, modelos de escenarios con el modo agente y auditoría de cifras y modelos.
-5. **Outlook y Teams avanzado** (L4): compromisos de la bandeja, correos delicados, brief para reuniones y seguimiento entre reuniones.
-6. **Investigar y analizar en profundidad** (L4 → L5): encargos a Researcher, Analyst, Pages y Notebooks, y fiabilidad de las fuentes.
-7. **Agentes y Copilot Studio a fondo** (L5): diseño, instrucciones, conocimiento y acciones, orquestación, temas, herramientas, agentes autónomos con aprobación humana, pruebas, publicación, gobierno y Copilot Cowork.
+2. **Prompting avanzado** (L3): especificar el resultado (estructura, criterios, ejemplos, huecos), que pregunte y planifique antes, encadenar tareas y traspasar el estado, contradicciones entre fuentes, autocrítica, biblioteca de prompts y prompts programados.
+3. **Modelización con Copilot y Analyst** (L3 → L4): auditar un modelo ajeno sin tocarlo, documentarlo y traspasarlo, Monte Carlo y sensibilidades con Python validadas contra el modelo, y contraste de supuestos con contratos y correos.
+4. **Reporting integrado** (L4): cifras trazables a su celda, matriz de coherencia entre modelo, nota y presentación, puente de desviaciones que cuadra al euro y el pack mensual como sistema repetible.
+5. **Automatizar el trabajo recurrente** (L4 → L5): qué automatizar y con qué nivel, prompts programados y Notebooks, delegar en Copilot Cowork con puntos de control y medir tiempo, calidad, coste y adopción.
+6. **Investigación en profundidad** (L5): encargos a Researcher, Pages y Notebooks como espacio de trabajo y fiabilidad de las fuentes.
+7. **Agentes y Copilot Studio a fondo** (L5): diseño, instrucciones, conocimiento y acciones, orquestación, temas, herramientas, agentes autónomos con aprobación humana, pruebas, publicación y gobierno.
 
-Los casos usan una empresa ficticia (Brisa Alimentación) y un departamento financiero: cierre mensual, tesorería, proveedores, auditoría y gastos de viaje.
+Los casos usan una empresa ficticia (Brisa Alimentación) y un departamento financiero: cierre mensual, presupuesto, modelo heredado, pack de comité, proveedores y tesorería. Las cifras son coherentes entre sí (el puente del margen cuadra al euro y la simulación de Monte Carlo se ha ejecutado con los parámetros que muestra).
 
 ## El Copilot simulado
 
@@ -118,9 +118,9 @@ copilot-academy/
 | `editor` | Redactar una petición o unas instrucciones: `file` «Tu petición a Copilot», «Instrucciones del agente» o «Instrucciones personalizadas», `starter` (versión vaga), `solution` (modelo), `checks: [{ label, pattern, flags?, negate?, hint? }]` |
 | `copilot` | `setup { files, app?, open?, scope?, restricted?, labels?, actions? }`, `goals`, `solution`, `solutionFiles?` (solo agentes o páginas), `suggestions`, `intro` |
 
-**Soluciones de `copilot`**: cada entrada es una petición o un control de la interfaz: `::app word [archivo]`, `::modo web|trabajo`, `::nuevo`, `::ver archivo`, `::editar Agentes/X.agent.md`, `::pages Título`. En la app el alumno usa botones; en la solución que se muestra aparecen como `[Abrir…]`, `[Modo…]`, etc.
+**Soluciones de `copilot`**: cada entrada es una petición o un control de la interfaz: `::app word [archivo]`, `::modo web|trabajo`, `::nuevo`, `::ver archivo`, `::editar Agentes/X.agent.md`, `::pages Título`, `::programar cada lunes`. En la app el alumno usa botones; en la solución que se muestra aparecen como `[Abrir…]`, `[Modo…]`, etc.
 
-**Objetivos (`goals`)**: `prompt` (una petición que cumpla `pattern`, `app`, `open`, `scope`, `agent`, `refs`, `minRefs`, `gces` —número o lista de elementos— y `turn`), `action` (se completó una acción), `app`, `scope`, `viewed`, `exists`, `absent`, `file` (regex sobre el contenido), `frontmatter` (campos del agente y `body`), `newchat`, `label` (etiqueta de un archivo) y `ran`. Todos llevan `label` y, opcionalmente, `hint`.
+**Objetivos (`goals`)**: `prompt` (una petición que cumpla `pattern`, `app`, `open`, `scope`, `agent`, `refs`, `minRefs`, `gces` —número o lista de elementos— y `turn`), `action` (se completó una acción), `app`, `scope`, `viewed`, `exists`, `absent`, `file` (regex sobre el contenido), `frontmatter` (campos del agente y `body`), `newchat`, `label` (etiqueta de un archivo), `scheduled` (prompt programado) y `ran`. Todos llevan `label` y, opcionalmente, `hint`.
 
 **Respuestas simuladas (`setup.actions`)**: si la petición cumple los grupos de `when` (regex sobre el texto sin tildes ni mayúsculas) y lo que exige `needs` (`app`, `open`, `scope`, `refs`, `agent`, `gces`, `turn`), Copilot responde con `reply`, añade las citas de `cites` y escribe los archivos de `writes`. Si falta algo, explica qué falta (personalizable con `needs.say`). No hay IA: es una respuesta definida en el JSON.
 

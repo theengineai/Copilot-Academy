@@ -480,559 +480,344 @@
   {
     "id": "ms05",
     "module": "m3",
-    "title": "Nota de tesorería para el comité",
-    "summary": "Redacta en Word una nota a partir de la previsión y la reunión, y revísala.",
-    "difficulty": 2,
-    "xp": 55,
+    "title": "Due diligence de un modelo heredado",
+    "summary": "Audita el modelo de presupuesto que te han pasado antes de presentarlo como tuyo.",
+    "difficulty": 3,
+    "xp": 65,
     "requires": [
       "l3-1"
     ],
-    "brief": "El comité quiere una nota breve sobre la tesorería de diciembre. La vas a preparar en Word con Copilot.",
-    "scenario": "Previsión de tesorería y reunión de tesorería del 5 de noviembre (ficticias).",
-    "debrief": "Fuentes con /, borrador en Word y revisión de cifras y compromisos antes de compartir.",
+    "brief": "El antiguo responsable de control dejó el modelo de presupuesto 2027. Ana quiere usarlo el lunes en el comité. Antes, vas a auditarlo.",
+    "scenario": "Modelo_presupuesto_2027.xlsx (heredado, sin documentar) y la nota de supuestos de septiembre (ficticios).",
+    "debrief": "Auditoría con alcance y sin tocar nada, comprobación de cada hallazgo y correcciones decididas por ti: el modelo pasa a ser tuyo con conocimiento de causa.",
     "steps": [
       {
         "id": "ms05s1",
         "type": "copilot",
-        "concept": "docs.longform",
-        "prompt": "Abre **Word** y pide una **nota para el comité** sobre la tesorería de diciembre con **/Prevision_tesoreria_Q4.xlsx** y **/Reunion_tesoreria_5nov.meet**. Ábrela para revisarla",
+        "concept": "datos.audit",
+        "prompt": "Abre **Modelo_presupuesto_2027.xlsx** en Excel y encarga la **auditoría** sin modificar nada, con los hallazgos en una tabla",
         "setup": {
           "files": {
-            "OneDrive/Tesoreria/Prevision_tesoreria_Q4.xlsx": "Mes | Cobros (€) | Pagos (€) | Saldo final (€)\nOctubre | 405.000 | 380.000 | 125.000\nNoviembre | 390.000 | 415.000 | 100.000\nDiciembre | 450.000 | 470.000 | 80.000\nNota: saldo mínimo de seguridad acordado: 90.000 €.\n",
-            "Teams/Reunion_tesoreria_5nov.meet": "Reunión de tesorería · 5 nov 2026 · Transcripción activada\n\nMarta (tesorería): en diciembre bajamos del mínimo de seguridad por la paga extra.\nAna (dirección financiera): estudiemos adelantar cobros o usar la póliza de crédito.\nAcuerdo: Marta propone dos alternativas antes del 20 de noviembre.\n"
+            "OneDrive/Presupuesto/Modelo_presupuesto_2027.xlsx": "Modelo de presupuesto 2027 (heredado; autor: antiguo responsable de control) · ficticio\n\nHoja Supuestos\nC3 Crecimiento de ventas | 4,0 %\nC4 IPC | 2,5 %\nC5 Subida de tarifa de transporte | 6,0 % (desde enero)\nC6 Transporte base mensual (€) | 58.400\n\nHoja Ventas · H5:H10 = ventas 2026 × (1 + Supuestos!C3); en H8:H10 (región Sur) la fórmula apunta a Supuestos!C4\nHoja Costes · F12 = Transporte × 1,06 (constante escrita a mano)\nHoja PyG · D20 = SUMA(D5:D18); la fila 19 (amortización) se añadió después\nHoja Resumen · B2 vínculo externo a [Presupuesto_2026_v7.xlsx]Resumen!B2\n",
+            "OneDrive/Presupuesto/Supuestos_presupuesto_2027.docx": "Nota de supuestos del presupuesto 2027 (versión de septiembre) · ficticia\n\nCrecimiento de ventas: 4 %. Subida de tarifa de transporte: 6 % desde enero (estimación de Compras de junio).\nSin cambios en plazos de pago a proveedores.\n"
           },
           "actions": [
             {
-              "id": "nota",
+              "id": "auditoria",
               "when": [
                 [
-                  "nota",
-                  "redacta",
-                  "borrador"
+                  "audita",
+                  "revisa",
+                  "incoherencia",
+                  "errores",
+                  "valores fijos",
+                  "constantes"
                 ]
               ],
               "reply": [
-                "He redactado una nota de 4 apartados: saldo previsto, causa, alternativas en estudio y siguiente paso."
+                "Modo agente · plan: recorrer las hojas en orden de cálculo, comparar fórmulas por filas y columnas, buscar constantes en fórmulas, vínculos externos y rangos de suma incompletos.",
+                "Hallazgo | Ubicación | Impacto | Gravedad",
+                "Fórmula inconsistente: Sur usa el IPC (C4) en lugar del crecimiento (C3) | Ventas!H8:H10 | Ventas de Sur infraestimadas | Alta",
+                "Constante 1,06 escrita a mano | Costes!F12 | No responde al supuesto de tarifa | Alta",
+                "Suma que excluye la fila 19 (amortización) | PyG!D20 | Resultado sobrestimado | Alta",
+                "Vínculo externo a Presupuesto_2026_v7.xlsx | Resumen!B2 | Dependencia frágil | Media",
+                "No he modificado nada: los cambios los decides tú."
               ],
               "needs": {
-                "app": "word",
-                "refs": [
-                  "Prevision_tesoreria_Q4.xlsx",
-                  "Reunion_tesoreria_5nov.meet"
-                ]
-              },
-              "cites": [
-                "Prevision_tesoreria_Q4.xlsx",
-                "Reunion_tesoreria_5nov.meet"
-              ],
-              "writes": [
-                {
-                  "path": "OneDrive/Tesoreria/Nota_tesoreria_diciembre.docx",
-                  "content": "Nota para el comité · Tesorería de diciembre (borrador generado con Copilot)\n\n1. Saldo previsto a 31 de diciembre: 80.000 € (mínimo de seguridad: 90.000 €).\n2. Causa: pagos de diciembre por encima de los cobros (paga extra).\n3. Alternativas en estudio: adelantar cobros o usar la póliza de crédito.\n4. Siguiente paso: Marta presenta dos alternativas antes del 20 de noviembre.\n"
+                "app": "excel",
+                "open": "Modelo_presupuesto_2027.xlsx",
+                "gces": [
+                  "expectations"
+                ],
+                "say": {
+                  "app": "Abre Modelo_presupuesto_2027.xlsx en Excel.",
+                  "open": "Abre Modelo_presupuesto_2027.xlsx en Excel.",
+                  "expectations": "Dime qué buscar y cómo quieres los hallazgos (por ejemplo, tabla con ubicación, impacto y gravedad, sin modificar nada)."
                 }
-              ]
+              },
+              "vague": "puedo revisar el libro, pero necesito saber qué tipo de problemas buscar y cómo informarte."
             }
           ]
         },
         "goals": [
           {
             "type": "prompt",
-            "label": "Pedir la nota desde Word con las dos fuentes",
-            "app": "word",
-            "refs": [
-              "Prevision_tesoreria_Q4.xlsx",
-              "Reunion_tesoreria_5nov.meet"
+            "label": "Encargo sin modificar y con formato de hallazgos",
+            "app": "excel",
+            "pattern": "sin (modificar|cambiar|tocar)",
+            "gces": [
+              "expectations"
             ]
           },
           {
-            "type": "exists",
-            "label": "Existe la nota de tesorería",
-            "path": "OneDrive/Tesoreria/Nota_tesoreria_diciembre.docx"
-          },
-          {
-            "type": "viewed",
-            "label": "Revisar la nota",
-            "path": "Nota_tesoreria_diciembre.docx",
-            "hint": "Archivos → Ver Nota_tesoreria_diciembre.docx"
+            "type": "action",
+            "label": "Tabla de hallazgos",
+            "id": "auditoria"
           }
         ],
         "solution": [
-          "::app word",
-          "Redacta una nota para el comité sobre la tesorería de diciembre, en 4 apartados, a partir de /Prevision_tesoreria_Q4.xlsx y /Reunion_tesoreria_5nov.meet",
-          "::ver Nota_tesoreria_diciembre.docx"
+          "::app excel Modelo_presupuesto_2027.xlsx",
+          "Audita el libro sin modificar nada: fórmulas inconsistentes, constantes en fórmulas, rangos incompletos y vínculos externos, en una tabla con hallazgo, ubicación, impacto y gravedad"
         ],
-        "explain": "La nota reúne datos y acuerdos. Fíjate en que distingue lo decidido (Marta presentará alternativas) de lo que está en estudio.",
+        "explain": "Tres hallazgos de gravedad alta: el modelo no estaba listo para el comité.",
         "suggestions": [
-          "::app word",
-          "Redacta una nota para el comité sobre la tesorería de diciembre ",
-          "::ver Nota_tesoreria_diciembre.docx"
+          "::app excel Modelo_presupuesto_2027.xlsx",
+          "Audita el libro sin modificar nada: fórmulas inconsistentes, constantes en fórmulas, rangos incompletos y vínculos externos, en una tabla con hallazgo, ubicación, impacto y gravedad"
         ],
-        "title": "Redacta la nota"
+        "title": "Encarga la auditoría"
       },
       {
         "id": "ms05s2",
-        "type": "multi",
-        "concept": "docs.longform",
-        "prompt": "¿Qué compruebas en la nota antes de enviarla?",
-        "options": [
-          {
-            "text": "El saldo y el mínimo coinciden con la previsión",
-            "correct": true
-          },
-          {
-            "text": "No presenta como decidido algo que está en estudio",
-            "correct": true
-          },
-          {
-            "text": "El responsable y la fecha del siguiente paso son correctos",
-            "correct": true
-          },
-          {
-            "text": "Que el documento tiene más de dos páginas",
-            "feedback": "La extensión no es un criterio."
-          }
+        "type": "order",
+        "concept": "datos.audit",
+        "prompt": "Ordena las correcciones por impacto en el resultado",
+        "items": [
+          "PyG!D20: incluir la amortización en la suma",
+          "Ventas!H8:H10: referenciar el crecimiento en lugar del IPC",
+          "Costes!F12: enlazar la tarifa con Supuestos!C5",
+          "Resumen!B2: sustituir el vínculo externo por un valor documentado"
         ],
-        "explain": "Cifras, estado de las decisiones y responsables.",
-        "title": "Revisa"
+        "explain": "Primero lo que cambia el resultado final; después lo que lo hace frágil.",
+        "title": "Prioriza"
       },
       {
         "id": "ms05s3",
         "type": "choice",
-        "concept": "docs.compare",
-        "prompt": "El apartado de alternativas es muy genérico. ¿Qué pides?",
+        "concept": "gob.human",
+        "prompt": "¿Qué le dices a Ana antes del lunes?",
         "options": [
           {
-            "text": "«Reescribe el apartado 3 con el importe que falta (10.000 €) y las dos opciones, sin recomendar ninguna»",
+            "text": "Que el modelo tenía tres errores que cambian el resultado, cuáles has corregido y cómo lo has comprobado",
             "correct": true
           },
           {
-            "text": "«Mejora el documento»",
-            "feedback": "Demasiado vago."
+            "text": "Que lo ha revisado Copilot y está bien",
+            "feedback": "La responsabilidad y la comprobación son tuyas."
           },
           {
-            "text": "«Recomienda la póliza de crédito»",
-            "feedback": "La decisión no está tomada."
+            "text": "Nada: ya está corregido",
+            "feedback": "Ana debe saber que las cifras cambian respecto a la versión anterior."
           }
         ],
-        "explain": "Un cambio delimitado, con datos y sin adelantar decisiones.",
-        "title": "Mejora un apartado"
+        "explain": "Transparencia sobre los cambios y cómo se han verificado.",
+        "title": "Qué le dices a Ana"
       }
     ]
   },
   {
     "id": "ms06",
     "module": "m3",
-    "title": "Presentación para el consejo",
-    "summary": "Convierte la nota en una presentación con una historia clara.",
-    "difficulty": 2,
-    "xp": 55,
+    "title": "¿Cuánto margen está en riesgo?",
+    "summary": "Cuantifica con Analyst la incertidumbre de la tarifa y conviértela en un mensaje para dirección.",
+    "difficulty": 3,
+    "xp": 70,
     "requires": [
       "l3-3"
     ],
-    "brief": "El consejo quiere ver el cierre de octubre en cinco diapositivas. Partes de la nota para dirección ya revisada.",
-    "scenario": "Nota para dirección del cierre de octubre (ficticia).",
-    "debrief": "Una buena nota, una idea por diapositiva y cifras con fuente: la presentación sale casi sola.",
+    "brief": "Dirección pregunta: «¿cuánto nos puede costar la tarifa en el peor caso razonable?». Un único escenario no responde a eso.",
+    "scenario": "Modelo de cierre de octubre y oferta del proveedor (ficticios).",
+    "debrief": "Distribuciones con sentido económico, semilla, validación contra el caso central y sensibilidad: así un rango sustituye a un número.",
     "steps": [
       {
         "id": "ms06s1",
         "type": "copilot",
-        "concept": "docs.ppt",
-        "prompt": "Abre **PowerPoint** y crea una presentación de **5 diapositivas** a partir de **/Nota_direccion_octubre.docx**",
+        "concept": "datos.python",
+        "prompt": "Pide a **@Analyst** la simulación del margen con **/Modelo_cierre_octubre.xlsx** (distribuciones, semilla y salidas) y la **sensibilidad** después",
         "setup": {
           "files": {
-            "OneDrive/Cierre octubre/Nota_direccion_octubre.docx": "Nota para dirección · Cierre de octubre 2026 (borrador generado con Copilot)\n\n1. Resultado: ventas de 412.000 € (+6 % sobre presupuesto).\n2. Margen: 31,5 % frente al 33 % previsto, por el transporte (+18 %).\n3. Decisiones en curso: comparativa de tres proveedores (Luis, 12 nov).\n4. Pendiente: provisión del cliente Norte (Marta, antes del día 10).\n5. Riesgo: dos clientes concentran el 27 % de las ventas.\n"
+            "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n",
+            "Outlook/Oferta_renovacion_logistica.eml": "De: Proveedor actual de transporte · Para: Compras · Asunto: Renovación 2027\n\nLes confirmamos la nueva tarifa: subida del 9 % desde el 1 de enero de 2027 (no desde noviembre).\nCondición: contrato de 24 meses.\n"
           },
           "actions": [
             {
-              "id": "ppt",
+              "id": "montecarlo",
               "when": [
                 [
-                  "presentacion",
-                  "diapositivas"
+                  "montecarlo",
+                  "monte carlo",
+                  "simula",
+                  "simulacion"
                 ]
               ],
               "reply": [
-                "He creado una presentación de 5 diapositivas a partir de la nota: un mensaje por diapositiva y una final con las decisiones que se piden.",
-                "Revisa los datos de cada gráfico y añade tus notas de orador."
+                "Analyst · pasos y código (resumen):",
+                "import numpy as np; rng = np.random.default_rng(42); n = 10_000",
+                "subida = rng.triangular(0.06, 0.09, 0.12, n); volumen = rng.normal(0, 0.03, n)",
+                "margen = (129_800 + 412_000*volumen*0.33 - 58_400*subida) / (412_000*(1 + volumen))",
+                "Resultado: margen medio 30,2 %; P5 29,9 %; P95 30,5 %. Probabilidad de margen < 30 %: 13 %.",
+                "Comprobación: con la subida central (9 %) y volumen 0, el modelo determinista da 30,2 %, coherente con la media.",
+                "Supuestos: distribuciones independientes; resto de costes fijo en %; datos de octubre extrapolados."
               ],
               "needs": {
-                "app": "powerpoint",
+                "agent": "Analyst",
                 "refs": [
-                  "Nota_direccion_octubre.docx"
+                  "Modelo_cierre_octubre.xlsx"
+                ],
+                "gces": [
+                  "expectations"
                 ],
                 "say": {
-                  "app": "Abre PowerPoint para crear la presentación."
+                  "agent": "Una simulación con código encaja con @Analyst.",
+                  "expectations": "Especifica distribuciones, número de simulaciones, semilla y qué resultados quieres (media, percentiles, probabilidad)."
                 }
               },
               "cites": [
-                "Nota_direccion_octubre.docx"
+                "Modelo_cierre_octubre.xlsx"
               ],
-              "writes": [
-                {
-                  "path": "OneDrive/Cierre octubre/Presentacion_comite.pptx",
-                  "content": "Presentación generada con Copilot · 5 diapositivas\n\n1. Cierre de octubre: en una frase\n2. Ventas por encima del presupuesto (+6 %)\n3. El margen cae por el transporte (31,5 % frente a 33 %)\n4. Qué estamos haciendo: comparativa de proveedores\n5. Decisiones que pedimos al comité\n"
-                }
-              ]
+              "vague": "puedo simular, pero necesito las distribuciones y qué resultados quieres."
+            },
+            {
+              "id": "sensibilidad",
+              "when": [
+                [
+                  "sensibilidad",
+                  "tornado",
+                  "que variable",
+                  "cual pesa"
+                ]
+              ],
+              "reply": [
+                "Sensibilidad (variando cada supuesto entre P5 y P95, el resto en su valor central):",
+                "Subida de tarifa: ±0,3 puntos de margen · Volumen: ±0,1 puntos.",
+                "La tarifa explica casi toda la incertidumbre: es la variable que hay que negociar o cubrir."
+              ],
+              "needs": {
+                "agent": "Analyst",
+                "turn": 2
+              }
             }
           ]
         },
         "goals": [
           {
-            "type": "prompt",
-            "label": "Pedir la presentación desde PowerPoint con la nota",
-            "app": "powerpoint",
-            "refs": [
-              "Nota_direccion_octubre.docx"
-            ]
+            "type": "action",
+            "label": "Simulación con su validación",
+            "id": "montecarlo"
           },
           {
-            "type": "exists",
-            "label": "Existe la presentación",
-            "path": "OneDrive/Cierre octubre/Presentacion_comite.pptx"
+            "type": "action",
+            "label": "Sensibilidad por variable",
+            "id": "sensibilidad"
           }
         ],
         "solution": [
-          "::app powerpoint",
-          "Crea una presentación de 5 diapositivas para el consejo a partir de /Nota_direccion_octubre.docx"
+          "@Analyst con /Modelo_cierre_octubre.xlsx simula 10.000 escenarios de margen bruto con subida de tarifa triangular (6 %, 9 %, 12 %) y volumen normal (media 0 %, desviación 3 %), semilla 42; muestra el código y devuelve media, P5, P95 y probabilidad de margen inferior al 30 %",
+          "¿Qué variable pesa más? Haz un análisis de sensibilidad"
         ],
-        "explain": "La presentación hereda la calidad de la nota.",
+        "explain": "Media 30,2 %, P5 29,9 % y un 13 % de probabilidad de bajar del 30 %.",
         "suggestions": [
-          "::app powerpoint",
-          "Crea una presentación de 5 diapositivas "
+          "@Analyst con /Modelo_cierre_octubre.xlsx simula 10.000 escenarios de margen bruto con subida de tarifa triangular (6 %, 9 %, 12 %) y volumen normal (media 0 %, desviación 3 %), semilla 42; muestra el código y devuelve media, P5, P95 y probabilidad de margen inferior al 30 %",
+          "¿Qué variable pesa más? Haz un análisis de sensibilidad"
         ],
-        "title": "Crea la presentación"
+        "title": "Simula"
       },
       {
         "id": "ms06s2",
-        "type": "spot",
-        "concept": "docs.ppt",
-        "prompt": "Señala las diapositivas con problemas",
-        "file": "Guion propuesto",
-        "lines": [
-          "1. Octubre en una frase: vendemos más, ganamos menos",
-          "2. Ventas +6 % sobre presupuesto",
-          "3. Margen 31,5 %: el transporte explica la caída",
-          "4. Ya hemos cerrado un acuerdo con el proveedor C",
-          "5. Clientes, plantilla, tesorería, riesgos, auditoría y próximos pasos"
+        "type": "fill",
+        "concept": "datos.python",
+        "prompt": "Ventas 412.000 €. Margen en P5: 29,9 %; en el caso base sin subida: 31,5 %",
+        "code": false,
+        "template": "Diferencia: {{0}} puntos, unos {{1}} € de margen al mes.",
+        "blanks": [
+          {
+            "accept": [
+              "1,6",
+              "1.6"
+            ]
+          },
+          {
+            "accept": [
+              "6.592",
+              "6592"
+            ]
+          }
         ],
-        "faulty": [
-          3,
-          4
-        ],
-        "notes": {
-          "3": "No hay ningún acuerdo cerrado: es una comparativa en curso.",
-          "4": "Demasiados mensajes en una diapositiva."
-        },
-        "fixed": "1. Vendemos más, ganamos menos\n2. Ventas +6 %\n3. Margen 31,5 % por el transporte\n4. Comparativa de proveedores en curso\n5. Decisiones que pedimos",
-        "explain": "Afirmar un acuerdo inexistente ante el consejo es un error grave. Y una diapositiva con seis temas no comunica ninguno.",
-        "title": "Revisa el guion"
+        "explain": "31,5 − 29,9 = 1,6 puntos; 412.000 × 1,6 % = 6.592 € al mes.",
+        "title": "El peor caso razonable"
       },
       {
         "id": "ms06s3",
-        "type": "order",
-        "concept": "docs.ppt",
-        "prompt": "Ordena la historia para el consejo",
-        "items": [
-          "Mensaje principal",
-          "Ventas",
-          "Margen y su causa",
-          "Qué estamos haciendo",
-          "Qué pedimos al consejo"
+        "type": "choice",
+        "concept": "datos.python",
+        "prompt": "¿Cómo lo presentas a dirección?",
+        "options": [
+          {
+            "text": "«En el 95 % de los escenarios el margen queda por encima del 29,9 %; el riesgo está en la tarifa: negociemos un techo»",
+            "correct": true
+          },
+          {
+            "text": "«El margen será del 30,23 %»",
+            "feedback": "Falsa precisión: es una media de una simulación."
+          },
+          {
+            "text": "Con el histograma completo y el código",
+            "feedback": "Útil como anexo, no como mensaje."
+          }
         ],
-        "explain": "De la conclusión a la petición.",
-        "title": "La historia"
+        "explain": "Rango, probabilidad y la palanca de acción.",
+        "title": "El mensaje"
       }
     ]
   },
   {
     "id": "ms07",
     "module": "m4",
-    "title": "Desviaciones del presupuesto de gastos",
-    "summary": "Calcula con Copilot en Excel las desviaciones de los gastos de estructura y compruébalas.",
-    "difficulty": 2,
-    "xp": 60,
+    "title": "Un pack sin cifras sueltas",
+    "summary": "Cruza el pack contra el modelo y deja cada cifra trazable antes del comité.",
+    "difficulty": 3,
+    "xp": 65,
     "requires": [
       "l4-2"
     ],
-    "brief": "Control de gestión te pide las desviaciones de los gastos de estructura frente al presupuesto.",
-    "scenario": "Libro Gastos_estructura_2026.xlsx con real y presupuesto por partida (ficticio).",
-    "debrief": "Desviación = real − presupuesto; en % sobre el presupuesto. Comprobar una fila a mano evita presentar porcentajes mal calculados.",
+    "brief": "El pack de octubre está casi listo: modelo, nota v3 y presentación v2. El comité es mañana.",
+    "scenario": "Modelo de cierre, nota y presentación al comité (ficticios).",
+    "debrief": "Fuente única, matriz de coherencia y corrección en origen: el comité no encontrará ni una cifra que no cuadre.",
     "steps": [
       {
         "id": "ms07s1",
         "type": "copilot",
-        "concept": "datos.formulas",
-        "prompt": "Abre **Gastos_estructura_2026.xlsx** en Excel y pide columnas de **desviación** en euros y en % sobre el presupuesto",
+        "concept": "docs.consistency",
+        "prompt": "Cruza **/Modelo_cierre_octubre.xlsx**, **/Nota_comite_v3.docx** y **/Presentacion_comite_v2.pptx** en una matriz de coherencia",
         "setup": {
           "files": {
-            "OneDrive/Presupuesto/Gastos_estructura_2026.xlsx": "Partida | Real (€) | Presupuesto (€)\nAlquileres | 96.000 | 96.000\nSoftware | 41.500 | 36.000\nViajes | 18.200 | 22.000\nFormación | 9.800 | 12.000\n"
+            "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n",
+            "OneDrive/Cierre octubre/Pack/Nota_comite_v3.docx": "Nota al comité · cierre de octubre (v3) · ficticia\n\nLas ventas alcanzan 412.000 €, un 6,2 % por encima del presupuesto.\nEl margen bruto se sitúa en el 31,5 % frente al 33,0 % presupuestado.\nEl transporte cuesta 58.400 €, un 18 % más de lo previsto.\nLa provisión del cliente Norte está pendiente de confirmar.\n",
+            "OneDrive/Cierre octubre/Pack/Presentacion_comite_v2.pptx": "Presentación al comité (v2) · ficticia\n\nDiapositiva 2: Ventas 421.000 € (+8,5 %)\nDiapositiva 3: Margen bruto 31,5 % (objetivo 33 %)\nDiapositiva 4: Transporte +18 %\nDiapositiva 5: Provisión del cliente Norte confirmada\n"
           },
           "actions": [
             {
-              "id": "desv",
+              "id": "coherencia",
               "when": [
                 [
-                  "desviacion"
+                  "coherencia",
+                  "coinciden",
+                  "compara",
+                  "discrepancias",
+                  "cuadran"
                 ]
               ],
               "reply": [
-                "He añadido «Desviación (€)» = Real − Presupuesto y «Desviación %» = Desviación / Presupuesto.",
-                "Software es la única partida por encima del presupuesto (+5.500 €, +15,3 %)."
+                "Concepto | Modelo | Nota v3 | Presentación v2 | ¿Coincide?",
+                "Ventas | 412.000 € | 412.000 € | 421.000 € | No (dígitos cambiados en la presentación)",
+                "Variación de ventas | +6,2 % | +6,2 % | +8,5 % | No (calculada sobre la cifra errónea)",
+                "Margen bruto | 31,5 % | 31,5 % | 31,5 % | Sí",
+                "Transporte | +18 % | +18 % | +18 % | Sí",
+                "Provisión cliente Norte | — | Pendiente | Confirmada | No (la presentación da por hecho algo pendiente)"
               ],
               "needs": {
-                "app": "excel",
-                "open": "Gastos_estructura_2026.xlsx"
-              },
-              "writes": [
-                {
-                  "path": "OneDrive/Presupuesto/Gastos_estructura_2026.xlsx",
-                  "content": "Partida | Real (€) | Presupuesto (€) | Desviación (€) | Desviación %\nAlquileres | 96.000 | 96.000 | 0 | 0,0 %\nSoftware | 41.500 | 36.000 | 5.500 | 15,3 %\nViajes | 18.200 | 22.000 | −3.800 | −17,3 %\nFormación | 9.800 | 12.000 | −2.200 | −18,3 %\n"
-                }
-              ]
-            }
-          ]
-        },
-        "goals": [
-          {
-            "type": "app",
-            "label": "Libro abierto en Excel",
-            "app": "excel",
-            "open": "Gastos_estructura_2026.xlsx"
-          },
-          {
-            "type": "file",
-            "label": "El libro tiene las columnas de desviación",
-            "path": "OneDrive/Presupuesto/Gastos_estructura_2026.xlsx",
-            "checks": [
-              {
-                "label": "desviación",
-                "pattern": "Desviación %"
-              }
-            ]
-          }
-        ],
-        "solution": [
-          "::app excel Gastos_estructura_2026.xlsx",
-          "Añade dos columnas: desviación en euros (real menos presupuesto) y desviación en % sobre el presupuesto"
-        ],
-        "explain": "Desviación en euros y en % sobre el presupuesto. Software se desvía un 15,3 % al alza.",
-        "suggestions": [
-          "::app excel Gastos_estructura_2026.xlsx",
-          "Añade dos columnas: desviación en euros y en % sobre el presupuesto"
-        ],
-        "title": "Añade la desviación"
-      },
-      {
-        "id": "ms07s2",
-        "type": "fill",
-        "concept": "datos.check",
-        "prompt": "Comprueba Software: real 41.500 € y presupuesto 36.000 €",
-        "code": false,
-        "template": "Desviación: {{0}} €, es decir, un {{1}} % sobre el presupuesto.",
-        "blanks": [
-          {
-            "accept": [
-              "5.500",
-              "5500"
-            ]
-          },
-          {
-            "accept": [
-              "15,3",
-              "15.3",
-              "15,28"
-            ]
-          }
-        ],
-        "explain": "41.500 − 36.000 = 5.500 €; 5.500 / 36.000 ≈ 15,3 %.",
-        "title": "Comprueba una fila"
-      },
-      {
-        "id": "ms07s3",
-        "type": "spot",
-        "concept": "datos.check",
-        "prompt": "Señala las afirmaciones incorrectas",
-        "file": "Comentario de Copilot",
-        "lines": [
-          "Software supera el presupuesto en 5.500 €",
-          "Viajes está un 17,3 % por debajo del presupuesto",
-          "Formación supera el presupuesto en 2.200 €",
-          "Alquileres no tiene desviación"
-        ],
-        "faulty": [
-          2
-        ],
-        "notes": {
-          "2": "Formación está 2.200 € por debajo (9.800 frente a 12.000)."
-        },
-        "fixed": "Software +5.500 €\nViajes −17,3 %\nFormación −2.200 €\nAlquileres sin desviación",
-        "explain": "El signo importa: por debajo del presupuesto no es «supera».",
-        "title": "Revisa el análisis"
-      }
-    ]
-  },
-  {
-    "id": "ms08",
-    "module": "m4",
-    "title": "Cuadrar antes de enviar",
-    "summary": "Usa Analyst para un análisis y verifícalo con una fuente independiente.",
-    "difficulty": 3,
-    "xp": 65,
-    "requires": [
-      "l4-4"
-    ],
-    "brief": "Dirección quiere saber en qué región superamos más el presupuesto. Lo vas a calcular con Analyst y a cuadrarlo antes de enviarlo.",
-    "scenario": "Ventas_octubre.xlsx con ventas, coste y presupuesto por región (ficticio).",
-    "debrief": "Analyst calcula y enseña los pasos; tú cuadras los totales con otra fuente antes de enviarlo.",
-    "steps": [
-      {
-        "id": "ms08s1",
-        "type": "copilot",
-        "concept": "inv.analyst",
-        "prompt": "Pide a **@Analyst** la desviación frente al presupuesto por región con **/Ventas_octubre.xlsx**",
-        "setup": {
-          "files": {
-            "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€) | Margen %\nNorte | 118.000 | 84.200 | 110.000 | 28,6 %\nCentro | 162.000 | 109.900 | 150.000 | 32,2 %\nSur | 132.000 | 88.100 | 128.000 | 33,3 %\n",
-            "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
-          }
-        },
-        "goals": [
-          {
-            "type": "prompt",
-            "label": "Invocar a Analyst con la hoja de ventas",
-            "agent": "Analyst",
-            "refs": [
-              "Ventas_octubre.xlsx"
-            ]
-          }
-        ],
-        "solution": [
-          "@Analyst calcula la desviación frente al presupuesto por región con /Ventas_octubre.xlsx, en euros y en %"
-        ],
-        "explain": "Analyst enseña cómo calcula. Ahora toca cuadrarlo.",
-        "suggestions": [
-          "@Analyst calcula la desviación frente al presupuesto por región con /Ventas_octubre.xlsx "
-        ],
-        "title": "Calcula con Analyst"
-      },
-      {
-        "id": "ms08s2",
-        "type": "fill",
-        "concept": "datos.check",
-        "prompt": "Presupuesto total: 110.000 + 150.000 + 128.000. Ventas: 412.000 €",
-        "code": false,
-        "template": "Presupuesto total: {{0}} €. Desviación total: {{1}} €.",
-        "blanks": [
-          {
-            "accept": [
-              "388.000",
-              "388000"
-            ]
-          },
-          {
-            "accept": [
-              "24.000",
-              "24000"
-            ]
-          }
-        ],
-        "explain": "388.000 € de presupuesto; 412.000 − 388.000 = 24.000 €, que cuadra con el +6 % del informe.",
-        "title": "Cuadra el total"
-      },
-      {
-        "id": "ms08s3",
-        "type": "multi",
-        "concept": "datos.check",
-        "prompt": "¿Qué cuenta como verificación independiente del análisis de Analyst?",
-        "options": [
-          {
-            "text": "Comparar con el +6 % del informe de cierre",
-            "correct": true
-          },
-          {
-            "text": "Sumar a mano los presupuestos",
-            "correct": true
-          },
-          {
-            "text": "Pedir a Analyst que lo repita",
-            "feedback": "Es la misma herramienta."
-          },
-          {
-            "text": "Ver que el gráfico es bonito",
-            "feedback": "No comprueba nada."
-          }
-        ],
-        "explain": "Otra fuente u otro método.",
-        "title": "Independiente"
-      }
-    ]
-  },
-  {
-    "id": "ms09",
-    "module": "m5",
-    "title": "Reclamación de un cliente",
-    "summary": "Ponte al día con un hilo tenso y prepara una respuesta firme y cordial.",
-    "difficulty": 2,
-    "xp": 60,
-    "requires": [
-      "l5-2"
-    ],
-    "brief": "Un cliente reclama un supuesto cobro duplicado y amenaza con parar los pagos. Tienes que responder hoy.",
-    "scenario": "Hilo de reclamación del cliente Delta (ficticio).",
-    "debrief": "Resumen para entender, borrador con criterio y revisión: firmeza en los hechos y cordialidad en la forma, sin admitir lo que no es.",
-    "steps": [
-      {
-        "id": "ms09s1",
-        "type": "copilot",
-        "concept": "com.mail-draft",
-        "prompt": "Abre el hilo en Outlook, **resúmelo** y pide un **borrador de respuesta** cordial y firme que no admita el duplicado. Revisa el borrador",
-        "setup": {
-          "files": {
-            "Outlook/Reclamacion_factura_cliente.eml": "De: Cliente Delta (ficticio) · Para: Administración · Asunto: Factura duplicada\n\n[Cliente, lunes] Nos habéis cobrado dos veces la factura F-2026-0412 (8.450 €). Exigimos la devolución inmediata.\n[Administración, martes] Lo revisamos. El segundo cargo corresponde a la factura F-2026-0431, de otro pedido.\n[Cliente, miércoles] No reconocemos ese pedido. Si no se resuelve esta semana, pararemos los pagos.\n"
-          },
-          "actions": [
-            {
-              "id": "resumen",
-              "when": [
-                [
-                  "resum"
-                ]
-              ],
-              "reply": [
-                "El cliente reclama un cobro duplicado de 8.450 €. Administración explica que el segundo cargo es otra factura (F-2026-0431). El cliente no reconoce el pedido y amenaza con parar los pagos esta semana."
-              ],
-              "needs": {
-                "app": "outlook",
-                "open": "Reclamacion_factura_cliente.eml"
-              },
-              "cites": [
-                "Reclamacion_factura_cliente.eml"
-              ]
-            },
-            {
-              "id": "respuesta",
-              "when": [
-                [
-                  "redacta",
-                  "respuesta",
-                  "responde"
-                ]
-              ],
-              "reply": [
-                "He preparado un borrador cordial y firme: explica que el segundo cargo es otra factura y ofrece el albarán. No admite ningún duplicado."
-              ],
-              "needs": {
-                "app": "outlook",
-                "open": "Reclamacion_factura_cliente.eml",
+                "refs": [
+                  "Modelo_cierre_octubre.xlsx",
+                  "Nota_comite_v3.docx",
+                  "Presentacion_comite_v2.pptx"
+                ],
                 "gces": [
                   "expectations"
                 ]
               },
-              "writes": [
-                {
-                  "path": "Outlook/Borradores/Respuesta_cliente_delta.eml",
-                  "content": "Para: Cliente Delta · Asunto: RE: Factura duplicada (BORRADOR, no enviado)\n\nGracias por avisarnos. Hemos revisado los cargos: el segundo corresponde a la factura F-2026-0431, de un pedido distinto.\nPara aclararlo, os enviamos el albarán de ese pedido. Si no lo reconocéis, lo revisamos juntos esta semana.\n"
-                }
+              "cites": [
+                "Modelo_cierre_octubre.xlsx",
+                "Nota_comite_v3.docx",
+                "Presentacion_comite_v2.pptx"
               ]
             }
           ]
@@ -1040,199 +825,435 @@
         "goals": [
           {
             "type": "action",
-            "label": "Resumen del hilo",
-            "id": "resumen",
-            "hint": "Resume este hilo"
-          },
-          {
-            "type": "exists",
-            "label": "Existe el borrador de respuesta",
-            "path": "Outlook/Borradores/Respuesta_cliente_delta.eml"
-          },
-          {
-            "type": "viewed",
-            "label": "Revisar el borrador",
-            "path": "Respuesta_cliente_delta.eml"
+            "label": "Matriz de coherencia",
+            "id": "coherencia"
           }
         ],
         "solution": [
-          "::app outlook Reclamacion_factura_cliente.eml",
-          "Resume este hilo",
-          "Redacta una respuesta cordial y firme, breve, que explique que el segundo cargo es otra factura y ofrezca el albarán",
-          "::ver Respuesta_cliente_delta.eml"
+          "Comprueba la coherencia entre /Modelo_cierre_octubre.xlsx, /Nota_comite_v3.docx y /Presentacion_comite_v2.pptx en una tabla con concepto, valor en cada documento y si coincide"
         ],
-        "explain": "El borrador explica los hechos y ofrece una prueba (el albarán) sin admitir un duplicado que no existe.",
+        "explain": "Ventas, variación y estado de la provisión no cuadran en la presentación.",
         "suggestions": [
-          "::app outlook Reclamacion_factura_cliente.eml",
-          "Resume este hilo",
-          "Redacta una respuesta cordial y firme ",
-          "::ver Respuesta_cliente_delta.eml"
+          "Comprueba la coherencia entre /Modelo_cierre_octubre.xlsx, /Nota_comite_v3.docx y /Presentacion_comite_v2.pptx en una tabla con concepto, valor en cada documento y si coincide"
         ],
-        "title": "Resume y responde"
+        "title": "Matriz de coherencia"
       },
       {
-        "id": "ms09s2",
+        "id": "ms07s2",
         "type": "spot",
-        "concept": "gob.human",
-        "prompt": "Señala lo que no debería salir en la respuesta",
-        "file": "Borrador alternativo",
+        "concept": "docs.trace",
+        "prompt": "Revisa estas frases de la nota contra el modelo",
+        "file": "Nota al comité",
         "lines": [
-          "Lamentamos las molestias.",
-          "Reconocemos el cobro duplicado y lo devolveremos hoy.",
-          "El segundo cargo corresponde a la factura F-2026-0431.",
-          "Internamente, sospechamos que vuestro departamento de compras se ha equivocado.",
-          "Os enviamos el albarán del pedido."
+          "Ventas de 412.000 € [Resumen!C4].",
+          "Coste de ventas de 282.200 € [Resumen!C5].",
+          "Margen bruto de 128.040 € [Resumen!C6].",
+          "El transporte supone el 14 % de las ventas."
         ],
         "faulty": [
-          1,
+          2,
           3
         ],
         "notes": {
-          "1": "Admite un error que no existe y compromete una devolución.",
-          "3": "Opinión interna que no debe compartirse."
+          "2": "128.040 € es el presupuesto; el real es 129.800 €.",
+          "3": "Sin referencia (58.400 / 412.000 = 14,2 %: correcto, pero hay que referenciarlo)."
         },
-        "fixed": "Lamentamos las molestias.\nEl segundo cargo corresponde a la factura F-2026-0431.\nOs enviamos el albarán del pedido.",
-        "explain": "Ni admitir lo que no es, ni compartir sospechas internas.",
-        "title": "Revisa el borrador"
+        "fixed": "Ventas de 412.000 € [Resumen!C4].\nCoste de ventas de 282.200 € [Resumen!C5].\nMargen bruto de 129.800 € [Resumen!C6].\nTransporte: 14,2 % de las ventas [Resumen!C9 / C4].",
+        "explain": "Una cifra del presupuesto colada como real y un cálculo sin referencia.",
+        "context": "Modelo: ventas 412.000; coste 282.200; margen bruto 129.800 (real) y 128.040 (presupuesto); transporte 58.400.",
+        "title": "Trazabilidad"
       },
       {
-        "id": "ms09s3",
+        "id": "ms07s3",
         "type": "choice",
-        "concept": "com.mail-draft",
-        "prompt": "Escribes tú una versión final y dudas del tono. ¿Qué haces?",
+        "concept": "docs.consistency",
+        "prompt": "¿Qué regla dejas escrita para el próximo mes?",
         "options": [
           {
-            "text": "Pedir coaching a Copilot sobre el tono y la claridad",
+            "text": "El modelo cerrado es la fuente única de cifras y la matriz de coherencia es obligatoria antes de publicar",
             "correct": true
           },
           {
-            "text": "Enviarla sin releer",
-            "feedback": "En un mensaje tenso, revisa."
+            "text": "Revisar la presentación con más cuidado",
+            "feedback": "No es un control."
           },
           {
-            "text": "Pedir a Copilot que la haga más agresiva",
-            "feedback": "No ayuda a resolver."
+            "text": "Que lo revise otra persona",
+            "feedback": "Ayuda, pero sin método repetirá el error."
           }
         ],
-        "explain": "El coaching te ayuda con la forma; el contenido es tuyo.",
-        "title": "El tono"
+        "explain": "Fuente única y control obligatorio.",
+        "title": "La regla"
       }
     ]
   },
   {
-    "id": "ms10",
-    "module": "m5",
-    "title": "Comité de auditoría",
-    "summary": "Saca los acuerdos de la reunión y prepara el seguimiento.",
-    "difficulty": 2,
-    "xp": 60,
+    "id": "ms08",
+    "module": "m4",
+    "title": "La desviación que preguntará el consejo",
+    "summary": "Construye el puente del margen, compruébalo y redacta la explicación sin ir más allá de los números.",
+    "difficulty": 3,
+    "xp": 70,
     "requires": [
-      "l5-4"
+      "l4-3"
     ],
-    "brief": "Acaba el comité de auditoría y te toca enviar el seguimiento con acuerdos, responsables y fechas.",
-    "scenario": "Reunión del comité de auditoría del 7 de noviembre con transcripción (ficticia).",
-    "debrief": "Acuerdos, responsables y fechas, y lo que no tiene responsable, marcado como pendiente.",
+    "brief": "El consejo verá que el margen supera el presupuesto pero el porcentaje cae. Preguntará por qué.",
+    "scenario": "Modelo de cierre de octubre con real y presupuesto (ficticio).",
+    "debrief": "El puente responde a la paradoja: más volumen, peor tasa por el transporte. Y la explicación no atribuye causas que los números no dicen.",
     "steps": [
       {
-        "id": "ms10s1",
+        "id": "ms08s1",
         "type": "copilot",
-        "concept": "com.followup",
-        "prompt": "Abre la reunión en Teams y pide un **correo de seguimiento** con una **tabla** de acuerdo, responsable y fecha. Revísalo",
+        "concept": "docs.variance",
+        "prompt": "Pide a **@Analyst** el **puente del margen** con **/Modelo_cierre_octubre.xlsx** y después la **explicación** basada en él",
         "setup": {
           "files": {
-            "Teams/Comite_auditoria_7nov.meet": "Reunión: Comité de auditoría · 7 nov 2026 · Transcripción activada\n\nAuditora externa: necesitamos el detalle de provisiones antes del 25 de noviembre.\nLuis (control de gestión): lo prepara el área de control.\nAna (dirección financiera): revisaremos también el procedimiento de conciliación bancaria.\nAcuerdo: Luis envía el detalle de provisiones el 22 de noviembre.\nPendiente: quién actualiza el procedimiento de conciliación.\n"
+            "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n"
           },
           "actions": [
             {
-              "id": "seg",
+              "id": "puente",
               "when": [
                 [
-                  "seguimiento",
-                  "correo"
+                  "puente",
+                  "bridge",
+                  "desviacion",
+                  "efecto"
                 ]
               ],
               "reply": [
-                "He preparado el seguimiento con una tabla. Atención: la actualización del procedimiento de conciliación no tiene responsable ni fecha."
+                "Analyst · puente del margen bruto (presupuesto → real):",
+                "Margen presupuestado: 128.040 €",
+                "+ Efecto volumen: (412.000 − 388.000) × 33 % = +7.920 €",
+                "− Efecto transporte: 58.400 − 49.492 × 412.000 / 388.000 = −5.847 €",
+                "− Efecto resto de costes: 223.800 − 210.468 × 412.000 / 388.000 = −313 €",
+                "= Margen real: 129.800 € (cuadra).",
+                "Supuesto: los costes presupuestados se escalan con el volumen real."
               ],
               "needs": {
-                "app": "teams",
-                "open": "Comite_auditoria_7nov.meet",
+                "agent": "Analyst",
+                "refs": [
+                  "Modelo_cierre_octubre.xlsx"
+                ],
+                "say": {
+                  "agent": "Para un puente con cálculos verificables, invoca a @Analyst."
+                }
+              },
+              "cites": [
+                "Modelo_cierre_octubre.xlsx"
+              ]
+            },
+            {
+              "id": "narrativa",
+              "when": [
+                [
+                  "explica",
+                  "redacta",
+                  "narrativa",
+                  "comentario"
+                ]
+              ],
+              "reply": [
+                "El margen bruto supera el presupuesto en 1.760 €: el mayor volumen aporta 7.920 €, pero el encarecimiento del transporte resta 5.847 € y el resto de costes, 313 €. Sin el efecto transporte, la mejora habría sido de 7.607 €, más de cuatro veces la actual."
+              ],
+              "needs": {
+                "agent": "Analyst",
+                "turn": 2
+              }
+            }
+          ]
+        },
+        "goals": [
+          {
+            "type": "action",
+            "label": "Puente que cuadra",
+            "id": "puente"
+          },
+          {
+            "type": "action",
+            "label": "Explicación basada en el puente",
+            "id": "narrativa"
+          }
+        ],
+        "solution": [
+          "@Analyst haz el puente del margen bruto de presupuesto a real con /Modelo_cierre_octubre.xlsx, con efectos volumen, transporte y resto de costes; muestra el método y comprueba que cuadra",
+          "Redacta la explicación para el consejo usando solo las cifras del puente"
+        ],
+        "explain": "Más 1.760 € en euros, menos 1,5 puntos en porcentaje: las dos cosas son ciertas y el puente lo explica.",
+        "suggestions": [
+          "@Analyst haz el puente del margen bruto de presupuesto a real con /Modelo_cierre_octubre.xlsx, con efectos volumen, transporte y resto de costes; muestra el método y comprueba que cuadra",
+          "Redacta la explicación para el consejo usando solo las cifras del puente"
+        ],
+        "title": "El puente"
+      },
+      {
+        "id": "ms08s2",
+        "type": "choice",
+        "concept": "docs.variance",
+        "prompt": "El margen en euros supera el presupuesto, pero el porcentaje cae del 33 % al 31,5 %. ¿Cómo lo explicas?",
+        "options": [
+          {
+            "text": "El volumen añade margen en euros, pero el transporte encarece cada venta y baja la tasa",
+            "correct": true
+          },
+          {
+            "text": "Es un error del modelo",
+            "feedback": "Las dos cifras son coherentes."
+          },
+          {
+            "text": "El porcentaje no importa si los euros suben",
+            "feedback": "Importa: anticipa el margen futuro."
+          }
+        ],
+        "explain": "Euros y tasa cuentan historias distintas y compatibles.",
+        "title": "La paradoja"
+      },
+      {
+        "id": "ms08s3",
+        "type": "fill",
+        "concept": "docs.variance",
+        "prompt": "Comprueba el efecto transporte: presupuesto 49.492 € escalado a ventas reales (412.000 / 388.000) frente a 58.400 € reales",
+        "code": false,
+        "template": "Transporte esperado: {{0}} €. Efecto: −{{1}} €.",
+        "blanks": [
+          {
+            "accept": [
+              "52.553",
+              "52553",
+              "52.554",
+              "52554"
+            ]
+          },
+          {
+            "accept": [
+              "5.847",
+              "5847",
+              "5.846",
+              "5846"
+            ]
+          }
+        ],
+        "explain": "49.492 × 412.000 / 388.000 ≈ 52.553 €; 58.400 − 52.553 ≈ 5.847 €.",
+        "title": "Comprueba"
+      }
+    ]
+  },
+  {
+    "id": "ms09",
+    "module": "m5",
+    "title": "Tu lunes en piloto automático",
+    "summary": "Convierte el seguimiento de compromisos en una rutina programada fiable.",
+    "difficulty": 2,
+    "xp": 60,
+    "requires": [
+      "l5-2"
+    ],
+    "brief": "Cada lunes pierdes una hora reconstruyendo qué tienes pendiente y con quién. Vas a automatizarlo.",
+    "scenario": "Correos con peticiones de Ana y el hilo de la tarifa (ficticios).",
+    "debrief": "Validar a mano, programar solo lo que informa y medir el ahorro: una automatización pequeña que se paga sola.",
+    "steps": [
+      {
+        "id": "ms09s1",
+        "type": "copilot",
+        "concept": "com.scheduled",
+        "prompt": "Pide la **tabla de compromisos** con **/Peticiones_Ana_noviembre.eml** y **/Hilo_tarifa_logistica.eml** y **prográmala para cada lunes**",
+        "setup": {
+          "files": {
+            "Outlook/Peticiones_Ana_noviembre.eml": "De: Ana (dirección financiera) · Para: ti · Asunto: Pendientes de noviembre\n\n[Ana, 4 nov] Necesito la provisión del cliente Norte confirmada antes del día 10.\n[Ana, 4 nov] Revisa la comparativa de proveedores de Luis antes de que la presente el 12.\n[Tú, 5 nov] De acuerdo, te paso también el impacto de la tarifa en el margen el viernes.\n",
+            "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n"
+          },
+          "actions": [
+            {
+              "id": "compromisos",
+              "when": [
+                [
+                  "compromis",
+                  "pendiente"
+                ]
+              ],
+              "reply": [
+                "Compromiso | Con quién | Plazo | Estado | Origen",
+                "Confirmar la provisión del cliente Norte | Ana | 10 nov | Abierto | Correo [1]",
+                "Revisar la comparativa de proveedores | Ana | antes del 12 nov | Abierto | Correo [1]",
+                "Enviar el impacto de la tarifa en el margen | Ana (lo ofreciste tú) | viernes | Abierto | Correo [1]",
+                "Responder a Compras sobre la tarifa | Compras | antes del viernes | Vencido | Hilo [2]"
+              ],
+              "needs": {
+                "refs": [
+                  "Peticiones_Ana_noviembre.eml",
+                  "Hilo_tarifa_logistica.eml"
+                ],
                 "gces": [
                   "expectations"
                 ]
               },
               "cites": [
-                "Comite_auditoria_7nov.meet"
-              ],
-              "writes": [
-                {
-                  "path": "Outlook/Borradores/Seguimiento_auditoria.eml",
-                  "content": "Para: asistentes del comité de auditoría · Asunto: Seguimiento (BORRADOR, no enviado)\n\nAcuerdo | Responsable | Fecha\nDetalle de provisiones | Luis | 22 nov\nActualizar el procedimiento de conciliación | (pendiente de asignar) | (pendiente)\n"
-                }
+                "Peticiones_Ana_noviembre.eml",
+                "Hilo_tarifa_logistica.eml"
               ]
             }
           ]
         },
         "goals": [
           {
-            "type": "exists",
-            "label": "Existe el seguimiento",
-            "path": "Outlook/Borradores/Seguimiento_auditoria.eml"
+            "type": "action",
+            "label": "Tabla de compromisos",
+            "id": "compromisos"
           },
           {
-            "type": "viewed",
-            "label": "Revisar el seguimiento",
-            "path": "Seguimiento_auditoria.eml"
+            "type": "scheduled",
+            "label": "Programada para los lunes",
+            "pattern": "compromis",
+            "freq": "lunes"
           }
         ],
         "solution": [
-          "::app teams Comite_auditoria_7nov.meet",
-          "Prepara un correo de seguimiento con una tabla de acuerdo, responsable y fecha",
-          "::ver Seguimiento_auditoria.eml"
+          "Haz una tabla de compromisos pendientes con qué, con quién, plazo, estado y origen, incluidos los que he prometido yo, a partir de /Peticiones_Ana_noviembre.eml y /Hilo_tarifa_logistica.eml",
+          "::programar cada lunes a las 8:00"
         ],
-        "explain": "El procedimiento de conciliación queda sin responsable: el seguimiento lo dice en lugar de inventarlo.",
+        "explain": "Una tabla fiable cada lunes, con lo vencido marcado.",
         "suggestions": [
-          "::app teams Comite_auditoria_7nov.meet",
-          "Prepara un correo de seguimiento con una tabla de acuerdo, responsable y fecha",
-          "::ver Seguimiento_auditoria.eml"
+          "Haz una tabla de compromisos pendientes con qué, con quién, plazo, estado y origen, incluidos los que he prometido yo, a partir de /Peticiones_Ana_noviembre.eml y /Hilo_tarifa_logistica.eml",
+          "::programar cada lunes a las 8:00"
         ],
-        "title": "Prepara el seguimiento"
+        "title": "Valida y programa"
+      },
+      {
+        "id": "ms09s2",
+        "type": "multi",
+        "concept": "com.scheduled",
+        "prompt": "¿Qué añadirías al prompt programado para que funcione sin supervisión?",
+        "options": [
+          {
+            "text": "El periodo exacto («desde el lunes anterior»)",
+            "correct": true
+          },
+          {
+            "text": "Qué hacer si no hay compromisos",
+            "correct": true
+          },
+          {
+            "text": "«No respondas a nadie: solo informa»",
+            "correct": true
+          },
+          {
+            "text": "«Sé creativo»",
+            "feedback": "Cada ejecución daría algo distinto."
+          }
+        ],
+        "explain": "Periodo, caso vacío y ninguna acción.",
+        "title": "Robustez"
+      },
+      {
+        "id": "ms09s3",
+        "type": "fill",
+        "concept": "com.impact",
+        "prompt": "Antes: 60 min cada lunes. Ahora: 10 min de revisión",
+        "code": false,
+        "template": "Ahorro semanal: {{0}} min; en 46 semanas laborables, unas {{1}} h.",
+        "blanks": [
+          {
+            "accept": [
+              "50"
+            ]
+          },
+          {
+            "accept": [
+              "38",
+              "38,3",
+              "38.3"
+            ]
+          }
+        ],
+        "explain": "50 min × 46 = 2.300 min ≈ 38 h al año.",
+        "title": "¿Compensa?"
+      }
+    ]
+  },
+  {
+    "id": "ms10",
+    "module": "m5",
+    "title": "Delegar el pack en Cowork",
+    "summary": "Diseña el encargo del pack mensual a Copilot Cowork con control y medida.",
+    "difficulty": 3,
+    "xp": 70,
+    "requires": [
+      "l5-3"
+    ],
+    "brief": "Quieres que el borrador del pack de noviembre lo prepare Cowork, sin perder el control de lo que llega al comité.",
+    "scenario": "Modelo de cierre, Notebook del cierre y plantillas del pack (ficticios).",
+    "debrief": "Resultado, fuentes, puntos de control, límites y controles posteriores: delegar sin perder la responsabilidad.",
+    "steps": [
+      {
+        "id": "ms10s1",
+        "type": "editor",
+        "concept": "com.cowork",
+        "prompt": "Redacta el **encargo a Cowork** para el borrador del pack de noviembre",
+        "file": "Tu petición a Copilot",
+        "starter": "Haz el pack de noviembre.",
+        "rows": 7,
+        "checks": [
+          {
+            "label": "Describe el resultado final",
+            "pattern": "(prepara|deja listo|entregable|resultado final|borrador)",
+            "hint": "Por ejemplo: «deja listo el borrador del pack de comité»."
+          },
+          {
+            "label": "Indica las fuentes",
+            "pattern": "(/\\S+|a partir de|usando|fuentes)",
+            "hint": "Por ejemplo: «usando el modelo de cierre y el Notebook del cierre»."
+          },
+          {
+            "label": "Fija puntos de control",
+            "pattern": "(punto de control|para(te)? (antes|y)|espera mi (ok|aprobaci[oó]n|confirmaci[oó]n)|antes de (seguir|continuar))",
+            "hint": "Por ejemplo: «para antes de crear la presentación y espera mi OK»."
+          },
+          {
+            "label": "Prohíbe acciones irreversibles",
+            "pattern": "(no (env[ií]es|compartas|publiques|borres)|nunca)",
+            "hint": "Por ejemplo: «no envíes ni compartas nada»."
+          }
+        ],
+        "solution": "Prepara el borrador del pack de comité de noviembre usando /Modelo_cierre_noviembre.xlsx y el Notebook del cierre: comentario de gestión con cada cifra referenciada a su celda, puente del margen que cuadre y presentación de 5 diapositivas. Para antes de crear la presentación y espera mi OK. No envíes ni compartas nada.",
+        "explain": "Resultado, fuentes, puntos de control y límites.",
+        "title": "El encargo"
       },
       {
         "id": "ms10s2",
         "type": "order",
-        "concept": "com.followup",
-        "prompt": "Ordena los pasos",
+        "concept": "docs.pack",
+        "prompt": "Ordena los controles sobre el borrador que entrega Cowork",
         "items": [
-          "Revisar los acuerdos con la transcripción",
-          "Pedir a Ana que asigne el responsable pendiente",
-          "Enviar el seguimiento",
-          "Crear las tareas en Planner"
+          "Matriz de coherencia contra el modelo",
+          "Revisión de cifras sin referencia y de [pendiente]",
+          "Comprobación del cuadre del puente",
+          "Revisión de mensajes por tu parte",
+          "Publicación"
         ],
-        "explain": "Revisar, completar lo que falta, enviar y gestionar.",
-        "title": "Antes de enviarlo"
+        "explain": "Los mismos controles que si lo hubieras hecho tú.",
+        "title": "Después de Cowork"
       },
       {
         "id": "ms10s3",
         "type": "choice",
-        "concept": "com.meetings",
-        "prompt": "La auditora pide que la próxima reunión no se transcriba. ¿Qué implica?",
+        "concept": "com.impact",
+        "prompt": "El primer mes Cowork ahorra 3 h, pero la revisión lleva 2 h más de lo habitual. ¿Qué haces?",
         "options": [
           {
-            "text": "Que después no podrás preguntar a Copilot por lo que se dijo",
+            "text": "Mantener el piloto un mes más ajustando el encargo y medir de nuevo",
             "correct": true
           },
           {
-            "text": "Nada: Copilot lo recordará igual",
-            "feedback": "Sin transcripción no hay texto."
+            "text": "Abandonarlo: ahorra poco",
+            "feedback": "El primer mes incluye aprendizaje."
           },
           {
-            "text": "Que Copilot grabará el audio",
-            "feedback": "No funciona así."
+            "text": "Quitar la revisión para ahorrar más",
+            "feedback": "Nunca."
           }
         ],
-        "explain": "Sin transcripción, toca tomar notas a la antigua.",
-        "title": "La transcripción"
+        "explain": "Piloto, ajuste y nueva medida.",
+        "title": "Medir"
       }
     ]
   },
@@ -1333,7 +1354,7 @@
       {
         "id": "ms11s2",
         "type": "fill",
-        "concept": "datos.check",
+        "concept": "inv.researcher",
         "prompt": "Prima actual 14.500 € y subida del 8 %",
         "code": false,
         "template": "La subida es de {{0}} € y la nueva prima, {{1}} €.",
@@ -1637,13 +1658,13 @@
     "module": "m7",
     "final": true,
     "title": "Proyecto final: el cierre de noviembre con Copilot",
-    "summary": "Integra contexto, Word, Excel, Teams, revisión y un agente en un cierre completo.",
+    "summary": "Integra contexto, reporting trazable, auditoría de modelos, revisión y un agente en un cierre completo.",
     "difficulty": 3,
     "xp": 200,
     "requires": [],
     "brief": "Coordinas el cierre de noviembre. Vas a reunir la información, preparar la nota para dirección, cuadrar las cifras y dejar un agente para las dudas del equipo.",
     "scenario": "Previsión de tesorería, comité de auditoría, gastos de estructura y procedimiento de pago a proveedores (todo ficticio).",
-    "debrief": "Has integrado todo: contexto exacto, peticiones con método, documentos con fuentes, cifras que cuadran, revisión humana y un agente con límites. Es el patrón que puedes repetir cada mes en tu trabajo real.",
+    "debrief": "Has integrado todo: contexto exacto, peticiones con método, reporting trazable, modelos auditados, revisión humana y un agente con límites. Es el patrón que puedes repetir cada mes en tu trabajo real.",
     "steps": [
       {
         "id": "ms14s1",
@@ -1707,40 +1728,40 @@
       {
         "id": "ms14s2",
         "type": "copilot",
-        "concept": "docs.longform",
-        "prompt": "Abre **Word** y redacta la **nota de cierre** para dirección con las mismas fuentes. Revísala",
+        "concept": "docs.trace",
+        "prompt": "Redacta el **comentario de gestión** a partir de **/Modelo_cierre_octubre.xlsx** con cada cifra referenciada a su celda",
         "setup": {
           "files": {
-            "OneDrive/Tesoreria/Prevision_tesoreria_Q4.xlsx": "Mes | Cobros (€) | Pagos (€) | Saldo final (€)\nOctubre | 405.000 | 380.000 | 125.000\nNoviembre | 390.000 | 415.000 | 100.000\nDiciembre | 450.000 | 470.000 | 80.000\nNota: saldo mínimo de seguridad acordado: 90.000 €.\n",
-            "Teams/Comite_auditoria_7nov.meet": "Reunión: Comité de auditoría · 7 nov 2026 · Transcripción activada\n\nAuditora externa: necesitamos el detalle de provisiones antes del 25 de noviembre.\nLuis (control de gestión): lo prepara el área de control.\nAna (dirección financiera): revisaremos también el procedimiento de conciliación bancaria.\nAcuerdo: Luis envía el detalle de provisiones el 22 de noviembre.\nPendiente: quién actualiza el procedimiento de conciliación.\n"
+            "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n"
           },
           "actions": [
             {
-              "id": "nota",
+              "id": "comentario",
               "when": [
                 [
-                  "nota",
-                  "redacta"
+                  "comentario",
+                  "redacta",
+                  "narrativa"
                 ]
               ],
               "reply": [
-                "He redactado la nota de cierre en 4 apartados: tesorería, transporte, auditoría y pendientes."
+                "He redactado el comentario de gestión. Cada cifra lleva entre corchetes la celda de la que sale; lo que no está en el modelo va como [pendiente]."
               ],
               "needs": {
-                "app": "word",
                 "refs": [
-                  "Prevision_tesoreria_Q4.xlsx",
-                  "Comite_auditoria_7nov.meet"
-                ]
+                  "Modelo_cierre_octubre.xlsx"
+                ],
+                "say": {
+                  "refs": "Indica el modelo con / para poder referenciar cada cifra a su celda."
+                }
               },
               "cites": [
-                "Prevision_tesoreria_Q4.xlsx",
-                "Comite_auditoria_7nov.meet"
+                "Modelo_cierre_octubre.xlsx"
               ],
               "writes": [
                 {
-                  "path": "OneDrive/Cierre noviembre/Nota_cierre_noviembre.docx",
-                  "content": "Nota para dirección · Cierre de noviembre (borrador generado con Copilot)\n\n1. Tesorería: saldo previsto de diciembre por debajo del mínimo (80.000 € frente a 90.000 €).\n2. Transporte: comparativa de proveedores presentada; decisión pendiente.\n3. Auditoría: detalle de provisiones para el 22 de noviembre (Luis).\n4. Pendiente: responsable del procedimiento de conciliación.\n"
+                  "path": "OneDrive/Cierre octubre/Pack/Comentario_gestion_octubre.docx",
+                  "content": "Comentario de gestión · octubre (borrador generado con Copilot)\n\nLas ventas fueron de 412.000 € [Resumen!C4], frente a 388.000 € presupuestados [Resumen!C4, Presupuesto].\nEl margen bruto fue del 31,5 % [Resumen!C7], 1,5 puntos por debajo del presupuesto [Resumen!C7].\nEl transporte costó 58.400 € [Resumen!C9] frente a 49.492 € presupuestados [Resumen!C9, Presupuesto].\nProvisión del cliente Norte: [pendiente] (no está en el modelo).\n"
                 }
               ]
             }
@@ -1749,84 +1770,90 @@
         "goals": [
           {
             "type": "exists",
-            "label": "Existe la nota de cierre",
-            "path": "OneDrive/Cierre noviembre/Nota_cierre_noviembre.docx"
+            "label": "Existe el comentario",
+            "path": "OneDrive/Cierre octubre/Pack/Comentario_gestion_octubre.docx"
           },
           {
             "type": "viewed",
-            "label": "Revisar la nota",
-            "path": "Nota_cierre_noviembre.docx"
+            "label": "Revisar el comentario",
+            "path": "Comentario_gestion_octubre.docx"
           }
         ],
         "solution": [
-          "::app word",
-          "Redacta la nota de cierre de noviembre para dirección, en 4 apartados, a partir de /Prevision_tesoreria_Q4.xlsx y /Comite_auditoria_7nov.meet",
-          "::ver Nota_cierre_noviembre.docx"
+          "Redacta el comentario de gestión a partir de /Modelo_cierre_octubre.xlsx; cada cifra con su celda entre corchetes y [pendiente] si no está en el modelo",
+          "::ver Comentario_gestion_octubre.docx"
         ],
-        "explain": "La nota marca lo pendiente en lugar de inventarlo.",
+        "explain": "Cada cifra se comprueba en segundos.",
         "suggestions": [
-          "::app word",
-          "Redacta la nota de cierre de noviembre para dirección ",
-          "::ver Nota_cierre_noviembre.docx"
+          "Redacta el comentario de gestión a partir de /Modelo_cierre_octubre.xlsx; cada cifra con su celda entre corchetes y [pendiente] si no está en el modelo",
+          "::ver Comentario_gestion_octubre.docx"
         ],
-        "title": "La nota en Word"
+        "title": "El comentario trazable"
       },
       {
         "id": "ms14s3",
         "type": "copilot",
-        "concept": "datos.formulas",
-        "prompt": "En **Gastos_estructura_2026.xlsx**, añade la **desviación** en euros y en % sobre el presupuesto",
+        "concept": "datos.audit",
+        "prompt": "Audita **Modelo_presupuesto_2027.xlsx** sin modificar nada antes de usarlo para el presupuesto",
         "setup": {
           "files": {
-            "OneDrive/Presupuesto/Gastos_estructura_2026.xlsx": "Partida | Real (€) | Presupuesto (€)\nAlquileres | 96.000 | 96.000\nSoftware | 41.500 | 36.000\nViajes | 18.200 | 22.000\nFormación | 9.800 | 12.000\n"
+            "OneDrive/Presupuesto/Modelo_presupuesto_2027.xlsx": "Modelo de presupuesto 2027 (heredado; autor: antiguo responsable de control) · ficticio\n\nHoja Supuestos\nC3 Crecimiento de ventas | 4,0 %\nC4 IPC | 2,5 %\nC5 Subida de tarifa de transporte | 6,0 % (desde enero)\nC6 Transporte base mensual (€) | 58.400\n\nHoja Ventas · H5:H10 = ventas 2026 × (1 + Supuestos!C3); en H8:H10 (región Sur) la fórmula apunta a Supuestos!C4\nHoja Costes · F12 = Transporte × 1,06 (constante escrita a mano)\nHoja PyG · D20 = SUMA(D5:D18); la fila 19 (amortización) se añadió después\nHoja Resumen · B2 vínculo externo a [Presupuesto_2026_v7.xlsx]Resumen!B2\n"
           },
           "actions": [
             {
-              "id": "desv",
+              "id": "auditoria",
               "when": [
                 [
-                  "desviacion"
+                  "audita",
+                  "revisa",
+                  "incoherencia",
+                  "errores",
+                  "valores fijos",
+                  "constantes"
                 ]
               ],
               "reply": [
-                "He añadido la desviación en euros y en %. Software: +5.500 € (+15,3 %)."
+                "Modo agente · plan: recorrer las hojas en orden de cálculo, comparar fórmulas por filas y columnas, buscar constantes en fórmulas, vínculos externos y rangos de suma incompletos.",
+                "Hallazgo | Ubicación | Impacto | Gravedad",
+                "Fórmula inconsistente: Sur usa el IPC (C4) en lugar del crecimiento (C3) | Ventas!H8:H10 | Ventas de Sur infraestimadas | Alta",
+                "Constante 1,06 escrita a mano | Costes!F12 | No responde al supuesto de tarifa | Alta",
+                "Suma que excluye la fila 19 (amortización) | PyG!D20 | Resultado sobrestimado | Alta",
+                "Vínculo externo a Presupuesto_2026_v7.xlsx | Resumen!B2 | Dependencia frágil | Media",
+                "No he modificado nada: los cambios los decides tú."
               ],
               "needs": {
                 "app": "excel",
-                "open": "Gastos_estructura_2026.xlsx"
-              },
-              "writes": [
-                {
-                  "path": "OneDrive/Presupuesto/Gastos_estructura_2026.xlsx",
-                  "content": "Partida | Real (€) | Presupuesto (€) | Desviación (€) | Desviación %\nAlquileres | 96.000 | 96.000 | 0 | 0,0 %\nSoftware | 41.500 | 36.000 | 5.500 | 15,3 %\nViajes | 18.200 | 22.000 | −3.800 | −17,3 %\nFormación | 9.800 | 12.000 | −2.200 | −18,3 %\n"
+                "open": "Modelo_presupuesto_2027.xlsx",
+                "gces": [
+                  "expectations"
+                ],
+                "say": {
+                  "app": "Abre Modelo_presupuesto_2027.xlsx en Excel.",
+                  "open": "Abre Modelo_presupuesto_2027.xlsx en Excel.",
+                  "expectations": "Dime qué buscar y cómo quieres los hallazgos (por ejemplo, tabla con ubicación, impacto y gravedad, sin modificar nada)."
                 }
-              ]
+              },
+              "vague": "puedo revisar el libro, pero necesito saber qué tipo de problemas buscar y cómo informarte."
             }
           ]
         },
         "goals": [
           {
-            "type": "file",
-            "label": "El libro tiene la desviación",
-            "path": "OneDrive/Presupuesto/Gastos_estructura_2026.xlsx",
-            "checks": [
-              {
-                "label": "desviación",
-                "pattern": "Desviación %"
-              }
-            ]
+            "type": "action",
+            "label": "Tabla de hallazgos",
+            "id": "auditoria"
           }
         ],
         "solution": [
-          "::app excel Gastos_estructura_2026.xlsx",
-          "Añade la desviación en euros y en % sobre el presupuesto para cada partida"
+          "::app excel Modelo_presupuesto_2027.xlsx",
+          "Audita el libro sin modificar nada: fórmulas inconsistentes, constantes en fórmulas, rangos incompletos y vínculos externos, en una tabla con hallazgo, ubicación, impacto y gravedad"
         ],
-        "explain": "Software +15,3 %: el dato que dirección querrá explicar.",
+        "explain": "Antes de construir sobre un modelo, se audita.",
         "suggestions": [
-          "::app excel Gastos_estructura_2026.xlsx",
-          "Añade la desviación en euros y en % sobre el presupuesto para cada partida"
+          "::app excel Modelo_presupuesto_2027.xlsx",
+          "Audita el libro sin modificar nada: fórmulas inconsistentes, constantes en fórmulas, rangos incompletos y vínculos externos, en una tabla con hallazgo, ubicación, impacto y gravedad"
         ],
-        "title": "Las cifras de gastos"
+        "title": "El modelo del año que viene"
       },
       {
         "id": "ms14s4",

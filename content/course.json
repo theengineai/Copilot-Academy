@@ -14,13 +14,13 @@
     },
     {
       "id": "L4",
-      "title": "Usuario avanzado",
-      "description": "Dominas Copilot en Word, PowerPoint, Excel, Outlook y Teams: modelos, comparaciones, reuniones y documentos largos."
+      "title": "Usuario profesional",
+      "description": "Usas Copilot y Analyst para auditar y estresar modelos, y montas un reporting a dirección trazable y coherente."
     },
     {
       "id": "L5",
       "title": "Experto",
-      "description": "Investigas con Researcher y Analyst y diseñas agentes y automatizaciones con Copilot Studio, con gobierno y control."
+      "description": "Automatizas el trabajo recurrente, investigas con Researcher y diseñas agentes con Copilot Studio, con gobierno y control."
     }
   ],
   "competencies": [
@@ -34,15 +34,15 @@
     },
     {
       "id": "docs",
-      "title": "Word y PowerPoint"
+      "title": "Reporting a dirección"
     },
     {
       "id": "datos",
-      "title": "Excel y datos"
+      "title": "Modelización"
     },
     {
       "id": "com",
-      "title": "Correo y reuniones"
+      "title": "Automatización del trabajo recurrente"
     },
     {
       "id": "inv",
@@ -109,79 +109,69 @@
       "title": "Biblioteca de prompts y prompts programados"
     },
     {
-      "id": "docs.longform",
-      "competency": "docs",
-      "title": "Documentos largos con método"
-    },
-    {
-      "id": "docs.compare",
-      "competency": "docs",
-      "title": "Revisar y comparar documentos"
-    },
-    {
-      "id": "docs.ppt",
-      "competency": "docs",
-      "title": "Presentaciones para dirección"
-    },
-    {
-      "id": "docs.agentmode",
-      "competency": "docs",
-      "title": "Modo agente: cambios en varios pasos"
-    },
-    {
-      "id": "datos.prep",
+      "id": "datos.audit",
       "competency": "datos",
-      "title": "Limpiar y preparar datos importados"
+      "title": "Auditar un modelo ajeno"
     },
     {
-      "id": "datos.formulas",
+      "id": "datos.document",
       "competency": "datos",
-      "title": "Fórmulas avanzadas"
+      "title": "Documentar y traspasar un modelo"
     },
     {
-      "id": "datos.model",
+      "id": "datos.python",
       "competency": "datos",
-      "title": "Modelos y escenarios"
+      "title": "Analyst y Python: simulación y estadística"
     },
     {
-      "id": "datos.check",
+      "id": "datos.assumptions",
       "competency": "datos",
-      "title": "Auditar cifras y modelos"
+      "title": "Contrastar supuestos con las fuentes"
     },
     {
-      "id": "com.inbox",
-      "competency": "com",
-      "title": "La bandeja y los compromisos bajo control"
+      "id": "docs.trace",
+      "competency": "docs",
+      "title": "Cifras trazables al modelo"
     },
     {
-      "id": "com.mail-draft",
-      "competency": "com",
-      "title": "Correos delicados"
+      "id": "docs.consistency",
+      "competency": "docs",
+      "title": "Coherencia entre Excel, Word y PowerPoint"
     },
     {
-      "id": "com.meetprep",
-      "competency": "com",
-      "title": "Preparar y dirigir reuniones"
+      "id": "docs.variance",
+      "competency": "docs",
+      "title": "Explicar desviaciones"
     },
     {
-      "id": "com.meetings",
-      "competency": "com",
-      "title": "Transcripción y reuniones"
+      "id": "docs.pack",
+      "competency": "docs",
+      "title": "El pack mensual como sistema"
     },
     {
-      "id": "com.followup",
+      "id": "com.select",
       "competency": "com",
-      "title": "Seguimiento entre reuniones"
+      "title": "Qué automatizar y qué no"
+    },
+    {
+      "id": "com.scheduled",
+      "competency": "com",
+      "title": "Prompts programados y Notebooks como sistema"
+    },
+    {
+      "id": "com.cowork",
+      "competency": "com",
+      "title": "Copilot Cowork: tareas de varios pasos"
+    },
+    {
+      "id": "com.impact",
+      "competency": "com",
+      "title": "Medir el impacto"
     },
     {
       "id": "inv.researcher",
       "competency": "inv",
       "title": "Researcher: investigación en varios pasos"
-    },
-    {
-      "id": "inv.analyst",
-      "competency": "inv",
-      "title": "Analyst: razonar con datos"
     },
     {
       "id": "inv.pages",

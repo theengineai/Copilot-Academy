@@ -1,76 +1,78 @@
 {
   "id": "m4",
-  "title": "Excel avanzado",
-  "subtitle": "Limpieza de exportaciones, fórmulas entre tablas, modelos de escenarios con el modo agente y auditoría de cifras.",
-  "level": "L3 → L4",
-  "icon": "chart",
-  "color": "#3F7D4E",
+  "title": "Reporting integrado",
+  "subtitle": "Del modelo al pack de dirección: cifras trazables, coherencia entre documentos, puentes que cuadran y un proceso repetible.",
+  "level": "L4",
+  "icon": "file",
+  "color": "#3F6E9C",
   "lessons": [
     {
       "id": "l4-1",
-      "title": "Limpiar datos importados",
-      "summary": "Las exportaciones del ERP y del banco llegan sucias: Copilot las limpia, tú defines las reglas y revisas.",
+      "title": "Cifras trazables al modelo",
+      "summary": "Que cada número del texto diga de qué celda sale: el estándar para un reporting que se audita en minutos.",
       "minutes": 7,
       "objectives": [
-        "Limpiar una exportación con reglas explícitas",
-        "Detectar problemas que distorsionan un análisis",
-        "Revisar qué ha cambiado la limpieza"
+        "Exigir la referencia de cada cifra a su celda",
+        "Revisar un texto contra el modelo en minutos",
+        "Tratar lo que no está en el modelo"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Reglas de limpieza, no «límpialo»",
+          "title": "Ningún número sin dirección",
           "blocks": [
             {
               "type": "text",
-              "body": "Una exportación típica trae importes y fechas como texto, duplicados, unidades mezcladas y totales intercalados. Pide la limpieza con **reglas explícitas** y una **lista de cambios**:\n«Elimina duplicados por nº de factura, convierte fechas e importes a número, pasa todo a € y lista cada cambio que hagas»."
+              "body": "El problema del reporting no es escribirlo, es **revisarlo**: cada cifra del texto hay que buscarla en el modelo. Pide la trazabilidad desde el principio: «**cada cifra con su celda entre corchetes; lo que no esté en el modelo, [pendiente]**». Revisar pasa de releer a comprobar referencias."
             },
             {
-              "type": "callout",
-              "tone": "finance",
-              "body": "«Duplicado» debe definirse: mismo nº de factura. Mismo importe y cliente no basta: podría ser una segunda factura legítima."
+              "type": "code",
+              "lang": "texto",
+              "code": "Las ventas fueron de 412.000 € [Resumen!C4]…\nEl margen bruto fue del 31,5 % [Resumen!C7]…\nProvisión del cliente Norte: [pendiente] (no está en el modelo).",
+              "file": "Así queda",
+              "caption": "Antes de publicar, quitas las referencias o las dejas en una versión de control."
             }
           ]
         },
         {
           "id": "m4l1e1",
           "type": "copilot",
-          "concept": "datos.prep",
-          "prompt": "Abre **Export_ERP_facturas.xlsx** en Excel y pide una **limpieza con reglas explícitas** (duplicados por nº de factura, texto a número, todo en €) y la **lista de cambios**. Revisa el resultado",
+          "concept": "docs.trace",
+          "prompt": "Pide el **comentario de gestión** de octubre a partir de **/Modelo_cierre_octubre.xlsx**, con **cada cifra referenciada a su celda** y [pendiente] para lo que no esté en el modelo. Revísalo",
           "setup": {
             "files": {
-              "OneDrive/Cierre octubre/Export_ERP_facturas.xlsx": "Exportación del ERP · facturas de octubre (sin limpiar)\nNº factura | Fecha | Cliente | Importe\nF-0412 | 03/10/2026 (texto) | Delta | \"8.450,00 €\" (texto)\nF-0412 | 03/10/2026 (texto) | Delta | \"8.450,00 €\" (texto)\nF-0431 | 15/10/2026 (texto) | Delta | \"8.450,00 €\" (texto)\nF-0440 | 22/10/2026 (texto) | Omega | 12,3 (miles de €)\n",
-              "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€)\nNorte | 118.000 | 84.200 | 110.000\nCentro | 162.000 | 109.900 | 150.000\nSur | 132.000 | 88.100 | 128.000\n"
+              "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n",
+              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
             },
             "actions": [
               {
-                "id": "limpia",
+                "id": "comentario",
                 "when": [
                   [
-                    "limpia",
-                    "convierte",
-                    "duplicad",
-                    "normaliza"
+                    "comentario",
+                    "redacta",
+                    "narrativa"
                   ]
                 ],
                 "reply": [
-                  "Plan: 1) quitar duplicados por nº de factura, 2) convertir fechas e importes de texto a número, 3) unificar unidades en €.",
-                  "Hecho. He eliminado 1 duplicado (F-0412), convertido fechas e importes y pasado el importe de Omega de miles de € a € (12.300,00).",
-                  "Atención: F-0412 y F-0431 tienen el mismo importe y cliente pero distinto número: no son duplicados y las he mantenido."
+                  "He redactado el comentario de gestión. Cada cifra lleva entre corchetes la celda de la que sale; lo que no está en el modelo va como [pendiente]."
                 ],
                 "needs": {
-                  "app": "excel",
-                  "open": "Export_ERP_facturas.xlsx",
+                  "refs": [
+                    "Modelo_cierre_octubre.xlsx"
+                  ],
                   "say": {
-                    "app": "Abre Export_ERP_facturas.xlsx en Excel.",
-                    "open": "Abre Export_ERP_facturas.xlsx en Excel."
+                    "refs": "Indica el modelo con / para poder referenciar cada cifra a su celda."
                   }
                 },
+                "cites": [
+                  "Modelo_cierre_octubre.xlsx"
+                ],
                 "writes": [
                   {
-                    "path": "OneDrive/Cierre octubre/Export_ERP_facturas.xlsx",
-                    "content": "Exportación del ERP · facturas de octubre (limpia con Copilot: duplicados eliminados)\nNº factura | Fecha | Cliente | Importe (€)\nF-0412 | 03/10/2026 | Delta | 8.450,00\nF-0431 | 15/10/2026 | Delta | 8.450,00\nF-0440 | 22/10/2026 | Omega | 12.300,00\nCambios: 1 duplicado eliminado (F-0412), fechas e importes convertidos a número, Omega pasado de miles de € a €.\n"
+                    "path": "OneDrive/Cierre octubre/Pack/Comentario_gestion_octubre.docx",
+                    "content": "Comentario de gestión · octubre (borrador generado con Copilot)\n\nLas ventas fueron de 412.000 € [Resumen!C4], frente a 388.000 € presupuestados [Resumen!C4, Presupuesto].\nEl margen bruto fue del 31,5 % [Resumen!C7], 1,5 puntos por debajo del presupuesto [Resumen!C7].\nEl transporte costó 58.400 € [Resumen!C9] frente a 49.492 € presupuestados [Resumen!C9, Presupuesto].\nProvisión del cliente Norte: [pendiente] (no está en el modelo).\n"
                   }
                 ]
               }
@@ -78,103 +80,106 @@
           },
           "goals": [
             {
-              "type": "action",
-              "label": "Limpieza con reglas desde Excel",
-              "id": "limpia",
-              "hint": "Abre el archivo en Excel: elimina duplicados por nº de factura, convierte fechas e importes a número y pasa todo a €"
+              "type": "prompt",
+              "label": "Pedir el comentario con referencias a celdas",
+              "refs": [
+                "Modelo_cierre_octubre.xlsx"
+              ],
+              "pattern": "celda|referencia"
+            },
+            {
+              "type": "exists",
+              "label": "Existe el comentario",
+              "path": "OneDrive/Cierre octubre/Pack/Comentario_gestion_octubre.docx"
             },
             {
               "type": "viewed",
-              "label": "Revisar el archivo limpio",
-              "path": "Export_ERP_facturas.xlsx",
-              "hint": "Archivos → Ver Export_ERP_facturas.xlsx"
+              "label": "Revisar el comentario",
+              "path": "Comentario_gestion_octubre.docx"
             }
           ],
           "solution": [
-            "::app excel Export_ERP_facturas.xlsx",
-            "Elimina duplicados por nº de factura, convierte fechas e importes a número, pasa todo a € y lista cada cambio",
-            "::ver Export_ERP_facturas.xlsx"
+            "Redacta el comentario de gestión de octubre a partir de /Modelo_cierre_octubre.xlsx; cada cifra con su celda entre corchetes y [pendiente] si no está en el modelo",
+            "::ver Comentario_gestion_octubre.docx"
           ],
-          "explain": "Con «duplicado = mismo nº de factura», Copilot conserva F-0431 (otro pedido). Es el caso de la reclamación del cliente Delta que verás en una misión.",
+          "explain": "Revisar ahora es comprobar cuatro referencias. Y la provisión, que no está en el modelo, no se ha colado como dato.",
           "suggestions": [
-            "::app excel Export_ERP_facturas.xlsx",
-            "Limpia esto",
-            "Elimina duplicados por nº de factura, convierte fechas e importes a número, pasa todo a € y lista cada cambio",
-            "::ver Export_ERP_facturas.xlsx"
+            "Redacta el comentario de gestión de octubre a partir de /Modelo_cierre_octubre.xlsx; cada cifra con su celda entre corchetes y [pendiente] si no está en el modelo",
+            "::ver Comentario_gestion_octubre.docx"
           ]
         },
         {
           "id": "m4l1e2",
           "type": "spot",
-          "concept": "datos.prep",
-          "prompt": "Esta hoja va a analizarse con Copilot. Señala las filas que darán problemas",
-          "file": "Ventas_octubre.xlsx",
+          "concept": "docs.trace",
+          "prompt": "Revisa el comentario contra el modelo y señala las líneas con problemas",
+          "file": "Comentario de gestión",
           "lines": [
-            "Región | Ventas (€) | Coste (€)",
-            "Norte | 118.000 | 84.200",
-            "(fila vacía)",
-            "Centro | n/d | 109.900",
-            "Sur | 132.000 | 88.100",
-            "TOTAL | 250.000 | 282.200"
+            "Ventas de 412.000 € [Resumen!C4].",
+            "Margen bruto del 31,5 % [Resumen!C7].",
+            "El transporte se desvió un 25 % [Resumen!C9].",
+            "La plantilla creció un 3 %.",
+            "Margen bruto de 129.800 € [Resumen!C6]."
           ],
           "faulty": [
             2,
-            3,
-            5
+            3
           ],
           "notes": {
-            "2": "Una fila vacía corta la tabla.",
-            "3": "Texto en una columna numérica.",
-            "5": "Total mezclado con los datos (y además no suma bien)."
+            "2": "La celda dice 58.400 € frente a 49.492 €: es un +18 %, no un 25 %.",
+            "3": "Cifra sin referencia: no está en el modelo."
           },
-          "fixed": "Región | Ventas (€) | Coste (€)\nNorte | 118.000 | 84.200\nCentro | 162.000 | 109.900\nSur | 132.000 | 88.100",
-          "explain": "Filas vacías, textos en columnas numéricas y totales intercalados: las causas más frecuentes de análisis erróneos."
+          "fixed": "Ventas de 412.000 € [Resumen!C4].\nMargen bruto del 31,5 % [Resumen!C7].\nTransporte +18 % [Resumen!C9].\nPlantilla: [pendiente].\nMargen bruto de 129.800 € [Resumen!C6].",
+          "explain": "Una referencia correcta con una cifra mal calculada, y una cifra sin referencia: los dos fallos que la trazabilidad saca a la luz.",
+          "context": "Modelo: ventas 412.000 / 388.000; margen bruto 129.800 € y 31,5 % / 33,0 %; transporte 58.400 / 49.492 (real / presupuesto)."
         },
         {
           "id": "m4l1e3",
           "type": "choice",
-          "concept": "datos.prep",
-          "prompt": "Copilot da un total de ventas mayor que el del informe. ¿Qué miras primero?",
+          "concept": "docs.trace",
+          "prompt": "El comentario incluye «la cuota de mercado sube al 12 %», sin referencia. ¿Qué haces?",
           "options": [
             {
-              "text": "Si hay una fila de total o subtotales dentro de los datos que se suma dos veces",
+              "text": "Lo quitas o pides la fuente: si no está en el modelo ni en otra fuente aprobada, no va",
               "correct": true
             },
             {
-              "text": "El color de la tabla",
-              "feedback": "El formato visual no cambia la suma."
+              "text": "Lo dejas: suena plausible",
+              "feedback": "Sin fuente, puede ser inventado."
             },
             {
-              "text": "Si la petición fue educada",
-              "feedback": "No cambia el cálculo."
+              "text": "Le pones una referencia cualquiera",
+              "feedback": "Peor: una trazabilidad falsa."
             }
           ],
-          "explain": "Un total dentro de los datos se suma como una fila más."
+          "explain": "Sin referencia, no hay cifra."
         },
         {
           "id": "m4l1e4",
-          "type": "multi",
-          "concept": "datos.prep",
-          "prompt": "¿Qué reglas pondrías en una petición de limpieza?",
-          "options": [
+          "type": "fill",
+          "concept": "docs.trace",
+          "prompt": "Completa la instrucción",
+          "code": false,
+          "template": "Cada cifra con su {{0}} entre corchetes; si no está en el modelo, escribe {{1}}.",
+          "blanks": [
             {
-              "text": "Qué define un duplicado",
-              "correct": true
+              "options": [
+                "celda",
+                "color",
+                "fuente tipográfica"
+              ],
+              "answer": "celda"
             },
             {
-              "text": "Formato y unidad final de cada columna",
-              "correct": true
-            },
-            {
-              "text": "Que liste los cambios realizados",
-              "correct": true
-            },
-            {
-              "text": "«Que quede bonito»",
-              "feedback": "No es una regla verificable."
+              "options": [
+                "[pendiente]",
+                "una estimación",
+                "cero"
+              ],
+              "answer": "[pendiente]"
             }
           ],
-          "explain": "Reglas explícitas y una lista de cambios que puedas revisar."
+          "explain": "Trazabilidad y huecos visibles."
         },
         {
           "type": "card",
@@ -183,7 +188,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Limpiar una exportación con reglas explícitas\n- Detectar problemas que distorsionan un análisis\n- Revisar qué ha cambiado la limpieza"
+              "body": "Con esta lección deberías poder:\n- Exigir la referencia de cada cifra a su celda\n- Revisar un texto contra el modelo en minutos\n- Tratar lo que no está en el modelo"
             },
             {
               "type": "callout",
@@ -196,223 +201,163 @@
     },
     {
       "id": "l4-2",
-      "title": "Fórmulas avanzadas",
-      "summary": "BUSCARX, SUMAR.SI.CONJUNTO y control de errores: pide la fórmula, entiéndela y depura sus fallos.",
+      "title": "Coherencia entre Excel, Word y PowerPoint",
+      "summary": "Antes de que llegue al comité, cruza el pack completo contra el modelo y encuentra lo que no cuadra.",
       "minutes": 7,
       "objectives": [
-        "Pedir búsquedas y agregaciones entre tablas",
-        "Entender y depurar una fórmula anidada",
-        "Controlar los errores de forma explícita"
+        "Cruzar varios documentos contra una fuente única",
+        "Clasificar las discrepancias y su causa",
+        "Fijar qué documento manda"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Describe el cálculo; exige la fórmula explicada",
+          "title": "Una fuente, varios documentos, cero contradicciones",
           "blocks": [
             {
-              "type": "cmds",
-              "items": [
-                {
-                  "cmd": "BUSCARX",
-                  "desc": "Traer un dato de otra tabla: el objetivo de cada región.",
-                  "where": "Excel"
-                },
-                {
-                  "cmd": "SUMAR.SI.CONJUNTO",
-                  "desc": "Sumar con varias condiciones: ventas de Norte en octubre.",
-                  "where": "Excel"
-                },
-                {
-                  "cmd": "SI.ERROR / 4.º argumento de BUSCARX",
-                  "desc": "Qué mostrar si algo falla, en lugar de #N/D.",
-                  "where": "Excel"
-                },
-                {
-                  "cmd": "LET",
-                  "desc": "Poner nombre a pasos intermedios en fórmulas largas.",
-                  "where": "Excel"
-                }
-              ],
-              "title": "Las funciones que más vas a pedir"
+              "type": "text",
+              "body": "En un pack de cierre las cifras viajan del modelo a la nota y de la nota a la presentación, y en cada salto pueden cambiar. Pide a Copilot una **matriz de coherencia**: una fila por cifra o afirmación, una columna por documento y una columna «¿coincide?»."
             },
             {
               "type": "callout",
-              "tone": "info",
-              "body": "La función de hoja =COPILOT(), que estuvo en vista previa, dejó de estar disponible el 14 de septiembre de 2026. Estas tareas se hacen desde el panel de Copilot o el modo agente."
+              "tone": "tip",
+              "body": "Fija la regla antes: «el modelo manda en las cifras; la nota, en el estado de los asuntos pendientes». Así cada discrepancia tiene una corrección clara."
             }
           ]
         },
         {
           "id": "m4l2e1",
           "type": "copilot",
-          "concept": "datos.formulas",
-          "prompt": "Abre **Ventas_clientes_octubre.xlsx** en Excel y pide una columna que **traiga el objetivo** de cada región desde la tabla Objetivos (con BUSCARX y un valor si no lo encuentra). Después pide que **explique** el resultado de Beta",
+          "concept": "docs.consistency",
+          "prompt": "Cruza **/Modelo_cierre_octubre.xlsx**, **/Nota_comite_v3.docx** y **/Presentacion_comite_v2.pptx** en una **matriz de coherencia** (concepto, valor en cada documento y si coincide)",
           "setup": {
             "files": {
-              "OneDrive/Cierre octubre/Ventas_clientes_octubre.xlsx": "Hoja Ventas (tabla Ventas)\nCliente | Región | Ventas (€)\nDelta | Norte | 61.000\nOmega | Centro | 50.200\nAlfa | Sur | 40.000\nBeta | Norte  | 57.000\n\nHoja Objetivos (tabla Objetivos)\nRegión | Objetivo (€)\nNorte | 110.000\nCentro | 150.000\nSur | 128.000\n",
-              "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€)\nNorte | 118.000 | 84.200 | 110.000\nCentro | 162.000 | 109.900 | 150.000\nSur | 132.000 | 88.100 | 128.000\n"
+              "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n",
+              "OneDrive/Cierre octubre/Pack/Nota_comite_v3.docx": "Nota al comité · cierre de octubre (v3) · ficticia\n\nLas ventas alcanzan 412.000 €, un 6,2 % por encima del presupuesto.\nEl margen bruto se sitúa en el 31,5 % frente al 33,0 % presupuestado.\nEl transporte cuesta 58.400 €, un 18 % más de lo previsto.\nLa provisión del cliente Norte está pendiente de confirmar.\n",
+              "OneDrive/Cierre octubre/Pack/Presentacion_comite_v2.pptx": "Presentación al comité (v2) · ficticia\n\nDiapositiva 2: Ventas 421.000 € (+8,5 %)\nDiapositiva 3: Margen bruto 31,5 % (objetivo 33 %)\nDiapositiva 4: Transporte +18 %\nDiapositiva 5: Provisión del cliente Norte confirmada\n"
             },
             "actions": [
               {
-                "id": "buscarx",
+                "id": "coherencia",
                 "when": [
                   [
-                    "buscarx",
-                    "objetivo",
-                    "trae"
+                    "coherencia",
+                    "coinciden",
+                    "compara",
+                    "discrepancias",
+                    "cuadran"
                   ]
                 ],
                 "reply": [
-                  "He añadido «Objetivo región (€)» con:",
-                  "=BUSCARX([@Región];Objetivos[Región];Objetivos[Objetivo (€)];\"Sin objetivo\")",
-                  "Atención: Beta devuelve «Sin objetivo» porque su región está escrita «Norte » con un espacio al final."
+                  "Concepto | Modelo | Nota v3 | Presentación v2 | ¿Coincide?",
+                  "Ventas | 412.000 € | 412.000 € | 421.000 € | No (dígitos cambiados en la presentación)",
+                  "Variación de ventas | +6,2 % | +6,2 % | +8,5 % | No (calculada sobre la cifra errónea)",
+                  "Margen bruto | 31,5 % | 31,5 % | 31,5 % | Sí",
+                  "Transporte | +18 % | +18 % | +18 % | Sí",
+                  "Provisión cliente Norte | — | Pendiente | Confirmada | No (la presentación da por hecho algo pendiente)"
                 ],
                 "needs": {
-                  "app": "excel",
-                  "open": "Ventas_clientes_octubre.xlsx",
-                  "say": {
-                    "app": "Abre Ventas_clientes_octubre.xlsx en Excel.",
-                    "open": "Abre Ventas_clientes_octubre.xlsx en Excel."
-                  }
+                  "refs": [
+                    "Modelo_cierre_octubre.xlsx",
+                    "Nota_comite_v3.docx",
+                    "Presentacion_comite_v2.pptx"
+                  ],
+                  "gces": [
+                    "expectations"
+                  ]
                 },
-                "writes": [
-                  {
-                    "path": "OneDrive/Cierre octubre/Ventas_clientes_octubre.xlsx",
-                    "content": "Hoja Ventas (tabla Ventas)\nCliente | Región | Ventas (€) | Objetivo región (€)\nDelta | Norte | 61.000 | 110.000\nOmega | Centro | 50.200 | 150.000\nAlfa | Sur | 40.000 | 128.000\nBeta | Norte  | 57.000 | Sin objetivo\n\nHoja Objetivos (tabla Objetivos)\nRegión | Objetivo (€)\nNorte | 110.000\nCentro | 150.000\nSur | 128.000\n"
-                  }
+                "cites": [
+                  "Modelo_cierre_octubre.xlsx",
+                  "Nota_comite_v3.docx",
+                  "Presentacion_comite_v2.pptx"
                 ]
-              },
-              {
-                "id": "explica",
-                "when": [
-                  [
-                    "explica",
-                    "como funciona",
-                    "por que"
-                  ]
-                ],
-                "reply": [
-                  "BUSCARX busca la región de cada fila en la tabla Objetivos y devuelve su objetivo. El cuarto argumento («Sin objetivo») evita el error #N/D cuando no la encuentra.",
-                  "Para Beta, la solución es limpiar el texto: =BUSCARX(ESPACIOS([@Región]);…) o corregir el dato de origen."
-                ],
-                "needs": {
-                  "app": "excel",
-                  "turn": 2
-                }
               }
             ]
           },
           "goals": [
             {
-              "type": "file",
-              "label": "La tabla tiene la columna del objetivo",
-              "path": "OneDrive/Cierre octubre/Ventas_clientes_octubre.xlsx",
-              "checks": [
-                {
-                  "label": "objetivo",
-                  "pattern": "Objetivo región"
-                }
+              "type": "prompt",
+              "label": "Cruzar los tres documentos",
+              "refs": [
+                "Modelo_cierre_octubre.xlsx",
+                "Nota_comite_v3.docx",
+                "Presentacion_comite_v2.pptx"
               ]
             },
             {
               "type": "action",
-              "label": "Explicación de la fórmula y del caso Beta",
-              "id": "explica",
-              "hint": "¿Por qué Beta no tiene objetivo? Explica la fórmula"
+              "label": "Obtener la matriz de coherencia",
+              "id": "coherencia"
             }
           ],
           "solution": [
-            "::app excel Ventas_clientes_octubre.xlsx",
-            "Añade una columna que traiga el objetivo de cada región desde la tabla Objetivos con BUSCARX y muestre «Sin objetivo» si no lo encuentra",
-            "¿Por qué Beta no tiene objetivo? Explica cómo funciona la fórmula"
+            "Comprueba la coherencia entre /Modelo_cierre_octubre.xlsx, /Nota_comite_v3.docx y /Presentacion_comite_v2.pptx en una tabla con concepto, valor en cada documento y si coincide"
           ],
-          "explain": "Un espacio invisible en «Norte » rompe la búsqueda. Pedir la explicación convierte un error silencioso en un dato que se corrige.",
+          "explain": "Tres discrepancias en la presentación, una de ellas arrastrada (el +8,5 % sale de la cifra errónea). Esto es lo que habría visto el comité.",
           "suggestions": [
-            "::app excel Ventas_clientes_octubre.xlsx",
-            "Añade una columna que traiga el objetivo de cada región desde la tabla Objetivos con BUSCARX ",
-            "¿Por qué Beta no tiene objetivo? Explica cómo funciona la fórmula"
+            "Comprueba la coherencia entre /Modelo_cierre_octubre.xlsx, /Nota_comite_v3.docx y /Presentacion_comite_v2.pptx en una tabla con concepto, valor en cada documento y si coincide"
           ]
         },
         {
           "id": "m4l2e2",
-          "type": "fill",
-          "concept": "datos.formulas",
-          "prompt": "Completa la fórmula que trae el objetivo de la región",
-          "template": "=BUSCARX([@Región];Objetivos[{{0}}];Objetivos[{{1}}];\"{{2}}\")",
-          "blanks": [
-            {
-              "options": [
-                "Región",
-                "Cliente",
-                "Ventas (€)"
-              ],
-              "answer": "Región"
-            },
-            {
-              "options": [
-                "Objetivo (€)",
-                "Región",
-                "Cliente"
-              ],
-              "answer": "Objetivo (€)"
-            },
-            {
-              "options": [
-                "Sin objetivo",
-                "#N/D",
-                "0"
-              ],
-              "answer": "Sin objetivo"
-            }
-          ],
-          "explain": "Valor buscado, columna donde buscar, columna que devolver y qué mostrar si no lo encuentra."
-        },
-        {
-          "id": "m4l2e3",
-          "type": "match",
-          "concept": "datos.formulas",
-          "prompt": "Empareja cada necesidad con la función",
-          "pairs": [
-            [
-              "Traer el objetivo de cada región",
-              "BUSCARX"
-            ],
-            [
-              "Ventas de Norte en octubre de clientes nuevos",
-              "SUMAR.SI.CONJUNTO"
-            ],
-            [
-              "Mostrar «Sin dato» en lugar de un error",
-              "SI.ERROR"
-            ],
-            [
-              "Dar nombre a pasos de una fórmula larga",
-              "LET"
-            ]
-          ],
-          "explain": "Saber qué función hay detrás te permite revisar lo que propone Copilot."
-        },
-        {
-          "id": "m4l2e4",
-          "type": "choice",
-          "concept": "datos.formulas",
-          "prompt": "Norte: ventas 118.000 € y coste 84.200 €. ¿Cuál es su margen sobre ventas?",
+          "type": "multi",
+          "concept": "docs.consistency",
+          "prompt": "En la matriz, ¿qué discrepancias hay que corregir en la presentación?",
           "options": [
             {
-              "text": "28,6 %",
+              "text": "Ventas 421.000 € en lugar de 412.000 €",
               "correct": true
             },
             {
-              "text": "40,1 %",
-              "feedback": "Es (118.000 − 84.200) / 84.200: el recargo sobre el coste."
+              "text": "La variación del +8,5 %, calculada sobre la cifra errónea",
+              "correct": true
             },
             {
-              "text": "71,4 %",
-              "feedback": "Es el coste entre las ventas."
+              "text": "«Provisión confirmada» cuando está pendiente",
+              "correct": true
+            },
+            {
+              "text": "El margen del 31,5 %",
+              "feedback": "Coincide en los tres documentos."
             }
           ],
-          "explain": "(118.000 − 84.200) / 118.000 ≈ 28,6 %. Comprueba siempre que la fórmula mide lo que crees."
+          "explain": "Corrige la causa (la cifra) y lo que arrastra (la variación)."
+        },
+        {
+          "id": "m4l2e3",
+          "type": "choice",
+          "concept": "docs.consistency",
+          "prompt": "¿Qué regla evita discusiones sobre qué cifra es la buena?",
+          "options": [
+            {
+              "text": "Fijar de antemano que el modelo es la fuente única de las cifras",
+              "correct": true
+            },
+            {
+              "text": "Quedarse con la cifra más reciente",
+              "feedback": "Puede ser la errónea."
+            },
+            {
+              "text": "Votarlo en el comité",
+              "feedback": "Las cifras no se votan."
+            }
+          ],
+          "explain": "Una fuente única para las cifras."
+        },
+        {
+          "id": "m4l2e4",
+          "type": "order",
+          "concept": "docs.consistency",
+          "prompt": "Ordena el control de coherencia antes del comité",
+          "items": [
+            "Cerrar el modelo como fuente única",
+            "Generar la matriz de coherencia del pack",
+            "Corregir las discrepancias en origen",
+            "Repetir la matriz hasta que todo coincida",
+            "Publicar el pack"
+          ],
+          "explain": "Fuente única, matriz, corrección y nueva comprobación."
         },
         {
           "type": "card",
@@ -421,7 +366,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Pedir búsquedas y agregaciones entre tablas\n- Entender y depurar una fórmula anidada\n- Controlar los errores de forma explícita"
+              "body": "Con esta lección deberías poder:\n- Cruzar varios documentos contra una fuente única\n- Clasificar las discrepancias y su causa\n- Fijar qué documento manda"
             },
             {
               "type": "callout",
@@ -434,94 +379,105 @@
     },
     {
       "id": "l4-3",
-      "title": "Modelos y escenarios con el modo agente",
-      "summary": "Pide a Copilot que construya un modelo en varios pasos y audita sus supuestos.",
-      "minutes": 7,
+      "title": "Explicar desviaciones",
+      "summary": "Un puente de presupuesto a real que cuadra al euro, y una explicación que no dice más de lo que dicen los números.",
+      "minutes": 8,
       "objectives": [
-        "Pedir un modelo con supuestos separados de los cálculos",
-        "Leer el plan del modo agente",
-        "Exigir que declare sus supuestos"
+        "Pedir un puente con efectos definidos y que cuadre",
+        "Declarar el método y sus supuestos",
+        "Redactar la explicación desde el puente"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Un modelo, no un número",
+          "title": "Primero el puente, después las palabras",
           "blocks": [
             {
               "type": "text",
-              "body": "El **modo agente** de Excel construye en varios pasos: crea hojas, fórmulas, tablas dinámicas y gráficos, y te enseña el plan. Para un modelo útil, pide:\n- **Supuestos** en una hoja aparte (las entradas que cambiarás).\n- **Cálculos enlazados** a esos supuestos, sin valores fijos.\n- **Escenarios** definidos por ti y un gráfico que los compare.\n- La **lista de supuestos** y limitaciones del modelo."
+              "body": "Pedir «explica la desviación» produce un relato. Pide antes un **puente**: efectos definidos (volumen, precio, costes), su fórmula y que **cuadre** con el real. Después, la explicación sale del puente y no al revés."
             },
             {
-              "type": "callout",
-              "tone": "finance",
-              "body": "Un modelo con valores fijos escondidos en las fórmulas deja de funcionar en cuanto cambia un supuesto. Pide siempre «sin valores fijos»."
+              "type": "flow",
+              "steps": [
+                {
+                  "title": "Definir efectos",
+                  "text": "Volumen, transporte, resto de costes; con su método."
+                },
+                {
+                  "title": "Calcular",
+                  "text": "Analyst con el código a la vista."
+                },
+                {
+                  "title": "Cuadrar",
+                  "text": "Presupuesto + efectos = real, al euro."
+                },
+                {
+                  "title": "Explicar",
+                  "text": "La narrativa usa solo las cifras del puente."
+                }
+              ]
             }
           ]
         },
         {
           "id": "m4l3e1",
           "type": "copilot",
-          "concept": "datos.model",
-          "prompt": "Con **Ventas_octubre.xlsx** abierto en Excel, pide un **modelo de escenarios** del margen con subidas de transporte del **0, 6, 9 y 12 %**, con supuestos en hoja aparte. Después pide sus **supuestos** y revisa el libro",
+          "concept": "docs.variance",
+          "prompt": "Pide a **@Analyst** el **puente del margen bruto** de presupuesto a real con **/Modelo_cierre_octubre.xlsx** (efectos volumen, transporte y resto de costes, que cuadre). Después pide la **explicación** basada en el puente",
           "setup": {
             "files": {
-              "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€) | Margen %\nNorte | 118.000 | 84.200 | 110.000 | 28,6 %\nCentro | 162.000 | 109.900 | 150.000 | 32,2 %\nSur | 132.000 | 88.100 | 128.000 | 33,3 %\n",
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
-              "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n"
+              "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n",
+              "OneDrive/Cierre octubre/Pack/Nota_comite_v3.docx": "Nota al comité · cierre de octubre (v3) · ficticia\n\nLas ventas alcanzan 412.000 €, un 6,2 % por encima del presupuesto.\nEl margen bruto se sitúa en el 31,5 % frente al 33,0 % presupuestado.\nEl transporte cuesta 58.400 €, un 18 % más de lo previsto.\nLa provisión del cliente Norte está pendiente de confirmar.\n"
             },
             "actions": [
               {
-                "id": "escenarios",
+                "id": "puente",
                 "when": [
                   [
-                    "escenario",
-                    "modelo",
-                    "sensibilidad"
+                    "puente",
+                    "bridge",
+                    "desviacion",
+                    "efecto"
                   ]
                 ],
                 "reply": [
-                  "Modo agente · plan:",
-                  "1. Crear la hoja Supuestos con ventas, coste y transporte del mes.",
-                  "2. Crear la hoja Escenarios con subidas del 0, 6, 9 y 12 %.",
-                  "3. Calcular coste adicional y margen enlazando con Supuestos.",
-                  "4. Añadir un gráfico del margen por escenario.",
-                  "Hecho: libro creado. Revisa que ninguna celda de Escenarios tenga valores fijos."
+                  "Analyst · puente del margen bruto (presupuesto → real):",
+                  "Margen presupuestado: 128.040 €",
+                  "+ Efecto volumen: (412.000 − 388.000) × 33 % = +7.920 €",
+                  "− Efecto transporte: 58.400 − 49.492 × 412.000 / 388.000 = −5.847 €",
+                  "− Efecto resto de costes: 223.800 − 210.468 × 412.000 / 388.000 = −313 €",
+                  "= Margen real: 129.800 € (cuadra).",
+                  "Supuesto: los costes presupuestados se escalan con el volumen real."
                 ],
                 "needs": {
-                  "app": "excel",
-                  "open": "Ventas_octubre.xlsx",
-                  "gces": [
-                    "expectations"
+                  "agent": "Analyst",
+                  "refs": [
+                    "Modelo_cierre_octubre.xlsx"
                   ],
                   "say": {
-                    "app": "Abre Ventas_octubre.xlsx en Excel.",
-                    "open": "Abre Ventas_octubre.xlsx en Excel.",
-                    "expectations": "Indica los escenarios exactos (por ejemplo, subidas del 0, 6, 9 y 12 %) y cómo los quieres."
+                    "agent": "Para un puente con cálculos verificables, invoca a @Analyst."
                   }
                 },
-                "writes": [
-                  {
-                    "path": "OneDrive/Cierre octubre/Escenarios_transporte.xlsx",
-                    "content": "Modelo de escenarios (creado con el modo agente)\n\nHoja Supuestos\nVentas mensuales (€) | 412.000\nCoste mensual (€) | 282.200\nTransporte mensual (€) | 58.400\n\nHoja Escenarios\nSubida de tarifa | Coste adicional (€) | Margen bruto %\n0 % | 0 | 31,5 %\n+6 % | 3.504 | 30,7 %\n+9 % | 5.256 | 30,2 %\n+12 % | 7.008 | 29,8 %\nTodas las celdas de Escenarios calculan a partir de la hoja Supuestos (sin valores fijos).\n"
-                  }
+                "cites": [
+                  "Modelo_cierre_octubre.xlsx"
                 ]
               },
               {
-                "id": "supuestos",
+                "id": "narrativa",
                 "when": [
                   [
-                    "supuesto",
-                    "hipotesis",
-                    "limitacion"
+                    "explica",
+                    "redacta",
+                    "narrativa",
+                    "comentario"
                   ]
                 ],
                 "reply": [
-                  "Supuestos del modelo: 1) las ventas no cambian con la tarifa; 2) la subida se aplica a todo el transporte del mes; 3) el resto de costes no varía.",
-                  "Limitación: no incluye la condición de 24 meses de la oferta del 9 %."
+                  "El margen bruto supera el presupuesto en 1.760 €: el mayor volumen aporta 7.920 €, pero el encarecimiento del transporte resta 5.847 € y el resto de costes, 313 €. Sin el efecto transporte, la mejora habría sido de 7.607 €, más de cuatro veces la actual."
                 ],
                 "needs": {
-                  "app": "excel",
+                  "agent": "Analyst",
                   "turn": 2
                 }
               }
@@ -529,95 +485,93 @@
           },
           "goals": [
             {
-              "type": "exists",
-              "label": "Existe el modelo Escenarios_transporte.xlsx",
-              "path": "OneDrive/Cierre octubre/Escenarios_transporte.xlsx"
+              "type": "action",
+              "label": "Puente que cuadra con el real",
+              "id": "puente"
             },
             {
               "type": "action",
-              "label": "Pedir los supuestos y limitaciones",
-              "id": "supuestos",
-              "hint": "¿Qué supuestos y limitaciones tiene el modelo?"
-            },
-            {
-              "type": "viewed",
-              "label": "Revisar el modelo",
-              "path": "Escenarios_transporte.xlsx",
-              "hint": "Archivos → Ver Escenarios_transporte.xlsx"
+              "label": "Explicación basada en el puente",
+              "id": "narrativa"
             }
           ],
           "solution": [
-            "::app excel Ventas_octubre.xlsx",
-            "Crea un modelo de escenarios del margen bruto con subidas de transporte del 0, 6, 9 y 12 %, con los supuestos en una hoja aparte, cálculos enlazados sin valores fijos y un gráfico",
-            "¿Qué supuestos y limitaciones tiene el modelo?",
-            "::ver Escenarios_transporte.xlsx"
+            "@Analyst haz el puente del margen bruto de presupuesto a real con /Modelo_cierre_octubre.xlsx, con efectos volumen, transporte y resto de costes; muestra el método y comprueba que cuadra",
+            "Redacta la explicación para el comité usando solo las cifras del puente"
           ],
-          "explain": "Margen del 31,5 % al 29,8 % con un +12 %. Y la limitación importa: la oferta del 9 % exige 24 meses, algo que el modelo no recoge.",
+          "explain": "El margen supera el presupuesto por volumen, pero el transporte se come casi tres cuartas partes de esa mejora. Ese es el mensaje, y sale de los números.",
           "suggestions": [
-            "::app excel Ventas_octubre.xlsx",
-            "Crea un modelo de escenarios del margen bruto con subidas de transporte del 0, 6, 9 y 12 % ",
-            "¿Qué supuestos y limitaciones tiene el modelo?",
-            "::ver Escenarios_transporte.xlsx"
+            "Explica la desviación",
+            "@Analyst haz el puente del margen bruto de presupuesto a real con /Modelo_cierre_octubre.xlsx, con efectos volumen, transporte y resto de costes; muestra el método y comprueba que cuadra",
+            "Redacta la explicación para el comité usando solo las cifras del puente"
           ]
         },
         {
           "id": "m4l3e2",
           "type": "fill",
-          "concept": "datos.model",
-          "prompt": "Comprueba el escenario del +12 %: transporte mensual 58.400 €, margen bruto base 129.800 € y ventas 412.000 €",
+          "concept": "docs.variance",
+          "prompt": "Comprueba que el puente cuadra",
           "code": false,
-          "template": "Coste adicional: {{0}} €. Margen: {{1}} %.",
+          "template": "128.040 + 7.920 − 5.847 − 313 = {{0}} €. Diferencia frente al presupuesto: {{1}} €.",
           "blanks": [
             {
               "accept": [
-                "7.008",
-                "7008"
+                "129.800",
+                "129800"
               ]
             },
             {
               "accept": [
-                "29,8",
-                "29.8",
-                "29,80"
+                "1.760",
+                "1760",
+                "+1.760"
               ]
             }
           ],
-          "explain": "58.400 × 12 % = 7.008 €; (129.800 − 7.008) / 412.000 ≈ 29,8 %."
+          "explain": "128.040 + 7.920 = 135.960; − 5.847 = 130.113; − 313 = 129.800. Frente a 128.040: +1.760 €."
         },
         {
           "id": "m4l3e3",
-          "type": "order",
-          "concept": "datos.model",
-          "prompt": "Ordena la construcción de un modelo con el modo agente",
-          "items": [
-            "Describir el objetivo y los escenarios",
-            "Revisar el plan que propone",
-            "Dejar que construya supuestos, cálculos y gráfico",
-            "Pedir supuestos y limitaciones",
-            "Recalcular un escenario a mano"
+          "type": "spot",
+          "concept": "docs.variance",
+          "prompt": "Revisa la explicación propuesta y señala lo que no sale del puente",
+          "file": "Explicación de la desviación",
+          "lines": [
+            "El margen bruto supera el presupuesto en 1.760 €.",
+            "El mayor volumen aporta 7.920 €.",
+            "El transporte resta 5.847 € por la subida de tarifas.",
+            "La mejora se debe a la nueva estrategia comercial.",
+            "Sin el transporte, el margen habría superado el presupuesto en 7.607 €."
           ],
-          "explain": "Plan revisado, construcción, supuestos explícitos y una comprobación independiente."
+          "faulty": [
+            3
+          ],
+          "notes": {
+            "3": "El puente no dice nada de la causa del mayor volumen: es una atribución sin respaldo."
+          },
+          "fixed": "El margen bruto supera el presupuesto en 1.760 €.\nEl mayor volumen aporta 7.920 €.\nEl transporte resta 5.847 €.\nCausa del mayor volumen: [pendiente de Comercial].\nSin el efecto transporte, la mejora habría sido de 7.607 €.",
+          "explain": "Los números dicen cuánto; el porqué del volumen tiene que venir de otra fuente. 1.760 + 5.847 = 7.607 sí sale del puente."
         },
         {
           "id": "m4l3e4",
           "type": "choice",
-          "concept": "datos.model",
-          "prompt": "Copilot concluye: «el margen cae por el transporte de la región Norte». ¿Qué valoras?",
+          "concept": "docs.variance",
+          "prompt": "¿Por qué pedir el método del puente («costes escalados con el volumen real»)?",
           "options": [
             {
-              "text": "La tabla no tiene transporte por región: es una hipótesis, no un dato",
+              "text": "Porque con otro método los efectos cambian y el comité debe saber cuál se ha usado",
               "correct": true
             },
             {
-              "text": "Es seguro porque viene del modelo",
-              "feedback": "El modelo no tiene esa información."
+              "text": "Por estética",
+              "feedback": "Cambia los resultados."
             },
             {
-              "text": "Copilot no puede analizar márgenes",
-              "feedback": "Sí puede; lo que no puede es deducir lo que no está en los datos."
+              "text": "No hace falta si cuadra",
+              "feedback": "Distintos métodos cuadran con efectos distintos."
             }
           ],
-          "explain": "Distingue lo que está en los datos de lo que es una hipótesis."
+          "explain": "Un puente cuadra con varios métodos; el método forma parte del resultado."
         },
         {
           "type": "card",
@@ -626,7 +580,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Pedir un modelo con supuestos separados de los cálculos\n- Leer el plan del modo agente\n- Exigir que declare sus supuestos"
+              "body": "Con esta lección deberías poder:\n- Pedir un puente con efectos definidos y que cuadre\n- Declarar el método y sus supuestos\n- Redactar la explicación desde el puente"
             },
             {
               "type": "callout",
@@ -639,163 +593,144 @@
     },
     {
       "id": "l4-4",
-      "title": "Auditar cifras y modelos",
-      "summary": "Cuadra totales, recalcula, comprueba unidades y busca valores fijos antes de enviar.",
-      "minutes": 6,
+      "title": "El pack mensual como sistema",
+      "summary": "Convierte el pack de cierre en un proceso repetible: fuente única, prompts reutilizables, controles y revisión.",
+      "minutes": 7,
       "objectives": [
-        "Cuadrar totales con una fuente independiente",
-        "Detectar errores típicos en un análisis",
-        "Documentar cómo se ha verificado"
+        "Diseñar el flujo del pack mensual con Copilot",
+        "Escribir los prompts reutilizables de control",
+        "Preparar las preguntas del comité"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Cuadrar antes de compartir",
+          "title": "De hacer el pack a tener un sistema",
           "blocks": [
             {
               "type": "flow",
               "steps": [
                 {
-                  "title": "Totales",
-                  "text": "¿La suma coincide con el informe o con el sistema contable?"
+                  "title": "Fuente única",
+                  "text": "El modelo de cierre, cerrado y etiquetado."
                 },
                 {
-                  "title": "Una fila",
-                  "text": "¿El cálculo de una fila es correcto a mano?"
+                  "title": "Contexto",
+                  "text": "Un Notebook del cierre con modelo, actas y correos clave del mes."
                 },
                 {
-                  "title": "Unidades",
-                  "text": "¿Euros o miles de euros? ¿Porcentaje o puntos?"
+                  "title": "Borradores",
+                  "text": "Comentario trazable, puente y presentación desde plantillas de prompts."
                 },
                 {
-                  "title": "Rango",
-                  "text": "¿Se han usado todas las filas y solo esas?"
+                  "title": "Controles",
+                  "text": "Matriz de coherencia y revisión de [pendiente]."
+                },
+                {
+                  "title": "Revisión humana",
+                  "text": "Cifras clave y mensajes, antes de publicar."
                 }
               ]
             },
             {
               "type": "callout",
               "tone": "finance",
-              "body": "En un cierre, un dato sin cuadrar es un dato sin validar. Escribe junto al análisis cómo lo has comprobado."
+              "body": "Un buen indicador de que el sistema funciona: el segundo mes tardas la mitad y el comité no encuentra ninguna cifra que no cuadre."
             }
           ]
         },
         {
           "id": "m4l4e1",
-          "type": "spot",
-          "concept": "datos.check",
-          "prompt": "Copilot ha resumido Ventas_octubre.xlsx. Señala las afirmaciones incorrectas",
-          "file": "Resumen del análisis",
-          "lines": [
-            "Ventas totales: 421.000 €",
-            "Coste total: 282.200 €",
-            "Margen total: 31,5 % sobre ventas",
-            "Margen de Norte: 40,1 %",
-            "Las tres regiones superan su presupuesto"
+          "type": "editor",
+          "concept": "docs.pack",
+          "prompt": "Escribe el **prompt reutilizable de control** del pack: con huecos, fuente única, matriz de coherencia y referencias",
+          "file": "Tu petición a Copilot",
+          "starter": "Revisa el pack.",
+          "rows": 7,
+          "checks": [
+            {
+              "label": "Tiene huecos para el mes y los documentos",
+              "pattern": "\\[(mes|periodo)[^\\]]*\\]",
+              "hint": "Por ejemplo: [MES]."
+            },
+            {
+              "label": "Referencia el modelo como fuente única",
+              "pattern": "(modelo|fuente [uú]nica)",
+              "hint": "Por ejemplo: «el modelo es la fuente única de las cifras»."
+            },
+            {
+              "label": "Pide la matriz de coherencia",
+              "pattern": "(coherencia|coincide|discrepancia)",
+              "hint": "Por ejemplo: «tabla con concepto, valor en cada documento y si coincide»."
+            },
+            {
+              "label": "Exige referencias o marca lo pendiente",
+              "pattern": "(celda|referencia|\\[pendiente\\]|pendiente)",
+              "hint": "Por ejemplo: «cada cifra con su celda»."
+            }
           ],
-          "faulty": [
-            0,
-            3
-          ],
-          "notes": {
-            "0": "Son 412.000 € (118.000 + 162.000 + 132.000): dígitos cambiados.",
-            "3": "Es el recargo sobre coste; el margen sobre ventas es del 28,6 %."
-          },
-          "fixed": "Ventas totales: 412.000 €\nCoste total: 282.200 €\nMargen total: 31,5 %\nMargen de Norte: 28,6 %\nLas tres regiones superan su presupuesto",
-          "explain": "Sumar a mano y recalcular una fila detecta los dos errores. El resto cuadra: (412.000 − 282.200) / 412.000 = 31,5 %.",
-          "context": "Datos: Norte 118.000 / 84.200 · Centro 162.000 / 109.900 · Sur 132.000 / 88.100 (ventas / coste, en €). Presupuestos: 110.000, 150.000 y 128.000 €."
+          "solution": "Control del pack de [MES]: el modelo /[MODELO] es la fuente única de las cifras. Compara /[NOTA] y /[PRESENTACION] con el modelo en una tabla de coherencia con concepto, valor en cada documento y si coincide. Señala cualquier cifra sin referencia a su celda y cualquier asunto pendiente presentado como cerrado.",
+          "explain": "Un control que funciona igual cada mes y que cualquiera del equipo puede lanzar."
         },
         {
           "id": "m4l4e2",
-          "type": "multi",
-          "concept": "datos.check",
-          "prompt": "¿Qué es una verificación independiente?",
-          "options": [
-            {
-              "text": "Comparar el total con el del informe de cierre",
-              "correct": true
-            },
-            {
-              "text": "Recalcular una fila con la calculadora",
-              "correct": true
-            },
-            {
-              "text": "Preguntar a Copilot si está seguro",
-              "feedback": "No es independiente: es la misma herramienta."
-            },
-            {
-              "text": "Ver que el gráfico queda bien",
-              "feedback": "Lo visual no comprueba los datos."
-            }
+          "type": "order",
+          "concept": "docs.pack",
+          "prompt": "Ordena el proceso mensual del pack",
+          "items": [
+            "Cerrar y etiquetar el modelo",
+            "Actualizar el Notebook del cierre",
+            "Generar los borradores con las plantillas",
+            "Lanzar el control de coherencia",
+            "Revisión humana y publicación"
           ],
-          "explain": "Independiente = otra fuente u otro método distinto del que generó el resultado."
-        },
-        {
-          "id": "m4l4e5",
-          "type": "choice",
-          "concept": "datos.check",
-          "prompt": "En un modelo, la celda del margen del escenario +6 % contiene «=0,307». ¿Qué problema hay?",
-          "options": [
-            {
-              "text": "Es un valor fijo: no cambiará si cambian los supuestos",
-              "correct": true
-            },
-            {
-              "text": "Ninguno, el número es correcto",
-              "feedback": "Hoy lo es; mañana, con otro supuesto, no."
-            },
-            {
-              "text": "Debería estar en negrita",
-              "feedback": "El formato no es el problema."
-            }
-          ],
-          "explain": "Los valores fijos escondidos son el error de modelo más común."
+          "explain": "Fuente, contexto, borradores, control y revisión."
         },
         {
           "id": "m4l4e3",
           "type": "choice",
-          "concept": "datos.check",
-          "prompt": "¿Qué dejas escrito junto a un análisis que vas a enviar?",
+          "concept": "docs.pack",
+          "prompt": "¿Qué petición prepara mejor a Ana para el comité?",
           "options": [
             {
-              "text": "Las fuentes y cómo has cuadrado los totales",
+              "text": "«¿Qué 5 preguntas difíciles hará el comité sobre este pack y con qué cifra (y celda) se responde cada una?»",
               "correct": true
             },
             {
-              "text": "Que lo ha hecho Copilot, así no es responsabilidad tuya",
-              "feedback": "La responsabilidad sigue siendo tuya."
+              "text": "«Haz la presentación más bonita»",
+              "feedback": "No prepara las preguntas."
             },
             {
-              "text": "Nada: los números hablan por sí solos",
-              "feedback": "Sin rastro de la verificación, nadie puede fiarse."
+              "text": "«Resume el pack»",
+              "feedback": "Ana ya conoce el pack."
             }
           ],
-          "explain": "Fuentes y verificación: lo que permite a otra persona confiar en tus cifras."
+          "explain": "Anticipar preguntas con su respuesta trazable."
         },
         {
           "id": "m4l4e4",
-          "type": "fill",
-          "concept": "datos.check",
-          "prompt": "Completa la comprobación",
-          "code": false,
-          "template": "Ventas 412.000 € y coste 282.200 €: el margen es {{0}} €, es decir, un {{1}} % sobre ventas.",
-          "blanks": [
-            {
-              "accept": [
-                "129.800",
-                "129800"
-              ]
-            },
-            {
-              "accept": [
-                "31,5",
-                "31.5",
-                "31,50"
-              ]
-            }
+          "type": "match",
+          "concept": "docs.pack",
+          "prompt": "Empareja cada pieza del sistema con su función",
+          "pairs": [
+            [
+              "Modelo de cierre",
+              "Fuente única de las cifras"
+            ],
+            [
+              "Notebook del cierre",
+              "Contexto del mes reunido"
+            ],
+            [
+              "Plantillas de prompts",
+              "Borradores comparables mes a mes"
+            ],
+            [
+              "Matriz de coherencia",
+              "Control antes de publicar"
+            ]
           ],
-          "explain": "412.000 − 282.200 = 129.800 €; 129.800 / 412.000 ≈ 31,5 %."
+          "explain": "Cuatro piezas que hacen el pack repetible."
         },
         {
           "type": "card",
@@ -804,7 +739,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Cuadrar totales con una fuente independiente\n- Detectar errores típicos en un análisis\n- Documentar cómo se ha verificado"
+              "body": "Con esta lección deberías poder:\n- Diseñar el flujo del pack mensual con Copilot\n- Escribir los prompts reutilizables de control\n- Preparar las preguntas del comité"
             },
             {
               "type": "callout",
@@ -822,115 +757,107 @@
       {
         "id": "m4x1",
         "type": "choice",
-        "concept": "datos.prep",
-        "prompt": "¿Cómo defines un duplicado en una exportación de facturas?",
+        "concept": "docs.trace",
+        "prompt": "¿Qué hace auditable un comentario de gestión en minutos?",
         "options": [
           {
-            "text": "Mismo número de factura",
+            "text": "Que cada cifra lleve la celda de la que sale",
             "correct": true
           },
           {
-            "text": "Mismo cliente e importe",
-            "feedback": "Puede ser una segunda factura legítima."
+            "text": "Que sea breve",
+            "feedback": "Ayuda, pero no lo hace auditable."
           },
           {
-            "text": "Misma fecha",
-            "feedback": "Puede haber muchas facturas el mismo día."
+            "text": "Que lo firme dirección",
+            "feedback": "No cambia la revisión."
           }
         ],
-        "explain": "La regla de duplicado se define con la clave única."
-      },
-      {
-        "id": "m4x5",
-        "type": "choice",
-        "concept": "datos.model",
-        "prompt": "¿Qué pides para que un modelo de escenarios siga siendo útil?",
-        "options": [
-          {
-            "text": "Supuestos en hoja aparte y cálculos enlazados sin valores fijos",
-            "correct": true
-          },
-          {
-            "text": "Que ponga los resultados en negrita",
-            "feedback": "No afecta."
-          },
-          {
-            "text": "Un solo escenario",
-            "feedback": "Un modelo compara escenarios."
-          }
-        ],
-        "explain": "Supuestos separados y fórmulas enlazadas."
+        "explain": "Trazabilidad cifra a celda."
       },
       {
         "id": "m4x2",
         "type": "choice",
-        "concept": "datos.formulas",
-        "prompt": "Ventas 162.000 € y coste 109.900 €. ¿Margen sobre ventas?",
+        "concept": "docs.consistency",
+        "prompt": "La presentación dice 421.000 € y el modelo 412.000 €. ¿Dónde corriges?",
         "options": [
           {
-            "text": "32,2 %",
+            "text": "En la presentación, y revisas lo que se calculó a partir de esa cifra",
             "correct": true
           },
           {
-            "text": "47,4 %",
-            "feedback": "Es el recargo sobre el coste."
+            "text": "En el modelo",
+            "feedback": "El modelo es la fuente única."
           },
           {
-            "text": "67,8 %",
-            "feedback": "Es el coste entre las ventas."
+            "text": "En ambos, haciendo la media",
+            "feedback": "No tiene sentido."
           }
         ],
-        "explain": "(162.000 − 109.900) / 162.000 ≈ 32,2 %."
+        "explain": "Se corrige en origen del error y lo que arrastra."
       },
       {
         "id": "m4x3",
-        "type": "multi",
-        "concept": "datos.check",
-        "prompt": "¿Qué errores detectas con una verificación rápida?",
+        "type": "choice",
+        "concept": "docs.variance",
+        "prompt": "Un puente de margen debe…",
         "options": [
           {
-            "text": "Un total con dígitos cambiados",
+            "text": "Cuadrar con el real y declarar su método",
             "correct": true
           },
           {
-            "text": "Una fórmula que divide entre el coste",
-            "correct": true
+            "text": "Tener muchos efectos",
+            "feedback": "No es un criterio."
           },
           {
-            "text": "Unidades mezcladas (€ y miles €)",
-            "correct": true
-          },
-          {
-            "text": "El color de las barras del gráfico",
-            "feedback": "No es un error de datos."
+            "text": "Explicar la estrategia comercial",
+            "feedback": "Eso no sale del puente."
           }
         ],
-        "explain": "Totales, fórmula y unidades: las tres comprobaciones básicas."
+        "explain": "Cuadre y método."
       },
       {
         "id": "m4x4",
-        "type": "match",
-        "concept": "datos.formulas",
-        "prompt": "Empareja cada petición con la función",
-        "pairs": [
-          [
-            "Traer un dato de otra tabla",
-            "BUSCARX"
-          ],
-          [
-            "Sumar con varias condiciones",
-            "SUMAR.SI.CONJUNTO"
-          ],
-          [
-            "Evitar #N/D en el informe",
-            "SI.ERROR"
-          ],
-          [
-            "Nombrar pasos de una fórmula larga",
-            "LET"
-          ]
+        "type": "multi",
+        "concept": "docs.pack",
+        "prompt": "¿Qué piezas convierten el pack en un sistema repetible?",
+        "options": [
+          {
+            "text": "Una fuente única de cifras",
+            "correct": true
+          },
+          {
+            "text": "Plantillas de prompts",
+            "correct": true
+          },
+          {
+            "text": "Un control de coherencia",
+            "correct": true
+          },
+          {
+            "text": "Rehacer la presentación desde cero cada mes",
+            "feedback": "Es lo contrario de un sistema."
+          }
         ],
-        "explain": "Cada petición se traduce en una función que puedes revisar."
+        "explain": "Fuente, plantillas y controles."
+      },
+      {
+        "id": "m4x5",
+        "type": "fill",
+        "concept": "docs.variance",
+        "prompt": "Completa",
+        "code": false,
+        "template": "Presupuesto 128.040 € + volumen 7.920 € − transporte 5.847 € − resto 313 € = {{0}} €.",
+        "blanks": [
+          {
+            "accept": [
+              "129.800",
+              "129800"
+            ]
+          }
+        ],
+        "explain": "El puente cuadra con el margen real."
       }
     ]
   }

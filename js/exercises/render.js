@@ -367,7 +367,7 @@ function solutionLine(s) {
   if (!s.startsWith('::')) return s;
   const [name, ...rest] = s.slice(2).trim().split(/\s+/);
   const arg = rest.join(' ');
-  const labels = { app: () => `[Abrir ${arg}]`, modo: () => `[Modo ${arg}]`, nuevo: () => '[Nuevo chat]', ver: () => `[Archivos → Ver ${arg}]`, editar: () => `[Archivos → Editar ${arg}]`, agente: () => `[Agente ${arg}]`, pages: () => `[Editar en Pages${arg ? `: ${arg}` : ''}]` };
+  const labels = { app: () => `[Abrir ${arg}]`, modo: () => `[Modo ${arg}]`, nuevo: () => '[Nuevo chat]', ver: () => `[Archivos → Ver ${arg}]`, editar: () => `[Archivos → Editar ${arg}]`, agente: () => `[Agente ${arg}]`, pages: () => `[Editar en Pages${arg ? `: ${arg}` : ''}]`, programar: () => `[Programar: ${arg}]` };
   return labels[name]?.() || s;
 }
 

@@ -280,3 +280,12 @@ test('Copilot simulado: si encajan varias respuestas, prefiere la que aún no ha
   cp.run('Adelante con el plan');
   assert.deepEqual(cp.events.filter(e => e.action).map(e => e.action), ['a', 'b']);
 });
+
+test('Copilot simulado: programar la última petición', () => {
+  const cp = new Copilot({ files: FILES });
+  assert.equal(cp.run('::programar cada lunes').lines[0].kind, 'err', 'sin petición previa no hay nada que programar');
+  cp.run('Tabla de compromisos de /Informe.docx');
+  assert.match(cp.run('::programar cada lunes a las 8:00').lines[0].text, /Prompt programado/);
+  assert.ok(evaluateGoals([{ type: 'scheduled', pattern: 'compromisos', freq: 'lunes' }], cp)[0].passed);
+  assert.ok(!evaluateGoals([{ type: 'scheduled', freq: 'viernes' }], cp)[0].passed);
+});

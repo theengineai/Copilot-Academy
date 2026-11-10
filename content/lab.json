@@ -84,46 +84,69 @@
     }
   },
   {
-    "id": "lab-ref",
-    "title": "Resume y comprueba",
-    "summary": "Un resumen con formato y la comprobación en la fuente.",
+    "id": "lab-traza",
+    "title": "Trazabilidad",
+    "summary": "Cada afirmación del cierre con su fuente y su estado.",
     "requires": [
       "l1-3"
     ],
     "exercise": {
       "type": "copilot",
       "concept": "fund.verify",
-      "prompt": "Resume **/Informe_cierre_octubre.docx** en **3 viñetas** y abre el informe para comprobarlo",
+      "prompt": "Pide una **tabla de trazabilidad** del cierre (afirmación, fuente y estado) con **/Informe_cierre_octubre.docx** y **/Comite_cierre_3nov.meet**",
       "setup": {
         "files": {
-          "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
-        }
+          "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
+          "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
+        },
+        "actions": [
+          {
+            "id": "traza",
+            "when": [
+              [
+                "afirmacion",
+                "cifra",
+                "dato",
+                "tabla"
+              ]
+            ],
+            "reply": [
+              "Afirmación | Fuente | Estado",
+              "Ventas 412.000 € (+6 %) | Informe [1] | Confirmado",
+              "Margen 31,5 % | Informe [1] | Confirmado",
+              "Comparativa de proveedores el 12 nov | Comité [2] | Acordado",
+              "Provisión del cliente Norte | Informe [1] y comité [2] | Pendiente",
+              "Ahorro esperado con otro proveedor | — | Sin fuente: no lo incluyo"
+            ],
+            "needs": {
+              "refs": [
+                "Informe_cierre_octubre.docx",
+                "Comite_cierre_3nov.meet"
+              ],
+              "gces": [
+                "expectations"
+              ]
+            },
+            "cites": [
+              "Informe_cierre_octubre.docx",
+              "Comite_cierre_3nov.meet"
+            ]
+          }
+        ]
       },
       "goals": [
         {
-          "type": "prompt",
-          "label": "Resumen con el informe y un formato",
-          "refs": [
-            "Informe_cierre_octubre.docx"
-          ],
-          "gces": [
-            "expectations"
-          ]
-        },
-        {
-          "type": "viewed",
-          "label": "Abrir el informe",
-          "path": "Informe_cierre_octubre.docx"
+          "type": "action",
+          "label": "Tabla de trazabilidad",
+          "id": "traza"
         }
       ],
       "solution": [
-        "Resume /Informe_cierre_octubre.docx en 3 viñetas",
-        "::ver Informe_cierre_octubre.docx"
+        "Haz una tabla con cada afirmación del cierre, su fuente y si está confirmada o pendiente, usando /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet"
       ],
-      "explain": "Fuente exacta, formato y comprobación.",
+      "explain": "Lo que no tiene fuente se ve a la primera.",
       "suggestions": [
-        "Resume /Informe_cierre_octubre.docx en 3 viñetas",
-        "::ver Informe_cierre_octubre.docx"
+        "Haz una tabla con cada afirmación del cierre, su fuente y si está confirmada o pendiente, usando /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet"
       ]
     }
   },
@@ -249,185 +272,191 @@
     }
   },
   {
-    "id": "lab-word",
-    "title": "Pregunta a la política",
-    "summary": "Abre un documento en Word y pregúntale.",
+    "id": "lab-auditoria",
+    "title": "Audita un modelo",
+    "summary": "Hallazgos de un modelo heredado, sin tocar nada.",
     "requires": [
-      "l3-2"
+      "l3-1"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "docs.compare",
-      "prompt": "Abre **Politica_gastos_viaje.docx** en Word y pregunta por el **kilometraje**",
+      "concept": "datos.audit",
+      "prompt": "Abre **Modelo_presupuesto_2027.xlsx** en Excel y encarga una auditoría **sin modificar nada**, con hallazgos en una tabla",
       "setup": {
         "files": {
-          "SharePoint/Finanzas/Politica_gastos_viaje.docx": "Política de gastos de viaje (versión 4, enero 2026) · documento ficticio\n\n1. Hotel: máximo 120 € por noche en España y 160 € en el extranjero.\n2. Dietas: 45 € diarios con justificante.\n3. Kilometraje: 0,26 € por km en vehículo propio.\n4. Plazo: las notas de gasto se presentan en los 30 días siguientes al viaje.\n5. Excepciones: las aprueba la dirección financiera por escrito.\n"
+          "OneDrive/Presupuesto/Modelo_presupuesto_2027.xlsx": "Modelo de presupuesto 2027 (heredado; autor: antiguo responsable de control) · ficticio\n\nHoja Supuestos\nC3 Crecimiento de ventas | 4,0 %\nC4 IPC | 2,5 %\nC5 Subida de tarifa de transporte | 6,0 % (desde enero)\nC6 Transporte base mensual (€) | 58.400\n\nHoja Ventas · H5:H10 = ventas 2026 × (1 + Supuestos!C3); en H8:H10 (región Sur) la fórmula apunta a Supuestos!C4\nHoja Costes · F12 = Transporte × 1,06 (constante escrita a mano)\nHoja PyG · D20 = SUMA(D5:D18); la fila 19 (amortización) se añadió después\nHoja Resumen · B2 vínculo externo a [Presupuesto_2026_v7.xlsx]Resumen!B2\n"
         },
         "actions": [
           {
-            "id": "km",
+            "id": "auditoria",
             "when": [
               [
-                "kilomet",
-                "km"
+                "audita",
+                "revisa",
+                "incoherencia",
+                "errores",
+                "valores fijos",
+                "constantes"
               ]
             ],
             "reply": [
-              "0,26 € por km en vehículo propio (apartado 3). [1]"
+              "Modo agente · plan: recorrer las hojas en orden de cálculo, comparar fórmulas por filas y columnas, buscar constantes en fórmulas, vínculos externos y rangos de suma incompletos.",
+              "Hallazgo | Ubicación | Impacto | Gravedad",
+              "Fórmula inconsistente: Sur usa el IPC (C4) en lugar del crecimiento (C3) | Ventas!H8:H10 | Ventas de Sur infraestimadas | Alta",
+              "Constante 1,06 escrita a mano | Costes!F12 | No responde al supuesto de tarifa | Alta",
+              "Suma que excluye la fila 19 (amortización) | PyG!D20 | Resultado sobrestimado | Alta",
+              "Vínculo externo a Presupuesto_2026_v7.xlsx | Resumen!B2 | Dependencia frágil | Media",
+              "No he modificado nada: los cambios los decides tú."
             ],
             "needs": {
-              "app": "word",
-              "open": "Politica_gastos_viaje.docx"
+              "app": "excel",
+              "open": "Modelo_presupuesto_2027.xlsx",
+              "gces": [
+                "expectations"
+              ],
+              "say": {
+                "app": "Abre Modelo_presupuesto_2027.xlsx en Excel.",
+                "open": "Abre Modelo_presupuesto_2027.xlsx en Excel.",
+                "expectations": "Dime qué buscar y cómo quieres los hallazgos (por ejemplo, tabla con ubicación, impacto y gravedad, sin modificar nada)."
+              }
             },
-            "cites": [
-              "Politica_gastos_viaje.docx"
-            ]
+            "vague": "puedo revisar el libro, pero necesito saber qué tipo de problemas buscar y cómo informarte."
           }
         ]
       },
       "goals": [
         {
           "type": "action",
-          "label": "Respuesta sobre el kilometraje con el documento abierto",
-          "id": "km"
+          "label": "Tabla de hallazgos",
+          "id": "auditoria"
         }
       ],
       "solution": [
-        "::app word Politica_gastos_viaje.docx",
-        "¿Cuánto se paga por kilómetro?"
+        "::app excel Modelo_presupuesto_2027.xlsx",
+        "Audita el libro sin modificar nada: fórmulas inconsistentes, constantes en fórmulas, rangos incompletos y vínculos externos, en una tabla con hallazgo, ubicación, impacto y gravedad"
       ],
-      "explain": "Con el documento abierto, Copilot trabaja sobre él.",
+      "explain": "Auditar y corregir son pasos distintos.",
       "suggestions": [
-        "::app word Politica_gastos_viaje.docx",
-        "¿Cuánto se paga por kilómetro?"
+        "::app excel Modelo_presupuesto_2027.xlsx",
+        "Audita el libro sin modificar nada: fórmulas inconsistentes, constantes en fórmulas, rangos incompletos y vínculos externos, en una tabla con hallazgo, ubicación, impacto y gravedad"
       ]
     }
   },
   {
-    "id": "lab-excel",
-    "title": "Margen en Excel",
-    "summary": "Añade la columna de margen y pide la explicación.",
+    "id": "lab-coherencia",
+    "title": "Coherencia del pack",
+    "summary": "Cruza modelo, nota y presentación antes del comité.",
     "requires": [
       "l4-2"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "datos.formulas",
-      "prompt": "Abre **Ventas_octubre.xlsx** en Excel, añade el **margen** y pide que **explique** la fórmula",
+      "concept": "docs.consistency",
+      "prompt": "Cruza **/Modelo_cierre_octubre.xlsx**, **/Nota_comite_v3.docx** y **/Presentacion_comite_v2.pptx** en una matriz de coherencia",
       "setup": {
         "files": {
-          "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€)\nNorte | 118.000 | 84.200 | 110.000\nCentro | 162.000 | 109.900 | 150.000\nSur | 132.000 | 88.100 | 128.000\n"
+          "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n",
+          "OneDrive/Cierre octubre/Pack/Nota_comite_v3.docx": "Nota al comité · cierre de octubre (v3) · ficticia\n\nLas ventas alcanzan 412.000 €, un 6,2 % por encima del presupuesto.\nEl margen bruto se sitúa en el 31,5 % frente al 33,0 % presupuestado.\nEl transporte cuesta 58.400 €, un 18 % más de lo previsto.\nLa provisión del cliente Norte está pendiente de confirmar.\n",
+          "OneDrive/Cierre octubre/Pack/Presentacion_comite_v2.pptx": "Presentación al comité (v2) · ficticia\n\nDiapositiva 2: Ventas 421.000 € (+8,5 %)\nDiapositiva 3: Margen bruto 31,5 % (objetivo 33 %)\nDiapositiva 4: Transporte +18 %\nDiapositiva 5: Provisión del cliente Norte confirmada\n"
         },
         "actions": [
           {
-            "id": "margen",
+            "id": "coherencia",
             "when": [
               [
-                "margen"
+                "coherencia",
+                "coinciden",
+                "compara",
+                "discrepancias",
+                "cuadran"
               ]
             ],
             "reply": [
-              "Propongo una columna «Margen %» con la fórmula =([@[Ventas (€)]]-[@[Coste (€)]])/[@[Ventas (€)]].",
-              "Resultado: Norte 28,6 %, Centro 32,2 %, Sur 33,3 %. He añadido la columna a la tabla."
+              "Concepto | Modelo | Nota v3 | Presentación v2 | ¿Coincide?",
+              "Ventas | 412.000 € | 412.000 € | 421.000 € | No (dígitos cambiados en la presentación)",
+              "Variación de ventas | +6,2 % | +6,2 % | +8,5 % | No (calculada sobre la cifra errónea)",
+              "Margen bruto | 31,5 % | 31,5 % | 31,5 % | Sí",
+              "Transporte | +18 % | +18 % | +18 % | Sí",
+              "Provisión cliente Norte | — | Pendiente | Confirmada | No (la presentación da por hecho algo pendiente)"
             ],
             "needs": {
-              "app": "excel",
-              "open": "Ventas_octubre.xlsx",
-              "say": {
-                "app": "Abre Ventas_octubre.xlsx en Excel.",
-                "open": "Abre Ventas_octubre.xlsx en Excel."
-              }
+              "refs": [
+                "Modelo_cierre_octubre.xlsx",
+                "Nota_comite_v3.docx",
+                "Presentacion_comite_v2.pptx"
+              ],
+              "gces": [
+                "expectations"
+              ]
             },
-            "writes": [
-              {
-                "path": "OneDrive/Cierre octubre/Ventas_octubre.xlsx",
-                "content": "Región | Ventas (€) | Coste (€) | Presupuesto (€) | Margen %\nNorte | 118.000 | 84.200 | 110.000 | 28,6 %\nCentro | 162.000 | 109.900 | 150.000 | 32,2 %\nSur | 132.000 | 88.100 | 128.000 | 33,3 %\n"
-              }
+            "cites": [
+              "Modelo_cierre_octubre.xlsx",
+              "Nota_comite_v3.docx",
+              "Presentacion_comite_v2.pptx"
             ]
-          },
-          {
-            "id": "explica",
-            "when": [
-              [
-                "explica",
-                "como funciona",
-                "que hace"
-              ]
-            ],
-            "reply": [
-              "La fórmula resta el coste a las ventas de cada fila y divide entre las ventas: margen sobre ventas. Dividir entre el coste daría el recargo (markup)."
-            ],
-            "needs": {
-              "app": "excel",
-              "turn": 2
-            }
           }
         ]
       },
       "goals": [
         {
-          "type": "file",
-          "label": "Columna Margen % añadida",
-          "path": "OneDrive/Cierre octubre/Ventas_octubre.xlsx",
-          "checks": [
-            {
-              "label": "margen",
-              "pattern": "Margen %"
-            }
-          ]
-        },
-        {
           "type": "action",
-          "label": "Explicación de la fórmula",
-          "id": "explica"
+          "label": "Matriz de coherencia",
+          "id": "coherencia"
         }
       ],
       "solution": [
-        "::app excel Ventas_octubre.xlsx",
-        "Añade una columna con el margen sobre ventas",
-        "Explica cómo funciona la fórmula"
+        "Comprueba la coherencia entre /Modelo_cierre_octubre.xlsx, /Nota_comite_v3.docx y /Presentacion_comite_v2.pptx en una tabla con concepto, valor en cada documento y si coincide"
       ],
-      "explain": "Columna nueva y concepto entendido.",
+      "explain": "Fuente única y una columna «¿coincide?».",
       "suggestions": [
-        "::app excel Ventas_octubre.xlsx",
-        "Añade una columna con el margen sobre ventas",
-        "Explica cómo funciona la fórmula"
+        "Comprueba la coherencia entre /Modelo_cierre_octubre.xlsx, /Nota_comite_v3.docx y /Presentacion_comite_v2.pptx en una tabla con concepto, valor en cada documento y si coincide"
       ]
     }
   },
   {
-    "id": "lab-teams",
-    "title": "Acuerdos de la reunión",
-    "summary": "Saca los acuerdos con responsable de una reunión.",
+    "id": "lab-programar",
+    "title": "Programa tu lunes",
+    "summary": "Valida la tabla de compromisos y prográmala.",
     "requires": [
-      "l5-3"
+      "l5-2"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "com.meetings",
-      "prompt": "Abre **Comite_cierre_3nov.meet** en Teams y pregunta por los **acuerdos y responsables**",
+      "concept": "com.scheduled",
+      "prompt": "Pide la **tabla de compromisos** con **/Peticiones_Ana_noviembre.eml** y **/Hilo_tarifa_logistica.eml** y **prográmala para cada lunes**",
       "setup": {
         "files": {
-          "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
+          "Outlook/Peticiones_Ana_noviembre.eml": "De: Ana (dirección financiera) · Para: ti · Asunto: Pendientes de noviembre\n\n[Ana, 4 nov] Necesito la provisión del cliente Norte confirmada antes del día 10.\n[Ana, 4 nov] Revisa la comparativa de proveedores de Luis antes de que la presente el 12.\n[Tú, 5 nov] De acuerdo, te paso también el impacto de la tarifa en el margen el viernes.\n",
+          "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n"
         },
         "actions": [
           {
-            "id": "acuerdos",
+            "id": "compromisos",
             "when": [
               [
-                "acuerdo",
-                "responsable"
+                "compromis",
+                "pendiente"
               ]
             ],
             "reply": [
-              "Luis: comparativa de proveedores (12 nov). Marta: provisión del cliente Norte (antes del día 10)."
+              "Compromiso | Con quién | Plazo | Estado | Origen",
+              "Confirmar la provisión del cliente Norte | Ana | 10 nov | Abierto | Correo [1]",
+              "Revisar la comparativa de proveedores | Ana | antes del 12 nov | Abierto | Correo [1]",
+              "Enviar el impacto de la tarifa en el margen | Ana (lo ofreciste tú) | viernes | Abierto | Correo [1]",
+              "Responder a Compras sobre la tarifa | Compras | antes del viernes | Vencido | Hilo [2]"
             ],
             "needs": {
-              "app": "teams",
-              "open": "Comite_cierre_3nov.meet"
+              "refs": [
+                "Peticiones_Ana_noviembre.eml",
+                "Hilo_tarifa_logistica.eml"
+              ],
+              "gces": [
+                "expectations"
+              ]
             },
             "cites": [
-              "Comite_cierre_3nov.meet"
+              "Peticiones_Ana_noviembre.eml",
+              "Hilo_tarifa_logistica.eml"
             ]
           }
         ]
@@ -435,18 +464,24 @@
       "goals": [
         {
           "type": "action",
-          "label": "Acuerdos con responsable",
-          "id": "acuerdos"
+          "label": "Tabla de compromisos",
+          "id": "compromisos"
+        },
+        {
+          "type": "scheduled",
+          "label": "Programada para los lunes",
+          "pattern": "compromis",
+          "freq": "lunes"
         }
       ],
       "solution": [
-        "::app teams Comite_cierre_3nov.meet",
-        "¿Qué acuerdos se tomaron y quién es responsable?"
+        "Haz una tabla de compromisos pendientes con qué, con quién, plazo, estado y origen, incluidos los que he prometido yo, a partir de /Peticiones_Ana_noviembre.eml y /Hilo_tarifa_logistica.eml",
+        "::programar cada lunes a las 8:00"
       ],
-      "explain": "Acuerdos, responsables y fechas.",
+      "explain": "Validar a mano, programar después.",
       "suggestions": [
-        "::app teams Comite_cierre_3nov.meet",
-        "¿Qué acuerdos se tomaron y quién es responsable?"
+        "Haz una tabla de compromisos pendientes con qué, con quién, plazo, estado y origen, incluidos los que he prometido yo, a partir de /Peticiones_Ana_noviembre.eml y /Hilo_tarifa_logistica.eml",
+        "::programar cada lunes a las 8:00"
       ]
     }
   },

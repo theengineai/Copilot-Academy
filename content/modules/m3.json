@@ -1,225 +1,177 @@
 {
   "id": "m3",
-  "title": "Word y PowerPoint avanzado",
-  "subtitle": "Documentos largos con método, comparar versiones, presentaciones para dirección y modo agente.",
-  "level": "L3",
-  "icon": "file",
-  "color": "#3F6E9C",
+  "title": "Modelización con Copilot y Analyst",
+  "subtitle": "Auditar y documentar modelos ajenos, simular con Python y contrastar supuestos con contratos y correos.",
+  "level": "L3 → L4",
+  "icon": "chart",
+  "color": "#3F7D4E",
   "lessons": [
     {
       "id": "l3-1",
-      "title": "Documentos largos con método",
-      "summary": "Estructura primero, secciones con su fuente, estilo coherente y resumen al final.",
-      "minutes": 7,
+      "title": "Auditar un modelo ajeno",
+      "summary": "Usa Copilot para recorrer un modelo heredado y sacar a la luz incoherencias, constantes, rangos rotos y vínculos externos.",
+      "minutes": 8,
       "objectives": [
-        "Construir un documento largo por fases",
-        "Mantener la coherencia de cifras entre secciones",
-        "Aplicar una guía de estilo"
+        "Encargar una auditoría con alcance y formato de hallazgos",
+        "Exigir que no modifique nada mientras audita",
+        "Contrastar los hallazgos antes de corregir"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Un documento largo no se pide de una vez",
+          "title": "Copilot no te hace las fórmulas: te revisa las de otros",
           "blocks": [
             {
-              "type": "flow",
-              "steps": [
-                {
-                  "title": "Índice",
-                  "text": "Pide la estructura y ajústala antes de redactar nada."
-                },
-                {
-                  "title": "Secciones",
-                  "text": "Redacta cada apartado con su fuente (/archivo) y la regla [pendiente]."
-                },
-                {
-                  "title": "Coherencia",
-                  "text": "«Comprueba que las cifras coinciden en todas las secciones y lista las que no»."
-                },
-                {
-                  "title": "Resumen",
-                  "text": "El resumen ejecutivo, al final, cuando el contenido ya es correcto."
-                }
-              ]
+              "type": "text",
+              "body": "Tú construyes modelos mejor que Copilot. Donde aporta es en lo que te lleva horas: **revisar un modelo ajeno** de 15 hojas antes de fiarte de él. En modo agente (en algunas versiones, «Editar con Copilot») puede recorrer el libro y buscar:\n- Fórmulas **inconsistentes** en una fila o columna.\n- **Constantes** escritas dentro de fórmulas de cálculo.\n- **Rangos** de suma que no cubren todas las filas.\n- **Vínculos externos**, referencias circulares y errores ocultos."
             },
             {
               "type": "callout",
-              "tone": "tip",
-              "body": "Una guía de estilo breve en la petición («frases cortas, cifras con un decimal, sin adjetivos») ahorra muchas rondas de edición."
+              "tone": "warn",
+              "body": "En la vista previa del modo agente de Excel, Microsoft publicó un 57,2 % de acierto en el banco de pruebas SpreadsheetBench. Es un asistente de auditoría, no un auditor: cada hallazgo se comprueba y lo que no encuentre no significa que no exista."
             }
           ]
         },
         {
           "id": "m3l1e1",
           "type": "copilot",
-          "concept": "docs.longform",
-          "prompt": "En **Word**, pide primero el **índice** de una nota para dirección basada en **/Informe_cierre_octubre.docx** y **/Comite_cierre_3nov.meet**. Después pide que **redacte** siguiendo ese índice y revisa el resultado",
+          "concept": "datos.audit",
+          "prompt": "Abre **Modelo_presupuesto_2027.xlsx** en Excel y encarga una **auditoría**: fórmulas inconsistentes, constantes, rangos incompletos y vínculos externos, en una **tabla** (hallazgo, ubicación, impacto y gravedad) y **sin modificar nada**",
           "setup": {
             "files": {
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
-              "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
+              "OneDrive/Presupuesto/Modelo_presupuesto_2027.xlsx": "Modelo de presupuesto 2027 (heredado; autor: antiguo responsable de control) · ficticio\n\nHoja Supuestos\nC3 Crecimiento de ventas | 4,0 %\nC4 IPC | 2,5 %\nC5 Subida de tarifa de transporte | 6,0 % (desde enero)\nC6 Transporte base mensual (€) | 58.400\n\nHoja Ventas · H5:H10 = ventas 2026 × (1 + Supuestos!C3); en H8:H10 (región Sur) la fórmula apunta a Supuestos!C4\nHoja Costes · F12 = Transporte × 1,06 (constante escrita a mano)\nHoja PyG · D20 = SUMA(D5:D18); la fila 19 (amortización) se añadió después\nHoja Resumen · B2 vínculo externo a [Presupuesto_2026_v7.xlsx]Resumen!B2\n",
+              "OneDrive/Presupuesto/Supuestos_presupuesto_2027.docx": "Nota de supuestos del presupuesto 2027 (versión de septiembre) · ficticia\n\nCrecimiento de ventas: 4 %. Subida de tarifa de transporte: 6 % desde enero (estimación de Compras de junio).\nSin cambios en plazos de pago a proveedores.\n"
             },
             "actions": [
               {
-                "id": "indice",
+                "id": "auditoria",
                 "when": [
                   [
-                    "indice",
-                    "estructura",
-                    "esquema"
+                    "audita",
+                    "revisa",
+                    "incoherencia",
+                    "errores",
+                    "valores fijos",
+                    "constantes"
                   ]
                 ],
                 "reply": [
-                  "Propuesta de índice para la nota a dirección:",
-                  "1. Resultado del mes",
-                  "2. Margen y su causa",
-                  "3. Decisiones en curso",
-                  "4. Pendientes",
-                  "5. Riesgos",
-                  "¿Lo ajustamos antes de redactar?"
+                  "Modo agente · plan: recorrer las hojas en orden de cálculo, comparar fórmulas por filas y columnas, buscar constantes en fórmulas, vínculos externos y rangos de suma incompletos.",
+                  "Hallazgo | Ubicación | Impacto | Gravedad",
+                  "Fórmula inconsistente: Sur usa el IPC (C4) en lugar del crecimiento (C3) | Ventas!H8:H10 | Ventas de Sur infraestimadas | Alta",
+                  "Constante 1,06 escrita a mano | Costes!F12 | No responde al supuesto de tarifa | Alta",
+                  "Suma que excluye la fila 19 (amortización) | PyG!D20 | Resultado sobrestimado | Alta",
+                  "Vínculo externo a Presupuesto_2026_v7.xlsx | Resumen!B2 | Dependencia frágil | Media",
+                  "No he modificado nada: los cambios los decides tú."
                 ],
                 "needs": {
-                  "app": "word",
-                  "refs": [
-                    "Informe_cierre_octubre.docx",
-                    "Comite_cierre_3nov.meet"
+                  "app": "excel",
+                  "open": "Modelo_presupuesto_2027.xlsx",
+                  "gces": [
+                    "expectations"
                   ],
                   "say": {
-                    "app": "Abre Word (sin archivo) para trabajar el documento."
+                    "app": "Abre Modelo_presupuesto_2027.xlsx en Excel.",
+                    "open": "Abre Modelo_presupuesto_2027.xlsx en Excel.",
+                    "expectations": "Dime qué buscar y cómo quieres los hallazgos (por ejemplo, tabla con ubicación, impacto y gravedad, sin modificar nada)."
                   }
                 },
-                "cites": [
-                  "Informe_cierre_octubre.docx",
-                  "Comite_cierre_3nov.meet"
-                ]
-              },
-              {
-                "id": "nota",
-                "when": [
-                  [
-                    "redacta",
-                    "desarrolla",
-                    "escribe"
-                  ]
-                ],
-                "reply": [
-                  "He redactado la nota siguiendo el índice acordado. Los datos que no figuran en las fuentes van marcados como [pendiente].",
-                  "Revisa cifras, responsables y fechas antes de conservarla."
-                ],
-                "needs": {
-                  "app": "word",
-                  "turn": 2,
-                  "say": {
-                    "turn": "Primero acordemos el índice: pídeme la estructura y después la redacción."
-                  }
-                },
-                "cites": [
-                  "Informe_cierre_octubre.docx",
-                  "Comite_cierre_3nov.meet"
-                ],
-                "writes": [
-                  {
-                    "path": "OneDrive/Cierre octubre/Nota_direccion_octubre.docx",
-                    "content": "Nota para dirección · Cierre de octubre 2026 (borrador generado con Copilot)\n\n1. Resultado: ventas de 412.000 € (+6 % sobre presupuesto).\n2. Margen: 31,5 % frente al 33 % previsto, por el transporte (+18 %).\n3. Decisiones en curso: comparativa de tres proveedores (Luis, 12 nov).\n4. Pendiente: provisión del cliente Norte (Marta, antes del día 10).\n5. Riesgo: dos clientes concentran el 27 % de las ventas.\n"
-                  }
-                ]
+                "vague": "puedo revisar el libro, pero necesito saber qué tipo de problemas buscar y cómo informarte."
               }
             ]
           },
           "goals": [
             {
-              "type": "action",
-              "label": "1. Acordar el índice con las dos fuentes",
-              "id": "indice",
-              "hint": "Abre Word: propón el índice de una nota para dirección a partir de /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet"
+              "type": "app",
+              "label": "Modelo abierto en Excel",
+              "app": "excel",
+              "open": "Modelo_presupuesto_2027.xlsx"
+            },
+            {
+              "type": "prompt",
+              "label": "Encargo con alcance, formato de hallazgos y sin modificar",
+              "pattern": "sin (modificar|cambiar|tocar)|no (modifiques|cambies|toques)",
+              "gces": [
+                "expectations"
+              ]
             },
             {
               "type": "action",
-              "label": "2. Redactar siguiendo el índice",
-              "id": "nota",
-              "hint": "Redacta la nota siguiendo ese índice"
-            },
-            {
-              "type": "viewed",
-              "label": "3. Revisar el documento",
-              "path": "Nota_direccion_octubre.docx",
-              "hint": "Archivos → Ver Nota_direccion_octubre.docx"
+              "label": "Obtener la tabla de hallazgos",
+              "id": "auditoria"
             }
           ],
           "solution": [
-            "::app word",
-            "Propón el índice de una nota para dirección sobre el cierre de octubre a partir de /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet",
-            "Redacta la nota siguiendo ese índice, frases cortas y [pendiente] en lo que no esté en las fuentes",
-            "::ver Nota_direccion_octubre.docx"
+            "::app excel Modelo_presupuesto_2027.xlsx",
+            "Audita el libro sin modificar nada: busca fórmulas inconsistentes por filas y columnas, constantes dentro de fórmulas, rangos de suma incompletos y vínculos externos. Devuélvelo en una tabla con hallazgo, ubicación, impacto y gravedad"
           ],
-          "explain": "Acordar el índice antes de redactar evita reescribir un documento entero por un enfoque equivocado.",
+          "explain": "Cuatro hallazgos que cambian el presupuesto. Fíjate en «sin modificar nada»: en una auditoría, las correcciones las decides tú después de comprobar cada punto.",
           "suggestions": [
-            "::app word",
-            "Propón el índice de una nota para dirección sobre el cierre de octubre a partir de /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet",
-            "Redacta la nota siguiendo ese índice ",
-            "::ver Nota_direccion_octubre.docx"
+            "::app excel Modelo_presupuesto_2027.xlsx",
+            "Revisa el modelo",
+            "Audita el libro sin modificar nada: busca fórmulas inconsistentes por filas y columnas, constantes dentro de fórmulas, rangos de suma incompletos y vínculos externos. Devuélvelo en una tabla con hallazgo, ubicación, impacto y gravedad"
           ]
         },
         {
           "id": "m3l1e2",
-          "type": "order",
-          "concept": "docs.longform",
-          "prompt": "Ordena la elaboración de un informe de 10 páginas",
-          "items": [
-            "Acordar el índice",
-            "Redactar cada sección con su fuente",
-            "Comprobar la coherencia de cifras entre secciones",
-            "Escribir el resumen ejecutivo",
-            "Revisión final con las fuentes"
+          "type": "choice",
+          "concept": "datos.audit",
+          "prompt": "Copilot no ha encontrado errores en la hoja de Tesorería. ¿Qué concluyes?",
+          "options": [
+            {
+              "text": "Nada definitivo: revisas tú las comprobaciones críticas (cuadres, signos, totales) de esa hoja",
+              "correct": true
+            },
+            {
+              "text": "Que la hoja está bien",
+              "feedback": "Un asistente con acierto parcial no certifica la ausencia de errores."
+            },
+            {
+              "text": "Que Copilot no sabe auditar",
+              "feedback": "Ha encontrado errores en otras hojas."
+            }
           ],
-          "explain": "El resumen se escribe al final, sobre contenido ya correcto."
+          "explain": "La ausencia de hallazgos no es una prueba. Mantén tus controles de cuadre."
         },
         {
           "id": "m3l1e3",
           "type": "multi",
-          "concept": "docs.longform",
-          "prompt": "En un informe largo, ¿qué pides para mantener la coherencia?",
+          "concept": "datos.audit",
+          "prompt": "¿Qué incluirías en el encargo de auditoría de un modelo heredado?",
           "options": [
             {
-              "text": "«Lista las cifras que aparecen en más de una sección y si coinciden»",
+              "text": "El tipo de problemas a buscar",
               "correct": true
             },
             {
-              "text": "«Aplica esta guía de estilo: frases cortas, un decimal, sin adjetivos»",
+              "text": "El formato de los hallazgos (ubicación, impacto, gravedad)",
               "correct": true
             },
             {
-              "text": "«Marca [pendiente] lo que no esté en las fuentes»",
+              "text": "«No modifiques nada»",
               "correct": true
             },
             {
-              "text": "«Hazlo más largo para que parezca completo»",
-              "feedback": "La extensión no aporta coherencia."
+              "text": "«Arregla todo lo que veas»",
+              "feedback": "Mezcla auditoría y corrección: pierdes el control de los cambios."
             }
           ],
-          "explain": "Coherencia de cifras, estilo uniforme y huecos visibles."
+          "explain": "Alcance, formato y separación entre auditar y corregir."
         },
         {
           "id": "m3l1e4",
-          "type": "choice",
-          "concept": "docs.longform",
-          "prompt": "La sección 2 dice «margen 31,5 %» y el resumen ejecutivo «margen del 33 %». ¿Qué ha pasado probablemente?",
-          "options": [
-            {
-              "text": "El resumen se generó mezclando el dato real con el presupuesto: hay que regenerarlo desde las secciones revisadas",
-              "correct": true
-            },
-            {
-              "text": "Ambos son correctos",
-              "feedback": "No pueden serlo a la vez."
-            },
-            {
-              "text": "Es un redondeo",
-              "feedback": "1,5 puntos no es un redondeo."
-            }
+          "type": "order",
+          "concept": "datos.audit",
+          "prompt": "Ordena la revisión de un modelo heredado con Copilot",
+          "items": [
+            "Encargar la auditoría sin modificar nada",
+            "Comprobar cada hallazgo en el libro",
+            "Decidir qué se corrige y cómo",
+            "Pedir o aplicar las correcciones de una en una",
+            "Recalcular y cuadrar con la versión anterior"
           ],
-          "explain": "El resumen debe salir del contenido revisado, no de las fuentes en bruto."
+          "explain": "Auditar, comprobar, decidir, corregir y cuadrar."
         },
         {
           "type": "card",
@@ -228,7 +180,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Construir un documento largo por fases\n- Mantener la coherencia de cifras entre secciones\n- Aplicar una guía de estilo"
+              "body": "Con esta lección deberías poder:\n- Encargar una auditoría con alcance y formato de hallazgos\n- Exigir que no modifique nada mientras audita\n- Contrastar los hallazgos antes de corregir"
             },
             {
               "type": "callout",
@@ -241,213 +193,204 @@
     },
     {
       "id": "l3-2",
-      "title": "Revisar y comparar documentos",
-      "summary": "Compara versiones, extrae obligaciones y vigila que una reescritura no cambie el significado.",
+      "title": "Documentar y traspasar un modelo",
+      "summary": "Convierte un modelo opaco en uno que otra persona puede mantener sin llamarte.",
       "minutes": 7,
       "objectives": [
-        "Comparar dos versiones de un documento en una tabla",
-        "Priorizar lo que hay que negociar",
-        "Detectar cambios de significado al reescribir"
+        "Pedir una documentación con estructura útil",
+        "Incluir incidencias conocidas y responsables",
+        "Detectar lo que la documentación generada no puede saber"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Comparar con estructura",
+          "title": "Documentación que alguien pueda usar",
           "blocks": [
             {
-              "type": "text",
-              "body": "Para comparar documentos (contratos, políticas, ofertas) no pidas «¿qué cambia?»: pide una **tabla** con cláusula, versión A, versión B y **efecto para ti**. Después, en la misma conversación, prioriza."
+              "type": "cmds",
+              "items": [
+                {
+                  "cmd": "Propósito y alcance",
+                  "desc": "Para qué sirve y para qué no."
+                },
+                {
+                  "cmd": "Mapa de hojas",
+                  "desc": "Orden de cálculo y qué hace cada hoja."
+                },
+                {
+                  "cmd": "Supuestos",
+                  "desc": "Dónde están, de dónde salen y cuándo se revisan."
+                },
+                {
+                  "cmd": "Dependencias",
+                  "desc": "Vínculos externos, cargas manuales, macros."
+                },
+                {
+                  "cmd": "Incidencias y mantenimiento",
+                  "desc": "Lo que se sabe que falla, quién lo actualiza y cómo."
+                }
+              ],
+              "title": "Estructura mínima"
             },
             {
               "type": "callout",
-              "tone": "warn",
-              "body": "Copilot ayuda a encontrar y ordenar cambios; no sustituye la revisión jurídica de un contrato. Comprueba siempre el texto original de cada cláusula."
+              "tone": "tip",
+              "body": "Copilot describe bien lo que hay en el libro. Lo que no está en el libro (por qué se tomó una decisión, quién es responsable) lo marcará como [pendiente] si se lo pides."
             }
           ]
         },
         {
           "id": "m3l2e1",
           "type": "copilot",
-          "concept": "docs.compare",
-          "prompt": "Compara **/Contrato_logistica_v1.docx** con **/Contrato_logistica_v2_propuesta.docx** en una **tabla** (cláusula, v1, v2 y efecto) y después pide los **puntos a negociar** por prioridad",
+          "concept": "datos.document",
+          "prompt": "En **Word**, pide la **documentación** del modelo con la estructura mínima, a partir de **/Modelo_presupuesto_2027.xlsx** y **/Supuestos_presupuesto_2027.docx**, con [pendiente] en lo que no se pueda saber. Revísala",
           "setup": {
             "files": {
-              "SharePoint/Compras/Contrato_logistica_v1.docx": "Contrato de transporte · versión 1 (vigente hasta diciembre de 2026) · documento ficticio\n\n1. Duración: 12 meses, prorrogable por acuerdo de ambas partes.\n2. Tarifa: 37,5 € por palé, revisable una vez al año según el IPC.\n3. Pago: a 60 días desde la recepción de la factura.\n4. Penalización por retraso: 5 % del servicio por cada entrega fuera de plazo.\n5. Resolución: con un preaviso de 30 días.\n",
-              "SharePoint/Compras/Contrato_logistica_v2_propuesta.docx": "Contrato de transporte · versión 2 (propuesta del proveedor para 2027) · documento ficticio\n\n1. Duración: 24 meses, con renovación automática salvo aviso.\n2. Tarifa: 40,9 € por palé, revisable cada seis meses según el IPC más dos puntos.\n3. Pago: a 30 días desde la emisión de la factura.\n4. Penalización por retraso: se elimina.\n5. Resolución: con un preaviso de 90 días y una compensación de tres meses de servicio.\n",
-              "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n"
+              "OneDrive/Presupuesto/Modelo_presupuesto_2027.xlsx": "Modelo de presupuesto 2027 (heredado; autor: antiguo responsable de control) · ficticio\n\nHoja Supuestos\nC3 Crecimiento de ventas | 4,0 %\nC4 IPC | 2,5 %\nC5 Subida de tarifa de transporte | 6,0 % (desde enero)\nC6 Transporte base mensual (€) | 58.400\n\nHoja Ventas · H5:H10 = ventas 2026 × (1 + Supuestos!C3); en H8:H10 (región Sur) la fórmula apunta a Supuestos!C4\nHoja Costes · F12 = Transporte × 1,06 (constante escrita a mano)\nHoja PyG · D20 = SUMA(D5:D18); la fila 19 (amortización) se añadió después\nHoja Resumen · B2 vínculo externo a [Presupuesto_2026_v7.xlsx]Resumen!B2\n",
+              "OneDrive/Presupuesto/Supuestos_presupuesto_2027.docx": "Nota de supuestos del presupuesto 2027 (versión de septiembre) · ficticia\n\nCrecimiento de ventas: 4 %. Subida de tarifa de transporte: 6 % desde enero (estimación de Compras de junio).\nSin cambios en plazos de pago a proveedores.\n"
             },
             "actions": [
               {
-                "id": "cambios",
+                "id": "documenta",
                 "when": [
                   [
-                    "compara",
-                    "cambios",
-                    "diferencias"
+                    "documenta",
+                    "documentacion",
+                    "manual"
                   ]
                 ],
                 "reply": [
-                  "Cambio | Versión 1 | Propuesta 2027 | Efecto para nosotros",
-                  "Duración | 12 meses | 24 meses con renovación automática | Menos flexibilidad",
-                  "Tarifa | 37,5 €/palé, IPC anual | 40,9 €/palé, IPC + 2 puntos cada 6 meses | Más caro y sube más rápido",
-                  "Pago | 60 días desde recepción | 30 días desde emisión | Empeora la tesorería",
-                  "Penalización | 5 % por retraso | Eliminada | Perdemos protección",
-                  "Resolución | 30 días | 90 días + 3 meses de servicio | Salir cuesta más",
-                  "Revisa el texto original de cada cláusula: este resumen no es asesoramiento jurídico."
+                  "He redactado la documentación del modelo: propósito, mapa de hojas, supuestos y su origen, flujo de cálculo, dependencias externas, incidencias conocidas y mantenimiento.",
+                  "He dejado como [pendiente] quién es responsable de actualizarlo: no figura en el libro."
                 ],
                 "needs": {
+                  "app": "word",
                   "refs": [
-                    "Contrato_logistica_v1.docx",
-                    "Contrato_logistica_v2_propuesta.docx"
+                    "Modelo_presupuesto_2027.xlsx",
+                    "Supuestos_presupuesto_2027.docx"
                   ],
-                  "gces": [
-                    "expectations"
-                  ]
+                  "say": {
+                    "app": "Abre Word (sin archivo) para redactar la documentación."
+                  }
                 },
                 "cites": [
-                  "Contrato_logistica_v1.docx",
-                  "Contrato_logistica_v2_propuesta.docx"
+                  "Modelo_presupuesto_2027.xlsx",
+                  "Supuestos_presupuesto_2027.docx"
+                ],
+                "writes": [
+                  {
+                    "path": "OneDrive/Presupuesto/Documentacion_modelo_2027.docx",
+                    "content": "Documentación del modelo de presupuesto 2027 (generada con Copilot, pendiente de revisar)\n\n1. Propósito y alcance: presupuesto anual por región.\n2. Mapa de hojas: Supuestos → Ventas → Costes → PyG → Resumen.\n3. Supuestos clave (Supuestos!C3:C6) y su origen.\n4. Flujo de cálculo y dependencias externas: vínculo a Presupuesto_2026_v7.xlsx.\n5. Incidencias conocidas: constante en Costes!F12, referencia errónea en Ventas!H8:H10, suma incompleta en PyG!D20.\n6. Cómo actualizarlo cada mes y quién es responsable: [pendiente].\n"
+                  }
                 ]
-              },
-              {
-                "id": "negociar",
-                "when": [
-                  [
-                    "negocia",
-                    "prioridad",
-                    "priorizar",
-                    "puntos"
-                  ]
-                ],
-                "reply": [
-                  "Puntos a negociar, por impacto económico:",
-                  "1. Pago a 60 días desde recepción (tesorería).",
-                  "2. Mantener una penalización por retraso.",
-                  "3. Revisión anual según IPC, sin los dos puntos.",
-                  "4. Sin renovación automática."
-                ],
-                "needs": {
-                  "turn": 2
-                }
               }
             ]
           },
           "goals": [
             {
-              "type": "action",
-              "label": "Tabla de cambios con su efecto",
-              "id": "cambios",
-              "hint": "Compara las dos versiones en una tabla con cláusula, versión 1, versión 2 y efecto para nosotros"
+              "type": "prompt",
+              "label": "Pedir la documentación desde Word con las dos fuentes",
+              "app": "word",
+              "refs": [
+                "Modelo_presupuesto_2027.xlsx",
+                "Supuestos_presupuesto_2027.docx"
+              ]
             },
             {
-              "type": "action",
-              "label": "Puntos a negociar por prioridad",
-              "id": "negociar",
-              "hint": "Con esos cambios, ¿qué puntos negociamos primero?"
+              "type": "exists",
+              "label": "Existe la documentación",
+              "path": "OneDrive/Presupuesto/Documentacion_modelo_2027.docx"
+            },
+            {
+              "type": "viewed",
+              "label": "Revisar la documentación",
+              "path": "Documentacion_modelo_2027.docx"
             }
           ],
           "solution": [
-            "Compara /Contrato_logistica_v1.docx con /Contrato_logistica_v2_propuesta.docx en una tabla con cláusula, versión 1, versión 2 y efecto para nosotros",
-            "Con esos cambios, prioriza los puntos a negociar por impacto económico"
+            "::app word",
+            "Documenta /Modelo_presupuesto_2027.xlsx con propósito, mapa de hojas, supuestos y su origen según /Supuestos_presupuesto_2027.docx, dependencias externas, incidencias conocidas y mantenimiento; marca [pendiente] lo que no puedas saber",
+            "::ver Documentacion_modelo_2027.docx"
           ],
-          "explain": "La tabla deja ver cambios que en una lectura rápida pasan desapercibidos: el pago a 30 días desde emisión y la eliminación de la penalización.",
+          "explain": "La documentación recoge las incidencias de la auditoría y deja a la vista el hueco más importante: nadie figura como responsable.",
           "suggestions": [
-            "Compara /Contrato_logistica_v1.docx con /Contrato_logistica_v2_propuesta.docx en una tabla con cláusula, versión 1, versión 2 y efecto para nosotros",
-            "Con esos cambios, prioriza los puntos a negociar por impacto económico"
+            "::app word",
+            "Documenta /Modelo_presupuesto_2027.xlsx con propósito, mapa de hojas, supuestos y su origen según /Supuestos_presupuesto_2027.docx, dependencias externas, incidencias conocidas y mantenimiento; marca [pendiente] lo que no puedas saber",
+            "::ver Documentacion_modelo_2027.docx"
           ]
         },
         {
           "id": "m3l2e2",
-          "type": "match",
-          "concept": "docs.compare",
-          "prompt": "Empareja cada cambio con su efecto principal",
-          "pairs": [
-            [
-              "Pago de 60 a 30 días",
-              "Tesorería"
-            ],
-            [
-              "Se elimina la penalización",
-              "Pérdida de protección ante retrasos"
-            ],
-            [
-              "Renovación automática",
-              "Riesgo de quedar atado sin decidir"
-            ],
-            [
-              "IPC + 2 puntos cada 6 meses",
-              "Coste creciente"
-            ]
+          "type": "spot",
+          "concept": "datos.document",
+          "prompt": "Revisa la documentación generada y señala lo que no puede afirmar sin otra fuente",
+          "file": "Documentación del modelo",
+          "lines": [
+            "El modelo calcula el presupuesto anual por región.",
+            "Los supuestos están en Supuestos!C3:C6.",
+            "El crecimiento del 4 % lo aprobó el consejo en julio.",
+            "Resumen!B2 depende de Presupuesto_2026_v7.xlsx.",
+            "El modelo no tiene errores conocidos."
           ],
-          "explain": "Traducir cada cláusula a su efecto es lo que permite priorizar."
-        },
-        {
-          "type": "card",
-          "kicker": "Cuidado",
-          "title": "Reescribir puede cambiar el significado",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Al pedir «más claro» o «más amable», Copilot puede suavizar una obligación («debe» → «se recomienda»), quitar un plazo o redondear un importe. En textos con efectos (contratos, políticas, condiciones), pide: «**Reescribe sin cambiar obligaciones, plazos ni importes, y lista lo que hayas modificado**»."
-            }
-          ]
+          "faulty": [
+            2,
+            4
+          ],
+          "notes": {
+            "2": "El libro no dice quién lo aprobó ni cuándo: es una afirmación inventada.",
+            "4": "Contradice la auditoría: hay tres incidencias de gravedad alta."
+          },
+          "fixed": "El modelo calcula el presupuesto anual por región.\nLos supuestos están en Supuestos!C3:C6.\nOrigen del crecimiento del 4 %: [pendiente].\nResumen!B2 depende de Presupuesto_2026_v7.xlsx.\nIncidencias conocidas: ver auditoría.",
+          "explain": "Decisiones, aprobaciones y responsables no están en las celdas. Si la documentación los afirma, verifica de dónde salen."
         },
         {
           "id": "m3l2e3",
           "type": "choice",
-          "concept": "docs.compare",
-          "prompt": "Pides «hazlo más amable» y «las notas **se presentan** en 30 días» pasa a «**intenta** presentarlas en unos 30 días». ¿Qué ocurre?",
+          "concept": "datos.document",
+          "prompt": "Vas a traspasar el modelo a una persona nueva del equipo. ¿Qué es lo más útil?",
           "options": [
             {
-              "text": "La reescritura ha convertido una obligación en una sugerencia: hay que corregirla",
+              "text": "La documentación revisada más una sesión en la que repasáis juntos las incidencias conocidas",
               "correct": true
             },
             {
-              "text": "Nada: el sentido es el mismo",
-              "feedback": "«Intenta» y «unos» quitan obligatoriedad y precisión."
+              "text": "El libro con un comentario «ver fórmulas»",
+              "feedback": "No es un traspaso."
             },
             {
-              "text": "Es mejor así porque es más amable",
-              "feedback": "La forma no puede cambiar la norma."
+              "text": "Pedirle que pregunte a Copilot cuando tenga dudas",
+              "feedback": "Sin documentación revisada, heredará las mismas lagunas."
             }
           ],
-          "explain": "Obligaciones, plazos e importes no se tocan al reescribir."
+          "explain": "Documentación revisada y contexto humano."
         },
         {
           "id": "m3l2e4",
           "type": "fill",
-          "concept": "docs.compare",
-          "prompt": "Completa la petición segura",
+          "concept": "datos.document",
+          "prompt": "Completa",
           "code": false,
-          "template": "Reescribe sin cambiar {{0}}, plazos ni {{1}}, y {{2}} lo que hayas modificado.",
+          "template": "Lo que está en el libro, Copilot lo describe; lo que no está (decisiones, {{0}}, aprobaciones) lo marca como {{1}}.",
           "blanks": [
             {
               "options": [
-                "obligaciones",
-                "colores",
-                "títulos"
+                "responsables",
+                "fórmulas",
+                "colores"
               ],
-              "answer": "obligaciones"
+              "answer": "responsables"
             },
             {
               "options": [
-                "importes",
-                "saludos",
-                "párrafos"
+                "[pendiente]",
+                "correcto",
+                "opcional"
               ],
-              "answer": "importes"
-            },
-            {
-              "options": [
-                "lista",
-                "oculta",
-                "borra"
-              ],
-              "answer": "lista"
+              "answer": "[pendiente]"
             }
           ],
-          "explain": "Restricciones explícitas y una lista de cambios para revisar."
+          "explain": "Distingue lo que se puede leer del libro de lo que hay que preguntar."
         },
         {
           "type": "card",
@@ -456,7 +399,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Comparar dos versiones de un documento en una tabla\n- Priorizar lo que hay que negociar\n- Detectar cambios de significado al reescribir"
+              "body": "Con esta lección deberías poder:\n- Pedir una documentación con estructura útil\n- Incluir incidencias conocidas y responsables\n- Detectar lo que la documentación generada no puede saber"
             },
             {
               "type": "callout",
@@ -469,183 +412,209 @@
     },
     {
       "id": "l3-3",
-      "title": "Presentaciones para dirección",
-      "summary": "De la nota revisada a una historia con un mensaje por diapositiva, notas del orador y las preguntas que vendrán.",
-      "minutes": 7,
+      "title": "Analyst y Python: simulación y estadística",
+      "summary": "Lo que en Excel es engorroso (Monte Carlo, regresiones, intervalos), con Analyst y el código a la vista.",
+      "minutes": 8,
       "objectives": [
-        "Crear una presentación desde un archivo",
-        "Revisar la historia diapositiva a diapositiva",
-        "Detectar diapositivas con problemas"
+        "Especificar una simulación completa (distribuciones, semilla, salidas)",
+        "Validar la simulación contra el modelo determinista",
+        "Leer el código y los supuestos que usa"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "Del documento a las diapositivas",
+          "title": "Python sin salir de Microsoft 365",
           "blocks": [
             {
               "type": "text",
-              "body": "Ana tiene que presentar el cierre al comité y quiere partir de la **nota para dirección** que redactaste en la lección 3.1 (ya revisada).\n\nCopilot en PowerPoint puede crear una presentación **a partir de un archivo** (por ejemplo, esa nota de Word), añadir diapositivas, resumir una presentación larga u organizarla en secciones.\n\nLa calidad depende del documento de partida: **una buena nota da una buena presentación**."
+              "body": "**Analyst** es un agente de razonamiento que **escribe, ejecuta y verifica código Python** en un entorno controlado, sobre tus Excel o CSV, y te deja revisar el código. Para un modelizador, su valor está en lo que Excel hace mal o despacio:\n- **Monte Carlo** con distribuciones y miles de iteraciones.\n- **Regresiones** y elasticidades (coste de transporte frente a volumen).\n- **Previsiones con intervalos**, no con un único número.\n- **Sensibilidades** multivariable."
             },
             {
-              "type": "cmds",
-              "items": [
-                {
-                  "cmd": "Historia primero",
-                  "desc": "«Propón 5 diapositivas, una idea por diapositiva, terminando con las decisiones que pedimos».",
-                  "where": "PowerPoint"
-                },
-                {
-                  "cmd": "Plantilla corporativa",
-                  "desc": "Crea la presentación desde la plantilla de tu empresa para conservar la identidad visual.",
-                  "where": "PowerPoint"
-                },
-                {
-                  "cmd": "Notas del orador",
-                  "desc": "«Añade notas del orador de 60 segundos por diapositiva».",
-                  "where": "PowerPoint"
-                },
-                {
-                  "cmd": "Preguntas difíciles",
-                  "desc": "«¿Qué 5 preguntas hará el comité y con qué dato respondo?»",
-                  "where": "PowerPoint"
-                }
-              ],
-              "title": "Para una presentación a dirección"
+              "type": "code",
+              "lang": "prompt",
+              "code": "@Analyst con /Modelo_cierre_octubre.xlsx simula 10.000 escenarios de margen bruto:\n- subida de tarifa: triangular (mín. 6 %, moda 9 %, máx. 12 %)\n- volumen: normal (media 0 %, desviación 3 %)\n- semilla 42; muestra el código\nDevuelve media, P5, P95 y probabilidad de margen < 30 %,\ny compáralo con el caso determinista de subida del 9 %.",
+              "file": "Una especificación completa"
             }
           ]
         },
         {
           "id": "m3l3e1",
           "type": "copilot",
-          "concept": "docs.ppt",
-          "prompt": "Abre **PowerPoint** y crea una **presentación de 5 diapositivas** a partir de **/Nota_direccion_octubre.docx**. Luego ábrela para revisar la historia",
+          "concept": "datos.python",
+          "prompt": "Pide a **@Analyst** una **simulación de Monte Carlo** del margen con **/Modelo_cierre_octubre.xlsx**: distribuciones, número de simulaciones, semilla y salidas. Después pide qué variable **pesa más** (sensibilidad)",
           "setup": {
             "files": {
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
-              "OneDrive/Cierre octubre/Nota_direccion_octubre.docx": "Nota para dirección · Cierre de octubre 2026 (borrador generado con Copilot)\n\n1. Resultado: ventas de 412.000 € (+6 % sobre presupuesto).\n2. Margen: 31,5 % frente al 33 % previsto, por el transporte (+18 %).\n3. Decisiones en curso: comparativa de tres proveedores (Luis, 12 nov).\n4. Pendiente: provisión del cliente Norte (Marta, antes del día 10).\n5. Riesgo: dos clientes concentran el 27 % de las ventas.\n"
+              "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n",
+              "Outlook/Oferta_renovacion_logistica.eml": "De: Proveedor actual de transporte · Para: Compras · Asunto: Renovación 2027\n\nLes confirmamos la nueva tarifa: subida del 9 % desde el 1 de enero de 2027 (no desde noviembre).\nCondición: contrato de 24 meses.\n",
+              "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n"
             },
             "actions": [
               {
-                "id": "ppt",
+                "id": "montecarlo",
                 "when": [
                   [
-                    "presentacion",
-                    "diapositivas"
+                    "montecarlo",
+                    "monte carlo",
+                    "simula",
+                    "simulacion"
                   ]
                 ],
                 "reply": [
-                  "He creado una presentación de 5 diapositivas a partir de la nota: un mensaje por diapositiva y una final con las decisiones que se piden.",
-                  "Revisa los datos de cada gráfico y añade tus notas de orador."
+                  "Analyst · pasos y código (resumen):",
+                  "import numpy as np; rng = np.random.default_rng(42); n = 10_000",
+                  "subida = rng.triangular(0.06, 0.09, 0.12, n); volumen = rng.normal(0, 0.03, n)",
+                  "margen = (129_800 + 412_000*volumen*0.33 - 58_400*subida) / (412_000*(1 + volumen))",
+                  "Resultado: margen medio 30,2 %; P5 29,9 %; P95 30,5 %. Probabilidad de margen < 30 %: 13 %.",
+                  "Comprobación: con la subida central (9 %) y volumen 0, el modelo determinista da 30,2 %, coherente con la media.",
+                  "Supuestos: distribuciones independientes; resto de costes fijo en %; datos de octubre extrapolados."
                 ],
                 "needs": {
-                  "app": "powerpoint",
+                  "agent": "Analyst",
                   "refs": [
-                    "Nota_direccion_octubre.docx"
+                    "Modelo_cierre_octubre.xlsx"
+                  ],
+                  "gces": [
+                    "expectations"
                   ],
                   "say": {
-                    "app": "Abre PowerPoint para crear la presentación."
+                    "agent": "Una simulación con código encaja con @Analyst.",
+                    "expectations": "Especifica distribuciones, número de simulaciones, semilla y qué resultados quieres (media, percentiles, probabilidad)."
                   }
                 },
                 "cites": [
-                  "Nota_direccion_octubre.docx"
+                  "Modelo_cierre_octubre.xlsx"
                 ],
-                "writes": [
-                  {
-                    "path": "OneDrive/Cierre octubre/Presentacion_comite.pptx",
-                    "content": "Presentación generada con Copilot · 5 diapositivas\n\n1. Cierre de octubre: en una frase\n2. Ventas por encima del presupuesto (+6 %)\n3. El margen cae por el transporte (31,5 % frente a 33 %)\n4. Qué estamos haciendo: comparativa de proveedores\n5. Decisiones que pedimos al comité\n"
-                  }
-                ]
+                "vague": "puedo simular, pero necesito las distribuciones y qué resultados quieres."
+              },
+              {
+                "id": "sensibilidad",
+                "when": [
+                  [
+                    "sensibilidad",
+                    "tornado",
+                    "que variable",
+                    "cual pesa"
+                  ]
+                ],
+                "reply": [
+                  "Sensibilidad (variando cada supuesto entre P5 y P95, el resto en su valor central):",
+                  "Subida de tarifa: ±0,3 puntos de margen · Volumen: ±0,1 puntos.",
+                  "La tarifa explica casi toda la incertidumbre: es la variable que hay que negociar o cubrir."
+                ],
+                "needs": {
+                  "agent": "Analyst",
+                  "turn": 2
+                }
               }
             ]
           },
           "goals": [
             {
               "type": "prompt",
-              "label": "Pedir la presentación desde PowerPoint con la nota como fuente",
-              "app": "powerpoint",
+              "label": "Invocar a Analyst con el modelo y una especificación completa",
+              "agent": "Analyst",
               "refs": [
-                "Nota_direccion_octubre.docx"
+                "Modelo_cierre_octubre.xlsx"
               ],
-              "hint": "Abre PowerPoint: Crea una presentación de 5 diapositivas a partir de /Nota_direccion_octubre.docx"
+              "pattern": "semilla|seed",
+              "gces": [
+                "expectations"
+              ]
             },
             {
-              "type": "exists",
-              "label": "Existe Presentacion_comite.pptx",
-              "path": "OneDrive/Cierre octubre/Presentacion_comite.pptx"
+              "type": "action",
+              "label": "Resultados de la simulación con su comprobación",
+              "id": "montecarlo"
             },
             {
-              "type": "viewed",
-              "label": "Revisar la presentación",
-              "path": "Presentacion_comite.pptx",
-              "hint": "Archivos → Ver Presentacion_comite.pptx"
+              "type": "action",
+              "label": "Sensibilidad por variable",
+              "id": "sensibilidad"
             }
           ],
           "solution": [
-            "::app powerpoint",
-            "Crea una presentación de 5 diapositivas para el comité a partir de /Nota_direccion_octubre.docx, con una idea por diapositiva",
-            "::ver Presentacion_comite.pptx"
+            "@Analyst con /Modelo_cierre_octubre.xlsx simula 10.000 escenarios de margen bruto con subida de tarifa triangular (6 %, 9 %, 12 %) y volumen normal (media 0 %, desviación 3 %), semilla 42; muestra el código y devuelve media, P5, P95 y probabilidad de margen inferior al 30 %",
+            "¿Qué variable pesa más? Haz un análisis de sensibilidad"
           ],
-          "explain": "Partir de una nota revisada evita que los errores pasen a las diapositivas. Revisa cada gráfico: es donde más se cuelan cifras incorrectas.",
+          "explain": "Un 13 % de probabilidad de bajar del 30 % es un dato que dirección puede usar para decidir. Y la sensibilidad dice dónde actuar: en la tarifa, no en el volumen.",
           "suggestions": [
-            "::app powerpoint",
-            "Crea una presentación de 5 diapositivas ",
-            "::ver Presentacion_comite.pptx"
+            "Simula el margen",
+            "@Analyst con /Modelo_cierre_octubre.xlsx simula 10.000 escenarios de margen bruto con subida de tarifa triangular (6 %, 9 %, 12 %) y volumen normal (media 0 %, desviación 3 %), semilla 42; muestra el código y devuelve media, P5, P95 y probabilidad de margen inferior al 30 %",
+            "¿Qué variable pesa más? Haz un análisis de sensibilidad"
           ]
         },
         {
           "id": "m3l3e2",
-          "type": "order",
-          "concept": "docs.ppt",
-          "prompt": "Ordena una presentación para pedir una decisión",
-          "items": [
-            "El mensaje principal en una frase",
-            "Los datos que lo demuestran",
-            "La causa del problema",
-            "Qué estamos haciendo",
-            "La decisión que pedimos"
-          ],
-          "explain": "Mensaje → evidencia → causa → acciones → decisión. Copilot puede proponer el orden, pero la historia la decides tú."
-        },
-        {
-          "type": "card",
-          "kicker": "Revisión",
-          "title": "Una diapositiva, un mensaje",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Revisa cada diapositiva con tres preguntas:\n- ¿Tiene **un solo mensaje**, escrito como titular?\n- ¿Cada cifra tiene **fuente**?\n- ¿Las imágenes y los iconos **ayudan** o solo decoran?"
-            },
-            {
-              "type": "callout",
-              "tone": "warn",
-              "body": "Las imágenes generadas o de archivo pueden no representar bien a tu empresa. Úsalas con criterio y respeta la identidad corporativa."
-            }
-          ]
-        },
-        {
-          "id": "m3l3e3",
           "type": "spot",
-          "concept": "docs.ppt",
-          "prompt": "Revisa el guion propuesto por Copilot y señala las diapositivas con problemas",
-          "file": "Guion de la presentación",
+          "concept": "datos.python",
+          "prompt": "Revisa los pasos de esta simulación y señala los problemas",
+          "file": "Pasos de Analyst",
           "lines": [
-            "1. El cierre de octubre en una frase",
-            "2. Ventas, margen, transporte, clientes, tesorería y plantilla",
-            "3. El margen cae por el transporte (31,5 % frente a 33 %)",
-            "4. Ahorro garantizado del 20 % con el nuevo proveedor",
-            "5. Decisiones que pedimos al comité"
+            "1. Cargo Modelo_cierre_octubre.xlsx, hoja Resumen.",
+            "2. Simulo 100 escenarios.",
+            "3. Subida de tarifa: normal (media 9 %, desviación 8 %).",
+            "4. No fijo semilla.",
+            "5. Devuelvo media, P5 y P95."
           ],
           "faulty": [
             1,
+            2,
             3
           ],
           "notes": {
-            "1": "Demasiados mensajes en una diapositiva.",
-            "3": "Dato inventado: no hay ninguna fuente que garantice un 20 %."
+            "1": "100 iteraciones son pocas para percentiles estables.",
+            "2": "Con esa desviación salen subidas negativas imposibles: mejor una triangular o acotada.",
+            "3": "Sin semilla, el resultado cambia en cada ejecución y no es reproducible."
           },
-          "fixed": "1. El cierre de octubre en una frase\n2. Ventas por encima del presupuesto (+6 %)\n3. El margen cae por el transporte\n4. Comparativa de proveedores en curso\n5. Decisiones que pedimos al comité",
-          "explain": "Diapositivas con un solo mensaje y cifras con fuente. Una promesa sin respaldo en una presentación a dirección es un riesgo serio."
+          "fixed": "1. Cargo Modelo_cierre_octubre.xlsx.\n2. Simulo 10.000 escenarios.\n3. Subida de tarifa: triangular (6 %, 9 %, 12 %).\n4. Semilla 42.\n5. Devuelvo media, P5, P95 y probabilidad < 30 %.",
+          "explain": "Iteraciones, distribuciones con sentido económico y reproducibilidad: lo que separa una simulación útil de un número aleatorio."
+        },
+        {
+          "id": "m3l3e3",
+          "type": "choice",
+          "concept": "datos.python",
+          "prompt": "¿Cómo validas que la simulación de Analyst está bien planteada?",
+          "options": [
+            {
+              "text": "Comparando el caso central con tu modelo determinista y leyendo el código",
+              "correct": true
+            },
+            {
+              "text": "Pidiendo a Analyst que confirme que está bien",
+              "feedback": "Es la misma herramienta."
+            },
+            {
+              "text": "Si los percentiles parecen razonables",
+              "feedback": "Parecer razonable no es validar."
+            }
+          ],
+          "explain": "El caso central debe cuadrar con tu modelo; el código, con tus supuestos."
+        },
+        {
+          "id": "m3l3e4",
+          "type": "match",
+          "concept": "datos.python",
+          "prompt": "Empareja cada pregunta de negocio con la técnica que pedirías a Analyst",
+          "pairs": [
+            [
+              "¿Qué probabilidad hay de bajar del 30 % de margen?",
+              "Monte Carlo"
+            ],
+            [
+              "¿Cuánto sube el transporte por cada 1 % de volumen?",
+              "Regresión"
+            ],
+            [
+              "¿Qué ventas esperamos en el T1 y con qué margen de error?",
+              "Previsión con intervalos"
+            ],
+            [
+              "¿Qué supuesto mueve más el resultado?",
+              "Sensibilidad"
+            ]
+          ],
+          "explain": "Cada pregunta tiene su técnica; especificarla evita resultados genéricos."
         },
         {
           "type": "card",
@@ -654,7 +623,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Crear una presentación desde un archivo\n- Revisar la historia diapositiva a diapositiva\n- Detectar diapositivas con problemas"
+              "body": "Con esta lección deberías poder:\n- Especificar una simulación completa (distribuciones, semilla, salidas)\n- Validar la simulación contra el modelo determinista\n- Leer el código y los supuestos que usa"
             },
             {
               "type": "callout",
@@ -667,144 +636,172 @@
     },
     {
       "id": "l3-4",
-      "title": "Modo agente: Copilot hace los cambios",
-      "summary": "En modo agente Copilot planifica y aplica varios cambios seguidos en el archivo. Tú supervisas.",
-      "minutes": 6,
+      "title": "Contrastar supuestos con las fuentes",
+      "summary": "Cruza los supuestos del modelo con contratos, correos y actas para detectar los que han quedado viejos.",
+      "minutes": 7,
       "objectives": [
-        "Distinguir el chat del modo agente",
-        "Elegir tareas adecuadas para el modo agente",
-        "Revisar y deshacer los cambios"
+        "Extraer de documentos la evidencia que afecta a cada supuesto",
+        "Clasificar supuestos en vigentes, desactualizados o sin respaldo",
+        "Llevar las discrepancias al modelo como escenarios"
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Idea clave",
-          "title": "De sugerir a hacer",
+          "title": "Los supuestos envejecen en el correo",
           "blocks": [
             {
               "type": "text",
-              "body": "El **modo agente** de Word, Excel y PowerPoint (disponible de forma general desde 2026, según tu licencia y versión) no se limita a proponer texto: **planifica** la tarea, la divide en pasos y **aplica los cambios** en el archivo, mostrándote lo que hace."
+              "body": "Un modelo puede ser impecable y estar mal porque un supuesto quedó viejo: la tarifa cambió en una oferta, un plazo de pago en un contrato, una decisión en un comité. Copilot lee esas fuentes no estructuradas mejor que nadie. Pide una tabla: **supuesto del modelo, evidencia más reciente con su fuente, diferencia y propuesta**."
             },
             {
-              "type": "compare",
-              "left": {
-                "title": "Chat en el panel",
-                "items": [
-                  "Te propone texto o ideas",
-                  "Tú decides qué insertar",
-                  "Una respuesta cada vez"
-                ]
-              },
-              "right": {
-                "title": "Modo agente",
-                "items": [
-                  "Aplica cambios en el archivo",
-                  "Varios pasos seguidos (secciones, tablas, formato)",
-                  "Te enseña el plan y el progreso; puedes detenerlo y corregirlo"
-                ]
-              }
+              "type": "callout",
+              "tone": "finance",
+              "body": "Una discrepancia no se corrige sustituyendo el número: se convierte en escenario y se decide con quien sea responsable del supuesto."
             }
           ]
         },
         {
           "id": "m3l4e1",
-          "type": "choice",
-          "concept": "docs.agentmode",
-          "prompt": "¿Qué tarea encaja mejor con el modo agente?",
-          "options": [
+          "type": "copilot",
+          "concept": "datos.assumptions",
+          "prompt": "Contrasta los supuestos de **/Modelo_presupuesto_2027.xlsx** con **/Oferta_renovacion_logistica.eml** y **/Contrato_logistica_v2_propuesta.docx**: tabla con supuesto, evidencia más reciente, diferencia y propuesta",
+          "setup": {
+            "files": {
+              "OneDrive/Presupuesto/Modelo_presupuesto_2027.xlsx": "Modelo de presupuesto 2027 (heredado; autor: antiguo responsable de control) · ficticio\n\nHoja Supuestos\nC3 Crecimiento de ventas | 4,0 %\nC4 IPC | 2,5 %\nC5 Subida de tarifa de transporte | 6,0 % (desde enero)\nC6 Transporte base mensual (€) | 58.400\n\nHoja Ventas · H5:H10 = ventas 2026 × (1 + Supuestos!C3); en H8:H10 (región Sur) la fórmula apunta a Supuestos!C4\nHoja Costes · F12 = Transporte × 1,06 (constante escrita a mano)\nHoja PyG · D20 = SUMA(D5:D18); la fila 19 (amortización) se añadió después\nHoja Resumen · B2 vínculo externo a [Presupuesto_2026_v7.xlsx]Resumen!B2\n",
+              "OneDrive/Presupuesto/Supuestos_presupuesto_2027.docx": "Nota de supuestos del presupuesto 2027 (versión de septiembre) · ficticia\n\nCrecimiento de ventas: 4 %. Subida de tarifa de transporte: 6 % desde enero (estimación de Compras de junio).\nSin cambios en plazos de pago a proveedores.\n",
+              "Outlook/Oferta_renovacion_logistica.eml": "De: Proveedor actual de transporte · Para: Compras · Asunto: Renovación 2027\n\nLes confirmamos la nueva tarifa: subida del 9 % desde el 1 de enero de 2027 (no desde noviembre).\nCondición: contrato de 24 meses.\n",
+              "SharePoint/Compras/Contrato_logistica_v2_propuesta.docx": "Contrato de transporte · propuesta del proveedor para 2027 · ficticio\n\n1. Duración: 24 meses con renovación automática.\n2. Tarifa: +9 % desde enero, revisable cada seis meses según IPC + 2 puntos.\n3. Pago: a 30 días desde la emisión de la factura.\n4. Penalización por retraso: se elimina.\n",
+              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
+            },
+            "actions": [
+              {
+                "id": "contraste",
+                "when": [
+                  [
+                    "contrasta",
+                    "compara",
+                    "coinciden",
+                    "discrepancias",
+                    "supuestos"
+                  ]
+                ],
+                "reply": [
+                  "Supuesto en el modelo | Evidencia más reciente | Diferencia | Propuesta",
+                  "Subida de tarifa 6 % desde enero (Supuestos!C5) | Oferta escrita: 9 % desde enero con 24 meses [1] | +3 puntos | Escenario base al 9 % y sensibilidad 6–12 %",
+                  "Sin cambios en plazos de pago | Propuesta de contrato: pago a 30 días desde emisión [2] | Empeora tesorería | Incorporarlo al modelo de tesorería",
+                  "Transporte base 58.400 €/mes | Cierre de octubre: 58.400 € [3] | Coincide | Mantener",
+                  "Origen de los supuestos: nota de septiembre basada en datos de Compras de junio: está desactualizada."
+                ],
+                "needs": {
+                  "refs": [
+                    "Modelo_presupuesto_2027.xlsx",
+                    "Oferta_renovacion_logistica.eml",
+                    "Contrato_logistica_v2_propuesta.docx"
+                  ]
+                },
+                "cites": [
+                  "Oferta_renovacion_logistica.eml",
+                  "Contrato_logistica_v2_propuesta.docx",
+                  "Informe_cierre_octubre.docx"
+                ]
+              }
+            ]
+          },
+          "goals": [
             {
-              "text": "«Reorganiza este informe en 4 secciones, añade una tabla resumen y aplica el estilo corporativo»",
-              "correct": true
+              "type": "prompt",
+              "label": "Cruzar el modelo con la oferta y el contrato",
+              "refs": [
+                "Modelo_presupuesto_2027.xlsx",
+                "Oferta_renovacion_logistica.eml",
+                "Contrato_logistica_v2_propuesta.docx"
+              ]
             },
             {
-              "text": "«¿Qué significa EBITDA?»",
-              "feedback": "Es una pregunta: basta con el chat."
-            },
-            {
-              "text": "«Envía el informe a dirección»",
-              "feedback": "Enviar es una decisión tuya."
+              "type": "action",
+              "label": "Tabla de contraste de supuestos",
+              "id": "contraste"
             }
           ],
-          "explain": "El modo agente brilla en tareas de **varios pasos sobre el archivo**."
-        },
-        {
-          "type": "card",
-          "kicker": "Supervisión",
-          "title": "Tú sigues al mando",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Cuantos más cambios hace Copilot por su cuenta, más importante es revisar:\n- Lee el **plan** antes de dejarle continuar.\n- Comprueba el resultado con el **historial de versiones** (puedes volver a una versión anterior).\n- Revisa especialmente cifras, fórmulas y textos legales."
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Trabaja sobre una copia o con el historial de versiones activado (archivos en OneDrive o SharePoint) para deshacer con tranquilidad."
-            }
+          "solution": [
+            "Contrasta los supuestos de /Modelo_presupuesto_2027.xlsx con /Oferta_renovacion_logistica.eml y /Contrato_logistica_v2_propuesta.docx en una tabla con supuesto, evidencia más reciente, diferencia y propuesta"
+          ],
+          "explain": "El 6 % del modelo venía de una estimación de junio; la oferta escrita dice 9 %. Y aparece algo que el modelo ni contemplaba: el pago a 30 días.",
+          "suggestions": [
+            "Contrasta los supuestos de /Modelo_presupuesto_2027.xlsx con /Oferta_renovacion_logistica.eml y /Contrato_logistica_v2_propuesta.docx en una tabla con supuesto, evidencia más reciente, diferencia y propuesta"
           ]
         },
         {
           "id": "m3l4e2",
-          "type": "multi",
-          "concept": "gob.human",
-          "prompt": "Tras usar el modo agente en un informe, ¿qué revisas?",
-          "options": [
-            {
-              "text": "Que las cifras siguen coincidiendo con las fuentes",
-              "correct": true
-            },
-            {
-              "text": "Que no ha borrado secciones que querías conservar",
-              "correct": true
-            },
-            {
-              "text": "Que puedes volver a una versión anterior si hace falta",
-              "correct": true
-            },
-            {
-              "text": "Nada: si lo ha hecho el agente, está bien",
-              "feedback": "El agente puede equivocarse como cualquier respuesta de IA."
-            }
+          "type": "match",
+          "concept": "datos.assumptions",
+          "prompt": "Empareja cada situación con la clasificación del supuesto",
+          "pairs": [
+            [
+              "La oferta firmada confirma el dato del modelo",
+              "Vigente"
+            ],
+            [
+              "Una oferta posterior da otra cifra",
+              "Desactualizado"
+            ],
+            [
+              "Nadie sabe de dónde salió el 4 %",
+              "Sin respaldo"
+            ],
+            [
+              "El contrato introduce una condición nueva",
+              "Supuesto que falta"
+            ]
           ],
-          "explain": "Más autonomía exige **más revisión**, no menos."
+          "explain": "Cuatro estados que dicen qué hacer con cada supuesto."
         },
         {
           "id": "m3l4e3",
-          "type": "order",
-          "concept": "docs.agentmode",
-          "prompt": "Ordena cómo usar el modo agente con seguridad",
-          "items": [
-            "Describir el resultado final que quieres",
-            "Leer el plan que propone",
-            "Dejar que aplique los cambios y seguir el progreso",
-            "Revisar el resultado y deshacer lo que no sirva"
+          "type": "choice",
+          "concept": "datos.assumptions",
+          "prompt": "El contraste muestra que la tarifa real será del 9 %, no del 6 %. ¿Qué haces en el modelo?",
+          "options": [
+            {
+              "text": "Actualizar el escenario base al 9 % con su fuente y mantener la sensibilidad 6–12 %",
+              "correct": true
+            },
+            {
+              "text": "Cambiar el 6 por un 9 sin dejar rastro",
+              "feedback": "Pierdes la trazabilidad del cambio."
+            },
+            {
+              "text": "Nada hasta el año que viene",
+              "feedback": "El presupuesto se basaría en un dato que ya sabes que es falso."
+            }
           ],
-          "explain": "Describe → revisa el plan → supervisa → comprueba."
+          "explain": "Cambio trazable, con fuente, y el rango como sensibilidad."
         },
         {
           "id": "m3l4e4",
-          "type": "match",
-          "concept": "docs.agentmode",
-          "prompt": "Empareja cada situación con la herramienta",
-          "pairs": [
-            [
-              "Una duda rápida sobre el documento",
-              "Chat del panel"
-            ],
-            [
-              "Reestructurar todo el documento",
-              "Modo agente"
-            ],
-            [
-              "Volver a como estaba ayer",
-              "Historial de versiones"
-            ],
-            [
-              "Enviar el documento a un cliente",
-              "Tú, tras revisarlo"
-            ]
+          "type": "multi",
+          "concept": "datos.assumptions",
+          "prompt": "¿Qué fuentes pedirías cruzar con los supuestos de un presupuesto?",
+          "options": [
+            {
+              "text": "Ofertas y contratos vigentes",
+              "correct": true
+            },
+            {
+              "text": "Actas de comités recientes",
+              "correct": true
+            },
+            {
+              "text": "Correos de Compras y Comercial con cambios de condiciones",
+              "correct": true
+            },
+            {
+              "text": "Presentaciones de marketing de otros años",
+              "feedback": "Poco relevantes y desactualizadas."
+            }
           ],
-          "explain": "Cada herramienta para lo suyo, y las decisiones finales, tuyas."
+          "explain": "Las fuentes donde cambian las condiciones antes de llegar al modelo."
         },
         {
           "type": "card",
@@ -813,7 +810,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Distinguir el chat del modo agente\n- Elegir tareas adecuadas para el modo agente\n- Revisar y deshacer los cambios"
+              "body": "Con esta lección deberías poder:\n- Extraer de documentos la evidencia que afecta a cada supuesto\n- Clasificar supuestos en vigentes, desactualizados o sin respaldo\n- Llevar las discrepancias al modelo como escenarios"
             },
             {
               "type": "callout",
@@ -831,117 +828,140 @@
       {
         "id": "m3x1",
         "type": "choice",
-        "concept": "docs.longform",
-        "prompt": "¿Cuándo pides el resumen ejecutivo de un informe largo?",
+        "concept": "datos.audit",
+        "prompt": "¿Por qué pides «sin modificar nada» en una auditoría con Copilot?",
         "options": [
           {
-            "text": "Al final, a partir de las secciones ya revisadas",
+            "text": "Para separar el diagnóstico de las correcciones y decidir tú cada cambio",
             "correct": true
           },
           {
-            "text": "Al principio, para orientar el resto",
-            "feedback": "Arrastraría errores de las fuentes en bruto."
+            "text": "Porque Copilot no puede modificar libros",
+            "feedback": "En modo agente sí puede."
           },
           {
-            "text": "Nunca: lo escribe dirección",
-            "feedback": "Forma parte del entregable."
+            "text": "Para que vaya más rápido",
+            "feedback": "No es el motivo."
           }
         ],
-        "explain": "El resumen resume contenido ya correcto."
-      },
-      {
-        "id": "m3x5",
-        "type": "choice",
-        "concept": "docs.compare",
-        "prompt": "¿Qué petición compara mejor dos versiones de un contrato?",
-        "options": [
-          {
-            "text": "«Tabla con cláusula, versión 1, versión 2 y efecto para nosotros»",
-            "correct": true
-          },
-          {
-            "text": "«¿Qué ha cambiado?»",
-            "feedback": "La respuesta será desordenada e incompleta."
-          },
-          {
-            "text": "«Dime si es bueno»",
-            "feedback": "No es una comparación."
-          }
-        ],
-        "explain": "Estructura y efecto: lo que permite priorizar la negociación."
+        "explain": "Auditar y corregir son pasos distintos."
       },
       {
         "id": "m3x2",
         "type": "multi",
-        "concept": "docs.ppt",
-        "prompt": "¿Qué señales indican una mala diapositiva?",
+        "concept": "datos.audit",
+        "prompt": "¿Qué problemas buscarías en la auditoría de un modelo heredado?",
         "options": [
           {
-            "text": "Cinco mensajes distintos en una diapositiva",
+            "text": "Fórmulas inconsistentes en una fila",
             "correct": true
           },
           {
-            "text": "Una cifra sin fuente",
+            "text": "Constantes dentro de fórmulas",
             "correct": true
           },
           {
-            "text": "Un titular que resume el mensaje",
-            "feedback": "Es justo lo recomendable."
+            "text": "Rangos de suma incompletos",
+            "correct": true
           },
           {
-            "text": "Una gráfica con los datos del informe revisado",
-            "feedback": "Bien, si los datos están verificados."
+            "text": "Vínculos externos",
+            "correct": true
+          },
+          {
+            "text": "El tipo de letra",
+            "feedback": "No afecta al cálculo."
           }
         ],
-        "explain": "Un mensaje por diapositiva y cifras con fuente."
+        "explain": "Inconsistencias, constantes, rangos y vínculos."
       },
       {
         "id": "m3x3",
         "type": "choice",
-        "concept": "docs.agentmode",
-        "prompt": "¿Qué diferencia al modo agente del chat del panel?",
+        "concept": "datos.python",
+        "prompt": "Tu simulación de Monte Carlo da resultados distintos cada vez que la ejecutas. ¿Qué falta?",
         "options": [
           {
-            "text": "Planifica y aplica varios cambios en el archivo, mostrando el progreso",
+            "text": "Fijar una semilla",
             "correct": true
           },
           {
-            "text": "Que nunca se equivoca",
-            "feedback": "Puede equivocarse: revisa siempre."
+            "text": "Más decimales",
+            "feedback": "No es el problema."
           },
           {
-            "text": "Que envía el documento por ti",
-            "feedback": "Enviar sigue siendo tu decisión."
+            "text": "Menos iteraciones",
+            "feedback": "Empeoraría la estabilidad."
           }
         ],
-        "explain": "El modo agente **actúa** sobre el archivo en varios pasos."
+        "explain": "Sin semilla no hay reproducibilidad."
       },
       {
         "id": "m3x4",
-        "type": "fill",
-        "concept": "docs.compare",
-        "prompt": "Completa",
-        "code": false,
-        "template": "Al reescribir una política, compruebo que no cambian las {{0}}, los plazos ni los {{1}}.",
-        "blanks": [
+        "type": "choice",
+        "concept": "datos.python",
+        "prompt": "Con la subida central y volumen 0, el modelo determinista da 30,2 % y la media simulada 25 %. ¿Qué concluyes?",
+        "options": [
           {
-            "options": [
-              "obligaciones",
-              "fuentes",
-              "imágenes"
-            ],
-            "answer": "obligaciones"
+            "text": "La simulación está mal planteada: revisa código y distribuciones",
+            "correct": true
           },
           {
-            "options": [
-              "importes",
-              "colores",
-              "títulos"
-            ],
-            "answer": "importes"
+            "text": "El riesgo es mayor de lo que pensabas",
+            "feedback": "Primero cuadra el caso central."
+          },
+          {
+            "text": "Promedias los dos",
+            "feedback": "No tiene sentido."
           }
         ],
-        "explain": "Obligaciones, plazos e importes: lo que no puede cambiar al «mejorar» un texto."
+        "explain": "El caso central es el primer control."
+      },
+      {
+        "id": "m3x5",
+        "type": "match",
+        "concept": "datos.assumptions",
+        "prompt": "Empareja",
+        "pairs": [
+          [
+            "Vigente",
+            "Lo confirma la evidencia más reciente"
+          ],
+          [
+            "Desactualizado",
+            "Una fuente posterior lo contradice"
+          ],
+          [
+            "Sin respaldo",
+            "No se sabe de dónde sale"
+          ],
+          [
+            "Falta",
+            "Una condición nueva no está en el modelo"
+          ]
+        ],
+        "explain": "Clasificar los supuestos ordena el trabajo."
+      },
+      {
+        "id": "m3x6",
+        "type": "choice",
+        "concept": "datos.document",
+        "prompt": "¿Qué no puede saber Copilot al documentar un modelo?",
+        "options": [
+          {
+            "text": "Quién aprobó un supuesto y por qué",
+            "correct": true
+          },
+          {
+            "text": "El orden de cálculo de las hojas",
+            "feedback": "Lo lee del libro."
+          },
+          {
+            "text": "Qué celdas tienen vínculos externos",
+            "feedback": "Lo lee del libro."
+          }
+        ],
+        "explain": "Lo que no está en el libro, se pregunta."
       }
     ]
   }

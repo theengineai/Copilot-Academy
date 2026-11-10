@@ -20,6 +20,7 @@ function controlLabel(cmd) {
   if (name === 'ver') return `Ver ${arg}`;
   if (name === 'agente') return arg ? `Agente: ${arg}` : 'Sin agente';
   if (name === 'pages') return `Editar en Pages${arg ? `: ${arg}` : ''}`;
+  if (name === 'programar') return `Programar: ${arg}`;
   if (name === 'ayuda') return 'Ayuda';
   return null;
 }
@@ -34,6 +35,7 @@ function chipLabel(cmd) {
   if (name === 'ver') return `Ver ${arg}`;
   if (name === 'editar') return `Editar ${arg.split('/').pop()}`;
   if (name === 'pages') return `Editar en Pages${arg ? `: ${arg}` : ''}`;
+  if (name === 'programar') return `Programar: ${arg}`;
   if (name === 'ayuda') return 'Ayuda';
   return cmd;
 }

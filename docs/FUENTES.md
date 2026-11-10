@@ -16,8 +16,10 @@ Contenido contrastado el **10 de noviembre de 2026** con la documentación de Mi
 | [Classify and protect Copilot content with sensitivity labels](https://learn.microsoft.com/training/modules/purview-ai-secure-copilot/sensitivity-labels-copilot) | El contenido generado hereda la etiqueta más restrictiva de sus fuentes; el cifrado sin derechos impide a Copilot usar el documento; DLP basado en etiquetas | M1 |
 | [Schedule your most used Copilot prompts](https://support.microsoft.com/microsoft-365-copilot/schedule-your-most-used-copilot-prompts) | «Programar este prompt», licencia necesaria, resultados en los chats, también en Teams y Outlook | M2, M5 |
 | [Autonomous agents (Copilot Studio)](https://learn.microsoft.com/microsoft-copilot-studio/guidance/autonomous-agents) | Disparadores, instrucciones y guardarraíles; flujos como herramientas; aprobación humana en los flujos de agente | M7 |
-| Avisos del centro de mensajes sobre `=COPILOT()` (MC1454373) | La función de hoja `=COPILOT()` (vista previa) deja de estar disponible el 14 de septiembre de 2026 | M4 |
-| Anuncio de disponibilidad general de Copilot Cowork (16 de junio de 2026) | Requiere licencia de Microsoft 365 Copilot y consume Copilot Credits | M7 (mención) |
+| [Analyst agent in Microsoft 365 Copilot](https://techcommunity.microsoft.com/blog/Microsoft365CopilotBlog/analyst-agent-in-microsoft-365-copilot/4397191) | Agente de razonamiento que escribe, ejecuta y verifica Python en un entorno controlado; código revisable; Excel, CSV y otros formatos | M3, M4 |
+| [Building Agent Mode in Excel](https://techcommunity.microsoft.com/blog/excelblog/building-agent-mode-in-excel/4457320) | Construcción en varios pasos con plan visible; 57,2 % en SpreadsheetBench en la vista previa; en algunas versiones se llama «Editar con Copilot» | M3 |
+| [Copilot Cowork](https://www.microsoft.com/microsoft-365-copilot/cowork) | Encargo de un resultado, plan, ejecución en segundo plano y puntos de control para aprobar; usa tus permisos; facturación por uso | M5 |
+| Anuncio de disponibilidad general de Copilot Cowork (16 de junio de 2026) | Requiere licencia de Microsoft 365 Copilot y consume Copilot Credits | M5, M7 |
 
 ## Decisiones de contenido
 
