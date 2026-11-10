@@ -1,0 +1,918 @@
+{
+  "id": "m3",
+  "title": "Word y PowerPoint",
+  "subtitle": "Borradores con fuentes, reescrituras seguras, presentaciones con una historia y el modo agente.",
+  "level": "L3",
+  "icon": "file",
+  "color": "#3F6E9C",
+  "lessons": [
+    {
+      "id": "l3-1",
+      "title": "Un borrador en Word desde tus archivos",
+      "summary": "Describe el documento, apóyalo en tus fuentes y revisa antes de conservarlo.",
+      "minutes": 7,
+      "objectives": [
+        "Pedir un borrador en Word con fuentes",
+        "Revisar y decidir si conservar, regenerar o descartar",
+        "Trabajar por partes: primero la estructura"
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Idea clave",
+          "title": "Del documento en blanco al primer borrador",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "En un documento nuevo, Copilot te propone **redactar con Copilot**. Describes qué necesitas y, con **/**, indicas los archivos en los que debe basarse."
+            },
+            {
+              "type": "flow",
+              "steps": [
+                {
+                  "title": "Describe",
+                  "text": "Qué documento, para quién y con qué estructura."
+                },
+                {
+                  "title": "Aporta fuentes",
+                  "text": "Con / añades el informe, la reunión o el correo."
+                },
+                {
+                  "title": "Revisa",
+                  "text": "Lee el borrador completo y compáralo con las fuentes."
+                },
+                {
+                  "title": "Decide",
+                  "text": "Conservar, regenerar con más detalle o descartar."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "m3l1e1",
+          "type": "copilot",
+          "concept": "docs.draft",
+          "prompt": "Abre **Word** (sin archivo) y pide un **borrador de nota para dirección** basado en **/Informe_cierre_octubre.docx** y **/Comite_cierre_3nov.meet**. Después **abre el borrador** para revisarlo",
+          "setup": {
+            "files": {
+              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
+              "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
+            },
+            "actions": [
+              {
+                "id": "nota",
+                "when": [
+                  [
+                    "redacta",
+                    "borrador",
+                    "nota",
+                    "prepara"
+                  ]
+                ],
+                "reply": [
+                  "He redactado un borrador de nota para dirección con cinco apartados: resultado, margen, decisiones en curso, pendientes y riesgos.",
+                  "Revisa las cifras con las fuentes antes de conservarlo."
+                ],
+                "needs": {
+                  "app": "word",
+                  "refs": [
+                    "Informe_cierre_octubre.docx",
+                    "Comite_cierre_3nov.meet"
+                  ],
+                  "say": {
+                    "app": "Para crear el documento, abre Word (sin archivo) y pide el borrador desde allí."
+                  }
+                },
+                "cites": [
+                  "Informe_cierre_octubre.docx",
+                  "Comite_cierre_3nov.meet"
+                ],
+                "writes": [
+                  {
+                    "path": "OneDrive/Cierre octubre/Nota_direccion_octubre.docx",
+                    "content": "Nota para dirección · Cierre de octubre 2026 (borrador generado con Copilot)\n\n1. Resultado: ventas de 412.000 € (+6 % sobre presupuesto).\n2. Margen: 31,5 % frente al 33 % previsto, por el transporte (+18 %).\n3. Decisiones en curso: comparativa de tres proveedores (Luis, 12 nov).\n4. Pendiente: provisión del cliente Norte (Marta, antes del día 10).\n5. Riesgo: dos clientes concentran el 27 % de las ventas.\n"
+                  }
+                ]
+              }
+            ]
+          },
+          "goals": [
+            {
+              "type": "prompt",
+              "label": "Pedir el borrador desde Word con las dos fuentes",
+              "app": "word",
+              "refs": [
+                "Informe_cierre_octubre.docx",
+                "Comite_cierre_3nov.meet"
+              ],
+              "hint": "Abre Word y escribe: Redacta una nota para dirección a partir de /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet"
+            },
+            {
+              "type": "exists",
+              "label": "Existe el borrador Nota_direccion_octubre.docx",
+              "path": "OneDrive/Cierre octubre/Nota_direccion_octubre.docx"
+            },
+            {
+              "type": "viewed",
+              "label": "Abrir el borrador para revisarlo",
+              "path": "Nota_direccion_octubre.docx",
+              "hint": "Archivos → Ver Nota_direccion_octubre.docx"
+            }
+          ],
+          "solution": [
+            "::app word",
+            "Redacta una nota para dirección sobre el cierre de octubre, en 5 apartados breves, a partir de /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet",
+            "::ver Nota_direccion_octubre.docx"
+          ],
+          "explain": "Copilot en Word redacta sobre tus fuentes, pero el documento es tuyo: revisa cifras, responsables y fechas antes de conservarlo.",
+          "suggestions": [
+            "::app word",
+            "Redacta una nota para dirección ",
+            "::ver Nota_direccion_octubre.docx"
+          ]
+        },
+        {
+          "id": "m3l1e2",
+          "type": "order",
+          "concept": "docs.draft",
+          "prompt": "Ordena un documento largo hecho por partes",
+          "items": [
+            "Pedir solo el índice y ajustarlo",
+            "Redactar cada sección con su fuente",
+            "Revisar cifras y nombres con las fuentes",
+            "Pedir un resumen inicial de todo el documento"
+          ],
+          "explain": "Para documentos largos, **estructura primero**. El resumen se escribe al final, cuando el contenido ya es correcto."
+        },
+        {
+          "id": "m3l1e3",
+          "type": "choice",
+          "concept": "docs.draft",
+          "prompt": "El borrador tiene buena estructura, pero un apartado es demasiado genérico. ¿Qué haces?",
+          "options": [
+            {
+              "text": "Conservarlo y pedir que reescriba ese apartado con datos de la fuente",
+              "correct": true
+            },
+            {
+              "text": "Descartar todo y empezar de cero",
+              "feedback": "Perderías lo que ya está bien."
+            },
+            {
+              "text": "Enviarlo tal cual: ya lo revisará dirección",
+              "feedback": "El documento es tu responsabilidad."
+            }
+          ],
+          "explain": "Conserva lo que funciona y pide cambios **delimitados**."
+        },
+        {
+          "type": "card",
+          "kicker": "Consejos",
+          "title": "Buenas peticiones para Word",
+          "blocks": [
+            {
+              "type": "cmds",
+              "items": [
+                {
+                  "cmd": "«Propón un índice de 5 apartados para…»",
+                  "desc": "Empieza por la estructura.",
+                  "where": "Word"
+                },
+                {
+                  "cmd": "«Redacta el apartado 2 usando /…»",
+                  "desc": "Una sección cada vez, con su fuente.",
+                  "where": "Word"
+                },
+                {
+                  "cmd": "«Señala entre corchetes los datos que no estén en las fuentes»",
+                  "desc": "Hace visibles los huecos.",
+                  "where": "Word"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "m3l1e4",
+          "type": "multi",
+          "concept": "docs.draft",
+          "prompt": "¿Qué compruebas antes de conservar un borrador?",
+          "options": [
+            {
+              "text": "Que las cifras coinciden con las fuentes",
+              "correct": true
+            },
+            {
+              "text": "Que los responsables y las fechas son los acordados",
+              "correct": true
+            },
+            {
+              "text": "Que no afirma como hecho algo pendiente",
+              "correct": true
+            },
+            {
+              "text": "Que tiene muchas palabras",
+              "feedback": "La extensión no garantiza la calidad."
+            }
+          ],
+          "explain": "Cifras, responsables, fechas y lo pendiente: lo que más daño hace si está mal."
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Lo esencial de esta lección",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con esta lección deberías poder:\n- Pedir un borrador en Word con fuentes\n- Revisar y decidir si conservar, regenerar o descartar\n- Trabajar por partes: primero la estructura"
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l3-2",
+      "title": "Reescribir, resumir y preguntar",
+      "summary": "Con un documento abierto, Copilot lo resume, responde preguntas sobre él y reescribe lo que selecciones.",
+      "minutes": 6,
+      "objectives": [
+        "Preguntar a un documento abierto",
+        "Transformar texto en una tabla",
+        "Pedir reescrituras con un criterio claro"
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Idea clave",
+          "title": "Copilot sobre el documento abierto",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con un documento abierto, el panel de Copilot trabaja **sobre ese archivo**: puedes pedir un resumen, hacerle preguntas o transformar partes del texto."
+            },
+            {
+              "type": "cmds",
+              "items": [
+                {
+                  "cmd": "Resumir",
+                  "desc": "«Resume este documento en 5 viñetas».",
+                  "where": "Word"
+                },
+                {
+                  "cmd": "Preguntar",
+                  "desc": "«¿Qué dice sobre las excepciones?»",
+                  "where": "Word"
+                },
+                {
+                  "cmd": "Reescribir",
+                  "desc": "Selecciona un párrafo y pide «más claro y breve».",
+                  "where": "Word"
+                },
+                {
+                  "cmd": "Transformar",
+                  "desc": "«Convierte los límites en una tabla».",
+                  "where": "Word"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "m3l2e1",
+          "type": "copilot",
+          "concept": "docs.rewrite",
+          "prompt": "Abre **Politica_gastos_viaje.docx** en Word, pregunta el **límite de hotel en el extranjero** y pide los límites **en una tabla**",
+          "setup": {
+            "files": {
+              "SharePoint/Finanzas/Politica_gastos_viaje.docx": "Política de gastos de viaje (versión 4, enero 2026) · documento ficticio\n\n1. Hotel: máximo 120 € por noche en España y 160 € en el extranjero.\n2. Dietas: 45 € diarios con justificante.\n3. Kilometraje: 0,26 € por km en vehículo propio.\n4. Plazo: las notas de gasto se presentan en los 30 días siguientes al viaje.\n5. Excepciones: las aprueba la dirección financiera por escrito.\n",
+              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
+            },
+            "actions": [
+              {
+                "id": "hotel",
+                "when": [
+                  [
+                    "hotel",
+                    "extranjero",
+                    "alojamiento"
+                  ]
+                ],
+                "reply": [
+                  "Según la política, el límite de hotel es de 160 € por noche en el extranjero (120 € en España). [1]"
+                ],
+                "needs": {
+                  "app": "word",
+                  "open": "Politica_gastos_viaje.docx"
+                },
+                "cites": [
+                  "Politica_gastos_viaje.docx"
+                ]
+              },
+              {
+                "id": "tabla",
+                "when": [
+                  [
+                    "tabla"
+                  ]
+                ],
+                "reply": [
+                  "Concepto | Límite",
+                  "Hotel en España | 120 €/noche",
+                  "Hotel en el extranjero | 160 €/noche",
+                  "Dietas | 45 €/día",
+                  "Kilometraje | 0,26 €/km",
+                  "Plazo | 30 días"
+                ],
+                "needs": {
+                  "app": "word",
+                  "open": "Politica_gastos_viaje.docx"
+                },
+                "cites": [
+                  "Politica_gastos_viaje.docx"
+                ]
+              }
+            ]
+          },
+          "goals": [
+            {
+              "type": "app",
+              "label": "Tener abierta la política en Word",
+              "app": "word",
+              "open": "Politica_gastos_viaje.docx",
+              "hint": "Toca la barra superior y elige Word → Politica_gastos_viaje.docx"
+            },
+            {
+              "type": "action",
+              "label": "Respuesta sobre el límite de hotel",
+              "id": "hotel",
+              "hint": "¿Cuál es el límite de hotel en el extranjero?"
+            },
+            {
+              "type": "action",
+              "label": "Los límites en una tabla",
+              "id": "tabla",
+              "hint": "Convierte los límites en una tabla"
+            }
+          ],
+          "solution": [
+            "::app word Politica_gastos_viaje.docx",
+            "¿Cuál es el límite de hotel en el extranjero?",
+            "Convierte los límites de la política en una tabla"
+          ],
+          "explain": "Con el documento abierto no hace falta citarlo con /: Copilot ya trabaja sobre él. Comprueba siempre la versión de la política (aquí, la 4 de enero de 2026).",
+          "suggestions": [
+            "::app word Politica_gastos_viaje.docx",
+            "¿Cuál es el límite de hotel en el extranjero?",
+            "Convierte los límites en una tabla"
+          ]
+        },
+        {
+          "id": "m3l2e2",
+          "type": "match",
+          "concept": "docs.rewrite",
+          "prompt": "Empareja la necesidad con la petición",
+          "pairs": [
+            [
+              "El párrafo es largo y técnico",
+              "«Reescríbelo en 3 frases sin tecnicismos»"
+            ],
+            [
+              "Necesitas comparar límites",
+              "«Conviértelo en una tabla»"
+            ],
+            [
+              "Dudas sobre un caso concreto",
+              "«¿Qué dice sobre las excepciones?»"
+            ],
+            [
+              "Ponerte al día rápido",
+              "«Resume el documento en 5 viñetas»"
+            ]
+          ],
+          "explain": "Resumir, preguntar, reescribir y transformar: las cuatro operaciones básicas sobre un documento."
+        },
+        {
+          "type": "card",
+          "kicker": "Cuidado",
+          "title": "Reescribir puede cambiar el significado",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Al «mejorar» un texto, Copilot puede suavizar una obligación («debe» → «se recomienda») o eliminar un matiz. En textos con efectos (políticas, contratos, condiciones) compara siempre el antes y el después."
+            },
+            {
+              "type": "callout",
+              "tone": "finance",
+              "body": "En importes, plazos y porcentajes, una palabra cambia mucho: «hasta 120 €» no es lo mismo que «120 €»."
+            }
+          ]
+        },
+        {
+          "id": "m3l2e3",
+          "type": "choice",
+          "concept": "docs.rewrite",
+          "prompt": "Pides «hazlo más amable» y la frase «las notas **se presentan** en 30 días» pasa a «**intenta** presentarlas en unos 30 días». ¿Qué ocurre?",
+          "options": [
+            {
+              "text": "La reescritura ha cambiado una obligación en una sugerencia: hay que corregirla",
+              "correct": true
+            },
+            {
+              "text": "Nada: el sentido es el mismo",
+              "feedback": "«Intenta» y «unos» quitan obligatoriedad y precisión."
+            },
+            {
+              "text": "Es mejor así porque es más amable",
+              "feedback": "La amabilidad no puede cambiar la norma."
+            }
+          ],
+          "explain": "Al reescribir, revisa **obligaciones, plazos e importes**."
+        },
+        {
+          "id": "m3l2e4",
+          "type": "fill",
+          "concept": "docs.rewrite",
+          "prompt": "Completa",
+          "code": false,
+          "template": "Con el documento {{0}}, Copilot trabaja sobre él sin usar /. Para cambiar solo un párrafo, primero lo {{1}}.",
+          "blanks": [
+            {
+              "options": [
+                "abierto",
+                "cerrado",
+                "impreso"
+              ],
+              "answer": "abierto"
+            },
+            {
+              "options": [
+                "selecciono",
+                "borro",
+                "imprimo"
+              ],
+              "answer": "selecciono"
+            }
+          ],
+          "explain": "Documento abierto = contexto automático. Seleccionar delimita el cambio."
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Lo esencial de esta lección",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con esta lección deberías poder:\n- Preguntar a un documento abierto\n- Transformar texto en una tabla\n- Pedir reescrituras con un criterio claro"
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l3-3",
+      "title": "Presentaciones con PowerPoint",
+      "summary": "Crea una presentación desde un documento y cuida que cada diapositiva tenga un único mensaje.",
+      "minutes": 7,
+      "objectives": [
+        "Crear una presentación desde un archivo",
+        "Revisar la historia diapositiva a diapositiva",
+        "Detectar diapositivas con problemas"
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Idea clave",
+          "title": "Del documento a las diapositivas",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Copilot en PowerPoint puede crear una presentación **a partir de un archivo** (por ejemplo, la nota de Word), añadir diapositivas, resumir una presentación larga u organizarla en secciones.\n\nLa calidad depende del documento de partida: **una buena nota da una buena presentación**."
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Pide la historia antes que el diseño: «Propón 5 diapositivas, una idea por diapositiva, terminando con las decisiones que pedimos»."
+            }
+          ]
+        },
+        {
+          "id": "m3l3e1",
+          "type": "copilot",
+          "concept": "docs.ppt",
+          "prompt": "Abre **PowerPoint** y crea una **presentación de 5 diapositivas** a partir de **/Nota_direccion_octubre.docx**. Luego ábrela para revisar la historia",
+          "setup": {
+            "files": {
+              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
+              "OneDrive/Cierre octubre/Nota_direccion_octubre.docx": "Nota para dirección · Cierre de octubre 2026 (borrador generado con Copilot)\n\n1. Resultado: ventas de 412.000 € (+6 % sobre presupuesto).\n2. Margen: 31,5 % frente al 33 % previsto, por el transporte (+18 %).\n3. Decisiones en curso: comparativa de tres proveedores (Luis, 12 nov).\n4. Pendiente: provisión del cliente Norte (Marta, antes del día 10).\n5. Riesgo: dos clientes concentran el 27 % de las ventas.\n"
+            },
+            "actions": [
+              {
+                "id": "ppt",
+                "when": [
+                  [
+                    "presentacion",
+                    "diapositivas"
+                  ]
+                ],
+                "reply": [
+                  "He creado una presentación de 5 diapositivas a partir de la nota: un mensaje por diapositiva y una final con las decisiones que se piden.",
+                  "Revisa los datos de cada gráfico y añade tus notas de orador."
+                ],
+                "needs": {
+                  "app": "powerpoint",
+                  "refs": [
+                    "Nota_direccion_octubre.docx"
+                  ],
+                  "say": {
+                    "app": "Abre PowerPoint para crear la presentación."
+                  }
+                },
+                "cites": [
+                  "Nota_direccion_octubre.docx"
+                ],
+                "writes": [
+                  {
+                    "path": "OneDrive/Cierre octubre/Presentacion_comite.pptx",
+                    "content": "Presentación generada con Copilot · 5 diapositivas\n\n1. Cierre de octubre: en una frase\n2. Ventas por encima del presupuesto (+6 %)\n3. El margen cae por el transporte (31,5 % frente a 33 %)\n4. Qué estamos haciendo: comparativa de proveedores\n5. Decisiones que pedimos al comité\n"
+                  }
+                ]
+              }
+            ]
+          },
+          "goals": [
+            {
+              "type": "prompt",
+              "label": "Pedir la presentación desde PowerPoint con la nota como fuente",
+              "app": "powerpoint",
+              "refs": [
+                "Nota_direccion_octubre.docx"
+              ],
+              "hint": "Abre PowerPoint: Crea una presentación de 5 diapositivas a partir de /Nota_direccion_octubre.docx"
+            },
+            {
+              "type": "exists",
+              "label": "Existe Presentacion_comite.pptx",
+              "path": "OneDrive/Cierre octubre/Presentacion_comite.pptx"
+            },
+            {
+              "type": "viewed",
+              "label": "Revisar la presentación",
+              "path": "Presentacion_comite.pptx",
+              "hint": "Archivos → Ver Presentacion_comite.pptx"
+            }
+          ],
+          "solution": [
+            "::app powerpoint",
+            "Crea una presentación de 5 diapositivas para el comité a partir de /Nota_direccion_octubre.docx, con una idea por diapositiva",
+            "::ver Presentacion_comite.pptx"
+          ],
+          "explain": "Partir de una nota revisada evita que los errores pasen a las diapositivas. Revisa cada gráfico: es donde más se cuelan cifras incorrectas.",
+          "suggestions": [
+            "::app powerpoint",
+            "Crea una presentación de 5 diapositivas ",
+            "::ver Presentacion_comite.pptx"
+          ]
+        },
+        {
+          "id": "m3l3e2",
+          "type": "order",
+          "concept": "docs.ppt",
+          "prompt": "Ordena una presentación para pedir una decisión",
+          "items": [
+            "El mensaje principal en una frase",
+            "Los datos que lo demuestran",
+            "La causa del problema",
+            "Qué estamos haciendo",
+            "La decisión que pedimos"
+          ],
+          "explain": "Mensaje → evidencia → causa → acciones → decisión. Copilot puede proponer el orden, pero la historia la decides tú."
+        },
+        {
+          "type": "card",
+          "kicker": "Revisión",
+          "title": "Una diapositiva, un mensaje",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Revisa cada diapositiva con tres preguntas:\n- ¿Tiene **un solo mensaje**, escrito como titular?\n- ¿Cada cifra tiene **fuente**?\n- ¿Las imágenes y los iconos **ayudan** o solo decoran?"
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "body": "Las imágenes generadas o de archivo pueden no representar bien a tu empresa. Úsalas con criterio y respeta la identidad corporativa."
+            }
+          ]
+        },
+        {
+          "id": "m3l3e3",
+          "type": "spot",
+          "concept": "docs.ppt",
+          "prompt": "Revisa el guion propuesto por Copilot y señala las diapositivas con problemas",
+          "file": "Guion de la presentación",
+          "lines": [
+            "1. El cierre de octubre en una frase",
+            "2. Ventas, margen, transporte, clientes, tesorería y plantilla",
+            "3. El margen cae por el transporte (31,5 % frente a 33 %)",
+            "4. Ahorro garantizado del 20 % con el nuevo proveedor",
+            "5. Decisiones que pedimos al comité"
+          ],
+          "faulty": [
+            1,
+            3
+          ],
+          "notes": {
+            "1": "Demasiados mensajes en una diapositiva.",
+            "3": "Dato inventado: no hay ninguna fuente que garantice un 20 %."
+          },
+          "fixed": "1. El cierre de octubre en una frase\n2. Ventas por encima del presupuesto (+6 %)\n3. El margen cae por el transporte\n4. Comparativa de proveedores en curso\n5. Decisiones que pedimos al comité",
+          "explain": "Diapositivas con un solo mensaje y cifras con fuente. Una promesa sin respaldo en una presentación a dirección es un riesgo serio."
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Lo esencial de esta lección",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con esta lección deberías poder:\n- Crear una presentación desde un archivo\n- Revisar la historia diapositiva a diapositiva\n- Detectar diapositivas con problemas"
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l3-4",
+      "title": "Modo agente: Copilot hace los cambios",
+      "summary": "En modo agente Copilot planifica y aplica varios cambios seguidos en el archivo. Tú supervisas.",
+      "minutes": 6,
+      "objectives": [
+        "Distinguir el chat del modo agente",
+        "Elegir tareas adecuadas para el modo agente",
+        "Revisar y deshacer los cambios"
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Idea clave",
+          "title": "De sugerir a hacer",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El **modo agente** de Word, Excel y PowerPoint (disponible de forma general desde 2026, según tu licencia y versión) no se limita a proponer texto: **planifica** la tarea, la divide en pasos y **aplica los cambios** en el archivo, mostrándote lo que hace."
+            },
+            {
+              "type": "compare",
+              "left": {
+                "title": "Chat en el panel",
+                "items": [
+                  "Te propone texto o ideas",
+                  "Tú decides qué insertar",
+                  "Una respuesta cada vez"
+                ]
+              },
+              "right": {
+                "title": "Modo agente",
+                "items": [
+                  "Aplica cambios en el archivo",
+                  "Varios pasos seguidos (secciones, tablas, formato)",
+                  "Te enseña el plan y el progreso; puedes detenerlo y corregirlo"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m3l4e1",
+          "type": "choice",
+          "concept": "docs.agentmode",
+          "prompt": "¿Qué tarea encaja mejor con el modo agente?",
+          "options": [
+            {
+              "text": "«Reorganiza este informe en 4 secciones, añade una tabla resumen y aplica el estilo corporativo»",
+              "correct": true
+            },
+            {
+              "text": "«¿Qué significa EBITDA?»",
+              "feedback": "Es una pregunta: basta con el chat."
+            },
+            {
+              "text": "«Envía el informe a dirección»",
+              "feedback": "Enviar es una decisión tuya."
+            }
+          ],
+          "explain": "El modo agente brilla en tareas de **varios pasos sobre el archivo**."
+        },
+        {
+          "type": "card",
+          "kicker": "Supervisión",
+          "title": "Tú sigues al mando",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Cuantos más cambios hace Copilot por su cuenta, más importante es revisar:\n- Lee el **plan** antes de dejarle continuar.\n- Comprueba el resultado con el **historial de versiones** (puedes volver a una versión anterior).\n- Revisa especialmente cifras, fórmulas y textos legales."
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Trabaja sobre una copia o con el historial de versiones activado (archivos en OneDrive o SharePoint) para deshacer con tranquilidad."
+            }
+          ]
+        },
+        {
+          "id": "m3l4e2",
+          "type": "multi",
+          "concept": "gob.human",
+          "prompt": "Tras usar el modo agente en un informe, ¿qué revisas?",
+          "options": [
+            {
+              "text": "Que las cifras siguen coincidiendo con las fuentes",
+              "correct": true
+            },
+            {
+              "text": "Que no ha borrado secciones que querías conservar",
+              "correct": true
+            },
+            {
+              "text": "Que puedes volver a una versión anterior si hace falta",
+              "correct": true
+            },
+            {
+              "text": "Nada: si lo ha hecho el agente, está bien",
+              "feedback": "El agente puede equivocarse como cualquier respuesta de IA."
+            }
+          ],
+          "explain": "Más autonomía exige **más revisión**, no menos."
+        },
+        {
+          "id": "m3l4e3",
+          "type": "order",
+          "concept": "docs.agentmode",
+          "prompt": "Ordena cómo usar el modo agente con seguridad",
+          "items": [
+            "Describir el resultado final que quieres",
+            "Leer el plan que propone",
+            "Dejar que aplique los cambios y seguir el progreso",
+            "Revisar el resultado y deshacer lo que no sirva"
+          ],
+          "explain": "Describe → revisa el plan → supervisa → comprueba."
+        },
+        {
+          "id": "m3l4e4",
+          "type": "match",
+          "concept": "docs.agentmode",
+          "prompt": "Empareja cada situación con la herramienta",
+          "pairs": [
+            [
+              "Una duda rápida sobre el documento",
+              "Chat del panel"
+            ],
+            [
+              "Reestructurar todo el documento",
+              "Modo agente"
+            ],
+            [
+              "Volver a como estaba ayer",
+              "Historial de versiones"
+            ],
+            [
+              "Enviar el documento a un cliente",
+              "Tú, tras revisarlo"
+            ]
+          ],
+          "explain": "Cada herramienta para lo suyo, y las decisiones finales, tuyas."
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Lo esencial de esta lección",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con esta lección deberías poder:\n- Distinguir el chat del modo agente\n- Elegir tareas adecuadas para el modo agente\n- Revisar y deshacer los cambios"
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "exam": {
+    "size": 8,
+    "extra": [
+      {
+        "id": "m3x1",
+        "type": "choice",
+        "concept": "docs.draft",
+        "prompt": "¿Qué petición da un mejor borrador en Word?",
+        "options": [
+          {
+            "text": "«Redacta una nota para dirección, en 5 apartados, a partir de /Informe_cierre_octubre.docx, y marca lo pendiente»",
+            "correct": true
+          },
+          {
+            "text": "«Escribe algo sobre el cierre»",
+            "feedback": "Sin estructura, público ni fuente."
+          },
+          {
+            "text": "«Hazme un documento largo y completo»",
+            "feedback": "«Largo» no es un criterio de calidad."
+          }
+        ],
+        "explain": "Tipo de documento, público, estructura, fuente y regla para lo pendiente."
+      },
+      {
+        "id": "m3x2",
+        "type": "multi",
+        "concept": "docs.ppt",
+        "prompt": "¿Qué señales indican una mala diapositiva?",
+        "options": [
+          {
+            "text": "Cinco mensajes distintos en una diapositiva",
+            "correct": true
+          },
+          {
+            "text": "Una cifra sin fuente",
+            "correct": true
+          },
+          {
+            "text": "Un titular que resume el mensaje",
+            "feedback": "Es justo lo recomendable."
+          },
+          {
+            "text": "Una gráfica con los datos del informe revisado",
+            "feedback": "Bien, si los datos están verificados."
+          }
+        ],
+        "explain": "Un mensaje por diapositiva y cifras con fuente."
+      },
+      {
+        "id": "m3x3",
+        "type": "choice",
+        "concept": "docs.agentmode",
+        "prompt": "¿Qué diferencia al modo agente del chat del panel?",
+        "options": [
+          {
+            "text": "Planifica y aplica varios cambios en el archivo, mostrando el progreso",
+            "correct": true
+          },
+          {
+            "text": "Que nunca se equivoca",
+            "feedback": "Puede equivocarse: revisa siempre."
+          },
+          {
+            "text": "Que envía el documento por ti",
+            "feedback": "Enviar sigue siendo tu decisión."
+          }
+        ],
+        "explain": "El modo agente **actúa** sobre el archivo en varios pasos."
+      },
+      {
+        "id": "m3x4",
+        "type": "fill",
+        "concept": "docs.rewrite",
+        "prompt": "Completa",
+        "code": false,
+        "template": "Al reescribir una política, compruebo que no cambian las {{0}}, los plazos ni los {{1}}.",
+        "blanks": [
+          {
+            "options": [
+              "obligaciones",
+              "fuentes",
+              "imágenes"
+            ],
+            "answer": "obligaciones"
+          },
+          {
+            "options": [
+              "importes",
+              "colores",
+              "títulos"
+            ],
+            "answer": "importes"
+          }
+        ],
+        "explain": "Obligaciones, plazos e importes: lo que no puede cambiar al «mejorar» un texto."
+      }
+    ]
+  }
+}

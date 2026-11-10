@@ -1,0 +1,927 @@
+{
+  "id": "m1",
+  "title": "Copilot y tu entorno de trabajo",
+  "subtitle": "Qué Copilot tienes, de dónde salen sus respuestas y cómo comprobarlas.",
+  "level": "L2 → L3",
+  "icon": "spark",
+  "color": "#5B4FD6",
+  "lessons": [
+    {
+      "id": "l1-1",
+      "title": "Qué es Copilot (y cuál tienes)",
+      "summary": "Varios productos comparten el nombre. Saber cuál tienes evita frustraciones y malentendidos.",
+      "minutes": 6,
+      "objectives": [
+        "Distinguir Copilot Chat, Microsoft 365 Copilot, Copilot Studio y el Copilot personal",
+        "Saber qué añade la licencia de Microsoft 365 Copilot",
+        "Saber qué hacer si no ves una función"
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Idea clave",
+          "title": "Un nombre, varios productos",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "«Copilot» es una familia. En el trabajo te encontrarás sobre todo con estos:\n- **Microsoft 365 Copilot Chat**: el chat que tienes con tu cuenta de trabajo. Responde con información de la web y con los archivos que tú le das.\n- **Microsoft 365 Copilot**: la licencia de pago que añade el acceso a tus **datos de trabajo** (correo, reuniones, chats y archivos) y Copilot completo dentro de Word, Excel, PowerPoint, Outlook y Teams.\n- **Copilot Studio**: la herramienta para **crear agentes** (lo verás en el módulo 7).\n- **Microsoft Copilot** con cuenta personal: el asistente de consumo. No es para datos de la empresa."
+            },
+            {
+              "type": "callout",
+              "tone": "info",
+              "body": "GitHub Copilot, para programar, es otro producto distinto y no forma parte de esta academia."
+            }
+          ]
+        },
+        {
+          "id": "m1l1e1",
+          "type": "choice",
+          "concept": "fund.family",
+          "prompt": "¿Qué herramienta usarías para crear un asistente que responda dudas sobre la política de viajes de tu empresa?",
+          "options": [
+            {
+              "text": "Copilot Studio (o el creador de agentes de Microsoft 365 Copilot)",
+              "correct": true
+            },
+            {
+              "text": "Microsoft Copilot con tu cuenta personal",
+              "feedback": "Una cuenta personal no es el sitio para documentación interna de la empresa."
+            },
+            {
+              "text": "Copilot en Excel",
+              "feedback": "Excel sirve para analizar datos, no para crear asistentes."
+            }
+          ],
+          "explain": "Un asistente con instrucciones y fuentes propias es un **agente**, y los agentes se crean con Copilot Studio o con su versión simplificada dentro de Microsoft 365 Copilot."
+        },
+        {
+          "type": "card",
+          "kicker": "Licencias",
+          "title": "Qué cambia con la licencia",
+          "blocks": [
+            {
+              "type": "compare",
+              "left": {
+                "title": "Copilot Chat (cuenta de trabajo)",
+                "items": [
+                  "Respuestas basadas en la **web**",
+                  "Puede trabajar con los archivos que subes o tienes abiertos",
+                  "Disponible también en el panel de Word, Excel, PowerPoint y Outlook",
+                  "Agentes con acceso estándar"
+                ]
+              },
+              "right": {
+                "title": "Microsoft 365 Copilot (licencia)",
+                "items": [
+                  "Además, usa tus **datos de trabajo**: correo, reuniones, chats y archivos",
+                  "Copilot completo en cada app, también en las reuniones de Teams",
+                  "Agentes avanzados como **Researcher** y **Analyst**",
+                  "Funciones nuevas en los programas de acceso anticipado"
+                ]
+              }
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "body": "Las funciones dependen de tu licencia, de lo que active tu organización, de la región y de la versión. Si no ves algo que aparece en un vídeo, no es un fallo tuyo: pregunta a tu equipo de TI."
+            }
+          ]
+        },
+        {
+          "id": "m1l1e2",
+          "type": "match",
+          "concept": "fund.family",
+          "prompt": "Empareja cada producto con su uso principal",
+          "pairs": [
+            [
+              "Copilot Chat",
+              "Conversar y preparar textos con la web y los archivos que aportas"
+            ],
+            [
+              "Microsoft 365 Copilot",
+              "Trabajar con tu correo, reuniones y documentos de la empresa"
+            ],
+            [
+              "Copilot Studio",
+              "Crear y publicar agentes"
+            ],
+            [
+              "Microsoft Copilot personal",
+              "Uso privado, fuera del trabajo"
+            ]
+          ],
+          "explain": "Cada uno tiene su sitio. La diferencia clave para tu trabajo es si Copilot puede usar **tus datos de trabajo** o no."
+        },
+        {
+          "id": "m1l1e3",
+          "type": "multi",
+          "concept": "fund.licenses",
+          "prompt": "¿Qué peticiones necesitan la licencia de Microsoft 365 Copilot (y no solo Copilot Chat)?",
+          "options": [
+            {
+              "text": "«¿Qué acordamos en la reunión del comité de ayer?»",
+              "correct": true
+            },
+            {
+              "text": "«Resume los correos que me ha enviado Compras esta semana»",
+              "correct": true
+            },
+            {
+              "text": "«Explícame qué es el EBITDA con un ejemplo»",
+              "feedback": "Es conocimiento general: basta con la web."
+            },
+            {
+              "text": "«Mejora la redacción de este párrafo que te pego»",
+              "feedback": "Le das tú el texto: no necesita buscar en tus datos."
+            }
+          ],
+          "explain": "Si Copilot tiene que **buscar por su cuenta** en tu correo, tus reuniones o tus archivos, necesita la licencia de Microsoft 365 Copilot."
+        },
+        {
+          "type": "card",
+          "kicker": "Dónde está",
+          "title": "Dónde encontrarás Copilot",
+          "blocks": [
+            {
+              "type": "cmds",
+              "items": [
+                {
+                  "cmd": "App de Microsoft 365 Copilot",
+                  "desc": "El punto de entrada principal: chat, agentes, Notebooks y Pages. Web, escritorio y móvil.",
+                  "where": "Copilot Chat"
+                },
+                {
+                  "cmd": "Panel de Copilot",
+                  "desc": "En Word, Excel, PowerPoint y Outlook: trabaja sobre el archivo o correo abierto.",
+                  "where": "Apps"
+                },
+                {
+                  "cmd": "Teams",
+                  "desc": "En chats y reuniones: resúmenes, preguntas y tareas pendientes.",
+                  "where": "Teams"
+                }
+              ],
+              "title": "Los sitios habituales"
+            }
+          ]
+        },
+        {
+          "id": "m1l1e4",
+          "type": "choice",
+          "concept": "fund.licenses",
+          "context": "Una compañera usa el agente Researcher para preparar un informe. Tú no lo ves en tu Copilot.",
+          "prompt": "¿Qué haces?",
+          "options": [
+            {
+              "text": "Copiar el contenido en el Copilot de tu cuenta personal, que tiene más funciones",
+              "feedback": "Sacas datos de la empresa a una herramienta sin protección empresarial."
+            },
+            {
+              "text": "Preguntar a TI si tu licencia incluye esa función y, mientras tanto, usar lo que sí tienes",
+              "correct": true
+            },
+            {
+              "text": "Suponer que tu Copilot está estropeado y no usarlo",
+              "feedback": "Lo más probable es que sea una diferencia de licencia o de configuración."
+            }
+          ],
+          "explain": "Las diferencias entre personas suelen deberse a la **licencia** o a la **configuración** de la organización. Pregunta antes de buscar atajos."
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Lo esencial de esta lección",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con esta lección deberías poder:\n- Distinguir Copilot Chat, Microsoft 365 Copilot, Copilot Studio y el Copilot personal\n- Saber qué añade la licencia de Microsoft 365 Copilot\n- Saber qué hacer si no ves una función"
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l1-2",
+      "title": "Trabajo, Web y permisos",
+      "summary": "De dónde salen las respuestas de Copilot y por qué solo ve lo que tú puedes ver.",
+      "minutes": 6,
+      "objectives": [
+        "Elegir entre el modo Trabajo y el modo Web",
+        "Entender que Copilot respeta tus permisos",
+        "Saber qué hacer si ves datos que no deberías ver"
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Idea clave",
+          "title": "Respuestas con fundamento",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Antes de responder, Copilot **busca información** y la usa como base. A eso se le llama *grounding* (fundamentar la respuesta)."
+            },
+            {
+              "type": "flow",
+              "steps": [
+                {
+                  "title": "Tu petición",
+                  "text": "Lo que preguntas, con el contexto que aportas."
+                },
+                {
+                  "title": "Búsqueda",
+                  "text": "En la web (modo Web) o en tus datos de trabajo (modo Trabajo)."
+                },
+                {
+                  "title": "Respuesta",
+                  "text": "El modelo redacta usando lo encontrado y añade citas a las fuentes."
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "body": "Con licencia, arriba del chat verás un selector **Trabajo / Web** (en algunas versiones, un botón **Work IQ**). En Web no busca en tu correo, chats ni archivos de trabajo."
+            }
+          ]
+        },
+        {
+          "id": "m1l2e1",
+          "type": "choice",
+          "concept": "fund.grounding",
+          "prompt": "Quieres saber qué dijo Ana sobre el transporte en el comité. ¿Qué modo eliges?",
+          "options": [
+            {
+              "text": "Trabajo",
+              "correct": true
+            },
+            {
+              "text": "Web",
+              "feedback": "La web no conoce tus reuniones internas."
+            },
+            {
+              "text": "Da igual",
+              "feedback": "No: en Web Copilot no busca en tus reuniones."
+            }
+          ],
+          "explain": "Las reuniones, correos y archivos de tu organización solo están disponibles en el modo **Trabajo**."
+        },
+        {
+          "type": "card",
+          "kicker": "Permisos",
+          "title": "Copilot ve lo que tú ves",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Copilot usa **tus permisos**. Si no puedes abrir un archivo, Copilot tampoco lo leerá. Y al revés: si un archivo está compartido de más (por ejemplo, con toda la empresa por error), Copilot puede encontrarlo.\n\nEl problema no lo crea Copilot: lo hace **visible**. Por eso es tan importante compartir con cuidado."
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "body": "Si Copilot te muestra algo que no deberías ver (nóminas, datos de clientes…), no lo difundas: avisa a la persona responsable del archivo o a TI para que corrija los permisos."
+            }
+          ]
+        },
+        {
+          "id": "m1l2e2",
+          "type": "copilot",
+          "concept": "fund.grounding",
+          "prompt": "Haz una pregunta pública en modo **Web** (el IVA general en España) y vuelve a **Trabajo** para preguntar por la **provisión** citando la reunión con **/Comite_cierre_3nov.meet**",
+          "setup": {
+            "files": {
+              "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n",
+              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
+            },
+            "actions": [
+              {
+                "id": "iva",
+                "when": [
+                  [
+                    "iva"
+                  ]
+                ],
+                "reply": [
+                  "El tipo general del IVA en España es el 21 %; existen tipos reducidos del 10 % y del 4 %.",
+                  "Fuente: resultados de la web."
+                ],
+                "needs": {
+                  "scope": "web",
+                  "say": {
+                    "scope": "Es una pregunta de información pública: cambia al modo Web."
+                  }
+                }
+              },
+              {
+                "id": "prov",
+                "when": [
+                  [
+                    "provision"
+                  ]
+                ],
+                "reply": [
+                  "En el comité del 3 de noviembre, Marta indicó que la provisión del cliente Norte sigue sin confirmar.",
+                  "Acuerdo: Marta la confirma antes del cierre del día 10."
+                ],
+                "needs": {
+                  "scope": "work",
+                  "refs": [
+                    "Comite_cierre_3nov.meet"
+                  ]
+                },
+                "cites": [
+                  "Comite_cierre_3nov.meet"
+                ]
+              }
+            ]
+          },
+          "goals": [
+            {
+              "type": "prompt",
+              "label": "Pregunta sobre el IVA en modo Web",
+              "pattern": "iva",
+              "scope": "web",
+              "hint": "Pulsa Web y pregunta: ¿cuál es el tipo general del IVA en España?"
+            },
+            {
+              "type": "prompt",
+              "label": "Pregunta por la provisión en modo Trabajo citando la reunión",
+              "pattern": "provision",
+              "scope": "work",
+              "refs": [
+                "Comite_cierre_3nov.meet"
+              ],
+              "hint": "Pulsa Trabajo y escribe: ¿qué se dijo de la provisión en /Comite_cierre_3nov.meet?"
+            }
+          ],
+          "solution": [
+            "::modo web",
+            "¿Cuál es el tipo general del IVA en España?",
+            "::modo trabajo",
+            "¿Qué se dijo de la provisión en /Comite_cierre_3nov.meet?"
+          ],
+          "explain": "La información pública se busca en la **web**; lo que pasó en tu organización, en **Trabajo**. Elegir bien el modo evita respuestas inventadas o vacías.",
+          "suggestions": [
+            "::modo web",
+            "::modo trabajo",
+            "¿Cuál es el tipo general del IVA en España? ",
+            "¿Qué se dijo de la provisión en /Comite_cierre_3nov.meet? "
+          ]
+        },
+        {
+          "id": "m1l2e3",
+          "type": "multi",
+          "concept": "gob.permissions",
+          "prompt": "En modo Trabajo, ¿qué puede usar Copilot para responderte?",
+          "options": [
+            {
+              "text": "Un correo que has recibido",
+              "correct": true
+            },
+            {
+              "text": "Un archivo que un compañero ha compartido contigo",
+              "correct": true
+            },
+            {
+              "text": "La transcripción de una reunión a la que asististe",
+              "correct": true
+            },
+            {
+              "text": "Una carpeta de RRHH a la que no tienes acceso",
+              "feedback": "Copilot respeta tus permisos: si tú no puedes abrirla, él tampoco."
+            }
+          ],
+          "explain": "Copilot trabaja **con tus permisos**, ni más ni menos."
+        },
+        {
+          "id": "m1l2e4",
+          "type": "choice",
+          "concept": "gob.permissions",
+          "context": "Al preguntar por «costes de personal», Copilot cita una hoja con las nóminas de toda la plantilla, compartida con «Todos los usuarios de la organización».",
+          "prompt": "¿Qué haces?",
+          "options": [
+            {
+              "text": "Lo comentas con el equipo para que sepan que se puede ver",
+              "feedback": "Difundirlo empeora el problema."
+            },
+            {
+              "text": "Avisas a la persona propietaria del archivo o a TI para que corrija los permisos",
+              "correct": true
+            },
+            {
+              "text": "Pides a Copilot que no te lo vuelva a enseñar",
+              "feedback": "El archivo seguiría expuesto para el resto."
+            }
+          ],
+          "explain": "El origen está en los **permisos del archivo**. Corregirlos protege a todos."
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Lo esencial de esta lección",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con esta lección deberías poder:\n- Elegir entre el modo Trabajo y el modo Web\n- Entender que Copilot respeta tus permisos\n- Saber qué hacer si ves datos que no deberías ver"
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l1-3",
+      "title": "Tu primer chat",
+      "summary": "Pide un resumen con un archivo como contexto y comprueba la respuesta en la fuente.",
+      "minutes": 6,
+      "objectives": [
+        "Añadir un archivo al contexto con /",
+        "Leer las citas de una respuesta",
+        "Comprobar una respuesta abriendo la fuente"
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "El chat",
+          "title": "Las piezas del chat",
+          "blocks": [
+            {
+              "type": "cmds",
+              "items": [
+                {
+                  "cmd": "/",
+                  "desc": "Añade como contexto un archivo, un correo, una reunión o una persona.",
+                  "where": "Copilot Chat"
+                },
+                {
+                  "cmd": "@",
+                  "desc": "Invoca un agente (por ejemplo, @Researcher) o una app.",
+                  "where": "Copilot Chat"
+                },
+                {
+                  "cmd": "Nuevo chat",
+                  "desc": "Empieza una conversación sin el contexto anterior. Úsalo al cambiar de tema.",
+                  "where": "Copilot Chat"
+                },
+                {
+                  "cmd": "Citas [1]",
+                  "desc": "Enlaces a las fuentes que ha usado. Ábrelas para comprobar.",
+                  "where": "Copilot Chat"
+                }
+              ],
+              "title": "Lo que vas a usar a diario"
+            },
+            {
+              "type": "chat",
+              "messages": [
+                {
+                  "role": "user",
+                  "text": "Resume /Informe_cierre_octubre.docx en 3 viñetas para el comité"
+                },
+                {
+                  "role": "copilot",
+                  "text": "• Ventas de 412.000 € (+6 %) [1]\n• Margen bruto del 31,5 % [1]\n• Transporte +18 % [1]"
+                }
+              ],
+              "title": "Así se ve"
+            }
+          ]
+        },
+        {
+          "id": "m1l3e1",
+          "type": "copilot",
+          "concept": "prompt.refs",
+          "prompt": "Pide un **resumen** de **/Informe_cierre_octubre.docx** indicando el **formato** (por ejemplo, 3 viñetas). Después **abre el informe** en Archivos para comprobarlo",
+          "setup": {
+            "files": {
+              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
+              "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€)\nNorte | 118.000 | 84.200 | 110.000\nCentro | 162.000 | 109.900 | 150.000\nSur | 132.000 | 88.100 | 128.000\n"
+            },
+            "actions": [
+              {
+                "id": "resumen",
+                "when": [
+                  [
+                    "resum"
+                  ]
+                ],
+                "reply": [
+                  "Resumen del cierre de octubre para el comité:",
+                  "• Ventas de 412.000 €, un 6 % por encima del presupuesto. [1]",
+                  "• Margen bruto del 31,5 %, 1,5 puntos por debajo del objetivo. [1]",
+                  "• El transporte sube un 18 % por el cambio de proveedor. [1]",
+                  "Pendiente: confirmar la provisión del cliente Norte. [1]"
+                ],
+                "needs": {
+                  "refs": [
+                    "Informe_cierre_octubre.docx"
+                  ],
+                  "gces": [
+                    "expectations"
+                  ]
+                },
+                "cites": [
+                  "Informe_cierre_octubre.docx"
+                ]
+              }
+            ]
+          },
+          "goals": [
+            {
+              "type": "prompt",
+              "label": "Pedir un resumen con el informe como contexto",
+              "pattern": "resum",
+              "refs": [
+                "Informe_cierre_octubre.docx"
+              ],
+              "hint": "Escribe / y elige Informe_cierre_octubre.docx"
+            },
+            {
+              "type": "prompt",
+              "label": "Indicar el formato de la respuesta",
+              "pattern": "resum",
+              "gces": [
+                "expectations"
+              ],
+              "hint": "Por ejemplo: «en 3 viñetas»"
+            },
+            {
+              "type": "viewed",
+              "label": "Abrir el informe para comprobar el resumen",
+              "path": "Informe_cierre_octubre.docx",
+              "hint": "Archivos → Ver Informe_cierre_octubre.docx"
+            }
+          ],
+          "solution": [
+            "Resume /Informe_cierre_octubre.docx en 3 viñetas para el comité",
+            "::ver Informe_cierre_octubre.docx"
+          ],
+          "explain": "Con **/** Copilot trabaja con el archivo exacto que quieres. Pedir un formato hace la respuesta comparable con la fuente, y abrir la fuente es la forma de comprobarla.",
+          "suggestions": [
+            "Resume /Informe_cierre_octubre.docx ",
+            "::ver Informe_cierre_octubre.docx"
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Citas",
+          "title": "Una cita no es una garantía",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Las citas te dicen **de dónde** ha sacado Copilot la información. No garantizan que la haya **interpretado** bien: puede mezclar dos cifras o resumir de más.\n\nLa costumbre que más errores evita: **abrir la fuente** cuando la respuesta se vaya a usar en algo importante."
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Si una afirmación importante no tiene cita, pregunta: «¿De qué documento sale este dato?»."
+            }
+          ]
+        },
+        {
+          "id": "m1l3e2",
+          "type": "order",
+          "concept": "fund.verify",
+          "prompt": "Ordena tu primer chat de trabajo",
+          "items": [
+            "Comprobar que estás en el modo Trabajo",
+            "Escribir la petición y añadir el archivo con /",
+            "Leer la respuesta y sus citas",
+            "Abrir la fuente para comprobar los datos clave",
+            "Pedir los ajustes que falten"
+          ],
+          "explain": "Contexto correcto → petición clara → revisión con la fuente → ajuste."
+        },
+        {
+          "id": "m1l3e3",
+          "type": "fill",
+          "concept": "prompt.refs",
+          "prompt": "Completa",
+          "code": false,
+          "template": "Para añadir un archivo escribo {{0}}; para invocar un agente escribo {{1}}; y al cambiar de tema abro un {{2}}.",
+          "blanks": [
+            {
+              "options": [
+                "/",
+                "@",
+                "#"
+              ],
+              "answer": "/"
+            },
+            {
+              "options": [
+                "@",
+                "/",
+                "!"
+              ],
+              "answer": "@"
+            },
+            {
+              "options": [
+                "nuevo chat",
+                "agente",
+                "documento"
+              ],
+              "answer": "nuevo chat"
+            }
+          ],
+          "explain": "**/** aporta contexto, **@** llama a un agente y **Nuevo chat** evita que el tema anterior contamine la respuesta."
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Lo esencial de esta lección",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con esta lección deberías poder:\n- Añadir un archivo al contexto con /\n- Leer las citas de una respuesta\n- Comprobar una respuesta abriendo la fuente"
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l1-4",
+      "title": "Verificar y decidir tú",
+      "summary": "Copilot propone; tú compruebas, decides y respondes del resultado.",
+      "minutes": 7,
+      "objectives": [
+        "Detectar errores típicos en una respuesta",
+        "Saber qué protege la protección de datos empresariales",
+        "Reservar para ti las decisiones y los envíos"
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Idea clave",
+          "title": "Por qué puede equivocarse",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Copilot genera texto **plausible** a partir de lo que encuentra. Por eso puede mezclar cifras, rellenar huecos o quedarse con una versión antigua de un documento. Debajo de cada respuesta verás un aviso como «El contenido generado por IA puede ser incorrecto»."
+            },
+            {
+              "type": "compare",
+              "left": {
+                "title": "Señales de alerta",
+                "items": [
+                  "Cifras sin cita",
+                  "Afirmaciones rotundas sobre algo pendiente",
+                  "Fechas o nombres que no reconoces",
+                  "Un resumen que «suena» mejor que el original"
+                ]
+              },
+              "right": {
+                "title": "Buenas prácticas",
+                "items": [
+                  "Abrir la fuente de los datos clave",
+                  "Pedir «indica lo que no está confirmado»",
+                  "Comparar con un total que conoces",
+                  "Revisar más cuanto más importante sea el uso"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "m1l4e1",
+          "type": "spot",
+          "concept": "fund.verify",
+          "prompt": "Compara el resumen de Copilot con el informe original y señala las líneas incorrectas",
+          "file": "Resumen de Copilot",
+          "lines": [
+            "Ventas de 412.000 €, un 6 % sobre presupuesto",
+            "Margen bruto del 33 %, en línea con el objetivo",
+            "Transporte +18 % por el cambio de proveedor",
+            "La provisión del cliente Norte ya está confirmada",
+            "Dos clientes concentran el 27 % de las ventas"
+          ],
+          "faulty": [
+            1,
+            3
+          ],
+          "notes": {
+            "1": "El margen real es del 31,5 %; el 33 % es el presupuesto.",
+            "3": "El informe dice que está pendiente de confirmar."
+          },
+          "fixed": "Ventas de 412.000 € (+6 %)\nMargen bruto del 31,5 % (objetivo: 33 %)\nTransporte +18 %\nProvisión del cliente Norte pendiente\nDos clientes = 27 % de las ventas",
+          "explain": "Mezclar el dato real con el presupuesto y dar por hecho lo pendiente son dos errores típicos. Solo se detectan comparando con la fuente.",
+          "context": "Informe original: ventas 412.000 € (+6 %); margen bruto 31,5 % (presupuesto 33 %); transporte +18 %; dos clientes = 27 % de las ventas; **pendiente** confirmar la provisión del cliente Norte."
+        },
+        {
+          "type": "card",
+          "kicker": "Privacidad",
+          "title": "Protección de datos empresariales",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Cuando usas Copilot con tu **cuenta de trabajo**, tus peticiones y respuestas tienen la **protección de datos empresariales**: se tratan con las mismas garantías de seguridad y cumplimiento que tu correo o tus documentos, y **no se usan para entrenar** los modelos básicos.\n\nSuele indicarse con un icono de escudo o la etiqueta «Protegido»."
+            },
+            {
+              "type": "callout",
+              "tone": "warn",
+              "body": "Con una cuenta personal no tienes esa protección empresarial. No pegues datos de la empresa, de clientes o personales en herramientas de IA personales."
+            }
+          ]
+        },
+        {
+          "id": "m1l4e2",
+          "type": "choice",
+          "concept": "gob.edp",
+          "prompt": "Necesitas resumir un contrato con un cliente. ¿Dónde lo haces?",
+          "options": [
+            {
+              "text": "En Copilot con tu cuenta de trabajo, con la protección de datos empresariales activa",
+              "correct": true
+            },
+            {
+              "text": "En cualquier chat de IA gratuito: total, solo es un resumen",
+              "feedback": "Estarías sacando datos confidenciales fuera de la empresa."
+            },
+            {
+              "text": "En Copilot con tu cuenta personal porque es más rápido",
+              "feedback": "Una cuenta personal no tiene la protección empresarial."
+            }
+          ],
+          "explain": "Los datos de la empresa se quedan en las herramientas de la empresa, con tu cuenta de trabajo."
+        },
+        {
+          "id": "m1l4e3",
+          "type": "multi",
+          "concept": "gob.human",
+          "prompt": "¿Qué decisiones deben quedar siempre en tus manos?",
+          "options": [
+            {
+              "text": "Enviar un correo a un cliente",
+              "correct": true
+            },
+            {
+              "text": "Aprobar un pago o una excepción a la política",
+              "correct": true
+            },
+            {
+              "text": "Pedir un primer borrador de una respuesta",
+              "feedback": "Eso puede hacerlo Copilot: tú lo revisas después."
+            },
+            {
+              "text": "Resumir un hilo largo para ponerte al día",
+              "feedback": "Es una tarea de apoyo; tú decides qué hacer con el resumen."
+            }
+          ],
+          "explain": "Copilot prepara y propone. **Enviar, aprobar y comprometer a la empresa** es responsabilidad tuya."
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Lo esencial de esta lección",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Con esta lección deberías poder:\n- Detectar errores típicos en una respuesta\n- Saber qué protege la protección de datos empresariales\n- Reservar para ti las decisiones y los envíos"
+            },
+            {
+              "type": "callout",
+              "tone": "tip",
+              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "exam": {
+    "size": 8,
+    "extra": [
+      {
+        "id": "m1x1",
+        "type": "choice",
+        "concept": "fund.grounding",
+        "prompt": "Estás en modo Web y preguntas «¿qué dijo Luis sobre los proveedores?». ¿Qué ocurrirá probablemente?",
+        "options": [
+          {
+            "text": "Copilot no encontrará la reunión, porque en Web no busca en tus datos de trabajo",
+            "correct": true
+          },
+          {
+            "text": "Copilot buscará en tus reuniones igualmente",
+            "feedback": "En Web no usa tu correo, tus chats ni tus reuniones."
+          },
+          {
+            "text": "Copilot cambiará solo al modo Trabajo",
+            "feedback": "El modo lo eliges tú."
+          }
+        ],
+        "explain": "Para hablar de tu organización, modo **Trabajo**."
+      },
+      {
+        "id": "m1x2",
+        "type": "multi",
+        "concept": "fund.verify",
+        "prompt": "¿Qué hábitos reducen el riesgo de usar un dato erróneo?",
+        "options": [
+          {
+            "text": "Abrir la fuente de las cifras clave",
+            "correct": true
+          },
+          {
+            "text": "Pedir que indique lo que no está confirmado",
+            "correct": true
+          },
+          {
+            "text": "Fiarte si la respuesta tiene un tono profesional",
+            "feedback": "El tono no dice nada de la exactitud."
+          },
+          {
+            "text": "Copiar la respuesta sin leerla si tiene citas",
+            "feedback": "Las citas dicen de dónde sale, no que esté bien interpretado."
+          }
+        ],
+        "explain": "Revisar la fuente y pedir que señale lo pendiente son los dos hábitos más rentables."
+      },
+      {
+        "id": "m1x3",
+        "type": "match",
+        "concept": "fund.family",
+        "prompt": "Empareja cada necesidad con la herramienta",
+        "pairs": [
+          [
+            "Crear un agente para el equipo",
+            "Copilot Studio"
+          ],
+          [
+            "Preguntar por tus reuniones y correos",
+            "Microsoft 365 Copilot"
+          ],
+          [
+            "Un borrador con información pública de la web",
+            "Copilot Chat"
+          ],
+          [
+            "Consultas privadas fuera del trabajo",
+            "Microsoft Copilot personal"
+          ]
+        ],
+        "explain": "Elige según los datos que necesitas y el uso que vas a hacer."
+      },
+      {
+        "id": "m1x4",
+        "type": "choice",
+        "concept": "gob.edp",
+        "prompt": "¿Qué garantiza la protección de datos empresariales?",
+        "options": [
+          {
+            "text": "Que tus peticiones y respuestas se protegen como el resto de tus datos de Microsoft 365 y no se usan para entrenar los modelos básicos",
+            "correct": true
+          },
+          {
+            "text": "Que Copilot nunca se equivoca",
+            "feedback": "Protege tus datos, no la exactitud de la respuesta."
+          },
+          {
+            "text": "Que puedes compartir cualquier archivo con cualquiera",
+            "feedback": "Los permisos siguen siendo cosa tuya."
+          }
+        ],
+        "explain": "La protección se refiere a la **privacidad y seguridad** de tus datos, no a la calidad de la respuesta."
+      },
+      {
+        "id": "m1x5",
+        "type": "fill",
+        "concept": "gob.permissions",
+        "prompt": "Completa",
+        "code": false,
+        "template": "Copilot accede solo a los datos para los que {{0}} tienes permiso. Si un archivo está compartido de más, el problema son los {{1}}.",
+        "blanks": [
+          {
+            "options": [
+              "tú",
+              "TI",
+              "nadie"
+            ],
+            "answer": "tú"
+          },
+          {
+            "options": [
+              "permisos",
+              "prompts",
+              "agentes"
+            ],
+            "answer": "permisos"
+          }
+        ],
+        "explain": "Copilot hereda tus permisos; la sobreexposición se corrige en los permisos del archivo."
+      }
+    ]
+  }
+}

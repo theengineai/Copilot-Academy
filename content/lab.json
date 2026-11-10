@@ -1,0 +1,502 @@
+[
+  {
+    "id": "lab-modo",
+    "title": "Trabajo o Web",
+    "summary": "Elige el modo adecuado para cada pregunta.",
+    "requires": [
+      "l1-2"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "fund.grounding",
+      "prompt": "Pregunta en modo **Web** por el **IVA** general y en modo **Trabajo** por lo que dijo **Luis** en **/Comite_cierre_3nov.meet**",
+      "setup": {
+        "files": {
+          "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
+        },
+        "actions": [
+          {
+            "id": "iva",
+            "when": [
+              [
+                "iva"
+              ]
+            ],
+            "reply": [
+              "El tipo general del IVA en España es el 21 %."
+            ],
+            "needs": {
+              "scope": "web"
+            }
+          },
+          {
+            "id": "luis",
+            "when": [
+              [
+                "luis"
+              ]
+            ],
+            "reply": [
+              "Luis se comprometió a preparar una comparativa de tres proveedores para el 12 de noviembre."
+            ],
+            "needs": {
+              "scope": "work",
+              "refs": [
+                "Comite_cierre_3nov.meet"
+              ]
+            },
+            "cites": [
+              "Comite_cierre_3nov.meet"
+            ]
+          }
+        ]
+      },
+      "goals": [
+        {
+          "type": "prompt",
+          "label": "Pregunta pública en modo Web",
+          "pattern": "iva",
+          "scope": "web"
+        },
+        {
+          "type": "prompt",
+          "label": "Pregunta interna en modo Trabajo con la reunión",
+          "pattern": "luis",
+          "scope": "work",
+          "refs": [
+            "Comite_cierre_3nov.meet"
+          ]
+        }
+      ],
+      "solution": [
+        "::modo web",
+        "¿Cuál es el tipo general del IVA en España?",
+        "::modo trabajo",
+        "¿Qué dijo Luis en /Comite_cierre_3nov.meet?"
+      ],
+      "explain": "Lo público, en Web; lo de tu organización, en Trabajo.",
+      "suggestions": [
+        "::modo web",
+        "::modo trabajo",
+        "¿Cuál es el tipo general del IVA en España?",
+        "¿Qué dijo Luis en /Comite_cierre_3nov.meet?"
+      ]
+    }
+  },
+  {
+    "id": "lab-ref",
+    "title": "Resume y comprueba",
+    "summary": "Un resumen con formato y la comprobación en la fuente.",
+    "requires": [
+      "l1-3"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "prompt.refs",
+      "prompt": "Resume **/Informe_cierre_octubre.docx** en **3 viñetas** y abre el informe para comprobarlo",
+      "setup": {
+        "files": {
+          "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
+        }
+      },
+      "goals": [
+        {
+          "type": "prompt",
+          "label": "Resumen con el informe y un formato",
+          "refs": [
+            "Informe_cierre_octubre.docx"
+          ],
+          "gces": [
+            "expectations"
+          ]
+        },
+        {
+          "type": "viewed",
+          "label": "Abrir el informe",
+          "path": "Informe_cierre_octubre.docx"
+        }
+      ],
+      "solution": [
+        "Resume /Informe_cierre_octubre.docx en 3 viñetas",
+        "::ver Informe_cierre_octubre.docx"
+      ],
+      "explain": "Fuente exacta, formato y comprobación.",
+      "suggestions": [
+        "Resume /Informe_cierre_octubre.docx en 3 viñetas",
+        "::ver Informe_cierre_octubre.docx"
+      ]
+    }
+  },
+  {
+    "id": "lab-gces",
+    "title": "Cuatro de cuatro",
+    "summary": "Consigue una petición con los cuatro elementos en el medidor.",
+    "requires": [
+      "l2-1"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "prompt.gces",
+      "prompt": "Escribe una petición sobre el **transporte** que encienda los **cuatro elementos** del medidor",
+      "setup": {
+        "files": {
+          "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
+          "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
+        }
+      },
+      "goals": [
+        {
+          "type": "prompt",
+          "label": "Una petición con objetivo, contexto, expectativas y fuente",
+          "pattern": "transporte",
+          "gces": 4
+        }
+      ],
+      "solution": [
+        "Resume el aumento del transporte para el comité de dirección, en 3 viñetas, a partir de /Informe_cierre_octubre.docx"
+      ],
+      "explain": "Objetivo, contexto, expectativas y fuente.",
+      "suggestions": [
+        "Resume el aumento del transporte "
+      ]
+    }
+  },
+  {
+    "id": "lab-iterar",
+    "title": "Itera y cambia de tema",
+    "summary": "Ajusta una respuesta y abre un chat nuevo al cambiar de tema.",
+    "requires": [
+      "l2-2"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "prompt.iterate",
+      "prompt": "Pide un resumen de **/Informe_cierre_octubre.docx**, pide que sea **más breve** y abre un **chat nuevo**",
+      "setup": {
+        "files": {
+          "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
+        },
+        "actions": [
+          {
+            "id": "r1",
+            "when": [
+              [
+                "resum"
+              ]
+            ],
+            "reply": [
+              "Ventas 412.000 € (+6 %), margen 31,5 % por el transporte (+18 %) y la provisión del cliente Norte pendiente. [1]"
+            ],
+            "needs": {
+              "refs": [
+                "Informe_cierre_octubre.docx"
+              ]
+            },
+            "cites": [
+              "Informe_cierre_octubre.docx"
+            ]
+          },
+          {
+            "id": "r2",
+            "when": [
+              [
+                "mas breve",
+                "acorta",
+                "mas corto"
+              ]
+            ],
+            "reply": [
+              "Más ventas, menos margen por el transporte; provisión pendiente."
+            ],
+            "needs": {
+              "turn": 2
+            }
+          }
+        ]
+      },
+      "goals": [
+        {
+          "type": "action",
+          "label": "Primer resumen",
+          "id": "r1"
+        },
+        {
+          "type": "action",
+          "label": "Ajuste en la misma conversación",
+          "id": "r2"
+        },
+        {
+          "type": "newchat",
+          "label": "Chat nuevo al terminar"
+        }
+      ],
+      "solution": [
+        "Resume /Informe_cierre_octubre.docx",
+        "Más breve, por favor",
+        "::nuevo"
+      ],
+      "explain": "Iterar dentro del tema; chat nuevo al cambiar.",
+      "suggestions": [
+        "Resume /Informe_cierre_octubre.docx",
+        "Más breve, por favor",
+        "::nuevo"
+      ]
+    }
+  },
+  {
+    "id": "lab-word",
+    "title": "Pregunta a la política",
+    "summary": "Abre un documento en Word y pregúntale.",
+    "requires": [
+      "l3-2"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "docs.rewrite",
+      "prompt": "Abre **Politica_gastos_viaje.docx** en Word y pregunta por el **kilometraje**",
+      "setup": {
+        "files": {
+          "SharePoint/Finanzas/Politica_gastos_viaje.docx": "Política de gastos de viaje (versión 4, enero 2026) · documento ficticio\n\n1. Hotel: máximo 120 € por noche en España y 160 € en el extranjero.\n2. Dietas: 45 € diarios con justificante.\n3. Kilometraje: 0,26 € por km en vehículo propio.\n4. Plazo: las notas de gasto se presentan en los 30 días siguientes al viaje.\n5. Excepciones: las aprueba la dirección financiera por escrito.\n"
+        },
+        "actions": [
+          {
+            "id": "km",
+            "when": [
+              [
+                "kilomet",
+                "km"
+              ]
+            ],
+            "reply": [
+              "0,26 € por km en vehículo propio (apartado 3). [1]"
+            ],
+            "needs": {
+              "app": "word",
+              "open": "Politica_gastos_viaje.docx"
+            },
+            "cites": [
+              "Politica_gastos_viaje.docx"
+            ]
+          }
+        ]
+      },
+      "goals": [
+        {
+          "type": "action",
+          "label": "Respuesta sobre el kilometraje con el documento abierto",
+          "id": "km"
+        }
+      ],
+      "solution": [
+        "::app word Politica_gastos_viaje.docx",
+        "¿Cuánto se paga por kilómetro?"
+      ],
+      "explain": "Con el documento abierto, Copilot trabaja sobre él.",
+      "suggestions": [
+        "::app word Politica_gastos_viaje.docx",
+        "¿Cuánto se paga por kilómetro?"
+      ]
+    }
+  },
+  {
+    "id": "lab-excel",
+    "title": "Margen en Excel",
+    "summary": "Añade la columna de margen y pide la explicación.",
+    "requires": [
+      "l4-2"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "datos.formulas",
+      "prompt": "Abre **Ventas_octubre.xlsx** en Excel, añade el **margen** y pide que **explique** la fórmula",
+      "setup": {
+        "files": {
+          "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€)\nNorte | 118.000 | 84.200 | 110.000\nCentro | 162.000 | 109.900 | 150.000\nSur | 132.000 | 88.100 | 128.000\n"
+        },
+        "actions": [
+          {
+            "id": "margen",
+            "when": [
+              [
+                "margen"
+              ]
+            ],
+            "reply": [
+              "Propongo una columna «Margen %» con la fórmula =([@[Ventas (€)]]-[@[Coste (€)]])/[@[Ventas (€)]].",
+              "Resultado: Norte 28,6 %, Centro 32,2 %, Sur 33,3 %. He añadido la columna a la tabla."
+            ],
+            "needs": {
+              "app": "excel",
+              "open": "Ventas_octubre.xlsx",
+              "say": {
+                "app": "Abre Ventas_octubre.xlsx en Excel para añadir la columna.",
+                "open": "Abre Ventas_octubre.xlsx en Excel para añadir la columna."
+              }
+            },
+            "writes": [
+              {
+                "path": "OneDrive/Cierre octubre/Ventas_octubre.xlsx",
+                "content": "Región | Ventas (€) | Coste (€) | Presupuesto (€) | Margen %\nNorte | 118.000 | 84.200 | 110.000 | 28,6 %\nCentro | 162.000 | 109.900 | 150.000 | 32,2 %\nSur | 132.000 | 88.100 | 128.000 | 33,3 %\n"
+              }
+            ]
+          },
+          {
+            "id": "explica",
+            "when": [
+              [
+                "explica",
+                "como funciona",
+                "que hace"
+              ]
+            ],
+            "reply": [
+              "La fórmula resta el coste a las ventas de cada fila y divide el resultado entre las ventas.",
+              "Así se obtiene el margen sobre ventas. Si se dividiera entre el coste, se obtendría otro indicador (el recargo o markup)."
+            ],
+            "needs": {
+              "app": "excel",
+              "turn": 2
+            }
+          }
+        ]
+      },
+      "goals": [
+        {
+          "type": "file",
+          "label": "Columna Margen % añadida",
+          "path": "OneDrive/Cierre octubre/Ventas_octubre.xlsx",
+          "checks": [
+            {
+              "label": "margen",
+              "pattern": "Margen %"
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "label": "Explicación de la fórmula",
+          "id": "explica"
+        }
+      ],
+      "solution": [
+        "::app excel Ventas_octubre.xlsx",
+        "Añade una columna con el margen sobre ventas",
+        "Explica cómo funciona la fórmula"
+      ],
+      "explain": "Columna nueva y concepto entendido.",
+      "suggestions": [
+        "::app excel Ventas_octubre.xlsx",
+        "Añade una columna con el margen sobre ventas",
+        "Explica cómo funciona la fórmula"
+      ]
+    }
+  },
+  {
+    "id": "lab-teams",
+    "title": "Acuerdos de la reunión",
+    "summary": "Saca los acuerdos con responsable de una reunión.",
+    "requires": [
+      "l5-3"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "com.meetings",
+      "prompt": "Abre **Comite_cierre_3nov.meet** en Teams y pregunta por los **acuerdos y responsables**",
+      "setup": {
+        "files": {
+          "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
+        },
+        "actions": [
+          {
+            "id": "acuerdos",
+            "when": [
+              [
+                "acuerdo",
+                "responsable"
+              ]
+            ],
+            "reply": [
+              "Luis: comparativa de proveedores (12 nov). Marta: provisión del cliente Norte (antes del día 10)."
+            ],
+            "needs": {
+              "app": "teams",
+              "open": "Comite_cierre_3nov.meet"
+            },
+            "cites": [
+              "Comite_cierre_3nov.meet"
+            ]
+          }
+        ]
+      },
+      "goals": [
+        {
+          "type": "action",
+          "label": "Acuerdos con responsable",
+          "id": "acuerdos"
+        }
+      ],
+      "solution": [
+        "::app teams Comite_cierre_3nov.meet",
+        "¿Qué acuerdos se tomaron y quién es responsable?"
+      ],
+      "explain": "Acuerdos, responsables y fechas.",
+      "suggestions": [
+        "::app teams Comite_cierre_3nov.meet",
+        "¿Qué acuerdos se tomaron y quién es responsable?"
+      ]
+    }
+  },
+  {
+    "id": "lab-agente",
+    "title": "Afina un agente",
+    "summary": "Añade una regla de derivación y prueba una pregunta fuera de tema.",
+    "requires": [
+      "l7-2"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "agent.instructions",
+      "prompt": "Edita **Agentes/Viajes.agent.md** para que **derive** lo que no sabe y pruébalo con una pregunta sobre **vacaciones**",
+      "setup": {
+        "files": {
+          "SharePoint/Finanzas/Politica_gastos_viaje.docx": "Política de gastos de viaje (versión 4, enero 2026) · documento ficticio\n\n1. Hotel: máximo 120 € por noche en España y 160 € en el extranjero.\n2. Dietas: 45 € diarios con justificante.\n3. Kilometraje: 0,26 € por km en vehículo propio.\n4. Plazo: las notas de gasto se presentan en los 30 días siguientes al viaje.\n5. Excepciones: las aprueba la dirección financiera por escrito.\n",
+          "Agentes/Viajes.agent.md": "---\nname: Viajes\ndescription: Responde dudas sobre la política de gastos de viaje de Brisa Alimentación\nknowledge:\n  - Politica_gastos_viaje.docx\n---\nInstrucciones:\n- Responde dudas sobre la política de gastos de viaje.\n- Cita el apartado de la política en cada respuesta.\n- Responde en un máximo de 3 frases.\n"
+        }
+      },
+      "goals": [
+        {
+          "type": "frontmatter",
+          "label": "Instrucciones con regla de derivación",
+          "path": "Agentes/Viajes.agent.md",
+          "body": [
+            {
+              "label": "derivación",
+              "pattern": "deriv|no invent"
+            }
+          ]
+        },
+        {
+          "type": "prompt",
+          "label": "Prueba fuera de tema",
+          "agent": "Viajes",
+          "pattern": "vacaciones"
+        }
+      ],
+      "solution": [
+        "::editar Agentes/Viajes.agent.md",
+        "@Viajes ¿Cuántos días de vacaciones tengo?"
+      ],
+      "explain": "Un agente fiable reconoce sus límites.",
+      "suggestions": [
+        "::editar Agentes/Viajes.agent.md",
+        "@Viajes ¿Cuántos días de vacaciones tengo?"
+      ],
+      "solutionFiles": [
+        {
+          "path": "Agentes/Viajes.agent.md",
+          "content": "---\nname: Viajes\ndescription: Responde dudas sobre la política de gastos de viaje de Brisa Alimentación\nknowledge:\n  - Politica_gastos_viaje.docx\n---\nInstrucciones:\n- Responde dudas sobre la política de gastos de viaje.\n- Cita el apartado de la política en cada respuesta.\n- Responde en un máximo de 3 frases.\n- Si la pregunta no está cubierta por la política, dilo, no inventes y deriva a la dirección financiera.\n"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,227 @@
+{
+  "title": "Copilot Academy",
+  "docsCheckedAt": "2026-11-10",
+  "levels": [
+    {
+      "id": "L2",
+      "title": "Usuario inicial",
+      "description": "Sabes qué Copilot tienes, de dónde salen sus respuestas y cómo comprobarlas."
+    },
+    {
+      "id": "L3",
+      "title": "Usuario práctico",
+      "description": "Escribes peticiones con método, aportas el contexto adecuado e iteras con criterio."
+    },
+    {
+      "id": "L4",
+      "title": "Usuario avanzado",
+      "description": "Integras Copilot en Word, PowerPoint, Excel, Outlook y Teams con resultados verificables."
+    },
+    {
+      "id": "L5",
+      "title": "Diseñador de agentes",
+      "description": "Investigas en profundidad y creas agentes útiles, seguros y mantenibles."
+    }
+  ],
+  "competencies": [
+    {
+      "id": "fund",
+      "title": "Fundamentos y confianza"
+    },
+    {
+      "id": "prompt",
+      "title": "Prompts y contexto"
+    },
+    {
+      "id": "docs",
+      "title": "Word y PowerPoint"
+    },
+    {
+      "id": "datos",
+      "title": "Excel y datos"
+    },
+    {
+      "id": "com",
+      "title": "Correo y reuniones"
+    },
+    {
+      "id": "inv",
+      "title": "Investigación y análisis"
+    },
+    {
+      "id": "agent",
+      "title": "Agentes y Copilot Studio"
+    },
+    {
+      "id": "gob",
+      "title": "Seguridad y buen uso"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "fund.family",
+      "competency": "fund",
+      "title": "La familia Copilot: qué es cada uno"
+    },
+    {
+      "id": "fund.licenses",
+      "competency": "fund",
+      "title": "Copilot Chat frente a la licencia de Microsoft 365 Copilot"
+    },
+    {
+      "id": "fund.grounding",
+      "competency": "fund",
+      "title": "Trabajo y Web: de dónde salen las respuestas"
+    },
+    {
+      "id": "fund.verify",
+      "competency": "fund",
+      "title": "Verificar: citas, errores y criterio propio"
+    },
+    {
+      "id": "prompt.gces",
+      "competency": "prompt",
+      "title": "Objetivo, contexto, expectativas y fuente"
+    },
+    {
+      "id": "prompt.iterate",
+      "competency": "prompt",
+      "title": "Iterar en la conversación"
+    },
+    {
+      "id": "prompt.refs",
+      "competency": "prompt",
+      "title": "Aportar contexto con / (archivos, correos y reuniones)"
+    },
+    {
+      "id": "prompt.reuse",
+      "competency": "prompt",
+      "title": "Guardar y reutilizar prompts"
+    },
+    {
+      "id": "docs.draft",
+      "competency": "docs",
+      "title": "Redactar un borrador en Word desde tus archivos"
+    },
+    {
+      "id": "docs.rewrite",
+      "competency": "docs",
+      "title": "Reescribir, resumir y preguntar a un documento"
+    },
+    {
+      "id": "docs.ppt",
+      "competency": "docs",
+      "title": "Crear y ajustar presentaciones"
+    },
+    {
+      "id": "docs.agentmode",
+      "competency": "docs",
+      "title": "Modo agente: cambios en varios pasos"
+    },
+    {
+      "id": "datos.prep",
+      "competency": "datos",
+      "title": "Datos preparados: tablas y encabezados"
+    },
+    {
+      "id": "datos.formulas",
+      "competency": "datos",
+      "title": "Fórmulas y columnas con Copilot"
+    },
+    {
+      "id": "datos.analysis",
+      "competency": "datos",
+      "title": "Analizar, resaltar y visualizar"
+    },
+    {
+      "id": "datos.check",
+      "competency": "datos",
+      "title": "Verificar las cifras"
+    },
+    {
+      "id": "com.mail-summary",
+      "competency": "com",
+      "title": "Resumir hilos y priorizar el correo"
+    },
+    {
+      "id": "com.mail-draft",
+      "competency": "com",
+      "title": "Redactar y mejorar correos"
+    },
+    {
+      "id": "com.meetings",
+      "competency": "com",
+      "title": "Reuniones: transcripción y resumen"
+    },
+    {
+      "id": "com.followup",
+      "competency": "com",
+      "title": "De la reunión a las tareas"
+    },
+    {
+      "id": "inv.researcher",
+      "competency": "inv",
+      "title": "Researcher: investigación en varios pasos"
+    },
+    {
+      "id": "inv.analyst",
+      "competency": "inv",
+      "title": "Analyst: razonar con datos"
+    },
+    {
+      "id": "inv.pages",
+      "competency": "inv",
+      "title": "Pages y Notebooks"
+    },
+    {
+      "id": "inv.sources",
+      "competency": "inv",
+      "title": "Fuentes internas, web y fiabilidad"
+    },
+    {
+      "id": "agent.what",
+      "competency": "agent",
+      "title": "Qué es un agente y cuándo crear uno"
+    },
+    {
+      "id": "agent.builder",
+      "competency": "agent",
+      "title": "Agent Builder frente a Copilot Studio"
+    },
+    {
+      "id": "agent.instructions",
+      "competency": "agent",
+      "title": "Instrucciones que funcionan"
+    },
+    {
+      "id": "agent.knowledge",
+      "competency": "agent",
+      "title": "Conocimiento, herramientas y acciones"
+    },
+    {
+      "id": "agent.test",
+      "competency": "agent",
+      "title": "Probar, publicar y mantener un agente"
+    },
+    {
+      "id": "gob.edp",
+      "competency": "gob",
+      "title": "Protección de datos empresariales"
+    },
+    {
+      "id": "gob.permissions",
+      "competency": "gob",
+      "title": "Permisos y sobreexposición de datos"
+    },
+    {
+      "id": "gob.injection",
+      "competency": "gob",
+      "title": "Contenido malicioso e instrucciones ocultas"
+    },
+    {
+      "id": "gob.human",
+      "competency": "gob",
+      "title": "Supervisión humana: tú revisas y envías"
+    }
+  ]
+}
