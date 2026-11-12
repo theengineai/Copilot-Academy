@@ -1,668 +1,384 @@
 {
   "id": "m5",
-  "title": "Automatizar el trabajo recurrente",
-  "subtitle": "Qué automatizar, prompts programados y Notebooks, delegar en Copilot Cowork y medir si compensa.",
-  "level": "L4 → L5",
-  "icon": "bolt",
-  "color": "#9A5BA5",
+  "title": "Agente revisor y defensa ante Riesgos",
+  "subtitle": "Revisar argumentos, cifras y fuentes sin confundir agentes con independencia.",
+  "level": "Práctica avanzada",
+  "icon": "shield",
+  "color": "#A06A12",
   "lessons": [
     {
-      "id": "l5-1",
-      "title": "Qué automatizar y qué no",
-      "summary": "Elige el nivel de automatización de cada tarea según frecuencia, estructura y coste del error.",
-      "minutes": 7,
+      "id": "f2-l5-1",
+      "title": "Un revisor que detecta discrepancias concretas",
+      "summary": "Construye un agente revisor que reciba un paquete y emita hallazgos accionables, sin reescribirlo todo.",
+      "minutes": 30,
       "objectives": [
-        "Clasificar tareas por frecuencia, estructura y riesgo",
-        "Elegir entre plantilla, prompt programado, Cowork o agente",
-        "Reservar para personas el juicio y las decisiones"
+        "Configura el revisor y prueba si encuentra las discrepancias deliberadas sin decírselas en el prompt. Conserva un falso positivo y explica cómo lo resolviste con evidencia.",
+        "Cada hallazgo apunta a una ubicación y una prueba; no confunde diferencia de definición con error. Para otra operación prueba primero un error conocido y una diferencia legítima de período."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Idea clave",
-          "title": "Cuatro niveles de automatización",
+          "kicker": "Problema profesional",
+          "title": "Resultado y contexto",
           "blocks": [
             {
-              "type": "cmds",
-              "items": [
-                {
-                  "cmd": "Plantilla de prompt",
-                  "desc": "Tú lanzas la petición cuando toca. Mínimo esfuerzo, control total.",
-                  "where": "Nivel 1"
-                },
-                {
-                  "cmd": "Prompt programado",
-                  "desc": "Se ejecuta solo con la frecuencia que elijas y deja el resultado en tus chats.",
-                  "where": "Nivel 2"
-                },
-                {
-                  "cmd": "Copilot Cowork",
-                  "desc": "Delegas una tarea de varios pasos; trabaja en segundo plano y para en puntos de control.",
-                  "where": "Nivel 3"
-                },
-                {
-                  "cmd": "Agente autónomo",
-                  "desc": "Reacciona a un evento sin que nadie lo lance (Copilot Studio, módulo 7).",
-                  "where": "Nivel 4"
-                }
-              ],
-              "title": "De menos a más autonomía"
-            },
-            {
-              "type": "compare",
-              "left": {
-                "title": "No automatices",
-                "items": [
-                  "Decisiones con juicio (aprobar, priorizar a un cliente)",
-                  "Tareas únicas o que cambian cada vez",
-                  "Errores caros y difíciles de detectar"
-                ]
-              },
-              "right": {
-                "title": "Automatiza",
-                "items": [
-                  "Tareas frecuentes con estructura estable",
-                  "Recopilar, resumir y comprobar",
-                  "Errores que un control detecta"
-                ]
-              }
+              "type": "text",
+              "body": "Construye un agente revisor que reciba un paquete y emita hallazgos accionables, sin reescribirlo todo. El entregable es una tabla con ubicación, discrepancia, severidad, evidencia y corrección propuesta."
             }
           ]
         },
         {
-          "id": "m5l1e1",
-          "type": "match",
-          "concept": "com.select",
-          "prompt": "Empareja cada tarea con el nivel de automatización más adecuado",
-          "pairs": [
-            [
-              "Lista de compromisos pendientes cada lunes",
-              "Prompt programado"
-            ],
-            [
-              "Preparar el borrador completo del pack de comité",
-              "Copilot Cowork"
-            ],
-            [
-              "Procesar cada factura que llega al buzón",
-              "Agente autónomo"
-            ],
-            [
-              "Análisis puntual para una negociación",
-              "Plantilla o petición directa"
-            ]
-          ],
-          "explain": "Frecuencia y estructura deciden el nivel; el riesgo decide cuántos controles."
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones con el expediente",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El One Pager atribuye 9 al base y la presentación deuda neta 20. El revisor debe señalar 8 como base y 18 como neta en cierre, citando la tabla origen. También debe cuestionar si los 2 de caja están disponibles; una definición distinta debe explicarse, no corregirse ciegamente."
+            }
+          ]
         },
         {
-          "id": "m5l1e2",
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar y ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Configura instrucciones del revisor en agentes.md: comparar perímetro, período, escenario y definición antes de comparar números. Separa hallazgos confirmados de sospechas y preguntas. Exige fuente primaria y un cálculo reproducible para los errores materiales. Pide un inventario de lo no revisado, incluidos gráficos como imágenes o anexos que no haya podido leer.\n\n**Herramienta, requisitos, entradas y salida.** Agent Builder o chat M365, con archivos accesibles; creación de agentes según habilitación. Entradas: modelo.xlsx, one-pager.docx, fare.pptx. Salida: agente y registro de hallazgos. Alternativa: chat con instrucciones de revisión; pierdes configuración persistente. La segunda respuesta de IA no verifica por sí misma fuentes ni cálculos.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Cuando falla",
+          "title": "Diagnóstico y reparación",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El revisor declara «sin errores» tras leer solo el resumen. Diagnostica cobertura insuficiente: dale un inventario de secciones y pide declarar cobertura por archivo. Abre manualmente los gráficos y recalcula las cifras críticas. No prometas acceso exhaustivo a todas las hojas."
+            }
+          ]
+        },
+        {
+          "id": "f2-5-1-decision",
           "type": "choice",
-          "concept": "com.select",
-          "prompt": "¿Cuál de estas tareas NO conviene automatizar?",
+          "concept": "review.figures",
+          "prompt": "El revisor dice que 20 de deuda neta es correcto porque coincide en dos documentos. ¿Qué falta?",
           "options": [
             {
-              "text": "Decidir qué proveedor de transporte se contrata",
+              "text": "Contrastar con deuda bruta y caja disponible del modelo, evitando usar dos copias del mismo error",
               "correct": true
             },
             {
-              "text": "Reunir cada semana los compromisos pendientes",
-              "feedback": "Repetitiva y estructurada."
+              "text": "Aceptar ambas cifras después de pedir al revisor un nivel de confianza sobre su consistencia",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             },
             {
-              "text": "Comprobar la coherencia del pack",
-              "feedback": "Control repetible."
+              "text": "Comparar con deuda bruta de cierre del año siguiente sin conciliar el cambio de fecha",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             }
           ],
-          "explain": "La decisión requiere juicio y responsabilidad; la preparación, no."
+          "explain": "Revisión útil = ubicación, evidencia, impacto y corrección. Declarar cobertura es parte de la salida."
         },
         {
-          "id": "m5l1e3",
-          "type": "multi",
-          "concept": "com.select",
-          "prompt": "¿Qué criterios usas para decidir si automatizar?",
-          "options": [
-            {
-              "text": "Frecuencia de la tarea",
-              "correct": true
-            },
-            {
-              "text": "Estabilidad de su estructura",
-              "correct": true
-            },
-            {
-              "text": "Coste de un error y si un control lo detecta",
-              "correct": true
-            },
-            {
-              "text": "Que la tarea te resulte aburrida",
-              "feedback": "Puede motivar, pero no es un criterio de decisión."
-            }
-          ],
-          "explain": "Frecuencia, estructura y riesgo."
-        },
-        {
-          "id": "m5l1e4",
+          "id": "f2-5-1-sequence",
           "type": "order",
-          "concept": "com.select",
-          "prompt": "Ordena cómo abordar la automatización del cierre",
+          "concept": "review.figures",
+          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
           "items": [
-            "Inventariar las tareas recurrentes con su tiempo",
-            "Clasificarlas por frecuencia, estructura y riesgo",
-            "Asignar el nivel de automatización",
-            "Pilotar con una tarea y medir",
-            "Ampliar a las demás"
+            "Congelar paquete e inventariar cobertura",
+            "Comparar período, perímetro y definición con fuente primaria",
+            "Recalcular hallazgos materiales y registrar falsos positivos"
           ],
-          "explain": "Inventario, criterio, piloto y medida antes de ampliar."
+          "explain": "Cada hallazgo apunta a una ubicación y una prueba; no confunde diferencia de definición con error. Para otra operación prueba primero un error conocido y una diferencia legítima de período."
+        },
+        {
+          "id": "f2-5-1-portfolio",
+          "type": "portfolio",
+          "concept": "review.figures",
+          "prompt": "Configura el revisor y prueba si encuentra las discrepancias deliberadas sin decírselas en el prompt. Conserva un falso positivo y explica cómo lo resolviste con evidencia.",
+          "rubric": [
+            "Consistencia: compara períodos, perímetros y definiciones antes que valores.",
+            "Trazabilidad: hallazgo con ubicación, fuente y cálculo reproducible.",
+            "Interpretación: distingue error confirmado de diferencia legítima.",
+            "Utilidad: declara cobertura y propone corrección accionable.",
+            "Crítico: no declarar ausencia de errores con cobertura parcial."
+          ],
+          "solution": "El One Pager atribuye 9 al base y la presentación deuda neta 20. El revisor debe señalar 8 como base y 18 como neta en cierre, citando la tabla origen. También debe cuestionar si los 2 de caja están disponibles; una definición distinta debe explicarse, no corregirse ciegamente.\n\nCada hallazgo apunta a una ubicación y una prueba; no confunde diferencia de definición con error. Para otra operación prueba primero un error conocido y una diferencia legítima de período.",
+          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Comprobar antes de reutilizar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Cada hallazgo apunta a una ubicación y una prueba; no confunde diferencia de definición con error. Para otra operación prueba primero un error conocido y una diferencia legítima de período.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+            }
+          ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
+          "title": "Decisiones y técnicas",
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Clasificar tareas por frecuencia, estructura y riesgo\n- Elegir entre plantilla, prompt programado, Cowork o agente\n- Reservar para personas el juicio y las decisiones"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+              "body": "Revisión útil = ubicación, evidencia, impacto y corrección. Declarar cobertura es parte de la salida."
             }
           ]
         }
       ]
     },
     {
-      "id": "l5-2",
-      "title": "Prompts programados y Notebooks",
-      "summary": "Rutinas que se ejecutan solas y un contexto de proyecto que no hay que rehacer cada mes.",
-      "minutes": 7,
+      "id": "f2-l5-2",
+      "title": "Preguntas difíciles sobre repago y estructura",
+      "summary": "Una defensa sólida anticipa dónde el argumento no justifica la conclusión.",
+      "minutes": 30,
       "objectives": [
-        "Diseñar un prompt que funcione sin supervisión",
-        "Programarlo con la frecuencia adecuada",
-        "Usar un Notebook como contexto persistente"
+        "Prepara una defensa de cinco preguntas, incluyendo una que no puedas contestar con el expediente. Decide qué información o cambio de estructura necesitarías para sostener la recomendación.",
+        "Las respuestas conectan negocio, caja, calendario y estructura; los mitigantes son operables y las incertidumbres no se esconden. Para otra operación cambia preguntas según la verdadera fuente de repago."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Idea clave",
-          "title": "Un prompt que se ejecuta solo tiene que ser robusto",
+          "kicker": "Problema profesional",
+          "title": "Resultado y contexto",
           "blocks": [
             {
               "type": "text",
-              "body": "Con licencia de Microsoft 365 Copilot puedes **programar** un prompt («Programar este prompt»): se ejecuta solo y deja el resultado en tus chats (también en Teams y Outlook). Como nadie lo vigila al ejecutarse, debe tener:\n- **Estructura fija** (columnas, orden).\n- **Fuentes y periodo** claros («correos desde el lunes anterior»).\n- **Qué hacer si no hay datos** («si no hay compromisos, dilo»).\n- **Nada que actúe por ti**: informa; no envía ni aprueba."
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Complemento ideal: un **Notebook** del cierre con las fuentes del mes. Tus peticiones y las de Researcher trabajan con ese contexto sin volver a adjuntarlo."
+              "body": "Una defensa sólida anticipa dónde el argumento no justifica la conclusión. El agente prepara preguntas difíciles; tú reconstruyes la respuesta contra fuentes y cálculos."
             }
           ]
         },
         {
-          "id": "m5l2e1",
-          "type": "copilot",
-          "concept": "com.scheduled",
-          "prompt": "Pide una **tabla de compromisos** (qué, con quién, plazo, estado y origen) con **/Peticiones_Ana_noviembre.eml** y **/Hilo_tarifa_logistica.eml**, incluidos los que **prometiste tú**. Cuando esté bien, **prográmala para cada lunes**",
-          "setup": {
-            "files": {
-              "Outlook/Peticiones_Ana_noviembre.eml": "De: Ana (dirección financiera) · Para: ti · Asunto: Pendientes de noviembre\n\n[Ana, 4 nov] Necesito la provisión del cliente Norte confirmada antes del día 10.\n[Ana, 4 nov] Revisa la comparativa de proveedores de Luis antes de que la presente el 12.\n[Tú, 5 nov] De acuerdo, te paso también el impacto de la tarifa en el margen el viernes.\n",
-              "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n",
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
-            },
-            "actions": [
-              {
-                "id": "compromisos",
-                "when": [
-                  [
-                    "compromis",
-                    "pendiente"
-                  ]
-                ],
-                "reply": [
-                  "Compromiso | Con quién | Plazo | Estado | Origen",
-                  "Confirmar la provisión del cliente Norte | Ana | 10 nov | Abierto | Correo [1]",
-                  "Revisar la comparativa de proveedores | Ana | antes del 12 nov | Abierto | Correo [1]",
-                  "Enviar el impacto de la tarifa en el margen | Ana (lo ofreciste tú) | viernes | Abierto | Correo [1]",
-                  "Responder a Compras sobre la tarifa | Compras | antes del viernes | Vencido | Hilo [2]"
-                ],
-                "needs": {
-                  "refs": [
-                    "Peticiones_Ana_noviembre.eml",
-                    "Hilo_tarifa_logistica.eml"
-                  ],
-                  "gces": [
-                    "expectations"
-                  ]
-                },
-                "cites": [
-                  "Peticiones_Ana_noviembre.eml",
-                  "Hilo_tarifa_logistica.eml"
-                ]
-              }
-            ]
-          },
-          "goals": [
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones con el expediente",
+          "blocks": [
             {
-              "type": "action",
-              "label": "Tabla de compromisos con estructura fija",
-              "id": "compromisos"
-            },
-            {
-              "type": "scheduled",
-              "label": "Programar la petición para los lunes",
-              "pattern": "compromis",
-              "freq": "lunes",
-              "hint": "Pulsa «Programar: cada lunes a las 8:00»"
+              "type": "text",
+              "body": "«El múltiplo es moderado» no responde a cómo pagar intereses, amortización, capex y más circulante. Con revisión de EBITDA 7 y capex 4, la presión de caja aumenta antes del efecto de DSO. El riesgo puede ser liquidez y calendario aunque el ratio inicial no parezca elevado."
             }
-          ],
-          "solution": [
-            "Haz una tabla de compromisos pendientes con qué, con quién, plazo, estado y origen, incluidos los que he prometido yo, a partir de /Peticiones_Ana_noviembre.eml y /Hilo_tarifa_logistica.eml",
-            "::programar cada lunes a las 8:00"
-          ],
-          "explain": "Primero se valida la petición a mano; después se programa. Así el lunes recibes una tabla en la que confías, con lo vencido marcado.",
-          "suggestions": [
-            "Haz una tabla de compromisos pendientes con qué, con quién, plazo, estado y origen, incluidos los que he prometido yo, a partir de /Peticiones_Ana_noviembre.eml y /Hilo_tarifa_logistica.eml",
-            "::programar cada lunes a las 8:00"
           ]
         },
         {
-          "id": "m5l2e2",
-          "type": "spot",
-          "concept": "com.scheduled",
-          "prompt": "Revisa este prompt antes de programarlo y señala los problemas",
-          "file": "Prompt programado · cada día 7:00",
-          "lines": [
-            "Revisa mis correos de las últimas 24 horas.",
-            "Haz algo útil con ellos.",
-            "Tabla con remitente, petición y plazo.",
-            "Responde tú a los que sean sencillos.",
-            "Si no hay peticiones, indícalo."
-          ],
-          "faulty": [
-            1,
-            3
-          ],
-          "notes": {
-            "1": "Vago: en cada ejecución hará algo distinto.",
-            "3": "Un prompt programado no debe actuar en tu nombre."
-          },
-          "fixed": "Revisa mis correos de las últimas 24 horas.\nExtrae las peticiones dirigidas a mí.\nTabla con remitente, petición y plazo.\nNo respondas a nadie: solo informa.\nSi no hay peticiones, indícalo.",
-          "explain": "Robusto e informativo: estructura fija, periodo claro y ninguna acción en tu nombre."
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar y ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Encarga al revisor preguntas sobre integración, sinergias no comprometidas, concentración, capex diferible, necesidades estacionales, flexibilidad de amortización y disponibilidad del equity. Para cada pregunta construye respuesta, evidencia, incertidumbre y condición de seguimiento. Si falta calendario contractual o definición de covenant, pide información; no inventes términos ni los atribuyas al banco.\n\n**Herramienta, requisitos, entradas y salida.** Agente revisor/chat y Excel para cálculos; habilitación de M365 según entorno. Entradas: paquete corregido y modelo. Salida: guion de defensa con pendientes. Alternativa: revisión manual estructurada; pierdes generación de objeciones, no el control financiero.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+            }
+          ]
         },
         {
-          "id": "m5l2e3",
+          "type": "card",
+          "kicker": "Cuando falla",
+          "title": "Diagnóstico y reparación",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El agente responde a una pregunta de refinanciación diciendo que la nueva deuda cubre todos los usos. Eso solo prueba cierre, no repago futuro. Reformula el encargo para separar suficiencia de fondos al cierre y servicio durante la vida del préstamo. Comprueba ambos con tablas diferentes."
+            }
+          ]
+        },
+        {
+          "id": "f2-5-2-decision",
           "type": "choice",
-          "concept": "com.scheduled",
-          "prompt": "¿Para qué sirve un Notebook del cierre?",
+          "concept": "review.challenge",
+          "prompt": "Fuentes y usos cuadran. ¿Qué demuestra eso sobre el repago?",
           "options": [
             {
-              "text": "Para reunir las fuentes del mes y que cada petición trabaje con ese contexto sin volver a adjuntarlo",
+              "text": "Suficiencia al cierre bajo esos supuestos; falta analizar caja y servicio futuro",
               "correct": true
             },
             {
-              "text": "Para guardar contraseñas del equipo",
-              "feedback": "Nunca."
+              "text": "Que la compañía puede amortizar toda la deuda en plazo",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             },
             {
-              "text": "Para sustituir el modelo de cierre",
-              "feedback": "El modelo sigue siendo la fuente de las cifras."
+              "text": "Que los riesgos de circulante ya están mitigados",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             }
           ],
-          "explain": "Contexto persistente del proyecto."
+          "explain": "Financiar el cierre y devolver el préstamo son preguntas distintas. No sustituir calendario por múltiplo."
         },
         {
-          "id": "m5l2e4",
-          "type": "fill",
-          "concept": "com.scheduled",
-          "prompt": "Completa",
-          "code": false,
-          "template": "Antes de programar un prompt lo {{0}} a mano; un prompt programado solo {{1}}: no envía ni aprueba.",
-          "blanks": [
-            {
-              "options": [
-                "valido",
-                "borro",
-                "imprimo"
-              ],
-              "answer": "valido"
-            },
-            {
-              "options": [
-                "informa",
-                "decide",
-                "paga"
-              ],
-              "answer": "informa"
-            }
-          ],
-          "explain": "Validar primero; programar solo lo que informa."
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Con esta lección deberías poder:\n- Diseñar un prompt que funcione sin supervisión\n- Programarlo con la frecuencia adecuada\n- Usar un Notebook como contexto persistente"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "l5-3",
-      "title": "Copilot Cowork: delegar tareas de varios pasos",
-      "summary": "Encarga un resultado, deja que trabaje en segundo plano y controla en los puntos clave.",
-      "minutes": 8,
-      "objectives": [
-        "Formular un encargo con resultado, fuentes y puntos de control",
-        "Elegir entre Cowork, prompt programado y agente",
-        "Revisar el trabajo delegado"
-      ],
-      "steps": [
-        {
-          "type": "card",
-          "kicker": "Idea clave",
-          "title": "Delegar un resultado, no un prompt",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "**Copilot Cowork** (disponible de forma general desde junio de 2026, con licencia de Microsoft 365 Copilot y consumo de Copilot Credits) recibe un **resultado** («deja listo el borrador del pack de comité»), hace un **plan**, trabaja en segundo plano en tus apps y se **detiene en puntos de control** para que apruebes o corrijas. Usa tu contexto de trabajo con tus permisos."
-            },
-            {
-              "type": "flow",
-              "steps": [
-                {
-                  "title": "Encargo",
-                  "text": "Resultado, fuentes, límites y puntos de control."
-                },
-                {
-                  "title": "Plan",
-                  "text": "Revisa y ajusta el plan antes de que empiece."
-                },
-                {
-                  "title": "Ejecución",
-                  "text": "Trabaja en segundo plano; puedes darle indicaciones en cualquier momento."
-                },
-                {
-                  "title": "Puntos de control",
-                  "text": "Apruebas o corriges antes de los pasos clave."
-                },
-                {
-                  "title": "Revisión",
-                  "text": "Compruebas el entregable como si lo hubiera hecho un colaborador nuevo."
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "id": "m5l3e1",
-          "type": "editor",
-          "concept": "com.cowork",
-          "prompt": "Redacta el **encargo a Cowork** para el borrador del pack de comité: resultado, fuentes, puntos de control y límites",
-          "file": "Tu petición a Copilot",
-          "starter": "Hazme el pack.",
-          "rows": 7,
-          "checks": [
-            {
-              "label": "Describe el resultado final",
-              "pattern": "(prepara|deja listo|entregable|resultado final|borrador)",
-              "hint": "Por ejemplo: «deja listo el borrador del pack de comité»."
-            },
-            {
-              "label": "Indica las fuentes",
-              "pattern": "(/\\S+|a partir de|usando|fuentes)",
-              "hint": "Por ejemplo: «usando el modelo de cierre y el Notebook del cierre»."
-            },
-            {
-              "label": "Fija puntos de control",
-              "pattern": "(punto de control|para(te)? (antes|y)|espera mi (ok|aprobaci[oó]n|confirmaci[oó]n)|antes de (seguir|continuar))",
-              "hint": "Por ejemplo: «para antes de crear la presentación y espera mi OK»."
-            },
-            {
-              "label": "Prohíbe acciones irreversibles",
-              "pattern": "(no (env[ií]es|compartas|publiques|borres)|nunca)",
-              "hint": "Por ejemplo: «no envíes ni compartas nada»."
-            }
-          ],
-          "solution": "Prepara el borrador del pack de comité de noviembre usando /Modelo_cierre_noviembre.xlsx y el Notebook del cierre: comentario de gestión con cada cifra referenciada a su celda, puente del margen y presentación de 5 diapositivas. Para antes de crear la presentación y espera mi OK. No envíes ni compartas nada.",
-          "explain": "Resultado, fuentes, puntos de control y límites: con eso, delegar es seguro."
-        },
-        {
-          "id": "m5l3e2",
+          "id": "f2-5-2-sequence",
           "type": "order",
-          "concept": "com.cowork",
-          "prompt": "Ordena una delegación bien hecha en Cowork",
+          "concept": "review.challenge",
+          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
           "items": [
-            "Formular el encargo con resultado, fuentes y límites",
-            "Revisar y ajustar el plan",
-            "Dejar que trabaje y aprobar en los puntos de control",
-            "Revisar el entregable con los controles habituales",
-            "Publicar tú, si procede"
+            "Separar suficiencia al cierre de repago futuro",
+            "Construir respuestas con caja, calendario y evidencia",
+            "Declarar pendientes y condiciones de la recomendación"
           ],
-          "explain": "Encargo, plan, control y revisión. La publicación sigue siendo tuya."
+          "explain": "Las respuestas conectan negocio, caja, calendario y estructura; los mitigantes son operables y las incertidumbres no se esconden. Para otra operación cambia preguntas según la verdadera fuente de repago."
         },
         {
-          "id": "m5l3e3",
-          "type": "spot",
-          "concept": "com.cowork",
-          "prompt": "Revisa este encargo y señala lo que lo hace arriesgado",
-          "file": "Encargo a Cowork",
-          "lines": [
-            "Prepara el pack de comité de noviembre.",
-            "Usa lo que encuentres.",
-            "Cuando termines, envíalo directamente a los miembros del comité.",
-            "Para antes de crear la presentación.",
-            "Cada cifra con su celda del modelo."
+          "id": "f2-5-2-portfolio",
+          "type": "portfolio",
+          "concept": "review.challenge",
+          "prompt": "Prepara una defensa de cinco preguntas, incluyendo una que no puedas contestar con el expediente. Decide qué información o cambio de estructura necesitarías para sostener la recomendación.",
+          "rubric": [
+            "Consistencia: cierre y repago se analizan por separado.",
+            "Trazabilidad: respuesta remite a caja y servicio contractual.",
+            "Interpretación: preguntas desafían hipótesis decisivas y mitigantes.",
+            "Utilidad: pendientes incluyen información y efecto en estructura.",
+            "Crítico: no sustituir calendario por múltiplo ni inventar términos contractuales."
           ],
-          "faulty": [
-            1,
-            2
-          ],
-          "notes": {
-            "1": "Fuentes sin acotar: puede usar borradores o versiones antiguas.",
-            "2": "Acción irreversible sin revisión humana."
-          },
-          "fixed": "Prepara el pack de comité de noviembre.\nUsa el modelo de cierre y el Notebook del cierre.\nNo envíes nada: déjalo como borrador para revisión.\nPara antes de crear la presentación.\nCada cifra con su celda del modelo.",
-          "explain": "Fuentes acotadas y nada irreversible sin una persona."
+          "solution": "«El múltiplo es moderado» no responde a cómo pagar intereses, amortización, capex y más circulante. Con revisión de EBITDA 7 y capex 4, la presión de caja aumenta antes del efecto de DSO. El riesgo puede ser liquidez y calendario aunque el ratio inicial no parezca elevado.\n\nLas respuestas conectan negocio, caja, calendario y estructura; los mitigantes son operables y las incertidumbres no se esconden. Para otra operación cambia preguntas según la verdadera fuente de repago.",
+          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
         },
         {
-          "id": "m5l3e4",
-          "type": "choice",
-          "concept": "com.cowork",
-          "prompt": "¿Qué herramienta encaja con «preparar una vez al mes el borrador del pack, con varios documentos y revisiones intermedias»?",
-          "options": [
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Comprobar antes de reutilizar",
+          "blocks": [
             {
-              "text": "Copilot Cowork",
-              "correct": true
-            },
-            {
-              "text": "Un prompt programado",
-              "feedback": "Sirve para resultados de un paso, no para varios entregables con revisiones."
-            },
-            {
-              "text": "Un agente autónomo",
-              "feedback": "No lo dispara un evento y necesita tu revisión intermedia."
+              "type": "text",
+              "body": "Las respuestas conectan negocio, caja, calendario y estructura; los mitigantes son operables y las incertidumbres no se esconden. Para otra operación cambia preguntas según la verdadera fuente de repago.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
             }
-          ],
-          "explain": "Varios pasos, varios entregables y puntos de control: Cowork."
+          ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
+          "title": "Decisiones y técnicas",
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Formular un encargo con resultado, fuentes y puntos de control\n- Elegir entre Cowork, prompt programado y agente\n- Revisar el trabajo delegado"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+              "body": "Financiar el cierre y devolver el préstamo son preguntas distintas. No sustituir calendario por múltiplo."
             }
           ]
         }
       ]
     },
     {
-      "id": "l5-4",
-      "title": "Medir el impacto",
-      "summary": "Tiempo, calidad, coste y adopción: lo que demuestra si la automatización compensa.",
-      "minutes": 6,
+      "id": "f2-l5-3",
+      "title": "Cuándo separar preparación y revisión",
+      "summary": "Dos agentes pueden mejorar la disciplina de roles, pero no crean independencia financiera ni una orquestación automática.",
+      "minutes": 30,
       "objectives": [
-        "Fijar una línea base antes de automatizar",
-        "Medir tiempo, calidad, coste y adopción",
-        "Decidir si se amplía, se ajusta o se abandona"
+        "Elige arquitectura de uno o dos agentes para dos trabajos: revisión de una tabla y revisión de un paquete de financiación. Justifica coste, cobertura y puntos humanos; ejecuta un traspaso de prueba.",
+        "El flujo define entradas, salidas, responsable y criterio de aceptación. Las pruebas distinguen preparación de verificación. En otra operación no añadas agentes si no añaden un control observable."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Idea clave",
-          "title": "Sin línea base no hay ahorro demostrable",
+          "kicker": "Problema profesional",
+          "title": "Resultado y contexto",
           "blocks": [
             {
-              "type": "cmds",
-              "items": [
-                {
-                  "cmd": "Tiempo",
-                  "desc": "Horas por ejecución antes y después, incluida la revisión."
-                },
-                {
-                  "cmd": "Calidad",
-                  "desc": "Errores que llegan al destinatario y errores detectados en revisión."
-                },
-                {
-                  "cmd": "Coste",
-                  "desc": "Licencias y consumo de créditos (Cowork, agentes) frente a horas ahorradas."
-                },
-                {
-                  "cmd": "Adopción",
-                  "desc": "Quién lo usa de verdad y con qué frecuencia."
-                }
-              ],
-              "title": "Cuatro métricas"
-            },
-            {
-              "type": "callout",
-              "tone": "warn",
-              "body": "El tiempo de revisión cuenta. Una automatización que ahorra 3 horas de preparación y añade 3 de revisión no ahorra nada."
+              "type": "text",
+              "body": "Dos agentes pueden mejorar la disciplina de roles, pero no crean independencia financiera ni una orquestación automática. Diseña el proceso mínimo que aporte una revisión diferente y verificable."
             }
           ]
         },
         {
-          "id": "m5l4e1",
-          "type": "fill",
-          "concept": "com.impact",
-          "prompt": "El pack tardaba 9 h al mes. Con el sistema: 4 h de preparación y 1 h de revisión",
-          "code": false,
-          "template": "Ahorro mensual: {{0}} h. Ahorro anual: {{1}} h.",
-          "blanks": [
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones con el expediente",
+          "blocks": [
             {
-              "accept": [
-                "4"
-              ]
-            },
-            {
-              "accept": [
-                "48"
-              ]
+              "type": "text",
+              "body": "Un agente preparador estructura el caso; otro revisor recibe la versión congelada y criterios de contraste. Si ambos leen solo el mismo resumen incorrecto, repetirán el error de EBITDA 9 base. La independencia proviene de volver a las fuentes y recalcular, no de dar otro nombre al asistente."
             }
-          ],
-          "explain": "9 − (4 + 1) = 4 h al mes; × 12 = 48 h al año."
+          ]
         },
         {
-          "id": "m5l4e2",
-          "type": "match",
-          "concept": "com.impact",
-          "prompt": "Empareja cada métrica con lo que te dice",
-          "pairs": [
-            [
-              "Horas antes y después, con revisión",
-              "Si de verdad ahorra tiempo"
-            ],
-            [
-              "Errores que llegan al comité",
-              "Si la calidad se mantiene"
-            ],
-            [
-              "Créditos consumidos al mes",
-              "Si el coste compensa"
-            ],
-            [
-              "Personas que lo usan cada semana",
-              "Si el equipo lo ha adoptado"
-            ]
-          ],
-          "explain": "Cuatro métricas para una decisión informada."
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar y ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Usa un solo agente con fase de revisión explícita cuando la tarea sea pequeña y puedas inspeccionar cada cifra. Separa roles cuando necesites preservar un borrador, mantener criterios de objeción o comparar cobertura. Define un traspaso manual: versión, archivos, preguntas abiertas y límites. Invocar agentes uno tras otro sigue siendo un proceso manual; para automatizar traspasos haría falta una implementación y habilitación específica.\n\n**Herramienta, requisitos, entradas y salida.** Agent Builder/chat; dos agentes solo si creación habilitada. Entradas: versión congelada, agentes.md y pruebas-agentes.json. Salida: diseño y traspaso registrado. Alternativa: dos conversaciones con roles separados; pierdes persistencia de agentes. No hay orquestación automática por mencionar varios agentes.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+            }
+          ]
         },
         {
-          "id": "m5l4e3",
+          "type": "card",
+          "kicker": "Cuando falla",
+          "title": "Diagnóstico y reparación",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El revisor incorpora la corrección al borrador sin registro y luego nadie sabe qué se cambió. Congela la versión de entrada y exige propuestas, no edición silenciosa. Valida el hallazgo contra fuente antes de aceptar el cambio; un falso positivo también tiene coste."
+            }
+          ]
+        },
+        {
+          "id": "f2-5-3-decision",
           "type": "choice",
-          "concept": "com.impact",
-          "prompt": "Tras el piloto: el tiempo baja un 40 %, pero llegan al comité dos cifras erróneas que antes no llegaban. ¿Qué haces?",
+          "concept": "review.separation",
+          "prompt": "¿Cuándo aporta más separar agentes?",
           "options": [
             {
-              "text": "Reforzar los controles (coherencia y trazabilidad) antes de ampliar",
+              "text": "Cuando un revisor con criterios y fuentes propios debe revisar una versión congelada y registrar hallazgos",
               "correct": true
             },
             {
-              "text": "Ampliar: el ahorro compensa",
-              "feedback": "Un error en el comité cuesta más que horas."
+              "text": "Siempre, porque dos agentes garantizan independencia",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             },
             {
-              "text": "Abandonar la automatización",
-              "feedback": "El problema tiene arreglo con controles."
+              "text": "Solo cuando puedan compartir todas sus respuestas sin control humano",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             }
           ],
-          "explain": "Calidad primero; luego escala."
+          "explain": "Separar roles ayuda cuando cambia el criterio o la cobertura. La verificación necesita fuentes y cálculo humano reproducible."
         },
         {
-          "id": "m5l4e4",
-          "type": "multi",
-          "concept": "com.impact",
-          "prompt": "¿Qué haces antes de automatizar una tarea?",
-          "options": [
-            {
-              "text": "Medir cuánto tarda hoy, incluida la revisión",
-              "correct": true
-            },
-            {
-              "text": "Registrar los errores habituales",
-              "correct": true
-            },
-            {
-              "text": "Definir qué resultado se considera bueno",
-              "correct": true
-            },
-            {
-              "text": "Comprar más licencias por si acaso",
-              "feedback": "Primero el piloto y la medida."
-            }
+          "id": "f2-5-3-sequence",
+          "type": "order",
+          "concept": "review.separation",
+          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "items": [
+            "Determinar qué control añade separar roles",
+            "Definir versión de entrada y traspaso manual",
+            "Contrastar hallazgos antes de aceptar cambios"
           ],
-          "explain": "Línea base de tiempo, calidad y criterio de éxito."
+          "explain": "El flujo define entradas, salidas, responsable y criterio de aceptación. Las pruebas distinguen preparación de verificación. En otra operación no añadas agentes si no añaden un control observable."
+        },
+        {
+          "id": "f2-5-3-portfolio",
+          "type": "portfolio",
+          "concept": "review.separation",
+          "prompt": "Elige arquitectura de uno o dos agentes para dos trabajos: revisión de una tabla y revisión de un paquete de financiación. Justifica coste, cobertura y puntos humanos; ejecuta un traspaso de prueba.",
+          "rubric": [
+            "Consistencia: roles e inventarios de entrada están definidos.",
+            "Trazabilidad: versión congelada y hallazgos registrados.",
+            "Interpretación: separar roles añade un control observable.",
+            "Utilidad: traspaso manual se puede ejecutar sin ambigüedad.",
+            "Crítico: no presentar varios agentes como verificación independiente u orquestación automática."
+          ],
+          "solution": "Un agente preparador estructura el caso; otro revisor recibe la versión congelada y criterios de contraste. Si ambos leen solo el mismo resumen incorrecto, repetirán el error de EBITDA 9 base. La independencia proviene de volver a las fuentes y recalcular, no de dar otro nombre al asistente.\n\nEl flujo define entradas, salidas, responsable y criterio de aceptación. Las pruebas distinguen preparación de verificación. En otra operación no añadas agentes si no añaden un control observable.",
+          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Comprobar antes de reutilizar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El flujo define entradas, salidas, responsable y criterio de aceptación. Las pruebas distinguen preparación de verificación. En otra operación no añadas agentes si no añaden un control observable.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+            }
+          ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
+          "title": "Decisiones y técnicas",
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Fijar una línea base antes de automatizar\n- Medir tiempo, calidad, coste y adopción\n- Decidir si se amplía, se ajusta o se abandona"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+              "body": "Separar roles ayuda cuando cambia el criterio o la cobertura. La verificación necesita fuentes y cálculo humano reproducible."
             }
           ]
         }
@@ -670,125 +386,72 @@
     }
   ],
   "exam": {
-    "size": 8,
+    "title": "Decisiones de trabajo · no certificación profesional",
     "extra": [
       {
-        "id": "m5x1",
-        "type": "match",
-        "concept": "com.select",
-        "prompt": "Empareja cada nivel con su uso",
-        "pairs": [
-          [
-            "Plantilla de prompt",
-            "Tareas que lanzas tú cuando toca"
-          ],
-          [
-            "Prompt programado",
-            "Informes periódicos de un paso"
-          ],
-          [
-            "Copilot Cowork",
-            "Tareas de varios pasos con puntos de control"
-          ],
-          [
-            "Agente autónomo",
-            "Reaccionar a un evento"
-          ]
-        ],
-        "explain": "Cuatro niveles de autonomía."
-      },
-      {
-        "id": "m5x2",
+        "id": "f2-5-1-exam",
         "type": "choice",
-        "concept": "com.scheduled",
-        "prompt": "¿Qué no debe hacer nunca un prompt programado?",
+        "concept": "review.figures",
+        "prompt": "El revisor solo pudo leer las diapositivas de texto. ¿Qué salida aceptar?",
         "options": [
           {
-            "text": "Actuar en tu nombre: enviar, responder o aprobar",
+            "text": "Cobertura declarada y gráficos/partes no leídas pendientes de contraste",
             "correct": true
           },
           {
-            "text": "Devolver una tabla",
-            "feedback": "Es lo ideal."
+            "text": "Paquete íntegramente verificado porque no halló errores",
+            "feedback": "Esta opción no resuelve el control material de la situación."
           },
           {
-            "text": "Decir que no hay datos",
-            "feedback": "Es una buena regla."
+            "text": "Promedio de opinión de dos agentes sobre las slides leídas",
+            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
           }
         ],
-        "explain": "Informa; no actúa."
+        "explain": "Cobertura declarada y gráficos/partes no leídas pendientes de contraste. Revisión útil = ubicación, evidencia, impacto y corrección. Declarar cobertura es parte de la salida."
       },
       {
-        "id": "m5x3",
-        "type": "multi",
-        "concept": "com.cowork",
-        "prompt": "¿Qué debe incluir un encargo a Cowork?",
-        "options": [
-          {
-            "text": "El resultado final",
-            "correct": true
-          },
-          {
-            "text": "Las fuentes",
-            "correct": true
-          },
-          {
-            "text": "Puntos de control",
-            "correct": true
-          },
-          {
-            "text": "Límites (qué no hacer)",
-            "correct": true
-          },
-          {
-            "text": "«Haz lo que veas»",
-            "feedback": "Sin límites ni control."
-          }
-        ],
-        "explain": "Resultado, fuentes, control y límites."
-      },
-      {
-        "id": "m5x4",
+        "id": "f2-5-2-exam",
         "type": "choice",
-        "concept": "com.impact",
-        "prompt": "Una automatización ahorra 3 h de preparación y añade 3 h de revisión. ¿Cuál es el ahorro?",
+        "concept": "review.challenge",
+        "prompt": "Un contrato de financiación no está en el expediente. ¿Qué respuesta sobre covenants corresponde?",
         "options": [
           {
-            "text": "Cero",
+            "text": "Pedir definiciones y fechas contractuales; no inventar margen disponible",
             "correct": true
           },
           {
-            "text": "3 horas",
-            "feedback": "La revisión cuenta."
+            "text": "Inferir covenant estándar del mercado como si fuera firmado",
+            "feedback": "Esta opción no resuelve el control material de la situación."
           },
           {
-            "text": "6 horas",
-            "feedback": "No suman."
+            "text": "Afirmar cumplimiento por tener EBITDA positivo",
+            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
           }
         ],
-        "explain": "El tiempo de revisión forma parte del coste."
+        "explain": "Pedir definiciones y fechas contractuales; no inventar margen disponible. Financiar el cierre y devolver el préstamo son preguntas distintas. No sustituir calendario por múltiplo."
       },
       {
-        "id": "m5x5",
+        "id": "f2-5-3-exam",
         "type": "choice",
-        "concept": "com.select",
-        "prompt": "¿Qué tarea mantienes siempre en manos de una persona?",
+        "concept": "review.separation",
+        "prompt": "Preparador y revisor repiten la misma cifra incorrecta de un resumen. ¿Qué añade control?",
         "options": [
           {
-            "text": "Aprobar la recomendación de proveedor",
+            "text": "Volver a fuente primaria y recalcular con definiciones y período",
             "correct": true
           },
           {
-            "text": "Reunir los compromisos de la semana",
-            "feedback": "Automatizable."
+            "text": "Crear un tercer agente con otro nombre",
+            "feedback": "Esta opción no resuelve el control material de la situación."
           },
           {
-            "text": "Comprobar la coherencia del pack",
-            "feedback": "Automatizable con revisión."
+            "text": "Pedir consenso entre los dos agentes",
+            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
           }
         ],
-        "explain": "Las decisiones con juicio y responsabilidad."
+        "explain": "Volver a fuente primaria y recalcular con definiciones y período. Separar roles ayuda cuando cambia el criterio o la cobertura. La verificación necesita fuentes y cálculo humano reproducible."
       }
-    ]
+    ],
+    "size": 6
   }
 }

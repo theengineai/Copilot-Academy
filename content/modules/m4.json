@@ -1,750 +1,384 @@
 {
   "id": "m4",
-  "title": "Reporting integrado",
-  "subtitle": "Del modelo al pack de dirección: cifras trazables, coherencia entre documentos, puentes que cuadran y un proceso repetible.",
-  "level": "L4",
-  "icon": "file",
-  "color": "#3F6E9C",
+  "title": "Investigación aplicada a la operación",
+  "subtitle": "Preguntas que contrastan supuestos y cambian el análisis.",
+  "level": "Práctica avanzada",
+  "icon": "search",
+  "color": "#2765A7",
   "lessons": [
     {
-      "id": "l4-1",
-      "title": "Cifras trazables al modelo",
-      "summary": "Que cada número del texto diga de qué celda sale: el estándar para un reporting que se audita en minutos.",
-      "minutes": 7,
+      "id": "f2-l4-1",
+      "title": "Encargar una investigación que sirva al caso",
+      "summary": "No necesitas una descripción enciclopédica del envase: necesitas saber si los supuestos comerciales sostienen el caso base.",
+      "minutes": 30,
       "objectives": [
-        "Exigir la referencia de cada cifra a su celda",
-        "Revisar un texto contra el modelo en minutos",
-        "Tratar lo que no está en el modelo"
+        "Diseña un encargo para una hipótesis comercial del caso. Antes de ejecutarlo, escribe qué hallazgo haría mantenerla, reducirla o retirarla.",
+        "La pregunta tiene efecto en EBITDA, cobros o riesgo; las fuentes responden al segmento y fecha. Para otra operación redefine comparables y criterios de refutación antes de buscar."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Idea clave",
-          "title": "Ningún número sin dirección",
+          "kicker": "Problema profesional",
+          "title": "Resultado y contexto",
           "blocks": [
             {
               "type": "text",
-              "body": "El problema del reporting no es escribirlo, es **revisarlo**: cada cifra del texto hay que buscarla en el modelo. Pide la trazabilidad desde el principio: «**cada cifra con su celda entre corchetes; lo que no esté en el modelo, [pendiente]**». Revisar pasa de releer a comprobar referencias."
-            },
-            {
-              "type": "code",
-              "lang": "texto",
-              "code": "Las ventas fueron de 412.000 € [Resumen!C4]…\nEl margen bruto fue del 31,5 % [Resumen!C7]…\nProvisión del cliente Norte: [pendiente] (no está en el modelo).",
-              "file": "Así queda",
-              "caption": "Antes de publicar, quitas las referencias o las dejas en una versión de control."
+              "body": "No necesitas una descripción enciclopédica del envase: necesitas saber si los supuestos comerciales sostienen el caso base. El entregable es una pregunta verificable con alcance, evidencia necesaria y decisión asociada."
             }
           ]
-        },
-        {
-          "id": "m4l1e1",
-          "type": "copilot",
-          "concept": "docs.trace",
-          "prompt": "Pide el **comentario de gestión** de octubre a partir de **/Modelo_cierre_octubre.xlsx**, con **cada cifra referenciada a su celda** y [pendiente] para lo que no esté en el modelo. Revísalo",
-          "setup": {
-            "files": {
-              "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n",
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
-            },
-            "actions": [
-              {
-                "id": "comentario",
-                "when": [
-                  [
-                    "comentario",
-                    "redacta",
-                    "narrativa"
-                  ]
-                ],
-                "reply": [
-                  "He redactado el comentario de gestión. Cada cifra lleva entre corchetes la celda de la que sale; lo que no está en el modelo va como [pendiente]."
-                ],
-                "needs": {
-                  "refs": [
-                    "Modelo_cierre_octubre.xlsx"
-                  ],
-                  "say": {
-                    "refs": "Indica el modelo con / para poder referenciar cada cifra a su celda."
-                  }
-                },
-                "cites": [
-                  "Modelo_cierre_octubre.xlsx"
-                ],
-                "writes": [
-                  {
-                    "path": "OneDrive/Cierre octubre/Pack/Comentario_gestion_octubre.docx",
-                    "content": "Comentario de gestión · octubre (borrador generado con Copilot)\n\nLas ventas fueron de 412.000 € [Resumen!C4], frente a 388.000 € presupuestados [Resumen!C4, Presupuesto].\nEl margen bruto fue del 31,5 % [Resumen!C7], 1,5 puntos por debajo del presupuesto [Resumen!C7].\nEl transporte costó 58.400 € [Resumen!C9] frente a 49.492 € presupuestados [Resumen!C9, Presupuesto].\nProvisión del cliente Norte: [pendiente] (no está en el modelo).\n"
-                  }
-                ]
-              }
-            ]
-          },
-          "goals": [
-            {
-              "type": "prompt",
-              "label": "Pedir el comentario con referencias a celdas",
-              "refs": [
-                "Modelo_cierre_octubre.xlsx"
-              ],
-              "pattern": "celda|referencia"
-            },
-            {
-              "type": "exists",
-              "label": "Existe el comentario",
-              "path": "OneDrive/Cierre octubre/Pack/Comentario_gestion_octubre.docx"
-            },
-            {
-              "type": "viewed",
-              "label": "Revisar el comentario",
-              "path": "Comentario_gestion_octubre.docx"
-            }
-          ],
-          "solution": [
-            "Redacta el comentario de gestión de octubre a partir de /Modelo_cierre_octubre.xlsx; cada cifra con su celda entre corchetes y [pendiente] si no está en el modelo",
-            "::ver Comentario_gestion_octubre.docx"
-          ],
-          "explain": "Revisar ahora es comprobar cuatro referencias. Y la provisión, que no está en el modelo, no se ha colado como dato.",
-          "suggestions": [
-            "Redacta el comentario de gestión de octubre a partir de /Modelo_cierre_octubre.xlsx; cada cifra con su celda entre corchetes y [pendiente] si no está en el modelo",
-            "::ver Comentario_gestion_octubre.docx"
-          ]
-        },
-        {
-          "id": "m4l1e2",
-          "type": "spot",
-          "concept": "docs.trace",
-          "prompt": "Revisa el comentario contra el modelo y señala las líneas con problemas",
-          "file": "Comentario de gestión",
-          "lines": [
-            "Ventas de 412.000 € [Resumen!C4].",
-            "Margen bruto del 31,5 % [Resumen!C7].",
-            "El transporte se desvió un 25 % [Resumen!C9].",
-            "La plantilla creció un 3 %.",
-            "Margen bruto de 129.800 € [Resumen!C6]."
-          ],
-          "faulty": [
-            2,
-            3
-          ],
-          "notes": {
-            "2": "La celda dice 58.400 € frente a 49.492 €: es un +18 %, no un 25 %.",
-            "3": "Cifra sin referencia: no está en el modelo."
-          },
-          "fixed": "Ventas de 412.000 € [Resumen!C4].\nMargen bruto del 31,5 % [Resumen!C7].\nTransporte +18 % [Resumen!C9].\nPlantilla: [pendiente].\nMargen bruto de 129.800 € [Resumen!C6].",
-          "explain": "Una referencia correcta con una cifra mal calculada, y una cifra sin referencia: los dos fallos que la trazabilidad saca a la luz.",
-          "context": "Modelo: ventas 412.000 / 388.000; margen bruto 129.800 € y 31,5 % / 33,0 %; transporte 58.400 / 49.492 (real / presupuesto)."
-        },
-        {
-          "id": "m4l1e3",
-          "type": "choice",
-          "concept": "docs.trace",
-          "prompt": "El comentario incluye «la cuota de mercado sube al 12 %», sin referencia. ¿Qué haces?",
-          "options": [
-            {
-              "text": "Lo quitas o pides la fuente: si no está en el modelo ni en otra fuente aprobada, no va",
-              "correct": true
-            },
-            {
-              "text": "Lo dejas: suena plausible",
-              "feedback": "Sin fuente, puede ser inventado."
-            },
-            {
-              "text": "Le pones una referencia cualquiera",
-              "feedback": "Peor: una trazabilidad falsa."
-            }
-          ],
-          "explain": "Sin referencia, no hay cifra."
-        },
-        {
-          "id": "m4l1e4",
-          "type": "fill",
-          "concept": "docs.trace",
-          "prompt": "Completa la instrucción",
-          "code": false,
-          "template": "Cada cifra con su {{0}} entre corchetes; si no está en el modelo, escribe {{1}}.",
-          "blanks": [
-            {
-              "options": [
-                "celda",
-                "color",
-                "fuente tipográfica"
-              ],
-              "answer": "celda"
-            },
-            {
-              "options": [
-                "[pendiente]",
-                "una estimación",
-                "cero"
-              ],
-              "answer": "[pendiente]"
-            }
-          ],
-          "explain": "Trazabilidad y huecos visibles."
         },
         {
           "type": "card",
-          "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones con el expediente",
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Exigir la referencia de cada cifra a su celda\n- Revisar un texto contra el modelo en minutos\n- Tratar lo que no está en el modelo"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+              "body": "Management espera pasar de EBITDA 8 a 9. Divide el incremento en precio, volumen, mix y costes antes de investigar. Si la mejora depende de repercutir materia prima, pregunta qué evidencia contractual y sectorial apoya esa repercusión y con qué retraso; un crecimiento del mercado no demuestra margen de la compañía."
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "l4-2",
-      "title": "Coherencia entre Excel, Word y PowerPoint",
-      "summary": "Antes de que llegue al comité, cruza el pack completo contra el modelo y encuentra lo que no cuadra.",
-      "minutes": 7,
-      "objectives": [
-        "Cruzar varios documentos contra una fuente única",
-        "Clasificar las discrepancias y su causa",
-        "Fijar qué documento manda"
-      ],
-      "steps": [
+        },
         {
           "type": "card",
-          "kicker": "Idea clave",
-          "title": "Una fuente, varios documentos, cero contradicciones",
+          "kicker": "Procedimiento",
+          "title": "Configurar y ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "En un pack de cierre las cifras viajan del modelo a la nota y de la nota a la presentación, y en cada salto pueden cambiar. Pide a Copilot una **matriz de coherencia**: una fila por cifra o afirmación, una columna por documento y una columna «¿coincide?»."
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Fija la regla antes: «el modelo manda en las cifras; la nota, en el estado de los asuntos pendientes». Así cada discrepancia tiene una corrección clara."
+              "body": "En Researcher formula un encargo de contraste: período, geografía, productos, hipótesis concreta, fuentes preferidas y evidencia contraria. Adjunta el contexto ficticio como hipótesis, no como hecho de mercado verificado. Pide una tabla que separe afirmación, evidencia, fecha, comparabilidad, limitación e impacto en el escenario. Identifica qué necesitaría documentación privada que la investigación pública no puede resolver.\n\n**Herramienta, requisitos, entradas y salida.** Researcher en Microsoft 365 Copilot con licencia y habilitación aplicables. Entradas: caso.docx y tabla de supuestos. Salida: encargo y matriz de evidencia. Alternativa: búsqueda documental y chat con fuentes seleccionadas; pierdes investigación multietapa asistida, conservas contraste y trazabilidad.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
             }
           ]
         },
         {
-          "id": "m4l2e1",
-          "type": "copilot",
-          "concept": "docs.consistency",
-          "prompt": "Cruza **/Modelo_cierre_octubre.xlsx**, **/Nota_comite_v3.docx** y **/Presentacion_comite_v2.pptx** en una **matriz de coherencia** (concepto, valor en cada documento y si coincide)",
-          "setup": {
-            "files": {
-              "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n",
-              "OneDrive/Cierre octubre/Pack/Nota_comite_v3.docx": "Nota al comité · cierre de octubre (v3) · ficticia\n\nLas ventas alcanzan 412.000 €, un 6,2 % por encima del presupuesto.\nEl margen bruto se sitúa en el 31,5 % frente al 33,0 % presupuestado.\nEl transporte cuesta 58.400 €, un 18 % más de lo previsto.\nLa provisión del cliente Norte está pendiente de confirmar.\n",
-              "OneDrive/Cierre octubre/Pack/Presentacion_comite_v2.pptx": "Presentación al comité (v2) · ficticia\n\nDiapositiva 2: Ventas 421.000 € (+8,5 %)\nDiapositiva 3: Margen bruto 31,5 % (objetivo 33 %)\nDiapositiva 4: Transporte +18 %\nDiapositiva 5: Provisión del cliente Norte confirmada\n"
-            },
-            "actions": [
-              {
-                "id": "coherencia",
-                "when": [
-                  [
-                    "coherencia",
-                    "coinciden",
-                    "compara",
-                    "discrepancias",
-                    "cuadran"
-                  ]
-                ],
-                "reply": [
-                  "Concepto | Modelo | Nota v3 | Presentación v2 | ¿Coincide?",
-                  "Ventas | 412.000 € | 412.000 € | 421.000 € | No (dígitos cambiados en la presentación)",
-                  "Variación de ventas | +6,2 % | +6,2 % | +8,5 % | No (calculada sobre la cifra errónea)",
-                  "Margen bruto | 31,5 % | 31,5 % | 31,5 % | Sí",
-                  "Transporte | +18 % | +18 % | +18 % | Sí",
-                  "Provisión cliente Norte | — | Pendiente | Confirmada | No (la presentación da por hecho algo pendiente)"
-                ],
-                "needs": {
-                  "refs": [
-                    "Modelo_cierre_octubre.xlsx",
-                    "Nota_comite_v3.docx",
-                    "Presentacion_comite_v2.pptx"
-                  ],
-                  "gces": [
-                    "expectations"
-                  ]
-                },
-                "cites": [
-                  "Modelo_cierre_octubre.xlsx",
-                  "Nota_comite_v3.docx",
-                  "Presentacion_comite_v2.pptx"
-                ]
-              }
-            ]
-          },
-          "goals": [
+          "type": "card",
+          "kicker": "Cuando falla",
+          "title": "Diagnóstico y reparación",
+          "blocks": [
             {
-              "type": "prompt",
-              "label": "Cruzar los tres documentos",
-              "refs": [
-                "Modelo_cierre_octubre.xlsx",
-                "Nota_comite_v3.docx",
-                "Presentacion_comite_v2.pptx"
-              ]
-            },
-            {
-              "type": "action",
-              "label": "Obtener la matriz de coherencia",
-              "id": "coherencia"
+              "type": "text",
+              "body": "El informe usa un mercado mundial de packaging para justificar ventas en Murcia. Rechaza la extrapolación sin puente de producto, geografía y cliente. Pide segmentación comparable o marca que no hay evidencia suficiente y evita introducir la cifra como driver automático."
             }
-          ],
-          "solution": [
-            "Comprueba la coherencia entre /Modelo_cierre_octubre.xlsx, /Nota_comite_v3.docx y /Presentacion_comite_v2.pptx en una tabla con concepto, valor en cada documento y si coincide"
-          ],
-          "explain": "Tres discrepancias en la presentación, una de ellas arrastrada (el +8,5 % sale de la cifra errónea). Esto es lo que habría visto el comité.",
-          "suggestions": [
-            "Comprueba la coherencia entre /Modelo_cierre_octubre.xlsx, /Nota_comite_v3.docx y /Presentacion_comite_v2.pptx en una tabla con concepto, valor en cada documento y si coincide"
           ]
         },
         {
-          "id": "m4l2e2",
-          "type": "multi",
-          "concept": "docs.consistency",
-          "prompt": "En la matriz, ¿qué discrepancias hay que corregir en la presentación?",
-          "options": [
-            {
-              "text": "Ventas 421.000 € en lugar de 412.000 €",
-              "correct": true
-            },
-            {
-              "text": "La variación del +8,5 %, calculada sobre la cifra errónea",
-              "correct": true
-            },
-            {
-              "text": "«Provisión confirmada» cuando está pendiente",
-              "correct": true
-            },
-            {
-              "text": "El margen del 31,5 %",
-              "feedback": "Coincide en los tres documentos."
-            }
-          ],
-          "explain": "Corrige la causa (la cifra) y lo que arrastra (la variación)."
-        },
-        {
-          "id": "m4l2e3",
+          "id": "f2-4-1-decision",
           "type": "choice",
-          "concept": "docs.consistency",
-          "prompt": "¿Qué regla evita discusiones sobre qué cifra es la buena?",
+          "concept": "research.question",
+          "prompt": "Un informe prevé crecimiento mundial del sector. ¿Qué permite concluir sobre Levante?",
           "options": [
             {
-              "text": "Fijar de antemano que el modelo es la fuente única de las cifras",
+              "text": "Aporta contexto; falta demostrar comparabilidad y el vínculo con ventas y margen de Levante",
               "correct": true
             },
             {
-              "text": "Quedarse con la cifra más reciente",
-              "feedback": "Puede ser la errónea."
+              "text": "Permite elevar automáticamente el EBITDA base al de management",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             },
             {
-              "text": "Votarlo en el comité",
-              "feedback": "Las cifras no se votan."
+              "text": "Sustituye la necesidad de contrastar contratos comerciales",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             }
           ],
-          "explain": "Una fuente única para las cifras."
+          "explain": "Investiga un supuesto que pueda cambiar el caso. El sector contextualiza; los contratos y datos de compañía sostienen su ejecución."
         },
         {
-          "id": "m4l2e4",
+          "id": "f2-4-1-sequence",
           "type": "order",
-          "concept": "docs.consistency",
-          "prompt": "Ordena el control de coherencia antes del comité",
+          "concept": "research.question",
+          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
           "items": [
-            "Cerrar el modelo como fuente única",
-            "Generar la matriz de coherencia del pack",
-            "Corregir las discrepancias en origen",
-            "Repetir la matriz hasta que todo coincida",
-            "Publicar el pack"
+            "Identificar un supuesto que cambia la decisión",
+            "Definir evidencia favorable y criterio de refutación",
+            "Encargar investigación con alcance y limitaciones"
           ],
-          "explain": "Fuente única, matriz, corrección y nueva comprobación."
+          "explain": "La pregunta tiene efecto en EBITDA, cobros o riesgo; las fuentes responden al segmento y fecha. Para otra operación redefine comparables y criterios de refutación antes de buscar."
+        },
+        {
+          "id": "f2-4-1-portfolio",
+          "type": "portfolio",
+          "concept": "research.question",
+          "prompt": "Diseña un encargo para una hipótesis comercial del caso. Antes de ejecutarlo, escribe qué hallazgo haría mantenerla, reducirla o retirarla.",
+          "rubric": [
+            "Consistencia: alcance coincide con producto, geografía y período de la hipótesis.",
+            "Trazabilidad: encargo especifica evidencia que resolvería la pregunta.",
+            "Interpretación: define criterio favorable y de refutación antes de buscar.",
+            "Utilidad: hallazgo podría cambiar hipótesis y decisión.",
+            "Crítico: no extrapolar mercado mundial directamente al EBITDA del caso."
+          ],
+          "solution": "Management espera pasar de EBITDA 8 a 9. Divide el incremento en precio, volumen, mix y costes antes de investigar. Si la mejora depende de repercutir materia prima, pregunta qué evidencia contractual y sectorial apoya esa repercusión y con qué retraso; un crecimiento del mercado no demuestra margen de la compañía.\n\nLa pregunta tiene efecto en EBITDA, cobros o riesgo; las fuentes responden al segmento y fecha. Para otra operación redefine comparables y criterios de refutación antes de buscar.",
+          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Comprobar antes de reutilizar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "La pregunta tiene efecto en EBITDA, cobros o riesgo; las fuentes responden al segmento y fecha. Para otra operación redefine comparables y criterios de refutación antes de buscar.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+            }
+          ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
+          "title": "Decisiones y técnicas",
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Cruzar varios documentos contra una fuente única\n- Clasificar las discrepancias y su causa\n- Fijar qué documento manda"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+              "body": "Investiga un supuesto que pueda cambiar el caso. El sector contextualiza; los contratos y datos de compañía sostienen su ejecución."
             }
           ]
         }
       ]
     },
     {
-      "id": "l4-3",
-      "title": "Explicar desviaciones",
-      "summary": "Un puente de presupuesto a real que cuadra al euro, y una explicación que no dice más de lo que dicen los números.",
-      "minutes": 8,
+      "id": "f2-l4-2",
+      "title": "Evidencia favorable, contraria e insuficiente",
+      "summary": "Una investigación útil muestra cuánto puede sostener y qué la contradice.",
+      "minutes": 30,
       "objectives": [
-        "Pedir un puente con efectos definidos y que cuadre",
-        "Declarar el método y sus supuestos",
-        "Redactar la explicación desde el puente"
+        "Construye una matriz con dos evidencias favorables, dos contrarias y dos cuestiones irresolubles mediante fuentes públicas. Decide cómo afectarán al caso base y qué pedirás a management.",
+        "Cada conclusión tiene soporte específico y explicita alcance. Las cuestiones privadas permanecen abiertas. En otra compañía prueba activamente la hipótesis que más te convenza."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Idea clave",
-          "title": "Primero el puente, después las palabras",
+          "kicker": "Problema profesional",
+          "title": "Resultado y contexto",
           "blocks": [
             {
               "type": "text",
-              "body": "Pedir «explica la desviación» produce un relato. Pide antes un **puente**: efectos definidos (volumen, precio, costes), su fórmula y que **cuadre** con el real. Después, la explicación sale del puente y no al revés."
-            },
-            {
-              "type": "flow",
-              "steps": [
-                {
-                  "title": "Definir efectos",
-                  "text": "Volumen, transporte, resto de costes; con su método."
-                },
-                {
-                  "title": "Calcular",
-                  "text": "Analyst con el código a la vista."
-                },
-                {
-                  "title": "Cuadrar",
-                  "text": "Presupuesto + efectos = real, al euro."
-                },
-                {
-                  "title": "Explicar",
-                  "text": "La narrativa usa solo las cifras del puente."
-                }
-              ]
+              "body": "Una investigación útil muestra cuánto puede sostener y qué la contradice. El resultado será una tesis comercial revisada y una lista priorizada de diligencias."
             }
           ]
         },
         {
-          "id": "m4l3e1",
-          "type": "copilot",
-          "concept": "docs.variance",
-          "prompt": "Pide a **@Analyst** el **puente del margen bruto** de presupuesto a real con **/Modelo_cierre_octubre.xlsx** (efectos volumen, transporte y resto de costes, que cuadre). Después pide la **explicación** basada en el puente",
-          "setup": {
-            "files": {
-              "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n",
-              "OneDrive/Cierre octubre/Pack/Nota_comite_v3.docx": "Nota al comité · cierre de octubre (v3) · ficticia\n\nLas ventas alcanzan 412.000 €, un 6,2 % por encima del presupuesto.\nEl margen bruto se sitúa en el 31,5 % frente al 33,0 % presupuestado.\nEl transporte cuesta 58.400 €, un 18 % más de lo previsto.\nLa provisión del cliente Norte está pendiente de confirmar.\n"
-            },
-            "actions": [
-              {
-                "id": "puente",
-                "when": [
-                  [
-                    "puente",
-                    "bridge",
-                    "desviacion",
-                    "efecto"
-                  ]
-                ],
-                "reply": [
-                  "Analyst · puente del margen bruto (presupuesto → real):",
-                  "Margen presupuestado: 128.040 €",
-                  "+ Efecto volumen: (412.000 − 388.000) × 33 % = +7.920 €",
-                  "− Efecto transporte: 58.400 − 49.492 × 412.000 / 388.000 = −5.847 €",
-                  "− Efecto resto de costes: 223.800 − 210.468 × 412.000 / 388.000 = −313 €",
-                  "= Margen real: 129.800 € (cuadra).",
-                  "Supuesto: los costes presupuestados se escalan con el volumen real."
-                ],
-                "needs": {
-                  "agent": "Analyst",
-                  "refs": [
-                    "Modelo_cierre_octubre.xlsx"
-                  ],
-                  "say": {
-                    "agent": "Para un puente con cálculos verificables, invoca a @Analyst."
-                  }
-                },
-                "cites": [
-                  "Modelo_cierre_octubre.xlsx"
-                ]
-              },
-              {
-                "id": "narrativa",
-                "when": [
-                  [
-                    "explica",
-                    "redacta",
-                    "narrativa",
-                    "comentario"
-                  ]
-                ],
-                "reply": [
-                  "El margen bruto supera el presupuesto en 1.760 €: el mayor volumen aporta 7.920 €, pero el encarecimiento del transporte resta 5.847 € y el resto de costes, 313 €. Sin el efecto transporte, la mejora habría sido de 7.607 €, más de cuatro veces la actual."
-                ],
-                "needs": {
-                  "agent": "Analyst",
-                  "turn": 2
-                }
-              }
-            ]
-          },
-          "goals": [
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones con el expediente",
+          "blocks": [
             {
-              "type": "action",
-              "label": "Puente que cuadra con el real",
-              "id": "puente"
-            },
-            {
-              "type": "action",
-              "label": "Explicación basada en el puente",
-              "id": "narrativa"
+              "type": "text",
+              "body": "Una fuente sectorial sobre menor coste de materias primas puede favorecer el margen; un cliente que exige trasladar la caída a precios lo limita. Ambos hechos pueden ser ciertos. El impacto depende del desfase de revisión de precios y de los contratos, no de contar más fuentes a favor que en contra."
             }
-          ],
-          "solution": [
-            "@Analyst haz el puente del margen bruto de presupuesto a real con /Modelo_cierre_octubre.xlsx, con efectos volumen, transporte y resto de costes; muestra el método y comprueba que cuadra",
-            "Redacta la explicación para el comité usando solo las cifras del puente"
-          ],
-          "explain": "El margen supera el presupuesto por volumen, pero el transporte se come casi tres cuartas partes de esa mejora. Ese es el mensaje, y sale de los números.",
-          "suggestions": [
-            "Explica la desviación",
-            "@Analyst haz el puente del margen bruto de presupuesto a real con /Modelo_cierre_octubre.xlsx, con efectos volumen, transporte y resto de costes; muestra el método y comprueba que cuadra",
-            "Redacta la explicación para el comité usando solo las cifras del puente"
           ]
         },
         {
-          "id": "m4l3e2",
-          "type": "fill",
-          "concept": "docs.variance",
-          "prompt": "Comprueba que el puente cuadra",
-          "code": false,
-          "template": "128.040 + 7.920 − 5.847 − 313 = {{0}} €. Diferencia frente al presupuesto: {{1}} €.",
-          "blanks": [
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar y ejecutar",
+          "blocks": [
             {
-              "accept": [
-                "129.800",
-                "129800"
-              ]
-            },
-            {
-              "accept": [
-                "1.760",
-                "1760",
-                "+1.760"
-              ]
+              "type": "text",
+              "body": "Pide a Researcher evidencia contraria a cada afirmación y abre las fuentes originales. Registra autor, fecha, método y relación con el segmento; evita contar dos artículos que replican el mismo comunicado como evidencia independiente. En Pages puedes consolidar un borrador colaborativo si está habilitado; en Notebooks delimita referencias de trabajo para mantener contexto, sin asumir acceso completo o validación de cada cifra.\n\n**Herramienta, requisitos, entradas y salida.** Researcher; Pages/Notebooks opcionales según disponibilidad y licencia de M365. Entradas: encargo, referencias elegidas y caso. Salida: matriz y tesis revisada. Alternativa: Word con registro de fuentes; pierdes espacio colaborativo o contexto de Notebook, no el estándar de verificación.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
             }
-          ],
-          "explain": "128.040 + 7.920 = 135.960; − 5.847 = 130.113; − 313 = 129.800. Frente a 128.040: +1.760 €."
+          ]
         },
         {
-          "id": "m4l3e3",
-          "type": "spot",
-          "concept": "docs.variance",
-          "prompt": "Revisa la explicación propuesta y señala lo que no sale del puente",
-          "file": "Explicación de la desviación",
-          "lines": [
-            "El margen bruto supera el presupuesto en 1.760 €.",
-            "El mayor volumen aporta 7.920 €.",
-            "El transporte resta 5.847 € por la subida de tarifas.",
-            "La mejora se debe a la nueva estrategia comercial.",
-            "Sin el transporte, el margen habría superado el presupuesto en 7.607 €."
-          ],
-          "faulty": [
-            3
-          ],
-          "notes": {
-            "3": "El puente no dice nada de la causa del mayor volumen: es una atribución sin respaldo."
-          },
-          "fixed": "El margen bruto supera el presupuesto en 1.760 €.\nEl mayor volumen aporta 7.920 €.\nEl transporte resta 5.847 €.\nCausa del mayor volumen: [pendiente de Comercial].\nSin el efecto transporte, la mejora habría sido de 7.607 €.",
-          "explain": "Los números dicen cuánto; el porqué del volumen tiene que venir de otra fuente. 1.760 + 5.847 = 7.607 sí sale del puente."
+          "type": "card",
+          "kicker": "Cuando falla",
+          "title": "Diagnóstico y reparación",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Una cita lleva a una página que habla de ingresos y la respuesta la presenta como EBITDA. Comprueba párrafo y definición, retira la conclusión y marca el razonamiento como no sostenido. La presencia de cita no prueba que la afirmación sea correcta."
+            }
+          ]
         },
         {
-          "id": "m4l3e4",
+          "id": "f2-4-2-decision",
           "type": "choice",
-          "concept": "docs.variance",
-          "prompt": "¿Por qué pedir el método del puente («costes escalados con el volumen real»)?",
+          "concept": "research.evidence",
+          "prompt": "Dos artículos repiten el mismo comunicado comercial. ¿Cómo tratarlos?",
           "options": [
             {
-              "text": "Porque con otro método los efectos cambian y el comité debe saber cuál se ha usado",
+              "text": "Como un único origen de evidencia y buscar contraste adicional",
               "correct": true
             },
             {
-              "text": "Por estética",
-              "feedback": "Cambia los resultados."
+              "text": "Como dos fuentes independientes porque tienen dominios distintos",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             },
             {
-              "text": "No hace falta si cuadra",
-              "feedback": "Distintos métodos cuadran con efectos distintos."
+              "text": "Excluir ambos sin revisar el comunicado original",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             }
           ],
-          "explain": "Un puente cuadra con varios métodos; el método forma parte del resultado."
+          "explain": "Contrastar es relacionar evidencia y supuesto. Fuente repetida, cita decorativa y métrica incompatible no añaden certeza."
         },
         {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Con esta lección deberías poder:\n- Pedir un puente con efectos definidos y que cuadre\n- Declarar el método y sus supuestos\n- Redactar la explicación desde el puente"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "l4-4",
-      "title": "El pack mensual como sistema",
-      "summary": "Convierte el pack de cierre en un proceso repetible: fuente única, prompts reutilizables, controles y revisión.",
-      "minutes": 7,
-      "objectives": [
-        "Diseñar el flujo del pack mensual con Copilot",
-        "Escribir los prompts reutilizables de control",
-        "Preparar las preguntas del comité"
-      ],
-      "steps": [
-        {
-          "type": "card",
-          "kicker": "Idea clave",
-          "title": "De hacer el pack a tener un sistema",
-          "blocks": [
-            {
-              "type": "flow",
-              "steps": [
-                {
-                  "title": "Fuente única",
-                  "text": "El modelo de cierre, cerrado y etiquetado."
-                },
-                {
-                  "title": "Contexto",
-                  "text": "Un Notebook del cierre con modelo, actas y correos clave del mes."
-                },
-                {
-                  "title": "Borradores",
-                  "text": "Comentario trazable, puente y presentación desde plantillas de prompts."
-                },
-                {
-                  "title": "Controles",
-                  "text": "Matriz de coherencia y revisión de [pendiente]."
-                },
-                {
-                  "title": "Revisión humana",
-                  "text": "Cifras clave y mensajes, antes de publicar."
-                }
-              ]
-            },
-            {
-              "type": "callout",
-              "tone": "finance",
-              "body": "Un buen indicador de que el sistema funciona: el segundo mes tardas la mitad y el comité no encuentra ninguna cifra que no cuadre."
-            }
-          ]
-        },
-        {
-          "id": "m4l4e1",
-          "type": "editor",
-          "concept": "docs.pack",
-          "prompt": "Escribe el **prompt reutilizable de control** del pack: con huecos, fuente única, matriz de coherencia y referencias",
-          "file": "Tu petición a Copilot",
-          "starter": "Revisa el pack.",
-          "rows": 7,
-          "checks": [
-            {
-              "label": "Tiene huecos para el mes y los documentos",
-              "pattern": "\\[(mes|periodo)[^\\]]*\\]",
-              "hint": "Por ejemplo: [MES]."
-            },
-            {
-              "label": "Referencia el modelo como fuente única",
-              "pattern": "(modelo|fuente [uú]nica)",
-              "hint": "Por ejemplo: «el modelo es la fuente única de las cifras»."
-            },
-            {
-              "label": "Pide la matriz de coherencia",
-              "pattern": "(coherencia|coincide|discrepancia)",
-              "hint": "Por ejemplo: «tabla con concepto, valor en cada documento y si coincide»."
-            },
-            {
-              "label": "Exige referencias o marca lo pendiente",
-              "pattern": "(celda|referencia|\\[pendiente\\]|pendiente)",
-              "hint": "Por ejemplo: «cada cifra con su celda»."
-            }
-          ],
-          "solution": "Control del pack de [MES]: el modelo /[MODELO] es la fuente única de las cifras. Compara /[NOTA] y /[PRESENTACION] con el modelo en una tabla de coherencia con concepto, valor en cada documento y si coincide. Señala cualquier cifra sin referencia a su celda y cualquier asunto pendiente presentado como cerrado.",
-          "explain": "Un control que funciona igual cada mes y que cualquiera del equipo puede lanzar."
-        },
-        {
-          "id": "m4l4e2",
+          "id": "f2-4-2-sequence",
           "type": "order",
-          "concept": "docs.pack",
-          "prompt": "Ordena el proceso mensual del pack",
+          "concept": "research.evidence",
+          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
           "items": [
-            "Cerrar y etiquetar el modelo",
-            "Actualizar el Notebook del cierre",
-            "Generar los borradores con las plantillas",
-            "Lanzar el control de coherencia",
-            "Revisión humana y publicación"
+            "Abrir fuentes originales y comprobar definiciones",
+            "Separar orígenes independientes y evidencia contraria",
+            "Revisar la tesis y marcar cuestiones no resolubles públicamente"
           ],
-          "explain": "Fuente, contexto, borradores, control y revisión."
+          "explain": "Cada conclusión tiene soporte específico y explicita alcance. Las cuestiones privadas permanecen abiertas. En otra compañía prueba activamente la hipótesis que más te convenza."
         },
         {
-          "id": "m4l4e3",
-          "type": "choice",
-          "concept": "docs.pack",
-          "prompt": "¿Qué petición prepara mejor a Ana para el comité?",
-          "options": [
+          "id": "f2-4-2-portfolio",
+          "type": "portfolio",
+          "concept": "research.evidence",
+          "prompt": "Construye una matriz con dos evidencias favorables, dos contrarias y dos cuestiones irresolubles mediante fuentes públicas. Decide cómo afectarán al caso base y qué pedirás a management.",
+          "rubric": [
+            "Consistencia: métricas y segmentos comparables.",
+            "Trazabilidad: fuentes originales abiertas y orígenes duplicados detectados.",
+            "Interpretación: evidencia favorable y contraria conectada con supuestos.",
+            "Utilidad: distingue diligencia privada de pregunta resoluble públicamente.",
+            "Crítico: no confundir cita con soporte ni ingresos con EBITDA."
+          ],
+          "solution": "Una fuente sectorial sobre menor coste de materias primas puede favorecer el margen; un cliente que exige trasladar la caída a precios lo limita. Ambos hechos pueden ser ciertos. El impacto depende del desfase de revisión de precios y de los contratos, no de contar más fuentes a favor que en contra.\n\nCada conclusión tiene soporte específico y explicita alcance. Las cuestiones privadas permanecen abiertas. En otra compañía prueba activamente la hipótesis que más te convenza.",
+          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Comprobar antes de reutilizar",
+          "blocks": [
             {
-              "text": "«¿Qué 5 preguntas difíciles hará el comité sobre este pack y con qué cifra (y celda) se responde cada una?»",
-              "correct": true
-            },
-            {
-              "text": "«Haz la presentación más bonita»",
-              "feedback": "No prepara las preguntas."
-            },
-            {
-              "text": "«Resume el pack»",
-              "feedback": "Ana ya conoce el pack."
+              "type": "text",
+              "body": "Cada conclusión tiene soporte específico y explicita alcance. Las cuestiones privadas permanecen abiertas. En otra compañía prueba activamente la hipótesis que más te convenza.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
             }
-          ],
-          "explain": "Anticipar preguntas con su respuesta trazable."
-        },
-        {
-          "id": "m4l4e4",
-          "type": "match",
-          "concept": "docs.pack",
-          "prompt": "Empareja cada pieza del sistema con su función",
-          "pairs": [
-            [
-              "Modelo de cierre",
-              "Fuente única de las cifras"
-            ],
-            [
-              "Notebook del cierre",
-              "Contexto del mes reunido"
-            ],
-            [
-              "Plantillas de prompts",
-              "Borradores comparables mes a mes"
-            ],
-            [
-              "Matriz de coherencia",
-              "Control antes de publicar"
-            ]
-          ],
-          "explain": "Cuatro piezas que hacen el pack repetible."
+          ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
+          "title": "Decisiones y técnicas",
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Diseñar el flujo del pack mensual con Copilot\n- Escribir los prompts reutilizables de control\n- Preparar las preguntas del comité"
+              "body": "Contrastar es relacionar evidencia y supuesto. Fuente repetida, cita decorativa y métrica incompatible no añaden certeza."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f2-l4-3",
+      "title": "Nueva información y tesis comercial versionada",
+      "summary": "Una actualización no exige reinvestigar todo.",
+      "minutes": 30,
+      "objectives": [
+        "Prepara una nota delta con tres afirmaciones retiradas o condicionadas y dos que sigan vigentes. Especifica qué confirmación solicitarías antes de cerrar el análisis.",
+        "Puede reconstruirse qué cambió, por qué y desde cuándo. La revisión mantiene evidencia favorable y contraria. En otro expediente separa siempre novedad informativa de cambio aprobado de escenario."
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Problema profesional",
+          "title": "Resultado y contexto",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Una actualización no exige reinvestigar todo. Debes localizar qué premisa cambió y qué conclusiones dependen de ella. El resultado es una nota delta que enlaza nueva evidencia, hipótesis y entregables."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones con el expediente",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "actualizacion.eml reduce EBITDA a 7, eleva capex a 4 y cambia DSO a 75. La investigación anterior sobre demanda no justifica mantener 9 si el problema nuevo es retraso de cobros. Una mejora de mercado no compensa mecánicamente una caída de caja de la operación."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar y ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Guarda la investigación original y fecha de corte. Clasifica la nueva información: hecho confirmado, estimación o aclaración pendiente. Reabre solo preguntas afectadas y pide fuentes posteriores o específicas de la causa. Documenta qué hipótesis retiras, cuáles mantienes y con qué evidencia. Refleja la conclusión comercial revisada en el modelo y en el argumento de repago.\n\n**Herramienta, requisitos, entradas y salida.** Researcher/chat y Word o Pages según habilitación. Entradas: investigación previa y actualizacion.eml. Salida: nota delta y fuentes pendientes. Alternativa: revisión documental manual; pierdes búsqueda asistida de novedades, conservas trazabilidad.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Cuando falla",
+          "title": "Diagnóstico y reparación",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El agente toma el correo más reciente como verdad sin preguntar si sustituye el presupuesto aprobado. Añade un control de autoridad y alcance: quién lo envía, qué período cubre y qué dato reemplaza. Hasta confirmación, presenta revisión separada y no sobrescribas el base."
+            }
+          ]
+        },
+        {
+          "id": "f2-4-3-decision",
+          "type": "choice",
+          "concept": "research.update",
+          "prompt": "El correo con EBITDA 7 no indica si reemplaza el presupuesto aprobado. ¿Qué corresponde?",
+          "options": [
+            {
+              "text": "Crear revisión provisional, pedir alcance y autoridad, y conservar el escenario anterior",
+              "correct": true
             },
             {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+              "text": "Sobrescribir 8 porque cualquier correo reciente tiene prioridad",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+            },
+            {
+              "text": "Mantener 9 porque fue la previsión original",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+            }
+          ],
+          "explain": "Actualiza dependencias de la tesis y conserva fecha de corte. Un correo nuevo abre una versión, no borra por sí solo la anterior."
+        },
+        {
+          "id": "f2-4-3-sequence",
+          "type": "order",
+          "concept": "research.update",
+          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "items": [
+            "Conservar versión anterior y clasificar autoridad y alcance del correo",
+            "Reabrir solo preguntas e hipótesis afectadas y contrastar evidencia",
+            "Actualizar tesis y entregables conservando pendientes y fecha de corte"
+          ],
+          "explain": "Puede reconstruirse qué cambió, por qué y desde cuándo. La revisión mantiene evidencia favorable y contraria. En otro expediente separa siempre novedad informativa de cambio aprobado de escenario."
+        },
+        {
+          "id": "f2-4-3-portfolio",
+          "type": "portfolio",
+          "concept": "research.update",
+          "prompt": "Prepara una nota delta con tres afirmaciones retiradas o condicionadas y dos que sigan vigentes. Especifica qué confirmación solicitarías antes de cerrar el análisis.",
+          "rubric": [
+            "Consistencia: mantiene base y revisión sin sobreescribir por fecha.",
+            "Trazabilidad: cada cambio tiene origen, autoridad y fecha de corte.",
+            "Interpretación: retira o condiciona afirmaciones afectadas.",
+            "Utilidad: nota delta dirige nuevas diligencias sin reinvestigar todo.",
+            "Crítico: no tratar un correo sin alcance confirmado como histórico definitivo."
+          ],
+          "solution": "actualizacion.eml reduce EBITDA a 7, eleva capex a 4 y cambia DSO a 75. La investigación anterior sobre demanda no justifica mantener 9 si el problema nuevo es retraso de cobros. Una mejora de mercado no compensa mecánicamente una caída de caja de la operación.\n\nPuede reconstruirse qué cambió, por qué y desde cuándo. La revisión mantiene evidencia favorable y contraria. En otro expediente separa siempre novedad informativa de cambio aprobado de escenario.",
+          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Comprobar antes de reutilizar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Puede reconstruirse qué cambió, por qué y desde cuándo. La revisión mantiene evidencia favorable y contraria. En otro expediente separa siempre novedad informativa de cambio aprobado de escenario.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Decisiones y técnicas",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Actualiza dependencias de la tesis y conserva fecha de corte. Un correo nuevo abre una versión, no borra por sí solo la anterior."
             }
           ]
         }
@@ -752,113 +386,72 @@
     }
   ],
   "exam": {
-    "size": 8,
+    "title": "Decisiones de trabajo · no certificación profesional",
     "extra": [
       {
-        "id": "m4x1",
+        "id": "f2-4-1-exam",
         "type": "choice",
-        "concept": "docs.trace",
-        "prompt": "¿Qué hace auditable un comentario de gestión en minutos?",
+        "concept": "research.question",
+        "prompt": "La evidencia pública no aclara capacidad de repercutir costes. ¿Qué salida es útil?",
         "options": [
           {
-            "text": "Que cada cifra lleve la celda de la que sale",
+            "text": "Conclusión limitada y solicitud de contratos/datos privados con impacto en escenario",
             "correct": true
           },
           {
-            "text": "Que sea breve",
-            "feedback": "Ayuda, pero no lo hace auditable."
+            "text": "Afirmar que la media sectorial basta para la compañía",
+            "feedback": "Esta opción no resuelve el control material de la situación."
           },
           {
-            "text": "Que lo firme dirección",
-            "feedback": "No cambia la revisión."
+            "text": "Asignar probabilidad sin fundamento para rellenar el modelo",
+            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
           }
         ],
-        "explain": "Trazabilidad cifra a celda."
+        "explain": "Conclusión limitada y solicitud de contratos/datos privados con impacto en escenario. Investiga un supuesto que pueda cambiar el caso. El sector contextualiza; los contratos y datos de compañía sostienen su ejecución."
       },
       {
-        "id": "m4x2",
+        "id": "f2-4-2-exam",
         "type": "choice",
-        "concept": "docs.consistency",
-        "prompt": "La presentación dice 421.000 € y el modelo 412.000 €. ¿Dónde corriges?",
+        "concept": "research.evidence",
+        "prompt": "Una cita trata volumen y el informe concluye aumento de EBITDA. ¿Qué revisar?",
         "options": [
           {
-            "text": "En la presentación, y revisas lo que se calculó a partir de esa cifra",
+            "text": "El puente entre volumen, precio, coste y margen; la cita sola no lo demuestra",
             "correct": true
           },
           {
-            "text": "En el modelo",
-            "feedback": "El modelo es la fuente única."
+            "text": "Únicamente que el enlace funcione",
+            "feedback": "Esta opción no resuelve el control material de la situación."
           },
           {
-            "text": "En ambos, haciendo la media",
-            "feedback": "No tiene sentido."
+            "text": "Si el informe tiene suficiente longitud",
+            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
           }
         ],
-        "explain": "Se corrige en origen del error y lo que arrastra."
+        "explain": "El puente entre volumen, precio, coste y margen; la cita sola no lo demuestra. Contrastar es relacionar evidencia y supuesto. Fuente repetida, cita decorativa y métrica incompatible no añaden certeza."
       },
       {
-        "id": "m4x3",
+        "id": "f2-4-3-exam",
         "type": "choice",
-        "concept": "docs.variance",
-        "prompt": "Un puente de margen debe…",
+        "concept": "research.update",
+        "prompt": "La nueva evidencia afecta cobros pero no demanda. ¿Qué actualizar primero?",
         "options": [
           {
-            "text": "Cuadrar con el real y declarar su método",
+            "text": "Hipótesis de conversión de caja y sus dependencias, manteniendo demanda si sigue sustentada",
             "correct": true
           },
           {
-            "text": "Tener muchos efectos",
-            "feedback": "No es un criterio."
+            "text": "Toda la investigación desde cero sin priorizar",
+            "feedback": "Esta opción no resuelve el control material de la situación."
           },
           {
-            "text": "Explicar la estrategia comercial",
-            "feedback": "Eso no sale del puente."
+            "text": "Solo la portada de la presentación",
+            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
           }
         ],
-        "explain": "Cuadre y método."
-      },
-      {
-        "id": "m4x4",
-        "type": "multi",
-        "concept": "docs.pack",
-        "prompt": "¿Qué piezas convierten el pack en un sistema repetible?",
-        "options": [
-          {
-            "text": "Una fuente única de cifras",
-            "correct": true
-          },
-          {
-            "text": "Plantillas de prompts",
-            "correct": true
-          },
-          {
-            "text": "Un control de coherencia",
-            "correct": true
-          },
-          {
-            "text": "Rehacer la presentación desde cero cada mes",
-            "feedback": "Es lo contrario de un sistema."
-          }
-        ],
-        "explain": "Fuente, plantillas y controles."
-      },
-      {
-        "id": "m4x5",
-        "type": "fill",
-        "concept": "docs.variance",
-        "prompt": "Completa",
-        "code": false,
-        "template": "Presupuesto 128.040 € + volumen 7.920 € − transporte 5.847 € − resto 313 € = {{0}} €.",
-        "blanks": [
-          {
-            "accept": [
-              "129.800",
-              "129800"
-            ]
-          }
-        ],
-        "explain": "El puente cuadra con el margen real."
+        "explain": "Hipótesis de conversión de caja y sus dependencias, manteniendo demanda si sigue sustentada. Actualiza dependencias de la tesis y conserva fecha de corte. Un correo nuevo abre una versión, no borra por sí solo la anterior."
       }
-    ]
+    ],
+    "size": 6
   }
 }
