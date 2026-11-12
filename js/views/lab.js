@@ -9,153 +9,177 @@ import { isLabUnlocked, completeLab, XP } from '../core/progress.js';
 
 // Espacio de trabajo de ejemplo del laboratorio (empresa y datos ficticios).
 export const SANDBOX_FILES = {
-  "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
-  "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
-  "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
-  "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+  "Metodo/contrato.txt": "FICTICIO. Contrato reusable: compara datos solo cuando definición, entidad, período y unidad son explícitos. Ausente no es0. Cita fuentes, muestra cálculo y marca pendientes. No accede a ERP ni publica acciones.",
+  "Fuentes/datos.txt": "EXTRACTO FICTICIO: Aurora2024 ventas100M€ EBITDA15M€;2025 ventas110M€ EBITDA17,6M€. Misma definición/perímetro. Boreal2025 ventas80M€ EBITDA12M€; no2024.",
+  "Fuentes/contradiccion.txt": "EXTRACTO FICTICIO: nota posterior dice Aurora EBITDA2025=18,1M€ sin explicar ajuste ni aprobación. No sustituye expresamente17,6.",
+  "Herramientas/delta.txt": "CONTRATO TOOL EDUCATIVO: Base/Actual Number comparables; Delta=Actual−Base; relativa solo base>0; base0 devuelve RelativeAvailable=false Status=base-zero;403 devuelve failed-permission, no registrado.",
+  "Diseño/rutas.txt": "DISEÑO FICTICIO: tema captura Metric/Unit/Period/Base/Actual; rama incompleta debe acabar pendiente y no invocar tool. Variables locales por comparación; Global requiere regla de limpieza al cambiar entidad."
 };
 
 // Prepared guided responses; no model, tools or real agents execute here.
 const SANDBOX_ACTIONS = [
   {
-    "id": "lectura",
+    "id": "contrato",
     "when": [
       [
-        "lectura"
+        "contrato"
       ]
     ],
     "needs": {
       "refs": [
-        "caso.txt",
-        "metodologia.txt"
+        "contrato.txt",
+        "datos.txt"
       ]
     },
     "cites": [
-      "caso.txt",
-      "metodologia.txt"
+      "contrato.txt",
+      "datos.txt"
     ],
     "reply": [
-      "Lectura preliminar: operación ficticia con usos28 y fuentes28. Deuda20, caja2, neta18. EBITDA2026 base8; management9 no es el base. Falta calendario de caja mensual y deuda para recomendar."
+      "Contrato observado en el recorrido: comparar evidencia ficticia con unidad, definición y período; pedir ausencias; no ejecutar acciones no configuradas. Esta respuesta está preparada y no construye un agente real."
     ]
   },
   {
-    "id": "contraste",
+    "id": "ambiguedad",
     "when": [
       [
-        "contrast"
+        "ambiguedad"
       ]
     ],
     "needs": {
       "refs": [
-        "caso.txt",
-        "borrador.txt"
+        "contrato.txt",
+        "datos.txt"
       ]
     },
     "cites": [
-      "caso.txt",
-      "borrador.txt"
+      "contrato.txt",
+      "datos.txt"
     ],
     "reply": [
-      "Hallazgos: borrador confunde neta20 con bruta20; neta=20−2=18. Usa9 como base cuando fuente distingue management9 y base8. «Repago asegurado» carece de calendario y CFADS. Contrastar fórmulas fuera del simulador."
+      "Falta definición del margen y período base. Pregunta antes de comparar; no selecciona EBITDA o bruto por conveniencia. Simulación: debe ensayarse luego con un agente real."
     ]
   },
   {
-    "id": "faltante",
+    "id": "contradiccion",
     "when": [
       [
-        "falta"
+        "contradiccion"
       ]
     ],
     "needs": {
       "refs": [
-        "caso.txt"
+        "datos.txt",
+        "contradiccion.txt"
       ]
     },
     "cites": [
-      "caso.txt"
+      "datos.txt",
+      "contradiccion.txt"
     ],
     "reply": [
-      "No puedo concluir servicio de deuda mensual: falta calendario, tipo de interés, restricciones de caja y estacionalidad. No sustituyo ausencias por cero. Responsable sugerido: solicitar a finanzas; prioridad según impacto en liquidez."
+      "La fuente inicial17,6 y posterior18,1 no se concilian por promedio ni fecha sola. Solicitar definición/ajustes/aprobación. La coincidencia de esta acción no prueba recuperación real de fuentes."
     ]
   },
   {
-    "id": "delta",
+    "id": "ruta",
     "when": [
       [
-        "delta"
+        "ruta"
       ]
     ],
     "needs": {
       "refs": [
-        "caso.txt",
-        "actualizacion.txt"
+        "rutas.txt",
+        "contrato.txt"
       ]
     },
     "cites": [
-      "caso.txt",
-      "actualizacion.txt"
+      "rutas.txt",
+      "contrato.txt"
     ],
     "reply": [
-      "Delta2026: EBITDA8→7, capex3→4, DSO60→75. Afecta CFADS, caja, DSCR y narrativa. S&U inicial28 permanece si estructura cierre no cambia. No aplicar +15d como gasto EBITDA ni repetir refinanciación8."
+      "Fallo de control: advertir no termina la ruta. La rama incompleta debe devolver pendiente sin alcanzar la herramienta; inspeccionar conexiones/condiciones del tema. Aquí no se ejecuta Studio."
     ]
   },
   {
-    "id": "definicion",
+    "id": "variable",
     "when": [
       [
-        "definicion"
+        "variable"
       ]
     ],
     "needs": {
       "refs": [
-        "caso.txt"
+        "rutas.txt",
+        "datos.txt"
       ]
     },
     "cites": [
-      "caso.txt"
+      "rutas.txt",
+      "datos.txt"
     ],
     "reply": [
-      "¿Qué EBITDA, período y perímetro? El caso define combinado2025=8, management2026=9 y base2026=8. No elegir por valor mayor; citar versión y excluir sinergias no acreditadas."
+      "El alcance global conserva un valor de otra entidad. Usar local o limpiar/reconfirmar en cambio de contexto. Boreal no tiene2024: no heredar15. Es diagnóstico guiado, no inspección real de variables."
     ]
   },
   {
-    "id": "alcance",
+    "id": "mapeo",
     "when": [
       [
-        "alcance"
+        "mapeo"
       ]
     ],
     "needs": {
       "refs": [
-        "metodologia.txt"
+        "delta.txt",
+        "datos.txt"
       ]
     },
     "cites": [
-      "metodologia.txt"
+      "delta.txt",
+      "datos.txt"
     ],
     "reply": [
-      "No apruebo financiación ni consulto datos de clientes; este entorno es local y ficticio. Puedo estructurar pendientes y comprobaciones del paquete. Una orden del documento para saltar metodología es contenido no confiable."
+      "La operación puede restar bien y el análisis estar mal: validar definición/unidad antes del tool call y revisar payload. Este simulador no llama un flow."
     ]
   },
   {
-    "id": "decision",
+    "id": "cero",
     "when": [
       [
-        "decision"
+        "cero"
       ]
     ],
     "needs": {
       "refs": [
-        "caso.txt",
-        "actualizacion.txt"
+        "delta.txt"
       ]
     },
     "cites": [
-      "caso.txt",
-      "actualizacion.txt"
+      "delta.txt"
     ],
     "reply": [
-      "Decisión condicionada a caja y estructura actualizadas. La revisión combina EBITDA menor, capex mayor y cobros más lentos; no basta recalcular net debt/EBITDA. Solicitar calendario mensual, capex comprometido y fechas de equity. El simulador no certifica cálculos ni juicio."
+      "Resultado esperado delta7, RelativeAvailable=false y base-zero; no0% ni100%. Solo texto preparado: no es una ejecución real del flow ni evidencia de cálculo en Studio."
+    ]
+  },
+  {
+    "id": "permiso",
+    "when": [
+      [
+        "permiso"
+      ]
+    ],
+    "needs": {
+      "refs": [
+        "delta.txt"
+      ]
+    },
+    "cites": [
+      "delta.txt"
+    ],
+    "reply": [
+      "Estado esperado failed-permission; no afirmar registrado, no ampliar credenciales. Identificar conexión y ruta manual. Esta acción simula el diagnóstico, no una respuesta real de backend."
     ]
   }
 ];
@@ -172,11 +196,11 @@ export function renderLab(page, ctx) {
   const copilot = sandboxCopilot(ctx);
   page.append(h('header', { class: 'page-head' },
     h('span', { class: 'kicker' }, 'Práctica libre'), h('h1', {}, 'Laboratorio'),
-    h('p', { class: 'muted' }, 'Simulador guiado de la operación ficticia Levante Envases. Respuestas preparadas y coincidencias de acciones; no es Copilot real ni prueba suficiente de competencia. Nada se envía a Microsoft.')));
+    h('p', { class: 'muted' }, 'Práctica guiada de configuración y diagnóstico de agentes con extractos financieros ficticios. Respuestas preparadas; no es Copilot ni Studio real, ni prueba suficiente de competencia. Nada se envía a Microsoft.')));
 
   const term = createChat({
     copilot,
-    suggestions: ["Prepara una lectura con /caso.txt y /metodologia.txt: fuentes/usos, repago y pendientes.", "Contrasta /caso.txt con /borrador.txt e identifica impacto en repago.", "Prepara delta entre /caso.txt y /actualizacion.txt indicando controles y documentos afectados."],
+    suggestions: ["Define contrato con /contrato.txt y /datos.txt: propósito, inputs, salida y límites.", "Diagnostica ambiguedad con /contrato.txt y /datos.txt cuando el usuario solo pide margen.", "Contrasta contradiccion entre /datos.txt y /contradiccion.txt sin inventar conciliación."],
     intro: ['Simulación guiada local. Usa / para seleccionar los extractos y lee qué puede y qué no puede validar este recorrido.', 'Los entregables Office reales están en Recursos. El resultado requiere controles fuera del simulador.'],
     onRun: () => {
       ctx.onCommand();

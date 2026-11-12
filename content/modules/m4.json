@@ -1,384 +1,354 @@
 {
   "id": "m4",
-  "title": "Investigación aplicada a la operación",
-  "subtitle": "Preguntas que contrastan supuestos y cambian el análisis.",
-  "level": "Práctica avanzada",
-  "icon": "search",
+  "title": "Copilot Studio: construir la conversación",
+  "subtitle": "Temas, orquestación y variables con controles observables.",
+  "level": "Construcción práctica",
+  "icon": "agent",
   "color": "#2765A7",
   "lessons": [
     {
-      "id": "f2-l4-1",
-      "title": "Encargar una investigación que sirva al caso",
-      "summary": "No necesitas una descripción enciclopédica del envase: necesitas saber si los supuestos comerciales sostienen el caso base.",
-      "minutes": 30,
+      "id": "f3-l4-1",
+      "title": "Crear un agente y elegir su forma de operar",
+      "summary": "Del contrato al agente: qué resuelven las instrucciones, los temas, el conocimiento y las herramientas.",
+      "minutes": 20,
       "objectives": [
-        "Diseña un encargo para una hipótesis comercial del caso. Antes de ejecutarlo, escribe qué hallazgo haría mantenerla, reducirla o retirarla.",
-        "La pregunta tiene efecto en EBITDA, cobros o riesgo; las fuentes responden al segmento y fecha. Para otra operación redefine comparables y criterios de refutación antes de buscar."
+        "Diseña y crea una copia de agente para una tarea repetida de tu elección. Distingue en un esquema qué será instrucción, conocimiento, tema y herramienta. Ejecuta una petición incompleta y otra completa, o declara ejecución pendiente si no tienes acceso.",
+        "Comprueba en el panel de prueba que la ruta y las preguntas coinciden con el contrato; una respuesta correcta por casualidad no valida la arquitectura."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "kicker": "Problema transferible",
+          "title": "Qué capacidad vas a construir",
           "blocks": [
             {
               "type": "text",
-              "body": "No necesitas una descripción enciclopédica del envase: necesitas saber si los supuestos comerciales sostienen el caso base. El entregable es una pregunta verificable con alcance, evidencia necesaria y decisión asociada."
+              "body": "Un agente responde bien en una conversación y cambia el procedimiento en la siguiente. Necesitas decidir qué parte requiere flexibilidad y cuál debe seguir un recorrido verificable. Studio permite construir esas piezas; no mejora un proceso por el mero hecho de trasladar un prompt."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Una decisión y su configuración",
           "blocks": [
             {
               "type": "text",
-              "body": "Management espera pasar de EBITDA 8 a 9. Divide el incremento en precio, volumen, mix y costes antes de investigar. Si la mejora depende de repercutir materia prima, pregunta qué evidencia contractual y sectorial apoya esa repercusión y con qué retraso; un crecimiento del mercado no demuestra margen de la compañía."
+              "body": "Usa una consulta de métricas como ejemplo neutro: alguien pide «compara el margen». La interpretación puede ser generativa; exigir métrica, período y unidad antes de calcular es un control. Un tema recoge esos datos; una herramienta calcula el delta; una fuente aporta la definición. Son cuatro funciones distintas. El mismo patrón sirve para comparar presupuestos, múltiplos o indicadores de una cartera."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Construir y probar en Studio",
           "blocks": [
             {
               "type": "text",
-              "body": "En Researcher formula un encargo de contraste: período, geografía, productos, hipótesis concreta, fuentes preferidas y evidencia contraria. Adjunta el contexto ficticio como hipótesis, no como hecho de mercado verificado. Pide una tabla que separe afirmación, evidencia, fecha, comparabilidad, limitación e impacto en el escenario. Identifica qué necesitaría documentación privada que la investigación pública no puede resolver.\n\n**Herramienta, requisitos, entradas y salida.** Researcher en Microsoft 365 Copilot con licencia y habilitación aplicables. Entradas: caso.docx y tabla de supuestos. Salida: encargo y matriz de evidencia. Alternativa: búsqueda documental y chat con fuentes seleccionadas; pierdes investigación multietapa asistida, conservas contraste y trazabilidad.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "1. Abre Copilot Studio, comprueba el entorno en el selector y ve a Agents. Crea un agente nuevo desde la opción en blanco/Skip to configure si aparece; los rótulos dependen de la experiencia. Nombra la copia «Laboratorio métricas» y registra idioma y propietario.\n2. En Overview configura instrucciones: finalidad, cuándo preguntar, fuentes autorizadas y qué no concluir. No añadas todavía un conector.\n3. Revisa Settings y la opción de orquestación disponible. Con generative orchestration, el agente puede seleccionar temas y herramientas por sus descripciones. Un tema permite pasos y ramas controlados; elegir generativa no elimina los temas. No cambies a clásica por defecto: documenta qué necesitas controlar.\n4. Abre Test y pregunta primero «compara el margen»; registra qué pregunta y qué intenta usar. En una conversación nueva añade período/unidad y compara el comportamiento. No publiques el agente para hacer esta prueba.\n\n**Herramienta y acceso.** Copilot Studio web con standard harness, en entorno de prueba autorizado, con acceso de autor y licencia/capacidad para la función. Los agent flows requieren Dataverse completo; Dataverse for Teams no basta. Microsoft365Copilot no garantiza acceso al Studio completo. No necesitas ERP ni datos reales. La prueba gratuita permite diseñar/probar agentes, pero no presupone publicación ni disponibilidad de flujos. Si no tienes Studio, usa el lienzo y tabla de pruebas de studio-lab.md y ejecuta a mano los casos: aprendes contrato y diagnóstico, pero la ejecución en Studio queda pendiente; no la marques validada. Una función o canal bloqueados por política requieren TI, no otra formulación del prompt.\n\n**Entradas:** studio-lab.md, agentes.md y fixtures ficticias. **Salida:** configuración versionada y registro de pruebas de esta lección. Tiempo orientativo: 15–20 min de lectura y 30–60 min de práctica exterior inicial.\n\n[Recetas reproducibles](content/resources/studio-lab.md) · [Contrato y construcción de agentes](content/resources/agentes.md) · [Pruebas y fixtures](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado falla",
           "blocks": [
             {
               "type": "text",
-              "body": "El informe usa un mercado mundial de packaging para justificar ventas en Murcia. Rechaza la extrapolación sin puente de producto, geografía y cliente. Pide segmentación comparable o marca que no hay evidencia suficiente y evita introducir la cifra como driver automático."
+              "body": "El agente calcula un porcentaje sin definir margen. Revisa si las instrucciones dicen «pregunta» pero la herramienta acepta valores sin definición, o si la descripción de un tema permite saltarlo. Repara la pieza que gobierna esa decisión; repetir «sé riguroso» en varios lugares no identifica el fallo. Si no aparece orquestación generativa, registra el modo real y usa un tema con entrada explícita para probar la lógica."
             }
           ]
         },
         {
-          "id": "f2-4-1-decision",
+          "id": "f3-l4-1-choice",
           "type": "choice",
-          "concept": "research.question",
-          "prompt": "Un informe prevé crecimiento mundial del sector. ¿Qué permite concluir sobre Levante?",
+          "concept": "studio.create",
+          "prompt": "Necesitas interpretar peticiones variadas pero exigir tres datos antes de calcular. ¿Qué diseño hace observable ese control?",
           "options": [
             {
-              "text": "Aporta contexto; falta demostrar comparabilidad y el vínculo con ventas y margen de Levante",
+              "text": "Interpretación generativa, tema de aclaración con rama pendiente y herramienta con inputs validados",
               "correct": true
             },
             {
-              "text": "Permite elevar automáticamente el EBITDA base al de management",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Instrucciones y ejemplos de aclaración; dejar al orquestador decidir en cada conversación qué datos pedir",
+              "feedback": "Es una opción ligera para tareas simples, pero el cumplimiento depende del comportamiento generativo; no ofrece por sí sola un recorrido comprobable."
             },
             {
-              "text": "Sustituye la necesidad de contrastar contratos comerciales",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Validar por separado en cada herramienta y duplicar allí las preguntas, sin un contrato común de interacción",
+              "feedback": "Puede bloquear algunas llamadas, pero duplica preguntas y favorece reglas incompatibles entre herramientas; el control común necesita diseño."
             }
           ],
-          "explain": "Investiga un supuesto que pueda cambiar el caso. El sector contextualiza; los contratos y datos de compañía sostienen su ejecución."
+          "explain": "Las instrucciones orientan; el tema controla la interacción y el contrato limita la ejecución. Debes observar qué pieza se activó, no inferirlo por el tono de la respuesta."
         },
         {
-          "id": "f2-4-1-sequence",
+          "id": "f3-l4-1-order",
           "type": "order",
-          "concept": "research.question",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "studio.create",
+          "prompt": "Ordena este procedimiento de construcción y contraste.",
           "items": [
-            "Identificar un supuesto que cambia la decisión",
-            "Definir evidencia favorable y criterio de refutación",
-            "Encargar investigación con alcance y limitaciones"
+            "Definir el contrato y los datos obligatorios",
+            "Crear agente en el entorno de prueba y configurar instrucciones",
+            "Elegir qué parte necesita tema, fuente o herramienta",
+            "Probar peticiones equivalentes y observar la ruta real"
           ],
-          "explain": "La pregunta tiene efecto en EBITDA, cobros o riesgo; las fuentes responden al segmento y fecha. Para otra operación redefine comparables y criterios de refutación antes de buscar."
+          "explain": "Las instrucciones orientan; el tema controla la interacción y el contrato limita la ejecución. Debes observar qué pieza se activó, no inferirlo por el tono de la respuesta."
         },
         {
-          "id": "f2-4-1-portfolio",
+          "id": "f3-l4-1-portfolio",
           "type": "portfolio",
-          "concept": "research.question",
-          "prompt": "Diseña un encargo para una hipótesis comercial del caso. Antes de ejecutarlo, escribe qué hallazgo haría mantenerla, reducirla o retirarla.",
+          "concept": "studio.create",
+          "prompt": "Diseña y crea una copia de agente para una tarea repetida de tu elección. Distingue en un esquema qué será instrucción, conocimiento, tema y herramienta. Ejecuta una petición incompleta y otra completa, o declara ejecución pendiente si no tienes acceso.",
           "rubric": [
-            "Consistencia: alcance coincide con producto, geografía y período de la hipótesis.",
-            "Trazabilidad: encargo especifica evidencia que resolvería la pregunta.",
-            "Interpretación: define criterio favorable y de refutación antes de buscar.",
-            "Utilidad: hallazgo podría cambiar hipótesis y decisión.",
-            "Crítico: no extrapolar mercado mundial directamente al EBITDA del caso."
+            "Arquitectura: cada componente tiene una función y una razón para existir.",
+            "Trazabilidad: versión, entorno y modo real de orquestación registrados.",
+            "Ejecución: dos entradas muestran si se exigieron datos o se saltaron.",
+            "Interpretación: separa comportamiento observado de capacidad supuesta.",
+            "Errores críticos: no inventa acceso a datos, conectores o publicación."
           ],
-          "solution": "Management espera pasar de EBITDA 8 a 9. Divide el incremento en precio, volumen, mix y costes antes de investigar. Si la mejora depende de repercutir materia prima, pregunta qué evidencia contractual y sectorial apoya esa repercusión y con qué retraso; un crecimiento del mercado no demuestra margen de la compañía.\n\nLa pregunta tiene efecto en EBITDA, cobros o riesgo; las fuentes responden al segmento y fecha. Para otra operación redefine comparables y criterios de refutación antes de buscar.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "Una solución válida puede comparar indicadores o estructurar una revisión documental. Debe justificar cada componente: instrucciones delimitan el trabajo, conocimiento contiene definiciones, tema solicita datos y herramienta calcula o registra. Guardar un prompt con nombre no demuestra que existan esas capacidades. Adjunta la configuración visible y ambas respuestas literales.",
+          "explain": "Registro de autoevaluación: conserva configuración, ejecución observada y límites. La aplicación no accede a Copilot Studio ni comprueba semánticamente tu entregable; si solo has diseñado el flujo, marca ejecución pendiente."
         },
         {
           "type": "card",
-          "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "kicker": "Validación y transferencia",
+          "title": "Decisiones que conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "La pregunta tiene efecto en EBITDA, cobros o riesgo; las fuentes responden al segmento y fecha. Para otra operación redefine comparables y criterios de refutación antes de buscar.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
-            }
-          ]
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Investiga un supuesto que pueda cambiar el caso. El sector contextualiza; los contratos y datos de compañía sostienen su ejecución."
+              "body": "Comprueba en el panel de prueba que la ruta y las preguntas coinciden con el contrato; una respuesta correcta por casualidad no valida la arquitectura.\n\nPara otra función financiera conserva la separación interpretación/control/ejecución y sustituye la tarea, no las instrucciones con cifras anteriores."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l4-2",
-      "title": "Evidencia favorable, contraria e insuficiente",
-      "summary": "Una investigación útil muestra cuánto puede sostener y qué la contradice.",
-      "minutes": 30,
+      "id": "f3-l4-2",
+      "title": "Construir un tema con preguntas y ramas",
+      "summary": "Convertir una conversación ambigua en entradas verificables sin depender de que el usuario escriba un prompt perfecto.",
+      "minutes": 20,
       "objectives": [
-        "Construye una matriz con dos evidencias favorables, dos contrarias y dos cuestiones irresolubles mediante fuentes públicas. Decide cómo afectarán al caso base y qué pedirás a management.",
-        "Cada conclusión tiene soporte específico y explicita alcance. Las cuestiones privadas permanecen abiertas. En otra compañía prueba activamente la hipótesis que más te convenza."
+        "Construye un tema de aclaración para una tarea propia con al menos una decisión que cambie la ruta. Entrega lienzo, tres transcripciones y el fallo que has provocado para comprobar la rama pendiente.",
+        "La prueba pasa si cada rama termina donde debe, el usuario entiende qué falta y el estado pendiente puede reanudarse."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "kicker": "Problema transferible",
+          "title": "Qué capacidad vas a construir",
           "blocks": [
             {
               "type": "text",
-              "body": "Una investigación útil muestra cuánto puede sostener y qué la contradice. El resultado será una tesis comercial revisada y una lista priorizada de diligencias."
+              "body": "La mayoría de peticiones llegan incompletas. Un agente útil debe pedir la pieza que falta y continuar, en vez de inventarla o devolver un formulario interminable. Vas a construir el recorrido que recoge métrica, período y unidad."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Una decisión y su configuración",
           "blocks": [
             {
               "type": "text",
-              "body": "Una fuente sectorial sobre menor coste de materias primas puede favorecer el margen; un cliente que exige trasladar la caída a precios lo limita. Ambos hechos pueden ser ciertos. El impacto depende del desfase de revisión de precios y de los contratos, no de contar más fuentes a favor que en contra."
+              "body": "«Compara margen 2025 con 2024» no especifica si es margen EBITDA o bruto, ni porcentaje o importe. El tema ofrece opciones de métrica y unidad; pregunta períodos una vez. Si el usuario elige porcentaje, recuerda que el resultado se expresa en puntos porcentuales, no en euros. No interpreta «2025» como dato financiero suficiente."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Construir y probar en Studio",
           "blocks": [
             {
               "type": "text",
-              "body": "Pide a Researcher evidencia contraria a cada afirmación y abre las fuentes originales. Registra autor, fecha, método y relación con el segmento; evita contar dos artículos que replican el mismo comunicado como evidencia independiente. En Pages puedes consolidar un borrador colaborativo si está habilitado; en Notebooks delimita referencias de trabajo para mantener contexto, sin asumir acceso completo o validación de cada cifra.\n\n**Herramienta, requisitos, entradas y salida.** Researcher; Pages/Notebooks opcionales según disponibilidad y licencia de M365. Entradas: encargo, referencias elegidas y caso. Salida: matriz y tesis revisada. Alternativa: Word con registro de fuentes; pierdes espacio colaborativo o contexto de Notebook, no el estándar de verificación.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "1. Dentro del agente abre Topics > Add a topic > From blank. Nombre: «Aclarar comparación». En modo generativo el trigger puede ser The agent chooses: escribe una descripción que indique cuándo activarlo y cuándo no. En modo clásico usa frases representativas; no confundas esos dos mecanismos.\n2. Añade nodo Ask a question para métrica, con opciones «Margen EBITDA», «Margen bruto» y «Otra». Guarda la respuesta en una variable de tema `Metric`. Añade preguntas para `PeriodBase`, `PeriodCurrent` y `Unit`; ofrece opciones para Unit en vez de texto arbitrario.\n3. Tras «Otra» añade Condition: no calcules; pide definición y devuelve estado pendiente. En las otras ramas muestra un Message de confirmación con los valores mediante el selector de variables.\n4. Usa Topic management para terminar o devolver el control al tema llamante, según tu diseño. Guarda. En Test prueba petición completa, «Otra» y cambio de unidad. Observa el tema seguido; revisa que no repita preguntas ya respondidas cuando un input de tema válido esté configurado.\n\n**Herramienta y acceso.** Copilot Studio web con standard harness, en entorno de prueba autorizado, con acceso de autor y licencia/capacidad para la función. Los agent flows requieren Dataverse completo; Dataverse for Teams no basta. Microsoft365Copilot no garantiza acceso al Studio completo. No necesitas ERP ni datos reales. La prueba gratuita permite diseñar/probar agentes, pero no presupone publicación ni disponibilidad de flujos. Si no tienes Studio, usa el lienzo y tabla de pruebas de studio-lab.md y ejecuta a mano los casos: aprendes contrato y diagnóstico, pero la ejecución en Studio queda pendiente; no la marques validada. Una función o canal bloqueados por política requieren TI, no otra formulación del prompt.\n\n**Entradas:** studio-lab.md, agentes.md y fixtures ficticias. **Salida:** configuración versionada y registro de pruebas de esta lección. Tiempo orientativo: 15–20 min de lectura y 30–60 min de práctica exterior inicial.\n\n[Recetas reproducibles](content/resources/studio-lab.md) · [Contrato y construcción de agentes](content/resources/agentes.md) · [Pruebas y fixtures](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado falla",
           "blocks": [
             {
               "type": "text",
-              "body": "Una cita lleva a una página que habla de ingresos y la respuesta la presenta como EBITDA. Comprueba párrafo y definición, retira la conclusión y marca el razonamiento como no sostenido. La presencia de cita no prueba que la afirmación sea correcta."
+              "body": "El usuario elige «Otra» y aun así aparece un resultado. Inspecciona las conexiones del lienzo: quizá la rama pendiente se une a la ruta de cálculo. Un nodo de mensaje no termina automáticamente todos los caminos. Repara la rama y prueba de nuevo las rutas. Si el agente no selecciona el tema, contrasta descripción, trigger real y solapamiento con otros temas antes de añadir más frases."
             }
           ]
         },
         {
-          "id": "f2-4-2-decision",
+          "id": "f3-l4-2-choice",
           "type": "choice",
-          "concept": "research.evidence",
-          "prompt": "Dos artículos repiten el mismo comunicado comercial. ¿Cómo tratarlos?",
+          "concept": "studio.topics",
+          "prompt": "La rama de métrica no definida avisa, pero luego se une a la llamada. ¿Qué corregir primero?",
           "options": [
             {
-              "text": "Como un único origen de evidencia y buscar contraste adicional",
+              "text": "La conexión y condición: devolver pendiente sin ruta de cálculo y permitir completar la definición",
               "correct": true
             },
             {
-              "text": "Como dos fuentes independientes porque tienen dominios distintos",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Dejar la llamada y confiar en que la descripción de la herramienta detecte la definición ausente",
+              "feedback": "La herramienta también puede validar inputs, pero trasladar el control a su descripción no repara la ruta que se sabe incorrecta."
             },
             {
-              "text": "Excluir ambos sin revisar el comunicado original",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Pedir confirmación del usuario tras la advertencia y continuar con el significado que eligió el modelo",
+              "feedback": "Confirmar una inferencia sin exponer la definición no equivale a recoger el dato faltante."
             }
           ],
-          "explain": "Contrastar es relacionar evidencia y supuesto. Fuente repetida, cita decorativa y métrica incompatible no añaden certeza."
+          "explain": "Un aviso no es un control de flujo. El recorrido pendiente debe impedir la ejecución y conservar lo que falta para reanudar."
         },
         {
-          "id": "f2-4-2-sequence",
+          "id": "f3-l4-2-order",
           "type": "order",
-          "concept": "research.evidence",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "studio.topics",
+          "prompt": "Ordena este procedimiento de construcción y contraste.",
           "items": [
-            "Abrir fuentes originales y comprobar definiciones",
-            "Separar orígenes independientes y evidencia contraria",
-            "Revisar la tesis y marcar cuestiones no resolubles públicamente"
+            "Definir los inputs que faltan y su tipo",
+            "Crear preguntas y guardar respuestas en variables del tema",
+            "Conectar condiciones y salida pendiente sin ruta de cálculo",
+            "Probar cada rama y una reformulación que deba activar el mismo tema"
           ],
-          "explain": "Cada conclusión tiene soporte específico y explicita alcance. Las cuestiones privadas permanecen abiertas. En otra compañía prueba activamente la hipótesis que más te convenza."
+          "explain": "Un aviso no es un control de flujo. El recorrido pendiente debe impedir la ejecución y conservar lo que falta para reanudar."
         },
         {
-          "id": "f2-4-2-portfolio",
+          "id": "f3-l4-2-portfolio",
           "type": "portfolio",
-          "concept": "research.evidence",
-          "prompt": "Construye una matriz con dos evidencias favorables, dos contrarias y dos cuestiones irresolubles mediante fuentes públicas. Decide cómo afectarán al caso base y qué pedirás a management.",
+          "concept": "studio.topics",
+          "prompt": "Construye un tema de aclaración para una tarea propia con al menos una decisión que cambie la ruta. Entrega lienzo, tres transcripciones y el fallo que has provocado para comprobar la rama pendiente.",
           "rubric": [
-            "Consistencia: métricas y segmentos comparables.",
-            "Trazabilidad: fuentes originales abiertas y orígenes duplicados detectados.",
-            "Interpretación: evidencia favorable y contraria conectada con supuestos.",
-            "Utilidad: distingue diligencia privada de pregunta resoluble públicamente.",
-            "Crítico: no confundir cita con soporte ni ingresos con EBITDA."
+            "Consistencia: preguntas corresponden al contrato y no añaden datos innecesarios.",
+            "Control: la condición cambia la ruta y bloquea entradas insuficientes.",
+            "Trazabilidad: lienzo y tres transcripciones muestran valores recibidos.",
+            "Utilidad: reanuda la conversación sin repetir todo el formulario.",
+            "Errores críticos: no trata una advertencia como aprobación ni ejecuta la rama bloqueada."
           ],
-          "solution": "Una fuente sectorial sobre menor coste de materias primas puede favorecer el margen; un cliente que exige trasladar la caída a precios lo limita. Ambos hechos pueden ser ciertos. El impacto depende del desfase de revisión de precios y de los contratos, no de contar más fuentes a favor que en contra.\n\nCada conclusión tiene soporte específico y explicita alcance. Las cuestiones privadas permanecen abiertas. En otra compañía prueba activamente la hipótesis que más te convenza.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "No hay una lista única de preguntas válida. Un tema de métricas podría pedir definición, período y unidad; una revisión contractual podría pedir cláusula y versión. Debe verse una ruta normal, otra incompleta y una corrección del usuario. Comprueba que la rama de espera no ejecuta la acción final. Captura las variables, no solo el texto.",
+          "explain": "Registro de autoevaluación: conserva configuración, ejecución observada y límites. La aplicación no accede a Copilot Studio ni comprueba semánticamente tu entregable; si solo has diseñado el flujo, marca ejecución pendiente."
         },
         {
           "type": "card",
-          "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "kicker": "Validación y transferencia",
+          "title": "Decisiones que conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Cada conclusión tiene soporte específico y explicita alcance. Las cuestiones privadas permanecen abiertas. En otra compañía prueba activamente la hipótesis que más te convenza.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
-            }
-          ]
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Contrastar es relacionar evidencia y supuesto. Fuente repetida, cita decorativa y métrica incompatible no añaden certeza."
+              "body": "La prueba pasa si cada rama termina donde debe, el usuario entiende qué falta y el estado pendiente puede reanudarse.\n\nEn otra tarea cambia las preguntas y la condición, pero conserva el patrón entrada mínima → aclaración → confirmación → ejecución."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l4-3",
-      "title": "Nueva información y tesis comercial versionada",
-      "summary": "Una actualización no exige reinvestigar todo.",
-      "minutes": 30,
+      "id": "f3-l4-3",
+      "title": "Variables, tipos y traspasos entre temas",
+      "summary": "Evitar que un dato correcto se convierta en un cálculo incorrecto al cruzar límites de conversación o de herramienta.",
+      "minutes": 20,
       "objectives": [
-        "Prepara una nota delta con tres afirmaciones retiradas o condicionadas y dos que sigan vigentes. Especifica qué confirmación solicitarías antes de cerrar el análisis.",
-        "Puede reconstruirse qué cambió, por qué y desde cuándo. La revisión mantiene evidencia favorable y contraria. En otro expediente separa siempre novedad informativa de cambio aprobado de escenario."
+        "Documenta el viaje de tres variables de tu agente: origen, tipo, alcance, destino y regla de reinicio. Ejecuta una segunda tarea en la misma conversación para comprobar contaminación de contexto.",
+        "Valida los valores antes y después del límite de tema/herramienta; el hecho de que la respuesta contenga 16,5 no prueba el tipo del input."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "kicker": "Problema transferible",
+          "title": "Qué capacidad vas a construir",
           "blocks": [
             {
               "type": "text",
-              "body": "Una actualización no exige reinvestigar todo. Debes localizar qué premisa cambió y qué conclusiones dependen de ella. El resultado es una nota delta que enlaza nueva evidencia, hipótesis y entregables."
+              "body": "El agente ha entendido los números, pero los pasa como texto, conserva un período antiguo o mezcla porcentaje e importe. Vas a seguir el dato desde la respuesta hasta el siguiente componente, con tipos y alcance explícitos."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Una decisión y su configuración",
           "blocks": [
             {
               "type": "text",
-              "body": "actualizacion.eml reduce EBITDA a 7, eleva capex a 4 y cambia DSO a 75. La investigación anterior sobre demanda no justifica mantener 9 si el problema nuevo es retraso de cobros. Una mejora de mercado no compensa mecánicamente una caída de caja de la operación."
+              "body": "Base=15 y Actual=16,5 pueden significar millones o porcentajes. El valor numérico sin `Unit` no basta. Una variable local de tema sirve para la comparación actual; una global persiste durante la conversación y puede arrastrarse a una segunda compañía. Ninguna de las dos es almacenamiento durable ni historial entre sesiones."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Construir y probar en Studio",
           "blocks": [
             {
               "type": "text",
-              "body": "Guarda la investigación original y fecha de corte. Clasifica la nueva información: hecho confirmado, estimación o aclaración pendiente. Reabre solo preguntas afectadas y pide fuentes posteriores o específicas de la causa. Documenta qué hipótesis retiras, cuáles mantienes y con qué evidencia. Refleja la conclusión comercial revisada en el modelo y en el argumento de repago.\n\n**Herramienta, requisitos, entradas y salida.** Researcher/chat y Word o Pages según habilitación. Entradas: investigación previa y actualizacion.eml. Salida: nota delta y fuentes pendientes. Alternativa: revisión documental manual; pierdes búsqueda asistida de novedades, conservas trazabilidad.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "1. En el tema, selecciona la variable de una pregunta y abre Variable properties. Usa nombres claros y revisa el tipo inferido por la entidad identificada: Number para importes, Text para período o definición; una opción de elección tiene su propio tipo.\n2. Añade `BaseValue` y `CurrentValue` como números. Conserva `Unit` y `Metric` separados: no incrustes «M€» dentro del número. Cuando el tipo no sea el esperado, corrige qué identifica la pregunta y cómo se captura; no fuerces una conversión silenciosa.\n3. Marca como inputs/outputs de tema solo los valores que deban cruzar el límite; revisa el mapeo al redirigir hacia otro tema. Reserva Global para estado que realmente se reutilice durante esa conversación; al cambiar de entidad, limpia o vuelve a confirmar esos valores.\n4. En Test abre Variables para observar los valores. Prueba 15→16,5 con unidad porcentaje, luego una nueva entidad y unidad M€. Comprueba que la segunda tarea no hereda supuestos sin confirmación.\n\n**Herramienta y acceso.** Copilot Studio web con standard harness, en entorno de prueba autorizado, con acceso de autor y licencia/capacidad para la función. Los agent flows requieren Dataverse completo; Dataverse for Teams no basta. Microsoft365Copilot no garantiza acceso al Studio completo. No necesitas ERP ni datos reales. La prueba gratuita permite diseñar/probar agentes, pero no presupone publicación ni disponibilidad de flujos. Si no tienes Studio, usa el lienzo y tabla de pruebas de studio-lab.md y ejecuta a mano los casos: aprendes contrato y diagnóstico, pero la ejecución en Studio queda pendiente; no la marques validada. Una función o canal bloqueados por política requieren TI, no otra formulación del prompt.\n\n**Entradas:** studio-lab.md, agentes.md y fixtures ficticias. **Salida:** configuración versionada y registro de pruebas de esta lección. Tiempo orientativo: 15–20 min de lectura y 30–60 min de práctica exterior inicial.\n\n[Recetas reproducibles](content/resources/studio-lab.md) · [Contrato y construcción de agentes](content/resources/agentes.md) · [Pruebas y fixtures](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado falla",
           "blocks": [
             {
               "type": "text",
-              "body": "El agente toma el correo más reciente como verdad sin preguntar si sustituye el presupuesto aprobado. Añade un control de autoridad y alcance: quién lo envía, qué período cubre y qué dato reemplaza. Hasta confirmación, presenta revisión separada y no sobrescribas el base."
+              "body": "El flujo recibe 0 cuando falta `BaseValue`. Mira primero el mapeo y el valor capturado, no el cálculo. Vacío no equivale a cero: un cero auténtico es un caso válido que exige tratamiento propio. Si una variable global conserva el período, usa una variable local o limpia/solicita el dato en el cambio de contexto. Reiniciar el chat es una prueba útil, no un sustituto del diseño de alcance."
             }
           ]
         },
         {
-          "id": "f2-4-3-decision",
+          "id": "f3-l4-3-choice",
           "type": "choice",
-          "concept": "research.update",
-          "prompt": "El correo con EBITDA 7 no indica si reemplaza el presupuesto aprobado. ¿Qué corresponde?",
+          "concept": "studio.variables",
+          "prompt": "Variables muestra Global.PeriodCurrent=2025 de la tarea anterior y Topic.PeriodCurrent vacío en la nueva. La respuesta usa2025. ¿Qué reparar?",
           "options": [
             {
-              "text": "Crear revisión provisional, pedir alcance y autoridad, y conservar el escenario anterior",
+              "text": "Alcance y referencia usada: capturar/mapear el período actual o reconfirmar el estado global al cambiar tarea",
               "correct": true
             },
             {
-              "text": "Sobrescribir 8 porque cualquier correo reciente tiene prioridad",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Convertir Topic.PeriodCurrent de texto a número sin revisar qué variable consume el siguiente nodo",
+              "feedback": "El año puede almacenarse como texto válido; el síntoma es qué valor se consumió, no su naturaleza numérica."
             },
             {
-              "text": "Mantener 9 porque fue la previsión original",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Añadir un input al tema siguiente pero mantener el mapeo desde Global.PeriodCurrent sin confirmar su origen",
+              "feedback": "Crear el input no basta si se le pasa el mismo dato heredado."
             }
           ],
-          "explain": "Actualiza dependencias de la tesis y conserva fecha de corte. Un correo nuevo abre una versión, no borra por sí solo la anterior."
+          "explain": "El alcance y el ciclo de vida del dato forman parte del contrato. Tipos y mapeos se comprueban en variables y ejecuciones, no por la redacción final."
         },
         {
-          "id": "f2-4-3-sequence",
+          "id": "f3-l4-3-order",
           "type": "order",
-          "concept": "research.update",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "studio.variables",
+          "prompt": "Ordena este procedimiento de construcción y contraste.",
           "items": [
-            "Conservar versión anterior y clasificar autoridad y alcance del correo",
-            "Reabrir solo preguntas e hipótesis afectadas y contrastar evidencia",
-            "Actualizar tesis y entregables conservando pendientes y fecha de corte"
+            "Definir tipo, unidad y ciclo de vida del dato",
+            "Configurar captura y alcance de variables",
+            "Mapear inputs/outputs al cambiar de tema o llamar herramienta",
+            "Observar valores en prueba y repetir con una segunda entidad"
           ],
-          "explain": "Puede reconstruirse qué cambió, por qué y desde cuándo. La revisión mantiene evidencia favorable y contraria. En otro expediente separa siempre novedad informativa de cambio aprobado de escenario."
+          "explain": "El alcance y el ciclo de vida del dato forman parte del contrato. Tipos y mapeos se comprueban en variables y ejecuciones, no por la redacción final."
         },
         {
-          "id": "f2-4-3-portfolio",
+          "id": "f3-l4-3-portfolio",
           "type": "portfolio",
-          "concept": "research.update",
-          "prompt": "Prepara una nota delta con tres afirmaciones retiradas o condicionadas y dos que sigan vigentes. Especifica qué confirmación solicitarías antes de cerrar el análisis.",
+          "concept": "studio.variables",
+          "prompt": "Documenta el viaje de tres variables de tu agente: origen, tipo, alcance, destino y regla de reinicio. Ejecuta una segunda tarea en la misma conversación para comprobar contaminación de contexto.",
           "rubric": [
-            "Consistencia: mantiene base y revisión sin sobreescribir por fecha.",
-            "Trazabilidad: cada cambio tiene origen, autoridad y fecha de corte.",
-            "Interpretación: retira o condiciona afirmaciones afectadas.",
-            "Utilidad: nota delta dirige nuevas diligencias sin reinvestigar todo.",
-            "Crítico: no tratar un correo sin alcance confirmado como histórico definitivo."
+            "Tipos: distingue números, opciones, texto, vacío y cero.",
+            "Trazabilidad: origen y destino de cada variable están visibles.",
+            "Aislamiento: evita datos heredados en segunda entidad o sesión nueva.",
+            "Utilidad: pide solo la información que falta y conserva la válida.",
+            "Errores críticos: no transforma ausencia en cero ni confunde unidad con valor."
           ],
-          "solution": "actualizacion.eml reduce EBITDA a 7, eleva capex a 4 y cambia DSO a 75. La investigación anterior sobre demanda no justifica mantener 9 si el problema nuevo es retraso de cobros. Una mejora de mercado no compensa mecánicamente una caída de caja de la operación.\n\nPuede reconstruirse qué cambió, por qué y desde cuándo. La revisión mantiene evidencia favorable y contraria. En otro expediente separa siempre novedad informativa de cambio aprobado de escenario.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "La evidencia debe mostrar, por ejemplo, `BaseValue:Number`, `Unit:Text` y `PeriodBase:Text`, con mapeos y límites. Si el dato no existe debe preguntarse; si es cero debe conservarse y activar la ruta correspondiente. Una segunda entidad debe pedir o confirmar sus inputs, no reutilizar cifras de Aurora. Si no se ha ejecutado, conserva la tabla como diseño pendiente.",
+          "explain": "Registro de autoevaluación: conserva configuración, ejecución observada y límites. La aplicación no accede a Copilot Studio ni comprueba semánticamente tu entregable; si solo has diseñado el flujo, marca ejecución pendiente."
         },
         {
           "type": "card",
-          "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "kicker": "Validación y transferencia",
+          "title": "Decisiones que conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Puede reconstruirse qué cambió, por qué y desde cuándo. La revisión mantiene evidencia favorable y contraria. En otro expediente separa siempre novedad informativa de cambio aprobado de escenario.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
-            }
-          ]
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Actualiza dependencias de la tesis y conserva fecha de corte. Un correo nuevo abre una versión, no borra por sí solo la anterior."
+              "body": "Valida los valores antes y después del límite de tema/herramienta; el hecho de que la respuesta contenga 16,5 no prueba el tipo del input.\n\nAplica este control a múltiplos, rentabilidades, importes, divisas o fechas: cada dato debe viajar con su definición y unidad."
             }
           ]
         }
@@ -386,72 +356,71 @@
     }
   ],
   "exam": {
-    "title": "Decisiones de trabajo · no certificación profesional",
+    "size": 6,
     "extra": [
       {
-        "id": "f2-4-1-exam",
+        "id": "f3-m4-exam-1",
         "type": "choice",
-        "concept": "research.question",
-        "prompt": "La evidencia pública no aclara capacidad de repercutir costes. ¿Qué salida es útil?",
+        "concept": "studio.create",
+        "prompt": "Un agente conoce políticas pero necesita recoger una fecha antes de consultar una herramienta. ¿Qué pieza construyes y por qué?",
         "options": [
           {
-            "text": "Conclusión limitada y solicitud de contratos/datos privados con impacto en escenario",
+            "text": "Un tema para recoger/validar la fecha y mapearla al contrato de la herramienta",
             "correct": true
           },
           {
-            "text": "Afirmar que la media sectorial basta para la compañía",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Una fuente adicional con fechas de ejemplo para que las elija por analogía",
+            "feedback": "El conocimiento aporta contenido; la interacción controlada requiere una entrada definida y validada."
           },
           {
-            "text": "Asignar probabilidad sin fundamento para rellenar el modelo",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Otra herramienta que reciba la conversación entera sin input de fecha definido",
+            "feedback": "El conocimiento aporta contenido; la interacción controlada requiere una entrada definida y validada."
           }
         ],
-        "explain": "Conclusión limitada y solicitud de contratos/datos privados con impacto en escenario. Investiga un supuesto que pueda cambiar el caso. El sector contextualiza; los contratos y datos de compañía sostienen su ejecución."
+        "explain": "El conocimiento aporta contenido; la interacción controlada requiere una entrada definida y validada."
       },
       {
-        "id": "f2-4-2-exam",
+        "id": "f3-m4-exam-2",
         "type": "choice",
-        "concept": "research.evidence",
-        "prompt": "Una cita trata volumen y el informe concluye aumento de EBITDA. ¿Qué revisar?",
+        "concept": "studio.topics",
+        "prompt": "En modo generativo dos temas tienen descripciones casi idénticas y uno incorrecto se selecciona. ¿Qué ensayo ayuda a corregirlo?",
         "options": [
           {
-            "text": "El puente entre volumen, precio, coste y margen; la cita sola no lo demuestra",
+            "text": "Diferenciar propósito/exclusiones y repetir peticiones frontera observando la selección",
             "correct": true
           },
           {
-            "text": "Únicamente que el enlace funcione",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Añadir la misma frase de activación a ambos para aumentar cobertura",
+            "feedback": "El solapamiento se diagnostica con casos frontera y rutas observadas, no solo con más ejemplos positivos."
           },
           {
-            "text": "Si el informe tiene suficiente longitud",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Repetir solo la petición que ya activaba correctamente el tema esperado",
+            "feedback": "El solapamiento se diagnostica con casos frontera y rutas observadas, no solo con más ejemplos positivos."
           }
         ],
-        "explain": "El puente entre volumen, precio, coste y margen; la cita sola no lo demuestra. Contrastar es relacionar evidencia y supuesto. Fuente repetida, cita decorativa y métrica incompatible no añaden certeza."
+        "explain": "El solapamiento se diagnostica con casos frontera y rutas observadas, no solo con más ejemplos positivos."
       },
       {
-        "id": "f2-4-3-exam",
+        "id": "f3-m4-exam-3",
         "type": "choice",
-        "concept": "research.update",
-        "prompt": "La nueva evidencia afecta cobros pero no demanda. ¿Qué actualizar primero?",
+        "concept": "studio.variables",
+        "prompt": "El siguiente tema recibe el importe, pero pierde la moneda. ¿Qué debe demostrar el arreglo?",
         "options": [
           {
-            "text": "Hipótesis de conversión de caja y sus dependencias, manteniendo demanda si sigue sustentada",
+            "text": "Input de moneda definido, mapeo correcto y observación del valor antes/después del traspaso",
             "correct": true
           },
           {
-            "text": "Toda la investigación desde cero sin priorizar",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Moneda mencionada una vez en la bienvenida del agente",
+            "feedback": "Valor y significado viajan mediante inputs/mapeos explícitos; una mención anterior no garantiza el payload."
           },
           {
-            "text": "Solo la portada de la presentación",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Conversión del importe a texto con símbolo monetario sin revisar el contrato del destino",
+            "feedback": "Valor y significado viajan mediante inputs/mapeos explícitos; una mención anterior no garantiza el payload."
           }
         ],
-        "explain": "Hipótesis de conversión de caja y sus dependencias, manteniendo demanda si sigue sustentada. Actualiza dependencias de la tesis y conserva fecha de corte. Un correo nuevo abre una versión, no borra por sí solo la anterior."
+        "explain": "Valor y significado viajan mediante inputs/mapeos explícitos; una mención anterior no garantiza el payload."
       }
-    ],
-    "size": 6
+    ]
   }
 }

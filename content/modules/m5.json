@@ -1,384 +1,355 @@
 {
   "id": "m5",
-  "title": "Agente revisor y defensa ante Riesgos",
-  "subtitle": "Revisar argumentos, cifras y fuentes sin confundir agentes con independencia.",
-  "level": "Práctica avanzada",
-  "icon": "shield",
-  "color": "#A06A12",
+  "title": "Copilot Studio: herramientas y agent flows",
+  "subtitle": "Contratos, primera ejecución real sin conectores y recuperación.",
+  "level": "Construcción práctica",
+  "icon": "flow",
+  "color": "#2765A7",
   "lessons": [
     {
-      "id": "f2-l5-1",
-      "title": "Un revisor que detecta discrepancias concretas",
-      "summary": "Construye un agente revisor que reciba un paquete y emita hallazgos accionables, sin reescribirlo todo.",
-      "minutes": 30,
+      "id": "f3-l5-1",
+      "title": "Diseñar una herramienta que el agente pueda invocar",
+      "summary": "Traducir una necesidad en un contrato ejecutable y decidir cuándo debe llamarse.",
+      "minutes": 20,
       "objectives": [
-        "Configura el revisor y prueba si encuentra las discrepancias deliberadas sin decírselas en el prompt. Conserva un falso positivo y explica cómo lo resolviste con evidencia.",
-        "Cada hallazgo apunta a una ubicación y una prueba; no confunde diferencia de definición con error. Para otra operación prueba primero un error conocido y una diferencia legítima de período."
+        "Elige una operación pequeña de tu trabajo que pueda ser una herramienta real. Entrega contrato, descripción de selección, mapeo y tres peticiones: usarla, aclarar antes de usarla y no usarla.",
+        "Antes de evaluar la respuesta, contrasta el payload enviado y el estado devuelto con el contrato."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "kicker": "Problema transferible",
+          "title": "Qué capacidad vas a construir",
           "blocks": [
             {
               "type": "text",
-              "body": "Construye un agente revisor que reciba un paquete y emita hallazgos accionables, sin reescribirlo todo. El entregable es una tabla con ubicación, discrepancia, severidad, evidencia y corrección propuesta."
+              "body": "Una instrucción «calcula la variación» permite al modelo redactar un cálculo; una herramienta conecta una operación real con inputs y outputs. Debes decidir qué hace la herramienta y qué juicio queda fuera."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Una decisión y su configuración",
           "blocks": [
             {
               "type": "text",
-              "body": "El One Pager atribuye 9 al base y la presentación deuda neta 20. El revisor debe señalar 8 como base y 18 como neta en cierre, citando la tabla origen. También debe cuestionar si los 2 de caja están disponibles; una definición distinta debe explicarse, no corregirse ciegamente."
+              "body": "Herramienta propuesta «Calcular delta»: recibe dos números comparables; devuelve diferencia absoluta, disponibilidad de variación relativa y estado. No busca el EBITDA en archivos, no verifica su definición y no interpreta si la variación es buena. La comprobación de comparabilidad pertenece al agente/tema antes de invocarla. Un flow determinista hace reproducible el cálculo, pero dos inputs equivocados producen un resultado equivocado de forma reproducible."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Construir y probar en Studio",
           "blocks": [
             {
               "type": "text",
-              "body": "Configura instrucciones del revisor en agentes.md: comparar perímetro, período, escenario y definición antes de comparar números. Separa hallazgos confirmados de sospechas y preguntas. Exige fuente primaria y un cálculo reproducible para los errores materiales. Pide un inventario de lo no revisado, incluidos gráficos como imágenes o anexos que no haya podido leer.\n\n**Herramienta, requisitos, entradas y salida.** Agent Builder o chat M365, con archivos accesibles; creación de agentes según habilitación. Entradas: modelo.xlsx, one-pager.docx, fare.pptx. Salida: agente y registro de hallazgos. Alternativa: chat con instrucciones de revisión; pierdes configuración persistente. La segunda respuesta de IA no verifica por sí misma fuentes ni cálculos.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "1. Escribe el contrato antes de abrir el diseñador: BaseValue:Number, CurrentValue:Number, Unit:Text; outputs Delta:Number, RelativeAvailable:Boolean, RelativeChange:Number, Status:Text. Define base cero y dato ausente como situaciones diferentes.\n2. En el agente abre Tools > Add a tool. Revisa la oferta real: un agent flow, un conector o un prompt no son la misma herramienta. Para esta práctica elige un flujo; no un prompt generado con el mismo nombre.\n3. Define Name y Description según su función y exclusiones: «Calcular dos valores ya validados y comparables; no inferir números». Configura cómo se rellenan Inputs: pedir al usuario o mapear variables confirmadas. Evita inputs que el modelo deba adivinar.\n4. Decide invocación a nivel de agente (orquestador elige) o nodo Call a tool dentro del tema (ruta explícita tras validación). En el segundo caso revisa que ninguna rama incompleta alcance la llamada. La descripción ayuda a seleccionar, pero no es una barrera de autorización.\n\n**Herramienta y acceso.** Copilot Studio web con standard harness, en entorno de prueba autorizado, con acceso de autor y licencia/capacidad para la función. Los agent flows requieren Dataverse completo; Dataverse for Teams no basta. Microsoft365Copilot no garantiza acceso al Studio completo. No necesitas ERP ni datos reales. La prueba gratuita permite diseñar/probar agentes, pero no presupone publicación ni disponibilidad de flujos. Si no tienes Studio, usa el lienzo y tabla de pruebas de studio-lab.md y ejecuta a mano los casos: aprendes contrato y diagnóstico, pero la ejecución en Studio queda pendiente; no la marques validada. Una función o canal bloqueados por política requieren TI, no otra formulación del prompt.\n\n**Entradas:** studio-lab.md, agentes.md y fixtures ficticias. **Salida:** configuración versionada y registro de pruebas de esta lección. Tiempo orientativo: 15–20 min de lectura y 30–60 min de práctica exterior inicial.\n\n[Recetas reproducibles](content/resources/studio-lab.md) · [Contrato y construcción de agentes](content/resources/agentes.md) · [Pruebas y fixtures](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado falla",
           "blocks": [
             {
               "type": "text",
-              "body": "El revisor declara «sin errores» tras leer solo el resumen. Diagnostica cobertura insuficiente: dale un inventario de secciones y pide declarar cobertura por archivo. Abre manualmente los gráficos y recalcula las cifras críticas. No prometas acceso exhaustivo a todas las hojas."
+              "body": "El agente llama al flujo con EBITDA y ventas porque ambos son números. No arregles la resta: añade validación previa de Metric, Period y Unit, y revisa los inputs realmente enviados. Si una herramienta se invoca demasiado, reduce solapamiento de descripciones y prueba negativos: «explica qué es margen» no necesita ejecutar un cálculo."
             }
           ]
         },
         {
-          "id": "f2-5-1-decision",
+          "id": "f3-l5-1-choice",
           "type": "choice",
-          "concept": "review.figures",
-          "prompt": "El revisor dice que 20 de deuda neta es correcto porque coincide en dos documentos. ¿Qué falta?",
+          "concept": "flows.contract",
+          "prompt": "El flow resta20−15=5 correctamente, pero20 es ventas y15 EBITDA. ¿Qué debe cambiar?",
           "options": [
             {
-              "text": "Contrastar con deuda bruta y caja disponible del modelo, evitando usar dos copias del mismo error",
+              "text": "Validar definición y comparabilidad antes de llamar y revisar el mapeo de los inputs",
               "correct": true
             },
             {
-              "text": "Aceptar ambas cifras después de pedir al revisor un nivel de confianza sobre su consistencia",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Sustituir resta por ratio porque ambos importes están en millones y un ratio evita el problema",
+              "feedback": "Un ratio puede ser una métrica distinta válida si se define, pero no repara una comparación de evolución mal especificada."
             },
             {
-              "text": "Comparar con deuda bruta de cierre del año siguiente sin conciliar el cambio de fecha",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Mantener la llamada y añadir al final una advertencia genérica de que el usuario revise las cifras",
+              "feedback": "La advertencia informa de una limitación; no evita producir la comparación equivocada."
             }
           ],
-          "explain": "Revisión útil = ubicación, evidencia, impacto y corrección. Declarar cobertura es parte de la salida."
+          "explain": "Una ejecución correcta verifica el mecanismo, no la validez de los datos. El contrato debe indicar quién obtiene, valida, ejecuta e interpreta."
         },
         {
-          "id": "f2-5-1-sequence",
+          "id": "f3-l5-1-order",
           "type": "order",
-          "concept": "review.figures",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "flows.contract",
+          "prompt": "Ordena este procedimiento de construcción y contraste.",
           "items": [
-            "Congelar paquete e inventariar cobertura",
-            "Comparar período, perímetro y definición con fuente primaria",
-            "Recalcular hallazgos materiales y registrar falsos positivos"
+            "Definir operación, exclusiones y casos de borde",
+            "Especificar tipos y salidas observables",
+            "Decidir selector generativo o llamada explícita desde tema",
+            "Probar invocación necesaria e invocación que debe evitarse"
           ],
-          "explain": "Cada hallazgo apunta a una ubicación y una prueba; no confunde diferencia de definición con error. Para otra operación prueba primero un error conocido y una diferencia legítima de período."
+          "explain": "Una ejecución correcta verifica el mecanismo, no la validez de los datos. El contrato debe indicar quién obtiene, valida, ejecuta e interpreta."
         },
         {
-          "id": "f2-5-1-portfolio",
+          "id": "f3-l5-1-portfolio",
           "type": "portfolio",
-          "concept": "review.figures",
-          "prompt": "Configura el revisor y prueba si encuentra las discrepancias deliberadas sin decírselas en el prompt. Conserva un falso positivo y explica cómo lo resolviste con evidencia.",
+          "concept": "flows.contract",
+          "prompt": "Elige una operación pequeña de tu trabajo que pueda ser una herramienta real. Entrega contrato, descripción de selección, mapeo y tres peticiones: usarla, aclarar antes de usarla y no usarla.",
           "rubric": [
-            "Consistencia: compara períodos, perímetros y definiciones antes que valores.",
-            "Trazabilidad: hallazgo con ubicación, fuente y cálculo reproducible.",
-            "Interpretación: distingue error confirmado de diferencia legítima.",
-            "Utilidad: declara cobertura y propone corrección accionable.",
-            "Crítico: no declarar ausencia de errores con cobertura parcial."
+            "Contrato: función, inputs tipados y outputs verificables.",
+            "Límites: obtención, cálculo e interpretación tienen responsables.",
+            "Selección: casos positivos/negativos distinguen cuándo llamar.",
+            "Trazabilidad: mapeo conserva definición, período y unidad.",
+            "Errores críticos: no confunde prompt generativo, tool y permiso de datos."
           ],
-          "solution": "El One Pager atribuye 9 al base y la presentación deuda neta 20. El revisor debe señalar 8 como base y 18 como neta en cierre, citando la tabla origen. También debe cuestionar si los 2 de caja están disponibles; una definición distinta debe explicarse, no corregirse ciegamente.\n\nCada hallazgo apunta a una ubicación y una prueba; no confunde diferencia de definición con error. Para otra operación prueba primero un error conocido y una diferencia legítima de período.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "Una herramienta útil podría calcular una variación, devolver un registro autorizado o generar un identificador. El contrato separa inputs requeridos y supuestos; el ejemplo delta no autoriza al agente a inventar qué cifras usar. El caso negativo muestra que no ejecuta una herramienta simplemente por estar disponible. Conserva el resultado de la invocación si la has probado.",
+          "explain": "Registro de autoevaluación: conserva configuración, ejecución observada y límites. La aplicación no accede a Copilot Studio ni comprueba semánticamente tu entregable; si solo has diseñado el flujo, marca ejecución pendiente."
         },
         {
           "type": "card",
-          "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "kicker": "Validación y transferencia",
+          "title": "Decisiones que conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Cada hallazgo apunta a una ubicación y una prueba; no confunde diferencia de definición con error. Para otra operación prueba primero un error conocido y una diferencia legítima de período.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
-            }
-          ]
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Revisión útil = ubicación, evidencia, impacto y corrección. Declarar cobertura es parte de la salida."
+              "body": "Antes de evaluar la respuesta, contrasta el payload enviado y el estado devuelto con el contrato.\n\nLa misma disciplina sirve para cualquier especialidad financiera; cambia la operación atómica y conserva el contrato y sus pruebas."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l5-2",
-      "title": "Preguntas difíciles sobre repago y estructura",
-      "summary": "Una defensa sólida anticipa dónde el argumento no justifica la conclusión.",
-      "minutes": 30,
+      "id": "f3-l5-2",
+      "title": "Construir un agent flow sin conectores",
+      "summary": "Una primera automatización real y acotada: calcular delta y tratar base cero.",
+      "minutes": 20,
       "objectives": [
-        "Prepara una defensa de cinco preguntas, incluyendo una que no puedas contestar con el expediente. Decide qué información o cambio de estructura necesitarías para sostener la recomendación.",
-        "Las respuestas conectan negocio, caja, calendario y estructura; los mitigantes son operables y las incertidumbres no se esconden. Para otra operación cambia preguntas según la verdadera fuente de repago."
+        "Construye y prueba el flow delta. Entrega configuración, tres ejecuciones con resultados y una invocación desde el agente cuando tu entorno la permita. Si no permite esa última parte, señala exactamente el bloqueo y conserva el test del flow o el diseño.",
+        "La prueba pasa por outputs y rutas ejecutadas; un mensaje convincente no prueba que se haya llamado al flow. La operación no valida automáticamente un libro Excel."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "kicker": "Problema transferible",
+          "title": "Qué capacidad vas a construir",
           "blocks": [
             {
               "type": "text",
-              "body": "Una defensa sólida anticipa dónde el argumento no justifica la conclusión. El agente prepara preguntas difíciles; tú reconstruyes la respuesta contra fuentes y cálculos."
+              "body": "Quieres ver algo que se ejecute y puedas probar sin ERP, conectores bancarios ni administración. Construirás un flow que recibe valores y devuelve un resultado comprobable. El objetivo es entender el ciclo herramienta → inputs → ejecución → outputs, no programar un modelo financiero."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Una decisión y su configuración",
           "blocks": [
             {
               "type": "text",
-              "body": "«El múltiplo es moderado» no responde a cómo pagar intereses, amortización, capex y más circulante. Con revisión de EBITDA 7 y capex 4, la presión de caja aumenta antes del efecto de DSO. El riesgo puede ser liquidez y calendario aunque el ratio inicial no parezca elevado."
+              "body": "Prueba normal BaseValue=100, CurrentValue=110: Delta=10, RelativeAvailable=true, RelativeChange=0,10 y Status=ok. Prueba BaseValue=0, CurrentValue=7: Delta=7, RelativeAvailable=false, RelativeChange=0 como valor técnico y Status=base-zero; no debe presentarse 0% como resultado económico. Prueba actual menor: 110→100 produce −10 y −0,090909, no −10%."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Construir y probar en Studio",
           "blocks": [
             {
               "type": "text",
-              "body": "Encarga al revisor preguntas sobre integración, sinergias no comprometidas, concentración, capex diferible, necesidades estacionales, flexibilidad de amortización y disponibilidad del equity. Para cada pregunta construye respuesta, evidencia, incertidumbre y condición de seguimiento. Si falta calendario contractual o definición de covenant, pide información; no inventes términos ni los atribuyas al banco.\n\n**Herramienta, requisitos, entradas y salida.** Agente revisor/chat y Excel para cálculos; habilitación de M365 según entorno. Entradas: paquete corregido y modelo. Salida: guion de defensa con pendientes. Alternativa: revisión manual estructurada; pierdes generación de objeciones, no el control financiero.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "1. En Flows > New flow > Agent flow (o Tools > Add a tool > Create new > Agent flow, según la experiencia) crea «Delta laboratorio». Debe tener el trigger When an agent calls the flow y la acción Respond to the agent. Añade los dos inputs Number y Unit como Text.\n2. Inicializa variables Number/Float propias con los nombres `BaseValue` y `CurrentValue`, asignándoles el contenido dinámico de los inputs. Así las expresiones usan nombres bajo tu control y no suponen los nombres internos del trigger.\n3. Entre trigger y respuesta añade Compose con `sub(variables('CurrentValue'),variables('BaseValue'))`. Para la relativa usa Condition: BaseValue mayor que0. En la rama válida calcula `div(sub(variables('CurrentValue'),variables('BaseValue')),variables('BaseValue'))`. No dividas en la rama cero ni negativa; devuelve relativa no disponible y estado base-zero/base-negative.\n4. Devuelve salidas tipadas según el contrato; la receta detallada muestra variables de salida inicializadas y cómo asignarlas en cada rama. Guarda, revisa Flow checker y ejecuta Test con los tres pares. Comprueba run history y outputs, no solo el texto generado.\n5. Para llamarlo desde un agente debe estar publicado como flow en el sandbox autorizado y añadirse desde Tools > Add a tool > Flow > Add and configure; esto no equivale a publicar el agente a usuarios. Si tu licencia/entorno impide publicar el flow, prueba lo que admita el diseñador y deja la invocación pendiente. Configura respuesta síncrona para esta receta estándar; no presupone nuevas funciones asíncronas.\n\n**Herramienta y acceso.** Copilot Studio web con standard harness, en entorno de prueba autorizado, con acceso de autor y licencia/capacidad para la función. Los agent flows requieren Dataverse completo; Dataverse for Teams no basta. Microsoft365Copilot no garantiza acceso al Studio completo. No necesitas ERP ni datos reales. La prueba gratuita permite diseñar/probar agentes, pero no presupone publicación ni disponibilidad de flujos. Si no tienes Studio, usa el lienzo y tabla de pruebas de studio-lab.md y ejecuta a mano los casos: aprendes contrato y diagnóstico, pero la ejecución en Studio queda pendiente; no la marques validada. Una función o canal bloqueados por política requieren TI, no otra formulación del prompt.\n\n**Entradas:** studio-lab.md, agentes.md y fixtures ficticias. **Salida:** configuración versionada y registro de pruebas de esta lección. Tiempo orientativo: 15–20 min de lectura y 30–60 min de práctica exterior inicial.\n\n[Recetas reproducibles](content/resources/studio-lab.md) · [Contrato y construcción de agentes](content/resources/agentes.md) · [Pruebas y fixtures](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado falla",
           "blocks": [
             {
               "type": "text",
-              "body": "El agente responde a una pregunta de refinanciación diciendo que la nueva deuda cubre todos los usos. Eso solo prueba cierre, no repago futuro. Reformula el encargo para separar suficiencia de fondos al cierre y servicio durante la vida del préstamo. Comprueba ambos con tablas diferentes."
+              "body": "El flow no aparece en Tools. Revisa entorno, estado publicado, trigger/response y compatibilidad: no cambies de conector al azar. Si aparece división por cero, inspecciona la rama y si el cálculo se ejecuta antes de la condición. Si devuelve una cadena, revisa la acción de respuesta y las variables. Si el número relativo se muestra como porcentaje entero, separa dato decimal y formato de presentación."
             }
           ]
         },
         {
-          "id": "f2-5-2-decision",
+          "id": "f3-l5-2-choice",
           "type": "choice",
-          "concept": "review.challenge",
-          "prompt": "Fuentes y usos cuadran. ¿Qué demuestra eso sobre el repago?",
+          "concept": "flows.build",
+          "prompt": "La base es0 y actual7M€. El contrato usa relativa solo con base positiva. ¿Qué output respeta ese contrato?",
           "options": [
             {
-              "text": "Suficiencia al cierre bajo esos supuestos; falta analizar caja y servicio futuro",
+              "text": "Delta7, RelativeAvailable=false y Status=base-zero; no presentar el cero técnico como0%",
               "correct": true
             },
             {
-              "text": "Que la compañía puede amortizar toda la deuda en plazo",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Delta7 y RelativeChange=0 con Status=ok para conservar una salida numérica uniforme",
+              "feedback": "Uniformar el tipo no justifica convertir ausencia de relativa en un resultado económico igual a0%."
             },
             {
-              "text": "Que los riesgos de circulante ya están mitigados",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Devolver solo el texto «n/d» en Delta y RelativeChange, conservando sus tipos Number",
+              "feedback": "Una respuesta tipada requiere mantener Number donde se declaró y comunicar no disponibilidad mediante los campos previstos."
             }
           ],
-          "explain": "Financiar el cierre y devolver el préstamo son preguntas distintas. No sustituir calendario por múltiplo."
+          "explain": "Base cero no tiene variación relativa definida. La herramienta debe devolver estado explícito y el agente respetarlo al redactar."
         },
         {
-          "id": "f2-5-2-sequence",
+          "id": "f3-l5-2-order",
           "type": "order",
-          "concept": "review.challenge",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "flows.build",
+          "prompt": "Ordena este procedimiento de construcción y contraste.",
           "items": [
-            "Separar suficiencia al cierre de repago futuro",
-            "Construir respuestas con caja, calendario y evidencia",
-            "Declarar pendientes y condiciones de la recomendación"
+            "Crear trigger y entradas tipadas",
+            "Configurar operaciones y ramas sin dividir entre cero",
+            "Definir y mapear salidas en Respond to the agent",
+            "Ejecutar Test y contrastar outputs de tres casos",
+            "Añadir flow publicado al agente solo si el sandbox lo permite y probar mapeo"
           ],
-          "explain": "Las respuestas conectan negocio, caja, calendario y estructura; los mitigantes son operables y las incertidumbres no se esconden. Para otra operación cambia preguntas según la verdadera fuente de repago."
+          "explain": "Base cero no tiene variación relativa definida. La herramienta debe devolver estado explícito y el agente respetarlo al redactar."
         },
         {
-          "id": "f2-5-2-portfolio",
+          "id": "f3-l5-2-portfolio",
           "type": "portfolio",
-          "concept": "review.challenge",
-          "prompt": "Prepara una defensa de cinco preguntas, incluyendo una que no puedas contestar con el expediente. Decide qué información o cambio de estructura necesitarías para sostener la recomendación.",
+          "concept": "flows.build",
+          "prompt": "Construye y prueba el flow delta. Entrega configuración, tres ejecuciones con resultados y una invocación desde el agente cuando tu entorno la permita. Si no permite esa última parte, señala exactamente el bloqueo y conserva el test del flow o el diseño.",
           "rubric": [
-            "Consistencia: cierre y repago se analizan por separado.",
-            "Trazabilidad: respuesta remite a caja y servicio contractual.",
-            "Interpretación: preguntas desafían hipótesis decisivas y mitigantes.",
-            "Utilidad: pendientes incluyen información y efecto en estructura.",
-            "Crítico: no sustituir calendario por múltiplo ni inventar términos contractuales."
+            "Construcción: trigger, acciones y respuesta existen como componentes del flow.",
+            "Tipos y mapeo: entradas y salidas corresponden al contrato.",
+            "Cálculo: tres casos y base cero contrastados contra operación independiente.",
+            "Trazabilidad: evidencia del diseñador y ejecuciones, o pendiente explícito.",
+            "Errores críticos: no presenta relativa no disponible como0% ni simula integración real."
           ],
-          "solution": "«El múltiplo es moderado» no responde a cómo pagar intereses, amortización, capex y más circulante. Con revisión de EBITDA 7 y capex 4, la presión de caja aumenta antes del efecto de DSO. El riesgo puede ser liquidez y calendario aunque el ratio inicial no parezca elevado.\n\nLas respuestas conectan negocio, caja, calendario y estructura; los mitigantes son operables y las incertidumbres no se esconden. Para otra operación cambia preguntas según la verdadera fuente de repago.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "En la ejecución normal deben verse 100 y110 como números, Delta10 y RelativeChange0,1. En cero debe usarse la rama sin división; `RelativeAvailable=false` evita interpretar el cero técnico. En110→100, −10/110≈−9,09%. Adjunta run IDs y outputs; un texto que reproduzca estos números sin ejecución no acredita el flow.",
+          "explain": "Registro de autoevaluación: conserva configuración, ejecución observada y límites. La aplicación no accede a Copilot Studio ni comprueba semánticamente tu entregable; si solo has diseñado el flujo, marca ejecución pendiente."
         },
         {
           "type": "card",
-          "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "kicker": "Validación y transferencia",
+          "title": "Decisiones que conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Las respuestas conectan negocio, caja, calendario y estructura; los mitigantes son operables y las incertidumbres no se esconden. Para otra operación cambia preguntas según la verdadera fuente de repago.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
-            }
-          ]
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Financiar el cierre y devolver el préstamo son preguntas distintas. No sustituir calendario por múltiplo."
+              "body": "La prueba pasa por outputs y rutas ejecutadas; un mensaje convincente no prueba que se haya llamado al flow. La operación no valida automáticamente un libro Excel.\n\nDespués cambia solo la operación atómica: conversión de unidad con factor autorizado, control de suma o reconciliación. Conserva los casos de borde y el contrato."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l5-3",
-      "title": "Cuándo separar preparación y revisión",
-      "summary": "Dos agentes pueden mejorar la disciplina de roles, pero no crean independencia financiera ni una orquestación automática.",
-      "minutes": 30,
+      "id": "f3-l5-3",
+      "title": "Añadir estado y recuperarse de fallos",
+      "summary": "Conectores, permisos, reintentos e idempotencia cuando el flujo deja de ser una calculadora aislada.",
+      "minutes": 20,
       "objectives": [
-        "Elige arquitectura de uno o dos agentes para dos trabajos: revisión de una tabla y revisión de un paquete de financiación. Justifica coste, cobertura y puntos humanos; ejecuta un traspaso de prueba.",
-        "El flujo define entradas, salidas, responsable y criterio de aceptación. Las pruebas distinguen preparación de verificación. En otra operación no añadas agentes si no añaden un control observable."
+        "Extiende una herramienta pequeña con un registro de estado o diseña su ampliación si requiere TI. Entrega tabla de estados, identidad de ejecución y cinco pruebas incluyendo duplicado concurrente y403.",
+        "Valida número de registros y estados, además del mensaje al usuario. Una prueba secuencial no demuestra que resista concurrencia."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "kicker": "Problema transferible",
+          "title": "Qué capacidad vas a construir",
           "blocks": [
             {
               "type": "text",
-              "body": "Dos agentes pueden mejorar la disciplina de roles, pero no crean independencia financiera ni una orquestación automática. Diseña el proceso mínimo que aporte una revisión diferente y verificable."
+              "body": "Una tarea que escribe o registra resultados puede repetirse, quedar a medias o ejecutarse con credenciales distintas. La automatización necesita estado y recuperación antes de ampliar su alcance."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Una decisión y su configuración",
           "blocks": [
             {
               "type": "text",
-              "body": "Un agente preparador estructura el caso; otro revisor recibe la versión congelada y criterios de contraste. Si ambos leen solo el mismo resumen incorrecto, repetirán el error de EBITDA 9 base. La independencia proviene de volver a las fuentes y recalcular, no de dar otro nombre al asistente."
+              "body": "Una revisión de un documento se identifica por `documentId|version`. Recibir dos veces la misma revisión no debe crear dos registros. Un403 no significa «sin incidencias»: significa que el flujo no pudo leer o escribir. El ejemplo usa una lista educativa, pero el patrón sirve para cualquier registro recurrente."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Construir y probar en Studio",
           "blocks": [
             {
               "type": "text",
-              "body": "Usa un solo agente con fase de revisión explícita cuando la tarea sea pequeña y puedas inspeccionar cada cifra. Separa roles cuando necesites preservar un borrador, mantener criterios de objeción o comparar cobertura. Define un traspaso manual: versión, archivos, preguntas abiertas y límites. Invocar agentes uno tras otro sigue siendo un proceso manual; para automatizar traspasos haría falta una implementación y habilitación específica.\n\n**Herramienta, requisitos, entradas y salida.** Agent Builder/chat; dos agentes solo si creación habilitada. Entradas: versión congelada, agentes.md y pruebas-agentes.json. Salida: diseño y traspaso registrado. Alternativa: dos conversaciones con roles separados; pierdes persistencia de agentes. No hay orquestación automática por mencionar varios agentes.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "1. Conserva el flow delta como núcleo sin conectores. La ampliación opcional requiere una lista educativa autorizada de SharePoint o tabla Dataverse; no uses datos reales ni el sitio completo. Define clave única, status, runId, sourceVersion y errorCode.\n2. En la lista configura unicidad de la columna que contiene `documentId|version`, o clave alternativa equivalente en Dataverse. En el flow valida inputs y consulta la clave. Si ya existe devuelve duplicate y el runId existente. Si no, intenta crear received; si otra llamada gana la carrera, trata el conflicto como duplicado, no como nuevo trabajo.\n3. Agrupa acciones en Scopes Try/Catch y configura Run after para fallo/timeout donde lo permita el diseñador. Clasifica403 como failed-permission sin reintento que amplíe acceso. Para fallo transitorio define límite de reintentos; si escribir el error también falla, devuelve el incidente sin afirmar que se guardó.\n4. Comprueba la identidad y conexión realmente usadas. Una conexión del maker no prueba que otro usuario tenga acceso; revisa autenticación del agente, credenciales de usuario o conexión configurada y políticas con TI.\n5. Prueba normal, duplicado secuencial, dos llamadas simultáneas, entrada incompleta y permiso denegado. Registra filas creadas, estados y respuestas. No necesitas esta ampliación para completar el núcleo del curso: con ella bloqueada conserva test cases y registro manual; se pierde ejecución durable automática.\n\n**Herramienta y acceso.** Copilot Studio web con standard harness, en entorno de prueba autorizado, con acceso de autor y licencia/capacidad para la función. Los agent flows requieren Dataverse completo; Dataverse for Teams no basta. Microsoft365Copilot no garantiza acceso al Studio completo. No necesitas ERP ni datos reales. La prueba gratuita permite diseñar/probar agentes, pero no presupone publicación ni disponibilidad de flujos. Si no tienes Studio, usa el lienzo y tabla de pruebas de studio-lab.md y ejecuta a mano los casos: aprendes contrato y diagnóstico, pero la ejecución en Studio queda pendiente; no la marques validada. Una función o canal bloqueados por política requieren TI, no otra formulación del prompt.\n\n**Entradas:** studio-lab.md, agentes.md y fixtures ficticias. **Salida:** configuración versionada y registro de pruebas de esta lección. Tiempo orientativo: 15–20 min de lectura y 30–60 min de práctica exterior inicial.\n\n[Recetas reproducibles](content/resources/studio-lab.md) · [Contrato y construcción de agentes](content/resources/agentes.md) · [Pruebas y fixtures](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado falla",
           "blocks": [
             {
               "type": "text",
-              "body": "El revisor incorpora la corrección al borrador sin registro y luego nadie sabe qué se cambió. Congela la versión de entrada y exige propuestas, no edición silenciosa. Valida el hallazgo contra fuente antes de aceptar el cambio; un falso positivo también tiene coste."
+              "body": "El agente dice «registrado» aunque la ejecución devuelve403, o se crean dos filas en un reintento. Contrasta salida de Catch y mensajes del agente; no uses «Continue on error» para convertir cualquier fallo en éxito. La consulta previa de existencia no basta contra carreras: necesitas unicidad en almacenamiento y tratar el conflicto. Si el permiso impide la prueba, no simules una ejecución exitosa en la documentación."
             }
           ]
         },
         {
-          "id": "f2-5-3-decision",
+          "id": "f3-l5-3-choice",
           "type": "choice",
-          "concept": "review.separation",
-          "prompt": "¿Cuándo aporta más separar agentes?",
+          "concept": "flows.recover",
+          "prompt": "Dos llamadas consultan la clave antes de que exista y ambas intentan crear. ¿Qué control completa el diseño?",
           "options": [
             {
-              "text": "Cuando un revisor con criterios y fuentes propios debe revisar una versión congelada y registrar hallazgos",
+              "text": "Unicidad en almacenamiento y tratamiento del conflicto como duplicado con el identificador existente",
               "correct": true
             },
             {
-              "text": "Siempre, porque dos agentes garantizan independencia",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Una segunda consulta justo antes de crear, sin cambiar el almacenamiento ni gestionar conflictos",
+              "feedback": "Reduce alguna ventana, pero las dos llamadas pueden superar también la segunda consulta."
             },
             {
-              "text": "Solo cuando puedan compartir todas sus respuestas sin control humano",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Un período fijo de espera entre consulta y creación, confiando en que termine la otra llamada",
+              "feedback": "La espera no establece exclusión mutua ni garantiza qué llamada llegará primero."
             }
           ],
-          "explain": "Separar roles ayuda cuando cambia el criterio o la cobertura. La verificación necesita fuentes y cálculo humano reproducible."
+          "explain": "La idempotencia se apoya en estado y unicidad, no en que el modelo recuerde evitar duplicados. Permisos y fallos deben conservar su estado real."
         },
         {
-          "id": "f2-5-3-sequence",
+          "id": "f3-l5-3-order",
           "type": "order",
-          "concept": "review.separation",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "flows.recover",
+          "prompt": "Ordena este procedimiento de construcción y contraste.",
           "items": [
-            "Determinar qué control añade separar roles",
-            "Definir versión de entrada y traspaso manual",
-            "Contrastar hallazgos antes de aceptar cambios"
+            "Definir clave, estados y permisos mínimos",
+            "Configurar almacenamiento con unicidad y contrato de errores",
+            "Implementar rutas de duplicado, éxito y fallo",
+            "Probar concurrencia, denegación de permiso y recuperación limitada"
           ],
-          "explain": "El flujo define entradas, salidas, responsable y criterio de aceptación. Las pruebas distinguen preparación de verificación. En otra operación no añadas agentes si no añaden un control observable."
+          "explain": "La idempotencia se apoya en estado y unicidad, no en que el modelo recuerde evitar duplicados. Permisos y fallos deben conservar su estado real."
         },
         {
-          "id": "f2-5-3-portfolio",
+          "id": "f3-l5-3-portfolio",
           "type": "portfolio",
-          "concept": "review.separation",
-          "prompt": "Elige arquitectura de uno o dos agentes para dos trabajos: revisión de una tabla y revisión de un paquete de financiación. Justifica coste, cobertura y puntos humanos; ejecuta un traspaso de prueba.",
+          "concept": "flows.recover",
+          "prompt": "Extiende una herramienta pequeña con un registro de estado o diseña su ampliación si requiere TI. Entrega tabla de estados, identidad de ejecución y cinco pruebas incluyendo duplicado concurrente y403.",
           "rubric": [
-            "Consistencia: roles e inventarios de entrada están definidos.",
-            "Trazabilidad: versión congelada y hallazgos registrados.",
-            "Interpretación: separar roles añade un control observable.",
-            "Utilidad: traspaso manual se puede ejecutar sin ambigüedad.",
-            "Crítico: no presentar varios agentes como verificación independiente u orquestación automática."
+            "Estado: éxito, pendiente, duplicado y fallo no se confunden.",
+            "Consistencia: clave única y concurrencia están contempladas.",
+            "Permisos: identifica conexión y no presume acceso del usuario.",
+            "Recuperación: reintentos limitados y fallo de registro explicado.",
+            "Errores críticos: no informa éxito tras403 ni duplica una escritura."
           ],
-          "solution": "Un agente preparador estructura el caso; otro revisor recibe la versión congelada y criterios de contraste. Si ambos leen solo el mismo resumen incorrecto, repetirán el error de EBITDA 9 base. La independencia proviene de volver a las fuentes y recalcular, no de dar otro nombre al asistente.\n\nEl flujo define entradas, salidas, responsable y criterio de aceptación. Las pruebas distinguen preparación de verificación. En otra operación no añadas agentes si no añaden un control observable.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "El éxito deja un registro identificable; el duplicado devuelve el mismo identificador;403 es failed-permission y no autoriza a usar la conexión de otro. No hace falta acceso corporativo para diseñar las pruebas, pero sin ejecución no debes afirmar idempotencia real. El runId conecta diagnóstico técnico y tarea profesional.",
+          "explain": "Registro de autoevaluación: conserva configuración, ejecución observada y límites. La aplicación no accede a Copilot Studio ni comprueba semánticamente tu entregable; si solo has diseñado el flujo, marca ejecución pendiente."
         },
         {
           "type": "card",
-          "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "kicker": "Validación y transferencia",
+          "title": "Decisiones que conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "El flujo define entradas, salidas, responsable y criterio de aceptación. Las pruebas distinguen preparación de verificación. En otra operación no añadas agentes si no añaden un control observable.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
-            }
-          ]
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Separar roles ayuda cuando cambia el criterio o la cobertura. La verificación necesita fuentes y cálculo humano reproducible."
+              "body": "Valida número de registros y estados, además del mensaje al usuario. Una prueba secuencial no demuestra que resista concurrencia.\n\nUsa el mismo patrón para actualización documental, recepción de ficheros o registro de una revisión; amplía conectores solo si aportan valor y están autorizados."
             }
           ]
         }
@@ -386,72 +357,71 @@
     }
   ],
   "exam": {
-    "title": "Decisiones de trabajo · no certificación profesional",
+    "size": 6,
     "extra": [
       {
-        "id": "f2-5-1-exam",
+        "id": "f3-m5-exam-1",
         "type": "choice",
-        "concept": "review.figures",
-        "prompt": "El revisor solo pudo leer las diapositivas de texto. ¿Qué salida aceptar?",
+        "concept": "flows.contract",
+        "prompt": "Una tool debe consultar un registro autorizado, pero su descripción dice «analiza cualquier información financiera». ¿Qué riesgo hay?",
         "options": [
           {
-            "text": "Cobertura declarada y gráficos/partes no leídas pendientes de contraste",
+            "text": "Selección demasiado amplia; hay que delimitar cuándo llamarla y qué inputs necesita",
             "correct": true
           },
           {
-            "text": "Paquete íntegramente verificado porque no halló errores",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "El problema es solo editorial si el conector devuelve200",
+            "feedback": "La descripción orienta la selección; no concede acceso ni sustituye un contrato de inputs."
           },
           {
-            "text": "Promedio de opinión de dos agentes sobre las slides leídas",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "La descripción concede permiso a todos los datos que el usuario mencione",
+            "feedback": "La descripción orienta la selección; no concede acceso ni sustituye un contrato de inputs."
           }
         ],
-        "explain": "Cobertura declarada y gráficos/partes no leídas pendientes de contraste. Revisión útil = ubicación, evidencia, impacto y corrección. Declarar cobertura es parte de la salida."
+        "explain": "La descripción orienta la selección; no concede acceso ni sustituye un contrato de inputs."
       },
       {
-        "id": "f2-5-2-exam",
+        "id": "f3-m5-exam-2",
         "type": "choice",
-        "concept": "review.challenge",
-        "prompt": "Un contrato de financiación no está en el expediente. ¿Qué respuesta sobre covenants corresponde?",
+        "concept": "flows.build",
+        "prompt": "Test del flow da delta11 con110→121. En el chat aparece−11. ¿Dónde buscar primero?",
         "options": [
           {
-            "text": "Pedir definiciones y fechas contractuales; no inventar margen disponible",
+            "text": "Payload de invocación: posible inversión base/actual y mapeo de outputs",
             "correct": true
           },
           {
-            "text": "Inferir covenant estándar del mercado como si fuera firmado",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Cambiar la fórmula de resta del flow aunque su test aislado era correcto",
+            "feedback": "Comparar test aislado y llamada identifica dónde cambió el dato; no se fuerza signo por presentación."
           },
           {
-            "text": "Afirmar cumplimiento por tener EBITDA positivo",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Añadir un ejemplo al prompt final para que siempre dé delta positivo",
+            "feedback": "Comparar test aislado y llamada identifica dónde cambió el dato; no se fuerza signo por presentación."
           }
         ],
-        "explain": "Pedir definiciones y fechas contractuales; no inventar margen disponible. Financiar el cierre y devolver el préstamo son preguntas distintas. No sustituir calendario por múltiplo."
+        "explain": "Comparar test aislado y llamada identifica dónde cambió el dato; no se fuerza signo por presentación."
       },
       {
-        "id": "f2-5-3-exam",
+        "id": "f3-m5-exam-3",
         "type": "choice",
-        "concept": "review.separation",
-        "prompt": "Preparador y revisor repiten la misma cifra incorrecta de un resumen. ¿Qué añade control?",
+        "concept": "flows.recover",
+        "prompt": "Una ejecución recibió timeout y no sabes si la escritura se completó. ¿Qué necesitas antes de repetirla?",
         "options": [
           {
-            "text": "Volver a fuente primaria y recalcular con definiciones y período",
+            "text": "Consultar estado por clave idempotente y tratar duplicado o pendiente sin crear otra operación a ciegas",
             "correct": true
           },
           {
-            "text": "Crear un tercer agente con otro nombre",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Reintentar con otro identificador para asegurar que al menos una escritura termine",
+            "feedback": "Ante resultado incierto el estado durable y la clave permiten recuperar sin duplicar efectos."
           },
           {
-            "text": "Pedir consenso entre los dos agentes",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Informar fallo definitivo y borrar el historial de la solicitud",
+            "feedback": "Ante resultado incierto el estado durable y la clave permiten recuperar sin duplicar efectos."
           }
         ],
-        "explain": "Volver a fuente primaria y recalcular con definiciones y período. Separar roles ayuda cuando cambia el criterio o la cobertura. La verificación necesita fuentes y cálculo humano reproducible."
+        "explain": "Ante resultado incierto el estado durable y la clave permiten recuperar sin duplicar efectos."
       }
-    ],
-    "size": 6
+    ]
   }
 }

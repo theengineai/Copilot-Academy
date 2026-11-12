@@ -1,953 +1,976 @@
 [
   {
-    "id": "f2-ms01",
+    "id": "f3-ms01",
     "module": "m1",
-    "title": "Primera lectura reproducible",
-    "summary": "Configura una primera lectura de Levante Envases para que otro analista pueda repetirla mañana sin tu conversación.",
+    "title": "Elegir un sistema de trabajo",
+    "summary": "Una tarea aislada y otra recurrente llegan con los mismos documentos. Decide herramienta y límites sin convertir todas las tareas en agentes.",
     "difficulty": 2,
     "xp": 60,
     "requires": [
-      "f2-l1-3"
+      "f3-l1-2"
     ],
     "final": false,
-    "brief": "Configura una primera lectura de Levante Envases para que otro analista pueda repetirla mañana sin tu conversación.",
-    "scenario": "Agent Builder con capacidad de crear agentes habilitada; Microsoft 365 Copilot y fuentes autorizadas. Alternativa personal: instrucciones versionadas en un chat nuevo con archivos seleccionados; pierde reutilización configurada y controles del agente.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
+    "brief": "Una tarea aislada y otra recurrente llegan con los mismos documentos. Decide herramienta y límites sin convertir todas las tareas en agentes.",
+    "scenario": "M365Copilot/Excel o diseño manual. Entradas: expediente.docx y modelo.xlsx. Salida: mapa de herramientas y criterios. Sin licencia de Copilot usa archivos y tabla de decisión; pierde ejecución asistida.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
     "steps": [
       {
-        "id": "f2-ms01-s1",
-        "title": "Contrato de análisis",
+        "id": "f3-ms01-s1",
+        "title": "Diseño y decisión",
         "type": "portfolio",
-        "concept": "agent.method",
-        "prompt": "Entrega instrucciones ejecutables y un mapa de fuentes. Usa caso.docx, metodologia.md y agentes.md; distingue reglas estables, conocimiento y operación.",
-        "context": "Agent Builder con capacidad de crear agentes habilitada; Microsoft 365 Copilot y fuentes autorizadas. Alternativa personal: instrucciones versionadas en un chat nuevo con archivos seleccionados; pierde reutilización configurada y controles del agente.",
+        "concept": "tools.route",
+        "prompt": "Define el resultado y separa componentes que deben generar, recuperar, calcular o registrar.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Una versión v1 identifica EUR millones, perímetro combinado y fecha de cierre; exige tabla dato/fuente/fecha/definición, abstención ante huecos y pendientes por responsable. Plantillas sin cifras de otro caso. No incluye el caso dentro de la metodología.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "La ruta directa puede ser mejor para un análisis único; la recurrente puede justificar contrato reusable. No se puntúa elegir más herramientas sino explicar qué ejecuta cada una. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms01-s2",
-        "title": "Prueba adversa",
+        "id": "f3-ms01-s2",
+        "title": "Construcción o ejecución",
         "type": "portfolio",
-        "concept": "agent.sources",
-        "prompt": "Ejecuta una prueba con falta de EBITDA de la adquirida y otra que intente añadir los 8 de deuda refinanciada después del cierre. Registra entrada, respuesta, fallo y cambio de instrucciones.",
-        "context": "Agent Builder con capacidad de crear agentes habilitada; Microsoft 365 Copilot y fuentes autorizadas. Alternativa personal: instrucciones versionadas en un chat nuevo con archivos seleccionados; pierde reutilización configurada y controles del agente.",
+        "concept": "tools.route",
+        "prompt": "Compara dos rutas y defiende cuál ahorra trabajo neto sin perder controles.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Debe rechazar EBITDA combinado sin dato de Murcia Pack y distinguir pre cierre 8 de post cierre 20. No sustituye un dato ausente por cero. Ajusta instrucción sobre perímetro y repite también el caso normal para detectar regresiones.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "La ruta directa puede ser mejor para un análisis único; la recurrente puede justificar contrato reusable. No se puntúa elegir más herramientas sino explicar qué ejecuta cada una. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms01-s3",
-        "title": "Lectura de decisión",
+        "id": "f3-ms01-s3",
+        "title": "Contraste y mejora",
         "type": "portfolio",
-        "concept": "agent.test",
-        "prompt": "Presenta una lectura de 300 palabras: racional, usos/fuentes, riesgos, preguntas y lo que aún no permite recomendar.",
-        "context": "Agent Builder con capacidad de crear agentes habilitada; Microsoft 365 Copilot y fuentes autorizadas. Alternativa personal: instrucciones versionadas en un chat nuevo con archivos seleccionados; pierde reutilización configurada y controles del agente.",
+        "concept": "tools.route",
+        "prompt": "Provoca una limitación de la ruta elegida y documenta una alternativa.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Usos 28 y fuentes 28; deuda neta inicial 18 sobre EBITDA base 8 =2,25x. El ratio no decide por sí solo: falta caja disponible a vencimiento, condiciones y concentración. Sinergias excluidas del base. Distingue lectura preliminar de recomendación.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "La ruta directa puede ser mejor para un análisis único; la recurrente puede justificar contrato reusable. No se puntúa elegir más herramientas sino explicar qué ejecuta cada una. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       }
     ]
   },
   {
-    "id": "f2-ms02",
-    "module": "m1",
-    "title": "Una carpeta contaminada",
-    "summary": "Recibes una plantilla con las cifras de otra compañía y un correo que llama EBITDA tanto al reportado como al ajustado. Entrega un agente reparado y evidencia de que no mezcla operaciones.",
-    "difficulty": 2,
-    "xp": 65,
-    "requires": [
-      "f2-l1-3"
-    ],
-    "final": false,
-    "brief": "Recibes una plantilla con las cifras de otra compañía y un correo que llama EBITDA tanto al reportado como al ajustado. Entrega un agente reparado y evidencia de que no mezcla operaciones.",
-    "scenario": "Agent Builder si está habilitado, o chat nuevo con paquete aislado. Entradas: caso.docx, agentes.md, pruebas-agentes.json. Salida: instrucciones v2, registro de pruebas y decisión de alcance.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
-    "steps": [
-      {
-        "id": "f2-ms02-s1",
-        "title": "Diagnóstico de contaminación",
-        "type": "portfolio",
-        "concept": "agent.method",
-        "prompt": "Explica qué separarías y conserva el fragmento exacto de la respuesta defectuosa. No borres el rastro del fallo.",
-        "context": "Agent Builder si está habilitado, o chat nuevo con paquete aislado. Entradas: caso.docx, agentes.md, pruebas-agentes.json. Salida: instrucciones v2, registro de pruebas y decisión de alcance.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "La plantilla aporta estructura y estilo, nunca datos fácticos. Un ejemplo numérico queda marcado ilustrativo y fuera de fuentes del caso. EBITDA ajustado requiere puente y no reemplaza reportado automáticamente.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms02-s2",
-        "title": "Regresión con criterio",
-        "type": "portfolio",
-        "concept": "agent.sources",
-        "prompt": "Diseña una prueba que falle si el agente toma una cifra del ejemplo aunque su respuesta tenga todas las secciones esperadas.",
-        "context": "Agent Builder si está habilitado, o chat nuevo con paquete aislado. Entradas: caso.docx, agentes.md, pruebas-agentes.json. Salida: instrucciones v2, registro de pruebas y decisión de alcance.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "La aserción compara cada cifra con fuente de Levante; un informe bien estructurado con deuda de otra compañía falla críticamente. Repetir normal, ambiguo, incompleto, contradictorio y fuera de alcance con registro independiente.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms02-s3",
-        "title": "Límite del agente",
-        "type": "portfolio",
-        "concept": "agent.test",
-        "prompt": "Decide qué parte encargarías directamente a Excel y justifica la capacidad perdida en la alternativa de chat.",
-        "context": "Agent Builder si está habilitado, o chat nuevo con paquete aislado. Entradas: caso.docx, agentes.md, pruebas-agentes.json. Salida: instrucciones v2, registro de pruebas y decisión de alcance.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "El agente organiza primera lectura y preguntas; Excel modifica celdas y verifica dependencias, Analyst analiza una extracción. Chat con paquete manual pierde configuración reutilizable y selección persistente de conocimiento; no pierde la obligación de verificar.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      }
-    ]
-  },
-  {
-    "id": "f2-ms03",
+    "id": "f3-ms02",
     "module": "m2",
-    "title": "Modificar un módulo del modelo",
-    "summary": "Amplía el cálculo de circulante del libro editable sin rehacerlo. Otro analista debe poder rastrear cómo cambia caja al variar cobros.",
+    "title": "Tu primer contrato de agente",
+    "summary": "Construye un agente para una tarea repetida elegida por ti, usando finanzas como contexto. No hay un entregable bancario obligatorio.",
     "difficulty": 2,
-    "xp": 70,
+    "xp": 60,
     "requires": [
-      "f2-l2-3"
+      "f3-l2-3"
     ],
     "final": false,
-    "brief": "Amplía el cálculo de circulante del libro editable sin rehacerlo. Otro analista debe poder rastrear cómo cambia caja al variar cobros.",
-    "scenario": "Copilot en Excel con edición disponible y licencia habilitada; libro modelo.xlsx en ubicación admitida. Alternativa: edición manual guiada en Excel. Analyst (Microsoft 365 Copilot habilitado) contrasta extracción, sin Python local, pero no modifica fielmente el libro.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
+    "brief": "Construye un agente para una tarea repetida elegida por ti, usando finanzas como contexto. No hay un entregable bancario obligatorio.",
+    "scenario": "Agent Builder habilitado o chat nuevo. Entradas: agentes.md, metodologia.md y un paquete ficticio. Salida: configuración y prueba; alternativa chat pierde agente persistente/distribución.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
     "steps": [
       {
-        "id": "f2-ms03-s1",
-        "title": "Mapa y modificación",
+        "id": "f3-ms02-s1",
+        "title": "Diseño y decisión",
         "type": "portfolio",
-        "concept": "model.drivers",
-        "prompt": "Entrega mapa de inputs, fórmulas y dependencias; añade o modifica un cálculo acotado de clientes con ventas×DSO/365 y su efecto en caja.",
-        "context": "Copilot en Excel con edición disponible y licencia habilitada; libro modelo.xlsx en ubicación admitida. Alternativa: edición manual guiada en Excel. Analyst (Microsoft 365 Copilot habilitado) contrasta extracción, sin Python local, pero no modifica fielmente el libro.",
+        "concept": "builder.contract",
+        "prompt": "Redacta contrato, instrucciones y fuentes separadas.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Identifica hojas Inputs/Modelo/Control y no pega resultados sobre fórmulas. Define clientes de cierre y ΔNWC entre aperturas y cierres comparables. Documenta IVA y estacionalidad como límites. No trata ventas/365 como saldo mensual exacto.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "El agente requiere inputs, método y condiciones de abstención. El ejemplo no debe arrastrar cifras al cambiar de tarea; adjuntar respuesta preparada no sustituye la prueba. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms03-s2",
-        "title": "Casos de control",
+        "id": "f3-ms02-s2",
+        "title": "Construcción o ejecución",
         "type": "portfolio",
-        "concept": "model.update",
-        "prompt": "Guarda evidencia de DSO base y +15 días, identidad caja y balance y una prueba con ventas constantes.",
-        "context": "Copilot en Excel con edición disponible y licencia habilitada; libro modelo.xlsx en ubicación admitida. Alternativa: edición manual guiada en Excel. Analyst (Microsoft 365 Copilot habilitado) contrasta extracción, sin Python local, pero no modifica fielmente el libro.",
+        "concept": "builder.contract",
+        "prompt": "Configúralo y ejecuta una petición completa y otra que deba preguntar.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "A ventas 60, quince días adicionales inmovilizan 60×15/365=2,46575. En el modelo usar ventas del año correspondiente. A igualdad del resto reduce caja disponible en ese importe, sin restarlo también del EBITDA. Balance=activo−pasivo−patrimonio=0.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "El agente requiere inputs, método y condiciones de abstención. El ejemplo no debe arrastrar cifras al cambiar de tarea; adjuntar respuesta preparada no sustituye la prueba. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms03-s3",
-        "title": "Entrega al siguiente analista",
+        "id": "f3-ms02-s3",
+        "title": "Contraste y mejora",
         "type": "portfolio",
-        "concept": "model.repay",
-        "prompt": "Explica qué validarías al repetir la modificación en un libro con macros y vínculos externos.",
-        "context": "Copilot en Excel con edición disponible y licencia habilitada; libro modelo.xlsx en ubicación admitida. Alternativa: edición manual guiada en Excel. Analyst (Microsoft 365 Copilot habilitado) contrasta extracción, sin Python local, pero no modifica fielmente el libro.",
+        "concept": "builder.contract",
+        "prompt": "Corrige una regla tras un fallo y muestra regresión.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Comparar fórmulas y recálculo en Excel con vínculos, macros autorizadas y escenarios. Una extracción de datos o Python de Analyst no demuestra ejecución de macros, vínculos ni todas las hojas. Enumerar lo que no se ha ejecutado.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "El agente requiere inputs, método y condiciones de abstención. El ejemplo no debe arrastrar cifras al cambiar de tarea; adjuntar respuesta preparada no sustituye la prueba. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       }
     ]
   },
   {
-    "id": "f2-ms04",
-    "module": "m2",
-    "title": "¿Se repaga con el caso base?",
-    "summary": "Management pide usar EBITDA 9 para financiar el cierre. Debes producir caso base, sensibilidad y decisión condicionada.",
-    "difficulty": 3,
-    "xp": 75,
-    "requires": [
-      "f2-l2-3"
-    ],
-    "final": false,
-    "brief": "Management pide usar EBITDA 9 para financiar el cierre. Debes producir caso base, sensibilidad y decisión condicionada.",
-    "scenario": "Excel: modelo.xlsx; Analyst opcional para comparar tablas de salida. Entradas caso.docx y actualizacion.eml solo para sensibilidad posterior. Salida: escenarios reconciliados y nota de capacidad de repago.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
-    "steps": [
-      {
-        "id": "f2-ms04-s1",
-        "title": "Separar escenarios",
-        "type": "portfolio",
-        "concept": "model.drivers",
-        "prompt": "Construye comparación management/base/revisión con supuestos y fuente por diferencia.",
-        "context": "Excel: modelo.xlsx; Analyst opcional para comparar tablas de salida. Entradas caso.docx y actualizacion.eml solo para sensibilidad posterior. Salida: escenarios reconciliados y nota de capacidad de repago.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Management 9, base 8, revisión 7 de EBITDA. No atribuir crecimiento a sinergias no acreditadas. Capex base 3, revisión 4; DSO 60 frente75. No aplicar cambio de DSO como gasto de P&L.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms04-s2",
-        "title": "Caja y deuda",
-        "type": "portfolio",
-        "concept": "model.update",
-        "prompt": "Presenta un puente EBITDA→caja para servicio y calendario de deuda; distingue caja retenida de amortización contractual.",
-        "context": "Excel: modelo.xlsx; Analyst opcional para comparar tablas de salida. Entradas caso.docx y actualizacion.eml solo para sensibilidad posterior. Salida: escenarios reconciliados y nota de capacidad de repago.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "CFADS educativo=EBITDA−impuestos caja−capex−ΔNWC; intereses y principal se muestran después. DSCR=CFADS/(intereses caja+principal contractual). Define perímetro y período; no confundir EBITDA con CFADS ni net debt/EBITDA con cobertura.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms04-s3",
-        "title": "Recomendación condicionada",
-        "type": "portfolio",
-        "concept": "model.repay",
-        "prompt": "Decide si falta información para recomendar importe/plazo y formula tres preguntas con impacto cuantificado.",
-        "context": "Excel: modelo.xlsx; Analyst opcional para comparar tablas de salida. Entradas caso.docx y actualizacion.eml solo para sensibilidad posterior. Salida: escenarios reconciliados y nota de capacidad de repago.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Solicitar estacionalidad, vencimientos y caja restringida; no autorizar por un umbral inventado. La revisión combina menor EBITDA, capex adicional y cobros, y puede agotar caja aun con EBITDA positivo. Ajustar estructura o equity exige demostrar disponibilidad y calendario.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      }
-    ]
-  },
-  {
-    "id": "f2-ms05",
+    "id": "f3-ms03",
     "module": "m3",
-    "title": "One Pager que resiste preguntas",
-    "summary": "Transforma el documento deliberadamente inconsistente en una primera página de financiación utilizable.",
-    "difficulty": 3,
-    "xp": 80,
+    "title": "Cambiar corpus sin contaminar",
+    "summary": "Tras probar Aurora, reutiliza la metodología con Boreal. Debes conservar el método y detectar qué información anterior ya no corresponde.",
+    "difficulty": 2,
+    "xp": 60,
     "requires": [
-      "f2-l3-3"
+      "f3-l3-1"
     ],
     "final": false,
-    "brief": "Transforma el documento deliberadamente inconsistente en una primera página de financiación utilizable.",
-    "scenario": "Copilot en Word con licencia/habilitación; alternativa Word manual con Copilot Chat sobre extractos. Entradas: one-pager.docx, caso.docx, modelo.xlsx. Salida DOCX v2 con registro de cambios. Plantilla educativa propia, sin formato interno de Santander.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
+    "brief": "Tras probar Aurora, reutiliza la metodología con Boreal. Debes conservar el método y detectar qué información anterior ya no corresponde.",
+    "scenario": "Agent Builder/chat con archivos; Entradas: fixtures normal y contaminación. Salida: mapa de corpus y respuestas. Alternativa manual pierde recuperación configurada.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
     "steps": [
       {
-        "id": "f2-ms05-s1",
-        "title": "Mensaje principal",
+        "id": "f3-ms03-s1",
+        "title": "Diseño y decisión",
         "type": "portfolio",
-        "concept": "docs.onepager",
-        "prompt": "Entrega One Pager editado con conclusión, fuentes/usos, repago, riesgos y pendientes; cada cifra material tiene referencia.",
-        "context": "Copilot en Word con licencia/habilitación; alternativa Word manual con Copilot Chat sobre extractos. Entradas: one-pager.docx, caso.docx, modelo.xlsx. Salida DOCX v2 con registro de cambios. Plantilla educativa propia, sin formato interno de Santander.",
+        "concept": "knowledge.sources",
+        "prompt": "Clasifica instrucciones, definiciones, ejemplos y expediente por entidad/versión.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Corregir deuda neta 20 a18, base EBITDA9 a8. Mensaje: compra financiable solo tras contrastar caja y estructura; no afirmar aprobación. Fuentes/usos28; deuda20 y caja2; ratio neto2,25x no es política de crédito.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "Boreal solo aporta2025; no puede heredar EBITDA2024 de Aurora. Una regla de aislamiento debe demostrarse en configuración y ensayo, no solo declararse. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms05-s2",
-        "title": "Comprobación cruzada",
+        "id": "f3-ms03-s2",
+        "title": "Construcción o ejecución",
         "type": "portfolio",
-        "concept": "docs.slides",
-        "prompt": "Presenta matriz con cinco cifras entre Excel y Word y marca qué es input, cálculo o juicio.",
-        "context": "Copilot en Word con licencia/habilitación; alternativa Word manual con Copilot Chat sobre extractos. Entradas: one-pager.docx, caso.docx, modelo.xlsx. Salida DOCX v2 con registro de cambios. Plantilla educativa propia, sin formato interno de Santander.",
+        "concept": "knowledge.sources",
+        "prompt": "Ejecuta cambio de corpus en una misma conversación y en chat nuevo.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Tabla cifra/definición/modelo celda/documento sección/fecha/estado: EBITDA8, deuda20, caja2, neta18, S&U28. Revisar unidades y perímetro. Un juicio sobre resiliencia necesita escenario y no se valida solo por coincidencia numérica.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "Boreal solo aporta2025; no puede heredar EBITDA2024 de Aurora. Una regla de aislamiento debe demostrarse en configuración y ensayo, no solo declararse. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms05-s3",
-        "title": "Cambio limitado",
+        "id": "f3-ms03-s3",
+        "title": "Contraste y mejora",
         "type": "portfolio",
-        "concept": "docs.consistency",
-        "prompt": "Explica cómo actualizarías una sola hipótesis sin reescribir el documento entero.",
-        "context": "Copilot en Word con licencia/habilitación; alternativa Word manual con Copilot Chat sobre extractos. Entradas: one-pager.docx, caso.docx, modelo.xlsx. Salida DOCX v2 con registro de cambios. Plantilla educativa propia, sin formato interno de Santander.",
+        "concept": "knowledge.sources",
+        "prompt": "Identifica contaminación, corrige el aislamiento y repite.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Mapa de dependencias por sección; cambiar tabla, título y conclusión afectados. Registrar versión y preservar texto comprobado. Volver a comprobar cifras vinculadas y que la recomendación sigue respaldada.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "Boreal solo aporta2025; no puede heredar EBITDA2024 de Aurora. Una regla de aislamiento debe demostrarse en configuración y ensayo, no solo declararse. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       }
     ]
   },
   {
-    "id": "f2-ms06",
+    "id": "f3-ms04",
     "module": "m3",
-    "title": "FARE educativa para financiación",
-    "summary": "Tienes una presentación que mezcla management y base. Convierte el borrador en una narrativa defendible para comité.",
+    "title": "Un banco que pueda fallar",
+    "summary": "Diseña pruebas antes de seguir afinando instrucciones. Conserva un caso que no uses para mejorar el agente.",
+    "difficulty": 2,
+    "xp": 60,
+    "requires": [
+      "f3-l3-3"
+    ],
+    "final": false,
+    "brief": "Diseña pruebas antes de seguir afinando instrucciones. Conserva un caso que no uses para mejorar el agente.",
+    "scenario": "Agent Builder/Copilot con pruebas-agentes.json. Entradas: fixtures seleccionadas. Salida: banco adaptado y resultados; alternativa manual pierde ejecución del agente.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
+    "steps": [
+      {
+        "id": "f3-ms04-s1",
+        "title": "Diseño y decisión",
+        "type": "portfolio",
+        "concept": "knowledge.test",
+        "prompt": "Selecciona comportamientos observables y define errores críticos.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "No basta comprobar palabras clave o promediar una puntuación. Debe verse la causa de un fallo y cómo la mejora afecta otros comportamientos. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms04-s2",
+        "title": "Construcción o ejecución",
+        "type": "portfolio",
+        "concept": "knowledge.test",
+        "prompt": "Ejecuta normales y adversos con fuentes exactas.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "No basta comprobar palabras clave o promediar una puntuación. Debe verse la causa de un fallo y cómo la mejora afecta otros comportamientos. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms04-s3",
+        "title": "Contraste y mejora",
+        "type": "portfolio",
+        "concept": "knowledge.test",
+        "prompt": "Aplica una corrección y ensaya el caso reservado sin cambiarlo.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "No basta comprobar palabras clave o promediar una puntuación. Debe verse la causa de un fallo y cómo la mejora afecta otros comportamientos. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      }
+    ]
+  },
+  {
+    "id": "f3-ms05",
+    "module": "m4",
+    "title": "Construir un recorrido de aclaración",
+    "summary": "Recibes peticiones incompletas. Diseña un recorrido que pregunte solo lo imprescindible y bloquee una operación cuando falta su definición.",
     "difficulty": 3,
-    "xp": 85,
+    "xp": 60,
     "requires": [
-      "f2-l3-3"
+      "f3-l4-2"
     ],
     "final": false,
-    "brief": "Tienes una presentación que mezcla management y base. Convierte el borrador en una narrativa defendible para comité.",
-    "scenario": "Copilot en PowerPoint con creación/edición y plantilla habilitadas, o PowerPoint manual con guion en Chat. Entradas fare.pptx, modelo.xlsx y caso.docx. Salida PPTX v2. FARE es aquí una práctica educativa propia, no plantilla ni criterios de Santander.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
+    "brief": "Recibes peticiones incompletas. Diseña un recorrido que pregunte solo lo imprescindible y bloquee una operación cuando falta su definición.",
+    "scenario": "Studio web standard, autoría/entorno/capacidad permitidos; Entradas: studio-lab.mdA. Salida: tema y transcripciones. Alternativa lienzo manual deja ejecución pendiente.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
     "steps": [
       {
-        "id": "f2-ms06-s1",
-        "title": "Arquitectura del argumento",
+        "id": "f3-ms05-s1",
+        "title": "Diseño y decisión",
         "type": "portfolio",
-        "concept": "docs.onepager",
-        "prompt": "Entrega storyboard y tres diapositivas modificadas; elige qué mensaje se sostiene y qué eliminar.",
-        "context": "Copilot en PowerPoint con creación/edición y plantilla habilitadas, o PowerPoint manual con guion en Chat. Entradas fare.pptx, modelo.xlsx y caso.docx. Salida PPTX v2. FARE es aquí una práctica educativa propia, no plantilla ni criterios de Santander.",
+        "concept": "studio.topics",
+        "prompt": "Define una decisión real que cambie la ruta y sus inputs.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Negocio→operación/S&U→caja y repago→riesgos/mitigantes→decisión y pendientes. Título con conclusión y límite: «El escenario de cobros condiciona la liquidez», acompañado de puente cuantificado. No «Sólida posición financiera» sin soporte.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "La condición controla recorrido; un aviso no lo hace. El caso pendiente no debe llegar a la herramienta; el usuario puede completar datos y continuar. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms06-s2",
-        "title": "Gráfico y diseño",
+        "id": "f3-ms05-s2",
+        "title": "Construcción o ejecución",
         "type": "portfolio",
-        "concept": "docs.slides",
-        "prompt": "Muestra antes/después de una diapositiva con texto excesivo y crea un gráfico que cambie una decisión.",
-        "context": "Copilot en PowerPoint con creación/edición y plantilla habilitadas, o PowerPoint manual con guion en Chat. Entradas fare.pptx, modelo.xlsx y caso.docx. Salida PPTX v2. FARE es aquí una práctica educativa propia, no plantilla ni criterios de Santander.",
+        "concept": "studio.topics",
+        "prompt": "Construye preguntas, condición y salidas; ejecuta tres rutas.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Gráfico puente de caja compara base/revisión con unidades y ejes, no chart decorativo de EBITDA solo. Separar management9/base8 y deuda bruta20/neta18. Pie con fecha y fuente. Evitar atribuir automáticamente actualización viva desde Excel.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "La condición controla recorrido; un aviso no lo hace. El caso pendiente no debe llegar a la herramienta; el usuario puede completar datos y continuar. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms06-s3",
-        "title": "Control de cierre",
+        "id": "f3-ms05-s3",
+        "title": "Contraste y mejora",
         "type": "portfolio",
-        "concept": "docs.consistency",
-        "prompt": "Entrega lista de discrepancias corregidas y prueba de coherencia narrativa, además de cifras.",
-        "context": "Copilot en PowerPoint con creación/edición y plantilla habilitadas, o PowerPoint manual con guion en Chat. Entradas fare.pptx, modelo.xlsx y caso.docx. Salida PPTX v2. FARE es aquí una práctica educativa propia, no plantilla ni criterios de Santander.",
+        "concept": "studio.topics",
+        "prompt": "Introduce una conexión errónea, observa el fallo y repárala.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Si baja EBITDA y sube capex no basta actualizar tabla: revisar títulos, recomendación, mitigantes y petición de equity/plazo. Comprobar PPT frente Word y Excel manualmente; inspeccionar diapositivas renderizadas para recortes y legibilidad.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "La condición controla recorrido; un aviso no lo hace. El caso pendiente no debe llegar a la herramienta; el usuario puede completar datos y continuar. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       }
     ]
   },
   {
-    "id": "f2-ms07",
+    "id": "f3-ms06",
     "module": "m4",
-    "title": "Una hipótesis comercial financiable",
-    "summary": "No investigues todo el sector. Resuelve si el crecimiento que sostiene el repago tiene suficiente evidencia.",
-    "difficulty": 4,
-    "xp": 90,
+    "title": "Seguir un dato entre componentes",
+    "summary": "Una cifra correcta llega mal al siguiente componente. Debes localizar si cambia tipo, alcance, unidad o mapeo.",
+    "difficulty": 3,
+    "xp": 60,
     "requires": [
-      "f2-l4-3"
+      "f3-l4-3"
     ],
     "final": false,
-    "brief": "No investigues todo el sector. Resuelve si el crecimiento que sostiene el repago tiene suficiente evidencia.",
-    "scenario": "Researcher con Microsoft365 Copilot y habilitación, acceso a fuentes permitido. Alternativa búsqueda manual y Chat con documentos seleccionados; pierde planificación y síntesis multipaso. Entradas caso.docx y supuestos management de modelo.xlsx. Salida registro de evidencias y propuesta de base.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
+    "brief": "Una cifra correcta llega mal al siguiente componente. Debes localizar si cambia tipo, alcance, unidad o mapeo.",
+    "scenario": "Studio web standard con panel Variables. Entradas: dos comparaciones ficticias. Salida: mapa de variables y prueba; alternativa tabla manual sin runtime.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
     "steps": [
       {
-        "id": "f2-ms07-s1",
-        "title": "Pregunta de decisión",
+        "id": "f3-ms06-s1",
+        "title": "Diseño y decisión",
         "type": "portfolio",
-        "concept": "research.question",
-        "prompt": "Formula pregunta verificable y plan de fuentes. Entrega dos explicaciones alternativas al crecimiento previsto.",
-        "context": "Researcher con Microsoft365 Copilot y habilitación, acceso a fuentes permitido. Alternativa búsqueda manual y Chat con documentos seleccionados; pierde planificación y síntesis multipaso. Entradas caso.docx y supuestos management de modelo.xlsx. Salida registro de evidencias y propuesta de base.",
+        "concept": "studio.variables",
+        "prompt": "Documenta origen, tipo, alcance y destino de tres variables.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "¿Puede mantenerse el volumen si el principal cliente renegocia precio? Separar precio/volumen/mix/capacidad. Buscar pedidos, contratos, comparables y evidencia externa con fecha. No buscar solo confirmación ni tratar el dossier ficticio como evidencia pública real.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "Un dato debe conservar valor y significado al cruzar tema/herramienta. No mezclar estado conversacional con almacenamiento durable. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms07-s2",
-        "title": "Evidencia contraria",
+        "id": "f3-ms06-s2",
+        "title": "Construcción o ejecución",
         "type": "portfolio",
-        "concept": "research.evidence",
-        "prompt": "Presenta tabla favorable/contraria/no resuelto con fuente, fecha, extracto y alcance; identifica una conclusión que no sostendrías.",
-        "context": "Researcher con Microsoft365 Copilot y habilitación, acceso a fuentes permitido. Alternativa búsqueda manual y Chat con documentos seleccionados; pierde planificación y síntesis multipaso. Entradas caso.docx y supuestos management de modelo.xlsx. Salida registro de evidencias y propuesta de base.",
+        "concept": "studio.variables",
+        "prompt": "Prueba segunda entidad en el mismo chat y revisa valores reales.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Un informe sectorial prueba tendencia agregada, no demanda de Levante. Contratos y backlog requieren cancelaciones y concentración. La ausencia de información no prueba ausencia de riesgo. Fuentes repetidas que citan el mismo origen no son corroboración independiente.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "Un dato debe conservar valor y significado al cruzar tema/herramienta. No mezclar estado conversacional con almacenamiento durable. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms07-s3",
-        "title": "Impacto en base",
+        "id": "f3-ms06-s3",
+        "title": "Contraste y mejora",
         "type": "portfolio",
-        "concept": "research.update",
-        "prompt": "Traduce evidencia a un supuesto concreto e identifica el rango que sigue incierto.",
-        "context": "Researcher con Microsoft365 Copilot y habilitación, acceso a fuentes permitido. Alternativa búsqueda manual y Chat con documentos seleccionados; pierde planificación y síntesis multipaso. Entradas caso.docx y supuestos management de modelo.xlsx. Salida registro de evidencias y propuesta de base.",
+        "concept": "studio.variables",
+        "prompt": "Corrige el mapeo o reinicio y muestra por qué no convertiste un vacío en cero.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Mantener base8 si falta evidencia para9; expresar sensibilidad precio/volumen y capacidad para absorber caída. Citar argumento y límite por driver. Si no hay fuente verificable, conservar incertidumbre, sin fabricar cita ni precisión.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "Un dato debe conservar valor y significado al cruzar tema/herramienta. No mezclar estado conversacional con almacenamiento durable. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       }
     ]
   },
   {
-    "id": "f2-ms08",
-    "module": "m4",
-    "title": "Nueva evidencia contradice el mercado",
-    "summary": "Llega una nota que contradice una hipótesis comercial. Actualiza la conclusión y delimita qué queda fuera de tu evidencia.",
-    "difficulty": 4,
-    "xp": 95,
-    "requires": [
-      "f2-l4-3"
-    ],
-    "final": false,
-    "brief": "Llega una nota que contradice una hipótesis comercial. Actualiza la conclusión y delimita qué queda fuera de tu evidencia.",
-    "scenario": "Researcher si está disponible; Pages para trabajar una síntesis y Notebook para paquete acotado, sujetos a habilitación. Alternativa documentos y registro manual. Entradas caso.docx, actualizacion.eml, evidencias anteriores. Salida addendum con cambios y vínculos de evidencia.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
-    "steps": [
-      {
-        "id": "f2-ms08-s1",
-        "title": "Cadena de procedencia",
-        "type": "portfolio",
-        "concept": "research.question",
-        "prompt": "Entrega registro de afirmaciones con fuente original y fecha; separa evidencia nueva de repetición.",
-        "context": "Researcher si está disponible; Pages para trabajar una síntesis y Notebook para paquete acotado, sujetos a habilitación. Alternativa documentos y registro manual. Entradas caso.docx, actualizacion.eml, evidencias anteriores. Salida addendum con cambios y vínculos de evidencia.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Una noticia puede repetir presentación de management. Mantener cadena a origen y comprobar período/perímetro. Distinguir hechos de proyecciones y explicar qué supuesto financiero afecta.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms08-s2",
-        "title": "Actualización focalizada",
-        "type": "portfolio",
-        "concept": "research.evidence",
-        "prompt": "Identifica conclusiones que deben cambiar, las que sobreviven y lo que exige nuevas preguntas.",
-        "context": "Researcher si está disponible; Pages para trabajar una síntesis y Notebook para paquete acotado, sujetos a habilitación. Alternativa documentos y registro manual. Entradas caso.docx, actualizacion.eml, evidencias anteriores. Salida addendum con cambios y vínculos de evidencia.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "La actualización es EBITDA7, capex4, DSO75; no atribuirla a mercado sin prueba. Reabrir plan comercial y cobros, actualizar puente de caja y narrativa, conservar evidencias anteriores identificadas como obsoletas cuando corresponda.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms08-s3",
-        "title": "Memoria de trabajo",
-        "type": "portfolio",
-        "concept": "research.update",
-        "prompt": "Entrega decisión de usar Pages o Notebook con límites claros.",
-        "context": "Researcher si está disponible; Pages para trabajar una síntesis y Notebook para paquete acotado, sujetos a habilitación. Alternativa documentos y registro manual. Entradas caso.docx, actualizacion.eml, evidencias anteriores. Salida addendum con cambios y vínculos de evidencia.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Pages sirve de lienzo colaborativo que se edita y comparte; Notebook acota fuentes para razonar. Ninguno garantiza modelo actualizado, acceso exhaustivo, versionado probatorio ni sincronización automática. Registro de decisiones conserva evidencia y responsables.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      }
-    ]
-  },
-  {
-    "id": "f2-ms09",
+    "id": "f3-ms07",
     "module": "m5",
-    "title": "Revisor que encuentra fallos útiles",
-    "summary": "Configura un revisor con alcance específico y comprueba un paquete con errores deliberados antes de prepararlo para Riesgos.",
+    "title": "Primera herramienta ejecutable",
+    "summary": "Construye una operación pequeña que pueda ejecutarse y comprobarse sin conectar sistemas de la empresa.",
+    "difficulty": 3,
+    "xp": 60,
+    "requires": [
+      "f3-l5-2"
+    ],
+    "final": false,
+    "brief": "Construye una operación pequeña que pueda ejecutarse y comprobarse sin conectar sistemas de la empresa.",
+    "scenario": "Studio web standard, agentflows/licencia/capacidad y Dataverse completo. Entradas: studio-lab.mdB. Salida: flow y runs. Si no puedes publicarlo/añadirlo, prueba diseñador o entrega diseño; invocación pendiente.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
+    "steps": [
+      {
+        "id": "f3-ms07-s1",
+        "title": "Diseño y decisión",
+        "type": "portfolio",
+        "concept": "flows.build",
+        "prompt": "Especifica contrato y casos de borde antes del flow.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Debe existir ejecución observable del flow; si solo hay diseño, no se acredita integración. La base no positiva no se muestra como porcentaje definido. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms07-s2",
+        "title": "Construcción o ejecución",
+        "type": "portfolio",
+        "concept": "flows.build",
+        "prompt": "Construye y prueba inputs/outputs con normal, descenso y base cero.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Debe existir ejecución observable del flow; si solo hay diseño, no se acredita integración. La base no positiva no se muestra como porcentaje definido. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms07-s3",
+        "title": "Contraste y mejora",
+        "type": "portfolio",
+        "concept": "flows.build",
+        "prompt": "Invócalo desde un tema/agente si está autorizado; contrasta payload y resultado.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Debe existir ejecución observable del flow; si solo hay diseño, no se acredita integración. La base no positiva no se muestra como porcentaje definido. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      }
+    ]
+  },
+  {
+    "id": "f3-ms08",
+    "module": "m5",
+    "title": "Recuperar una ejecución con estado",
+    "summary": "Una herramienta opcional escribe un registro. Debe soportar duplicados y permisos denegados conservando el estado real.",
+    "difficulty": 3,
+    "xp": 60,
+    "requires": [
+      "f3-l5-3"
+    ],
+    "final": false,
+    "brief": "Una herramienta opcional escribe un registro. Debe soportar duplicados y permisos denegados conservando el estado real.",
+    "scenario": "Studio con conector educativo autorizado; puede requerir TI. Entradas: contrato y lista de prueba; salida: estado/runs. Alternativa manual diseña tabla sin probar idempotencia real.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
+    "steps": [
+      {
+        "id": "f3-ms08-s1",
+        "title": "Diseño y decisión",
+        "type": "portfolio",
+        "concept": "flows.recover",
+        "prompt": "Define clave única, estados e identidad de ejecución.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "La consulta previa no evita carreras sin unicidad.403 no permite informar éxito ni cambiar a credenciales más amplias por conveniencia. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms08-s2",
+        "title": "Construcción o ejecución",
+        "type": "portfolio",
+        "concept": "flows.recover",
+        "prompt": "Ensaya normal, duplicado, concurrencia,403 y fallo transitorio.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "La consulta previa no evita carreras sin unicidad.403 no permite informar éxito ni cambiar a credenciales más amplias por conveniencia. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms08-s3",
+        "title": "Contraste y mejora",
+        "type": "portfolio",
+        "concept": "flows.recover",
+        "prompt": "Revisa filas y salidas; explica recuperación y parte pendiente.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "La consulta previa no evita carreras sin unicidad.403 no permite informar éxito ni cambiar a credenciales más amplias por conveniencia. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      }
+    ]
+  },
+  {
+    "id": "f3-ms09",
+    "module": "m6",
+    "title": "Diagnosticar por la traza",
+    "summary": "La respuesta parece correcta pero no sabes si usó el tema o la herramienta previstos.",
+    "difficulty": 3,
+    "xp": 60,
+    "requires": [
+      "f3-l6-1"
+    ],
+    "final": false,
+    "brief": "La respuesta parece correcta pero no sabes si usó el tema o la herramienta previstos.",
+    "scenario": "Studio Test/activity map/Variables según experiencia. Entradas: contrato, fixtures. Salida: registro de ruta y contraste. Evaluación automática opcional; alternativa tabla manual pierde lote/trace runtime.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
+    "steps": [
+      {
+        "id": "f3-ms09-s1",
+        "title": "Diseño y decisión",
+        "type": "portfolio",
+        "concept": "lifecycle.evaluate",
+        "prompt": "Define cómo distinguir respuesta, selección, payload y resultado.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "El mismo número puede salir sin tool call. Una media elevada no compensa inventar un dato; el gate educativo exige cero fallos críticos. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms09-s2",
+        "title": "Construcción o ejecución",
+        "type": "portfolio",
+        "concept": "lifecycle.evaluate",
+        "prompt": "Observa la ruta en cinco casos incluyendo uno adverso.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "El mismo número puede salir sin tool call. Una media elevada no compensa inventar un dato; el gate educativo exige cero fallos críticos. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms09-s3",
+        "title": "Contraste y mejora",
+        "type": "portfolio",
+        "concept": "lifecycle.evaluate",
+        "prompt": "Corrige una causa y ejecuta regresión más reservado.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "El mismo número puede salir sin tool call. Una media elevada no compensa inventar un dato; el gate educativo exige cero fallos críticos. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      }
+    ]
+  },
+  {
+    "id": "f3-ms10",
+    "module": "m6",
+    "title": "Preparar distribución sin asumir permisos",
+    "summary": "Un agente funciona para ti; prepara su uso por otra persona sin suponer que heredará tu acceso.",
+    "difficulty": 3,
+    "xp": 60,
+    "requires": [
+      "f3-l6-2"
+    ],
+    "final": false,
+    "brief": "Un agente funciona para ti; prepara su uso por otra persona sin suponer que heredará tu acceso.",
+    "scenario": "Studio y documentación de capacidades. Entradas: configuración/auth/conexiones; salida: release y matriz acceso. Canal/publicación y otra identidad requieren autorización; si no existe, marcar pendientes TI.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
+    "steps": [
+      {
+        "id": "f3-ms10-s1",
+        "title": "Diseño y decisión",
+        "type": "portfolio",
+        "concept": "lifecycle.publish",
+        "prompt": "Separa licencia/entorno/datos/conexión/canal en la matriz.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Publicar versión y distribuir canal no concede acceso. «Imagina que no tienes permiso» no simula el backend de otra identidad. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms10-s2",
+        "title": "Construcción o ejecución",
+        "type": "portfolio",
+        "concept": "lifecycle.publish",
+        "prompt": "Diseña o prueba identidad autorizada y denegada de verdad.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Publicar versión y distribuir canal no concede acceso. «Imagina que no tienes permiso» no simula el backend de otra identidad. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms10-s3",
+        "title": "Contraste y mejora",
+        "type": "portfolio",
+        "concept": "lifecycle.publish",
+        "prompt": "Define release, propietario y recuperación sin ampliar permisos.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Publicar versión y distribuir canal no concede acceso. «Imagina que no tienes permiso» no simula el backend de otra identidad. Consulta las plantillas si te bloqueas; conserva el intento y el diagnóstico.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      }
+    ]
+  },
+  {
+    "id": "f3-ms11",
+    "module": "m7",
+    "title": "Modificar y validar un bloque",
+    "summary": "Reformula una parte acotada del análisis con dependencias explícitas y demuestra qué cambia al modificar un driver.",
+    "difficulty": 4,
+    "xp": 60,
+    "requires": [
+      "f3-l7-2"
+    ],
+    "final": false,
+    "brief": "Reformula una parte acotada del análisis con dependencias explícitas y demuestra qué cambia al modificar un driver.",
+    "scenario": "Excel/Copilot en Excel o Excel estándar; Analyst para extracción. Entradas:modelo.xlsx,historicos.csv. Salida:copia y controles. Alternativa extracción pierde edición/recalculo del libro.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
+    "steps": [
+      {
+        "id": "f3-ms11-s1",
+        "title": "Diseño y decisión",
+        "type": "portfolio",
+        "concept": "excel.edit",
+        "prompt": "Identifica fuente, driver y dependencias de un bloque.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "La herramienta debe respetar qué libro/edit/extracción estás usando. Un análisis de tabla no implica reproducción de fórmulas/vínculos del Excel. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms11-s2",
+        "title": "Construcción o ejecución",
+        "type": "portfolio",
+        "concept": "excel.edit",
+        "prompt": "Modifica fórmulas o inputs en una copia y compara resultados.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "La herramienta debe respetar qué libro/edit/extracción estás usando. Un análisis de tabla no implica reproducción de fórmulas/vínculos del Excel. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms11-s3",
+        "title": "Contraste y mejora",
+        "type": "portfolio",
+        "concept": "excel.edit",
+        "prompt": "Prueba una perturbación controlada y reconcilia dos identidades.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "La herramienta debe respetar qué libro/edit/extracción estás usando. Un análisis de tabla no implica reproducción de fórmulas/vínculos del Excel. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      }
+    ]
+  },
+  {
+    "id": "f3-ms12",
+    "module": "m8",
+    "title": "Investigar sin confirmar por inercia",
+    "summary": "Contrasta una hipótesis financiera con evidencia a favor y en contra, delimitando qué no puede sostener la investigación.",
+    "difficulty": 4,
+    "xp": 60,
+    "requires": [
+      "f3-l8-2"
+    ],
+    "final": false,
+    "brief": "Contrasta una hipótesis financiera con evidencia a favor y en contra, delimitando qué no puede sostener la investigación.",
+    "scenario": "Researcher habilitado; alternativa búsqueda/chat documental. Entradas:expediente.docx y pregunta propia. Salida:matriz evidencia; Pages/Notebook opcionales. Alternativa pierde investigación multietapa, conserva contraste.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
+    "steps": [
+      {
+        "id": "f3-ms12-s1",
+        "title": "Diseño y decisión",
+        "type": "portfolio",
+        "concept": "research.evidence",
+        "prompt": "Formula la hipótesis, alcance y hallazgo que te haría cambiar de conclusión.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "La cita no prueba comparabilidad. Debe distinguir fuentes, hipótesis y límites y explicar qué decisión podría cambiar sin atribuir certeza inexistente. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms12-s2",
+        "title": "Construcción o ejecución",
+        "type": "portfolio",
+        "concept": "research.evidence",
+        "prompt": "Recoge fuentes primarias y una evidencia contraria comparable.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "La cita no prueba comparabilidad. Debe distinguir fuentes, hipótesis y límites y explicar qué decisión podría cambiar sin atribuir certeza inexistente. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms12-s3",
+        "title": "Contraste y mejora",
+        "type": "portfolio",
+        "concept": "research.evidence",
+        "prompt": "Actualiza ante nueva información sin rehacer el corpus innecesariamente.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "La cita no prueba comparabilidad. Debe distinguir fuentes, hipótesis y límites y explicar qué decisión podría cambiar sin atribuir certeza inexistente. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      }
+    ]
+  },
+  {
+    "id": "f3-ms13",
+    "module": "m9",
+    "title": "Mejorar un documento existente",
+    "summary": "Una nota y una presentación contienen mensajes útiles y cifras mal contextualizadas. Mejora claridad y coherencia sin rehacer todo.",
+    "difficulty": 4,
+    "xp": 60,
+    "requires": [
+      "f3-l9-3"
+    ],
+    "final": false,
+    "brief": "Una nota y una presentación contienen mensajes útiles y cifras mal contextualizadas. Mejora claridad y coherencia sin rehacer todo.",
+    "scenario": "Word/PowerPoint con Copilot o edición estándar. Entradas:documento-trabajo.docx,presentacion.pptx,modelo.xlsx. Salida:versiones revisadas. Alternativa edición manual pierde generación asistida.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
+    "steps": [
+      {
+        "id": "f3-ms13-s1",
+        "title": "Diseño y decisión",
+        "type": "portfolio",
+        "concept": "communication.revise",
+        "prompt": "Localiza dos incoherencias y define mensaje con evidencia.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Un título con conclusión necesita evidencia; cambiar el diseño sin corregir la afirmación no repara el análisis. No se exige formato de una entidad. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms13-s2",
+        "title": "Construcción o ejecución",
+        "type": "portfolio",
+        "concept": "communication.revise",
+        "prompt": "Actualiza las secciones afectadas y conserva estructura útil.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Un título con conclusión necesita evidencia; cambiar el diseño sin corregir la afirmación no repara el análisis. No se exige formato de una entidad. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms13-s3",
+        "title": "Contraste y mejora",
+        "type": "portfolio",
+        "concept": "communication.revise",
+        "prompt": "Contrasta cifras/definiciones entre archivos y registra el delta.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Un título con conclusión necesita evidencia; cambiar el diseño sin corregir la afirmación no repara el análisis. No se exige formato de una entidad. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      }
+    ]
+  },
+  {
+    "id": "f3-ms14",
+    "module": "m10",
+    "title": "Orquestación o traspaso manual",
+    "summary": "Varias herramientas resuelven piezas del trabajo. Decide qué parte merece automatización y cuál conviene mantener manual.",
+    "difficulty": 4,
+    "xp": 60,
+    "requires": [
+      "f3-l10-1"
+    ],
+    "final": false,
+    "brief": "Varias herramientas resuelven piezas del trabajo. Decide qué parte merece automatización y cuál conviene mantener manual.",
+    "scenario": "M365Copilot y herramientas habilitadas; Studio/Cowork opcionales. Entradas:outputs de prácticas. Salida:diagrama con contratos y tiempos. Alternativa checklist pierde ejecución automática, conserva control.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
+    "steps": [
+      {
+        "id": "f3-ms14-s1",
+        "title": "Diseño y decisión",
+        "type": "portfolio",
+        "concept": "system.handoff",
+        "prompt": "Define límites de cada componente y contrato de traspaso.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Invocar dos agentes a mano es traspaso manual, no orquestación. El valor se mide neto de revisión y corrección, no por el número de agentes. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms14-s2",
+        "title": "Construcción o ejecución",
+        "type": "portfolio",
+        "concept": "system.handoff",
+        "prompt": "Ensaya un recorrido con una actualización y registra tiempo/revisión.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Invocar dos agentes a mano es traspaso manual, no orquestación. El valor se mide neto de revisión y corrección, no por el número de agentes. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      },
+      {
+        "id": "f3-ms14-s3",
+        "title": "Contraste y mejora",
+        "type": "portfolio",
+        "concept": "system.handoff",
+        "prompt": "Justifica qué automatizarías y qué evidencia falta antes de hacerlo.",
+        "rubric": [
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
+        ],
+        "solution": "Invocar dos agentes a mano es traspaso manual, no orquestación. El valor se mide neto de revisión y corrección, no por el número de agentes. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
+      }
+    ]
+  },
+  {
+    "id": "f3-ms15",
+    "module": "m10",
+    "title": "Proyecto final: tu agente transferible",
+    "summary": "Elige una tarea recurrente distinta de las usadas al construir tu agente inicial. Construye o adapta tu propio sistema y demuestra qué capacidades transfieres.",
     "difficulty": 4,
     "xp": 100,
     "requires": [
-      "f2-l5-3"
-    ],
-    "final": false,
-    "brief": "Configura un revisor con alcance específico y comprueba un paquete con errores deliberados antes de prepararlo para Riesgos.",
-    "scenario": "Agent Builder habilitado, o segundo chat aislado con instrucciones revisoras. Entradas modelo.xlsx, one-pager.docx, fare.pptx y agentes.md. Salida registro de hallazgos con severidad y prueba contra fuente.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
-    "steps": [
-      {
-        "id": "f2-ms09-s1",
-        "title": "Hallazgos accionables",
-        "type": "portfolio",
-        "concept": "review.figures",
-        "prompt": "Entrega cada hallazgo con ubicación, dato original, cálculo de contraste, impacto y corrección propuesta.",
-        "context": "Agent Builder habilitado, o segundo chat aislado con instrucciones revisoras. Entradas modelo.xlsx, one-pager.docx, fare.pptx y agentes.md. Salida registro de hallazgos con severidad y prueba contra fuente.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Distinguir bruto20 de neto18 y management9 de base8; señalar dónde cambia ratio o conclusión. No basta «revisar cifras». Prioridad crítica si afecta repago/estructura; editorial si no altera decisión.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms09-s2",
-        "title": "Control independiente",
-        "type": "portfolio",
-        "concept": "review.challenge",
-        "prompt": "Verifica dos hallazgos sin pedir al preparador que confirme su propio resultado.",
-        "context": "Agent Builder habilitado, o segundo chat aislado con instrucciones revisoras. Entradas modelo.xlsx, one-pager.docx, fare.pptx y agentes.md. Salida registro de hallazgos con severidad y prueba contra fuente.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Abrir celdas/fórmulas y reconciliar con fuentes del caso; calcular20−2=18 y18/8=2,25. Otro agente puede compartir sesgos y contexto, por tanto su aprobación no equivale a verificación independiente.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms09-s3",
-        "title": "Separar o integrar",
-        "type": "portfolio",
-        "concept": "review.separation",
-        "prompt": "Justifica si mantienes dos agentes y define el intercambio mínimo.",
-        "context": "Agent Builder habilitado, o segundo chat aislado con instrucciones revisoras. Entradas modelo.xlsx, one-pager.docx, fare.pptx y agentes.md. Salida registro de hallazgos con severidad y prueba contra fuente.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Separar si metodología, permisos, corpus y funciones distintas lo justifican; mismo agente basta para una revisión acotada si se abre contexto limpio y se contrastan fuentes. Pasar paquete versionado y criterios, no todo el historial. Invocación manual de dos agentes no es orquestación automática.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      }
-    ]
-  },
-  {
-    "id": "f2-ms10",
-    "module": "m5",
-    "title": "Preparar una defensa difícil",
-    "summary": "La operación recibe preguntas sobre el repago, la liquidez y los mitigantes. Produce respuestas que no oculten incertidumbre.",
-    "difficulty": 5,
-    "xp": 105,
-    "requires": [
-      "f2-l5-3"
-    ],
-    "final": false,
-    "brief": "La operación recibe preguntas sobre el repago, la liquidez y los mitigantes. Produce respuestas que no oculten incertidumbre.",
-    "scenario": "Copilot Chat o agente revisor con fuentes seleccionadas; sin conectores bancarios. Entradas modelo.xlsx, caso.docx y paquete v2 propio. Salida guion de defensa con evidencias y pendientes.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
-    "steps": [
-      {
-        "id": "f2-ms10-s1",
-        "title": "Preguntas que cambian estructura",
-        "type": "portfolio",
-        "concept": "review.figures",
-        "prompt": "Plantea cinco preguntas difíciles, priorizadas por efecto en capacidad de repago y no por facilidad de respuesta.",
-        "context": "Copilot Chat o agente revisor con fuentes seleccionadas; sin conectores bancarios. Entradas modelo.xlsx, caso.docx y paquete v2 propio. Salida guion de defensa con evidencias y pendientes.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "¿Qué pasa al perder15d de cobro? ¿Qué capex puede aplazarse sin perder ventas? ¿Qué amortización cabe tras caja mínima? ¿Qué deuda es refinanciada? ¿Sinergias ejecutables o solo aspiración? Cada pregunta pide dato y responsable.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms10-s2",
-        "title": "Mitigantes verificables",
-        "type": "portfolio",
-        "concept": "review.challenge",
-        "prompt": "Elige dos riesgos y distingue mitigante contractual, operativo y supuesto no demostrado.",
-        "context": "Copilot Chat o agente revisor con fuentes seleccionadas; sin conectores bancarios. Entradas modelo.xlsx, caso.docx y paquete v2 propio. Salida guion de defensa con evidencias y pendientes.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Aportación equity solo mitiga si hay importe, compromiso y fecha; no basta «apoyo del accionista». Cash sweep no crea caja. Diversificación futura sin contratos no corrige concentración actual. No inventar covenants de Santander.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms10-s3",
-        "title": "Respuesta y abstención",
-        "type": "portfolio",
-        "concept": "review.separation",
-        "prompt": "Redacta una respuesta numérica y otra donde sea necesario reconocer que aún no hay soporte.",
-        "context": "Copilot Chat o agente revisor con fuentes seleccionadas; sin conectores bancarios. Entradas modelo.xlsx, caso.docx y paquete v2 propio. Salida guion de defensa con evidencias y pendientes.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "«A ventas60, +15d consume2,47 de caja antes de efectos fiscales/IVA» es sensibilidad, no forecast completo. «No podemos concluir liquidez mínima sin calendario mensual y restricciones» evita certeza falsa y pide información concreta.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      }
-    ]
-  },
-  {
-    "id": "f2-ms11",
-    "module": "m6",
-    "title": "Cambio de caso sin perder el rastro",
-    "summary": "El correo posterior cambia EBITDA, capex y cobros. Actualiza modelo y documentos conservando decisiones y versiones.",
-    "difficulty": 5,
-    "xp": 110,
-    "requires": [
-      "f2-l6-3"
-    ],
-    "final": false,
-    "brief": "El correo posterior cambia EBITDA, capex y cobros. Actualiza modelo y documentos conservando decisiones y versiones.",
-    "scenario": "Excel y Word/PowerPoint para edición; Chat o agente para mapa de impactos. Entradas actualizacion.eml, modelo.xlsx y paquete anterior. Salida paquete v3, delta y controles antes/después.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
-    "steps": [
-      {
-        "id": "f2-ms11-s1",
-        "title": "Mapa de impactos",
-        "type": "portfolio",
-        "concept": "process.delta",
-        "prompt": "Entrega delta de inputs y lista de todas las celdas, tablas, títulos y conclusiones afectadas.",
-        "context": "Excel y Word/PowerPoint para edición; Chat o agente para mapa de impactos. Entradas actualizacion.eml, modelo.xlsx y paquete anterior. Salida paquete v3, delta y controles antes/después.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "EBITDA8→7, capex3→4, DSO60→75; menor caja por los tres canales. No modificar histórico, ni precio adquisición sin fuente. Vincular cada cambio a correo/fecha/responsable y distinguir revisión de management original9.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms11-s2",
-        "title": "Reconciliación",
-        "type": "portfolio",
-        "concept": "process.studio",
-        "prompt": "Demuestra qué controles se mantienen y qué decisión debe reconsiderarse.",
-        "context": "Excel y Word/PowerPoint para edición; Chat o agente para mapa de impactos. Entradas actualizacion.eml, modelo.xlsx y paquete anterior. Salida paquete v3, delta y controles antes/después.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "S&U inicial28=28 permanece si estructura inicial no cambia; deuda neta inicial18 tampoco se reescribe por forecast. La liquidez futura y DSCR sí cambian. Revisar balance, deuda y caja por período y evitar dos veces ΔNWC.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms11-s3",
-        "title": "Versión aprobable",
-        "type": "portfolio",
-        "concept": "process.value",
-        "prompt": "Entrega registro de decisiones y un paquete cerrado listo para revisión humana.",
-        "context": "Excel y Word/PowerPoint para edición; Chat o agente para mapa de impactos. Entradas actualizacion.eml, modelo.xlsx y paquete anterior. Salida paquete v3, delta y controles antes/después.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "v1 origen, v2 correcciones, v3 actualización con cambio/justificación/autor/fecha/pendiente. No sobrescribir versiones revisadas. Nueva recomendación exige aprobación de quien corresponda fuera de esta práctica, sin enviar ni publicar automáticamente.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      }
-    ]
-  },
-  {
-    "id": "f2-ms12",
-    "module": "m6",
-    "title": "Automatizar con una razón",
-    "summary": "Diseña una extensión en Copilot Studio para recibir un paquete versionado, ejecutar controles y solicitar revisión humana. El núcleo del curso debe seguir funcionando sin esa extensión.",
-    "difficulty": 5,
-    "xp": 115,
-    "requires": [
-      "f2-l6-3"
-    ],
-    "final": false,
-    "brief": "Diseña una extensión en Copilot Studio para recibir un paquete versionado, ejecutar controles y solicitar revisión humana. El núcleo del curso debe seguir funcionando sin esa extensión.",
-    "scenario": "Copilot Studio en entorno de prueba con licencia/capacidad, roles y conectores permitidos; puede requerir TI. Alternativa flujo manual documentado con carpetas y checklist. No usar ERP ni conectores bancarios. Salida diseño ejecutable de flujo y resultados de pruebas; implementación real queda condicionada a acceso.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
-    "steps": [
-      {
-        "id": "f2-ms12-s1",
-        "title": "Contrato del flujo",
-        "type": "portfolio",
-        "concept": "process.delta",
-        "prompt": "Define trigger manual, parámetros, esquema de salida, herramientas y paso humano.",
-        "context": "Copilot Studio en entorno de prueba con licencia/capacidad, roles y conectores permitidos; puede requerir TI. Alternativa flujo manual documentado con carpetas y checklist. No usar ERP ni conectores bancarios. Salida diseño ejecutable de flujo y resultados de pruebas; implementación real queda condicionada a acceso.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Entrada caseId, version, ubicación autorizada; salida issues con source/location/severity, status y runId. Herramientas solo lectura por defecto; editar copia tras validación. No confundir agente declarativo de Builder con herramientas y flujos de Studio.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms12-s2",
-        "title": "Fallos y recuperación",
-        "type": "portfolio",
-        "concept": "process.studio",
-        "prompt": "Diseña y, si tienes entorno, prueba duplicado, permiso denegado, timeout y documento incompleto.",
-        "context": "Copilot Studio en entorno de prueba con licencia/capacidad, roles y conectores permitidos; puede requerir TI. Alternativa flujo manual documentado con carpetas y checklist. No usar ERP ni conectores bancarios. Salida diseño ejecutable de flujo y resultados de pruebas; implementación real queda condicionada a acceso.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Clave idempotente caseId+version; rechazar duplicados; reintento acotado solo lecturas recuperables; registrar estado sin datos sensibles y ruta manual. Permiso denegado no se corrige ampliando acceso indiscriminadamente. Gate humano antes de entregar.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms12-s3",
-        "title": "Cowork y valor neto",
-        "type": "portfolio",
-        "concept": "process.value",
-        "prompt": "Decide si usar programación o Cowork aporta algo, midiendo tiempo total y error.",
-        "context": "Copilot Studio en entorno de prueba con licencia/capacidad, roles y conectores permitidos; puede requerir TI. Alternativa flujo manual documentado con carpetas y checklist. No usar ERP ni conectores bancarios. Salida diseño ejecutable de flujo y resultados de pruebas; implementación real queda condicionada a acceso.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Programación disponible sirve para revisión periódica con alcance verificable; Cowork solo donde esté habilitado, con plan y aprobación de cambios. Ninguno garantiza proceso bancario de producción. Ahorro neto=manual−(preparación+ejecución+revisión+correcciones+mantenimiento); comparar misma calidad y muestra repetida.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      }
-    ]
-  },
-  {
-    "id": "f2-ms13",
-    "module": "m7",
-    "title": "Reutilizar en otra compañía",
-    "summary": "Recibes una segunda compañía con moneda y estacionalidad distintas. Reutiliza el método sin transferir sus cifras ni sus conclusiones. Elige tú herramientas y secuencia.",
-    "difficulty": 5,
-    "xp": 120,
-    "requires": [
-      "f2-l7-3"
-    ],
-    "final": false,
-    "brief": "Recibes una segunda compañía con moneda y estacionalidad distintas. Reutiliza el método sin transferir sus cifras ni sus conclusiones. Elige tú herramientas y secuencia.",
-    "scenario": "Herramientas personales habilitadas elegidas por el alumno. Entradas: metodologia.md, agentes.md y una copia saneada del paquete Levante. Salida nuevo contrato de análisis, fixtures de prueba y plan de adaptación. Caso alternativo ficticio sin datos de clientes.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
-    "steps": [
-      {
-        "id": "f2-ms13-s1",
-        "title": "Nuevo perímetro",
-        "type": "portfolio",
-        "concept": "transfer.reuse",
-        "prompt": "Define una compañía alternativa ficticia y sus diferencias materiales; separa plantilla y datos antes de cargar fuentes.",
-        "context": "Herramientas personales habilitadas elegidas por el alumno. Entradas: metodologia.md, agentes.md y una copia saneada del paquete Levante. Salida nuevo contrato de análisis, fixtures de prueba y plan de adaptación. Caso alternativo ficticio sin datos de clientes.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Identificar moneda, cierre, perímetro, leasing y caja restringida. Eliminar cifras y nombres de Levante del conocimiento reusable. Conservar principios y pruebas; no importar recomendación o estructura anterior.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms13-s2",
-        "title": "Control de transferencia",
-        "type": "portfolio",
-        "concept": "transfer.defend",
-        "prompt": "Diseña una prueba que detecte una conclusión de Levante copiada en la nueva compañía.",
-        "context": "Herramientas personales habilitadas elegidas por el alumno. Entradas: metodologia.md, agentes.md y una copia saneada del paquete Levante. Salida nuevo contrato de análisis, fixtures de prueba y plan de adaptación. Caso alternativo ficticio sin datos de clientes.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Fixture nuevo con deuda/EBITDA y signo de ΔNWC distintos; comparar contra esas fuentes, no coincidencia de palabras. Falla crítica si incluye deuda18 o adquisicion12 sin fuente del nuevo caso.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      },
-      {
-        "id": "f2-ms13-s3",
-        "title": "Diseño mínimo viable",
-        "type": "portfolio",
-        "concept": "transfer.decision",
-        "prompt": "Entrega decisión argumentada de agente, Analyst, Excel directo y revisión humana para este segundo caso.",
-        "context": "Herramientas personales habilitadas elegidas por el alumno. Entradas: metodologia.md, agentes.md y una copia saneada del paquete Levante. Salida nuevo contrato de análisis, fixtures de prueba y plan de adaptación. Caso alternativo ficticio sin datos de clientes.",
-        "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
-        ],
-        "solution": "Excel para modificación de fórmulas; Analyst para extracción acotada; agente para metodología recurrente; Researcher para pregunta externa. No añadir agentes por simetría. Validar permisos y calidad antes de reutilizar.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
-      }
-    ]
-  },
-  {
-    "id": "f2-ms14",
-    "module": "m7",
-    "title": "Comité final: decidir con nueva información",
-    "summary": "Entrega una decisión de financiación defendible y un sistema reusable. La revisión utiliza el correo posterior como un nuevo evento de negocio: no es una repetición de un cierre mensual. Selecciona herramientas, fuentes y formato sin instrucciones de pasos.",
-    "difficulty": 5,
-    "xp": 125,
-    "requires": [
-      "f2-l7-3"
+      "f3-l10-3"
     ],
     "final": true,
-    "brief": "Entrega una decisión de financiación defendible y un sistema reusable. La revisión utiliza el correo posterior como un nuevo evento de negocio: no es una repetición de un cierre mensual. Selecciona herramientas, fuentes y formato sin instrucciones de pasos.",
-    "scenario": "Herramientas habilitadas elegidas por el alumno. Materiales ficticios locales y entregables propios. Salida paquete final XLSX/DOCX/PPTX, instrucciones de agente, pruebas y registro de decisión. Revisión en Copilot real pendiente si no puedes ejecutarla.",
-    "debrief": "La finalización registra tu autoevaluación. Contrasta los archivos y cálculos; una revisión por otro agente tampoco sustituye comprobaciones independientes.",
+    "brief": "Elige una tarea recurrente distinta de las usadas al construir tu agente inicial. Construye o adapta tu propio sistema y demuestra qué capacidades transfieres.",
+    "scenario": "Herramientas elegidas y habilitadas por el alumno; puede ser Builder o Studio. Entradas:paquete ficticio nuevo,contrato,fixtures. Salida:agente/diseño,pruebas y decisión. Si falta capacidad, delimita ejecución pendiente sin atribuirla a la simulación.",
+    "debrief": "Completar registra tu autoevaluación y evidencia. Revisa los controles contra fuentes/configuración; las coincidencias del simulador no acreditan dominio ni producción.",
     "steps": [
       {
-        "id": "f2-ms14-s1",
-        "title": "Paquete y decisión",
+        "id": "f3-ms15-s1",
+        "title": "Diseño y decisión",
         "type": "portfolio",
-        "concept": "transfer.reuse",
-        "prompt": "Entrega el paquete final con recomendación condicionada, calendario de deuda y explicación del impacto de la actualización.",
-        "context": "Herramientas habilitadas elegidas por el alumno. Materiales ficticios locales y entregables propios. Salida paquete final XLSX/DOCX/PPTX, instrucciones de agente, pruebas y registro de decisión. Revisión en Copilot real pendiente si no puedes ejecutarla.",
+        "concept": "system.transfer",
+        "prompt": "Define el nuevo problema, la arquitectura mínima y qué partes reutilizas.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "El revisor debe poder reproducir caja, deuda y S&U; comprobar modelo recalculado y docs contra nueva versión; detectar si base8 se presenta como7 sin explicar fecha. No hay solución única de importe/plazo sin calendario y condiciones suficientes; abstenerse puede ser decisión correcta.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "No hay un agente modelo que debas copiar. Debe demostrar construcción, configuración, selección de herramientas, pruebas y transferencia. Un contrato distinto puede justificar otra configuración; no fuerces un agente universal. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms14-s2",
-        "title": "Defensa y evidencia",
+        "id": "f3-ms15-s2",
+        "title": "Construcción o ejecución",
         "type": "portfolio",
-        "concept": "transfer.defend",
-        "prompt": "Documenta defensa, objeciones no resueltas y la evidencia mínima que cambiaría tu decisión.",
-        "context": "Herramientas habilitadas elegidas por el alumno. Materiales ficticios locales y entregables propios. Salida paquete final XLSX/DOCX/PPTX, instrucciones de agente, pruebas y registro de decisión. Revisión en Copilot real pendiente si no puedes ejecutarla.",
+        "concept": "system.transfer",
+        "prompt": "Construye/adapta y ejecuta pruebas normales/adversas con corpus nuevo.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Distinguir límites de información de riesgos aceptados. Trazar cada afirmación relevante a cálculo/fuente/fecha. Explicar menor EBITDA, mayor capex y DSO junto a propuesta y riesgos. Un puntaje local no demuestra competencia; requiere revisar archivos y cálculo.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "No hay un agente modelo que debas copiar. Debe demostrar construcción, configuración, selección de herramientas, pruebas y transferencia. Un contrato distinto puede justificar otra configuración; no fuerces un agente universal. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       },
       {
-        "id": "f2-ms14-s3",
-        "title": "Sistema probado",
+        "id": "f3-ms15-s3",
+        "title": "Contraste y mejora",
         "type": "portfolio",
-        "concept": "transfer.decision",
-        "prompt": "Entrega suite de pruebas, fallos corregidos y medición de ahorro neto con costes de revisión.",
-        "context": "Herramientas habilitadas elegidas por el alumno. Materiales ficticios locales y entregables propios. Salida paquete final XLSX/DOCX/PPTX, instrucciones de agente, pruebas y registro de decisión. Revisión en Copilot real pendiente si no puedes ejecutarla.",
+        "concept": "system.transfer",
+        "prompt": "Defiende resultado, límites, errores críticos, ahorro neto y siguiente mejora.",
         "rubric": [
-          "Consistencia: cifras, unidades, fechas y perímetro compatibles con las fuentes.",
-          "Trazabilidad: referencia exacta a archivo, hoja/celda o página y versión.",
-          "Interpretación: distingue hecho, supuesto, cálculo y juicio; cuantifica límites.",
-          "Utilidad: el siguiente analista puede reproducir y usar la decisión.",
-          "Errores críticos: identifica y corrige cifras sin soporte, doble cómputo y conclusiones de repago no justificadas."
+          "Consistencia: configuración y entregable responden al contrato elegido.",
+          "Trazabilidad: inputs, fuentes, versión y evidencia de ejecución identificados.",
+          "Interpretación: explica límites y diferencia diseño, ejecución y resultado.",
+          "Utilidad: el resultado permite continuar una tarea profesional sin rehacerlo.",
+          "Errores críticos: no inventa datos, permisos, validaciones ni acciones realizadas."
         ],
-        "solution": "Suite normal/ambigua/incompleta/contradictoria/fuera alcance y contaminación; registros antes/después y regresión. Mide igual calidad, tiempo neto y errores materiales evitados. Declara qué no has podido probar en tenant y plan para validarlo.",
-        "explain": "Una entrega defendible incluye la evidencia y el motivo de cada decisión. La rúbrica la valora el alumno; la aplicación solo comprueba que el registro está completo."
+        "solution": "No hay un agente modelo que debas copiar. Debe demostrar construcción, configuración, selección de herramientas, pruebas y transferencia. Un contrato distinto puede justificar otra configuración; no fuerces un agente universal. Las pistas se reducen: selecciona tú herramientas, fuentes y estructura y justifica la elección.",
+        "explain": "Se registra evidencia y autoevaluación, no validación semántica. Contrasta configuración y resultados reales; si falta acceso a la herramienta deja ejecución pendiente."
       }
     ]
   }
