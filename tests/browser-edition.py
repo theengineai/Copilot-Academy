@@ -1,13 +1,13 @@
 from playwright.sync_api import sync_playwright
 from pathlib import Path
-import json
+import json,os
 ROOT=Path(__file__).resolve().parents[1]
 mods=[json.loads((ROOT/f'content/modules/m{i}.json').read_text()) for i in range(1,8)]
 missions=json.loads((ROOT/'content/missions.json').read_text())
 BASE='http://127.0.0.1:4173'
 with sync_playwright() as p:
  browser=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
- ctx=browser.new_context(viewport={'width':390,'height':844},accept_downloads=True)
+ ctx=browser.new_context(viewport={'width':390,'height':844},accept_downloads=True,reduced_motion='reduce')
  page=ctx.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
  page.goto(BASE+'/manifest.webmanifest')
  page.evaluate("Promise.all([caches.open('cpa-old-edition'),caches.open('cca-legacy')])")
@@ -51,7 +51,8 @@ with sync_playwright() as p:
       rows.nth(j).get_by_role('button',name='Subir').click()
    elif t=='portfolio':
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),route+' portfolio overflow'
-    if not (ROOT/'docs/screenshots/edition-portfolio.png').exists():page.screenshot(path=str(ROOT/'docs/screenshots/edition-portfolio.png'),full_page=True)
+    if not (ROOT/'docs/screenshots/edition-portfolio.png').exists():
+     page.wait_for_timeout(400);page.screenshot(path=str(ROOT/'docs/screenshots/edition-portfolio.png'),full_page=False)
     page.locator('textarea').first.fill('Entregable de prueba: modelo.xlsx Modelo B14 base 5,333562. EBITDA8 deuda20 neta18. Evidencia/decisiones/controles registrados. '+str(step.get('solution','')))
     for el in page.locator('select').all():
      values=el.locator('option').evaluate_all('(els)=>els.map(e=>e.value)');el.select_option('2' if '2' in values else 'no')
@@ -72,12 +73,12 @@ with sync_playwright() as p:
   for l in m['lessons']:state['lessons'][l['id']]={'completedAt':'2026-11-12','best':1}
  page.evaluate('(s)=>localStorage.setItem("cpa.state",JSON.stringify(s))',state)
  page.reload()
- for m in mods:
+ for m in ([] if os.environ.get('CONTROLS_ONLY') else mods):
   for lesson in m['lessons']:run('#/lesson/'+lesson['id'])
   run('#/exam/'+m['id'])
   print('PASS activities',m['id'],flush=True)
- for mission in missions:run('#/mission/'+mission['id'])
- for challenge in lab:run('#/challenge/'+challenge['id'])
+ for mission in ([] if os.environ.get('CONTROLS_ONLY') else missions):run('#/mission/'+mission['id'])
+ for challenge in ([] if os.environ.get('CONTROLS_ONLY') else lab):run('#/challenge/'+challenge['id'])
  for route in ['#/academy','#/missions','#/lab','#/profile']:
   page.goto(BASE+'/'+route);page.locator('.page').wait_for();page.wait_for_timeout(200)
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),route+' overflow'
@@ -106,8 +107,9 @@ with sync_playwright() as p:
  assert Path(d.value.path()).read_bytes()[:2]==b'PK','offline download is real OOXML'
  for route in ['#/academy','#/lab','#/lesson/'+first['id']]:page.goto(BASE+'/'+route);page.wait_for_timeout(250)
  ctx.set_offline(False)
- page.goto(BASE+'/#/profile');page.get_by_role('button',name='Reiniciar todo el progreso').click();page.locator('.sheet .btn-danger').click();page.locator('.sheet .btn-danger').click()
+ page.goto(BASE+'/#/profile');page.get_by_role('button',name='Reiniciar todo el progreso').click();page.get_by_role('button',name='Continuar',exact=True).click();page.get_by_role('button',name='Borrar todo',exact=True).click()
+ page.wait_for_function('JSON.parse(localStorage.getItem("cpa.state")).xp===0')
  assert page.evaluate('JSON.parse(localStorage.getItem("cpa.state")).xp')==0
  assert not errors,errors
- print('PASS all 21 lessons, 7 exams, 14 missions, 7 guided labs; mobile/desktop/dark; wrong-answer/resume/export/import/reset; cache migration and real offline download; no JS errors')
+ print('PASS '+('controls-only run' if os.environ.get('CONTROLS_ONLY') else 'all 21 lessons, 7 exams, 14 missions, 7 guided labs')+'; mobile/desktop/dark; wrong-answer/resume/export/import/reset; cache migration and real offline download; no JS errors')
  browser.close()

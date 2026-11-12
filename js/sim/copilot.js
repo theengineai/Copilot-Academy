@@ -248,7 +248,7 @@ export class Copilot {
     return [
       line('Cómo usar este Copilot simulado:', 'dim'),
       line('• Escribe tu petición como lo harías en Copilot.'),
-      line('• / + nombre de archivo lo añade como contexto: «resume /Informe_octubre.docx».'),
+      line('• / + nombre de archivo lo añade como contexto: «resume /caso.txt».'),
       line('• @ + agente lo invoca: «@Researcher …» o un agente propio.'),
       line('• Arriba eliges la app (Chat, Word, Excel…), el modo Trabajo/Web y «Nuevo chat».'),
       line('• En Archivos puedes ver cada documento (y editar los agentes).'),

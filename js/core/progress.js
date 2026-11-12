@@ -28,8 +28,7 @@ export function rankInfo(xp) {
   return { rank, from, to, progress: (xp - from) / (to - from) };
 }
 
-/** Nivel de dominio de Copilot (L2→L5), basado en evaluaciones superadas.
- *  L3: módulos 1–2 · L4: todos salvo los tres últimos (con 7 módulos, 1–4) · L5: todos y el proyecto final. */
+/** Avance de práctica local: L3 módulos 1–2, L4 módulos 1–4. No acredita experto. */
 export function masteryLevel(state, course) {
   const passed = id => Boolean(state.exams[id]?.passed);
   const ids = course.modules.map(m => m.id);
