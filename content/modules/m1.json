@@ -1,384 +1,391 @@
 {
   "id": "m1",
-  "title": "Agente de primera lectura",
-  "subtitle": "Convertir metodología en un proceso contrastable desde la primera operación.",
-  "level": "Práctica avanzada",
-  "icon": "agents",
+  "title": "Elegir y dirigir Copilot",
+  "subtitle": "Criterio de herramienta, contexto y verificación para trabajo financiero diverso.",
+  "level": "Herramientas y práctica transferible",
+  "icon": "book",
   "color": "#5B4FD6",
   "lessons": [
     {
-      "id": "f2-l1-1",
-      "title": "Metodología que el agente puede ejecutar",
-      "summary": "Una primera lectura debe ordenar la operación sin dar por buenas las cifras del pitch.",
-      "minutes": 30,
+      "id": "f3-l1-1",
+      "title": "Elegir entre una tarea directa, un agente y un flujo",
+      "summary": "El dominio de Copilot empieza por elegir el mecanismo adecuado.",
+      "minutes": 20,
       "objectives": [
-        "Produce instrucciones v1 y una nota de primera lectura de una página. Decide qué tres preguntas podrían cambiar la estructura propuesta y explica por qué. No rellenes huecos con promedios de otras operaciones.",
-        "La nota distingue hechos de hipótesis, identifica 8 histórico frente a 9 management y no suma la deuda cancelada a la nueva. Cada conclusión tiene evidencia o una limitación visible. Para otra compañía conserva el método y sustituye íntegramente el expediente del caso."
+        "Clasifica seis tareas que hayas realizado: dos puntuales, dos recurrentes y dos que impliquen acciones. Para cada una, decide la superficie inicial y qué evidencia demostraría que funcionó. Desarrolla una alternativa personal si no tienes acceso a Studio.",
+        "Comprueba tres evidencias diferentes: archivo modificado en la aplicación; comportamiento repetido con fuentes distintas; ejecución de herramienta con entradas y salida registradas. No sustituyas una por otra."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "Una primera lectura debe ordenar la operación sin dar por buenas las cifras del pitch. Abre caso.docx: Levante Envases compra Murcia Pack y combina adquisición, refinanciación, capex y circulante. El resultado es una nota con hechos, cálculos, preguntas y límites; todavía no una aprobación."
+              "body": "El dominio de Copilot empieza por elegir el mecanismo adecuado. Una comparación puntual, una metodología recurrente y una acción repetible necesitan controles distintos. El resultado de esta práctica es una decisión de herramienta razonada, no un agente creado por defecto."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "La ficha inicial muestra EBITDA combinado 2025 de 8 M€ y 20 M€ de nueva deuda. El agente debe distinguirlos de los 9 M€ que management espera en 2026. Una instrucción útil exige: identificar perímetro y fecha; separar histórico de proyección; reconstruir Sources & Uses; explicar caja y repago; registrar contradicciones; terminar con información pendiente y su efecto en la decisión."
+              "body": "Tres solicitudes financieras: A) comparar ingresos reales con presupuesto en un libro; B) revisar cada semana documentos heterogéneos con la misma metodología; C) recibir una versión, calcular una variación y registrar que ya se ha procesado. Para A, empieza en Excel; Analyst ayuda si analizas una extracción. Para B, un agente con instrucciones, conocimiento y pruebas evita volver a explicar el método. Para C, Studio y un flujo pueden aportar ejecución, estado y manejo de errores. Nombrar tres asistentes en una conversación no crea C."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "En Agent Builder crea un agente privado desde la sección de agentes, si está disponible. En instrucciones pega la metodología de agentes.md y define las secciones del entregable, la unidad M€ y la obligación de citar documento, página/tabla y fecha. En conocimiento incorpora solo metodologia.md como referencia estable. Añade la documentación de la operación al contexto de la prueba. Ejecuta una primera lectura y registra versión de instrucciones, fuentes y respuesta.\n\n**Herramienta, requisitos, entradas y salida.** Agent Builder en Microsoft 365 Copilot; creación habilitada y licencia/capacidad aplicable al tenant. Entradas: caso.docx, metodologia.md y agentes.md. Salida: instrucciones y primera lectura. Si no puedes crear agentes, usa un chat con las mismas instrucciones y un expediente separado: conservas el método, pierdes configuración persistente y distribución del agente.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "Abre Microsoft 365 Copilot y localiza Chat, agentes disponibles y acceso a las aplicaciones. Escribe un inventario de las superficies que realmente aparecen. En una tabla, clasifica cada solicitud por frecuencia, necesidad de editar un archivo, método estable, herramientas externas y efecto de un error. Decide primero dónde debe quedar el resultado. Si necesitas cambiar fórmulas, exige un libro editable y prueba sus dependencias. Si necesitas comportamiento reutilizable sin acciones externas, empieza con Agent Builder. Si necesitas controlar conversación, herramientas o flujos, evalúa Studio. Registra el motivo de cualquier ampliación.\n\n**Herramienta y habilitación.** Microsoft 365 Copilot Chat y aplicaciones habilitadas; Agent Builder para el contraste. Studio solo como ampliación con acceso de autor y entorno autorizado.\n\n**Entradas.** expediente.docx, modelo.xlsx y seis tareas descritas por ti.\n**Resultado esperado.** Matriz de decisión de herramientas con prueba y alternativa.\n**Alternativa y pérdida.** Chat con archivos seleccionados y ejecución manual en las aplicaciones: pierde configuración persistente y ejecución automática, conserva el método.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "El primer resultado dice «la operación es sólida» porque EBITDA crece. Diagnóstico: falta un criterio de suficiencia, no un adjetivo mejor. Añade: «No concluir capacidad de repago sin puente de caja y calendario de deuda. Si faltan, formula preguntas y marca conclusión provisional». Repite exactamente la prueba original para comprobar si la corrección funciona."
+              "body": "Fallo: construir un agente que responde «ventas suben 10%» cuando la tarea era actualizar fórmulas. Diagnóstico: el contrato de salida no coincide con la superficie elegida. Comprueba si el libro cambió de verdad; una respuesta de chat o un fichero nuevo no demuestra edición del original. Repite la tarea mínima en la aplicación de destino antes de diseñar más instrucciones."
             }
           ]
         },
         {
-          "id": "f2-1-1-decision",
+          "id": "f3-l1-1-choice",
           "type": "choice",
-          "concept": "agent.method",
-          "prompt": "La lectura mezcla 8 histórico y 9 previsto. ¿Qué cambio de instrucciones ataca la causa?",
+          "concept": "tools.route",
+          "prompt": "Necesitas actualizar fórmulas del libro, pero recibes solo una explicación. ¿Qué criterio cambia tu elección?",
+          "context": "Fallo: construir un agente que responde «ventas suben 10%» cuando la tarea era actualizar fórmulas. Diagnóstico: el contrato de salida no coincide con la superficie elegida. Comprueba si el libro cambió de verdad; una respuesta de chat o un fichero nuevo no demuestra edición del original. Repite la tarea mínima en la aplicación de destino antes de diseñar más instrucciones.",
           "options": [
             {
-              "text": "Exigir etiqueta de período, perímetro y naturaleza de cada métrica antes de compararla",
+              "text": "Editar una sección del libro en Excel; reservar el agente para el método recurrente y el flujo para ejecución con contrato y estado",
               "correct": true
             },
             {
-              "text": "Pedir una nota más extensa para aumentar el contexto",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Mantener el agente documental y evaluar la tarea por precisión de la explicación, aunque no haya un libro modificado",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "Fijar EBITDA 8 en las instrucciones permanentes para futuros casos",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Reutilizar la extracción de Analyst como versión del libro sin comprobar fórmulas ni dependencias",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Instrucciones estables describen decisiones y salidas; los datos viven en el expediente. Una conclusión provisional es más útil que una certeza sin caja."
+          "explain": "Elige por el resultado observable. Automatizar más no mejora por sí mismo una tarea puntual. Comprueba tres evidencias diferentes: archivo modificado en la aplicación; comportamiento repetido con fuentes distintas; ejecución de herramienta con entradas y salida registradas. No sustituyas una por otra."
         },
         {
-          "id": "f2-1-1-sequence",
+          "id": "f3-l1-1-order",
           "type": "order",
-          "concept": "agent.method",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "tools.route",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Elegir entre una tarea directa, un agente y un flujo",
           "items": [
-            "Delimitar perímetro, fecha y propósito",
-            "Separar hechos, hipótesis y cálculos con fuentes",
-            "Concluir provisionalmente y priorizar información pendiente"
+            "Definir el resultado y el archivo o sistema donde debe existir",
+            "Identificar método recurrente, edición y acciones necesarias",
+            "Elegir la superficie y una prueba observable de éxito"
           ],
-          "explain": "La nota distingue hechos de hipótesis, identifica 8 histórico frente a 9 management y no suma la deuda cancelada a la nueva. Cada conclusión tiene evidencia o una limitación visible. Para otra compañía conserva el método y sustituye íntegramente el expediente del caso."
+          "explain": "Elige por el resultado observable. Automatizar más no mejora por sí mismo una tarea puntual. Comprueba tres evidencias diferentes: archivo modificado en la aplicación; comportamiento repetido con fuentes distintas; ejecución de herramienta con entradas y salida registradas. No sustituyas una por otra."
         },
         {
-          "id": "f2-1-1-portfolio",
+          "id": "f3-l1-1-portfolio",
           "type": "portfolio",
-          "concept": "agent.method",
-          "prompt": "Produce instrucciones v1 y una nota de primera lectura de una página. Decide qué tres preguntas podrían cambiar la estructura propuesta y explica por qué. No rellenes huecos con promedios de otras operaciones.",
+          "concept": "tools.route",
+          "prompt": "Clasifica seis tareas que hayas realizado: dos puntuales, dos recurrentes y dos que impliquen acciones. Para cada una, decide la superficie inicial y qué evidencia demostraría que funcionó. Desarrolla una alternativa personal si no tienes acceso a Studio.",
+          "context": "Resultado: Matriz de decisión de herramientas con prueba y alternativa. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Método: cubre perímetro, SU, caja, riesgo y límites sin convertir hipótesis en datos.",
-            "Trazabilidad: la nota distingue 2025 histórico, 2026 management y base.",
-            "Interpretación: las preguntas priorizadas pueden cambiar la estructura.",
-            "Utilidad: instrucciones reutilizables separadas del expediente.",
-            "Crítico: no aprobar crédito ni inferir repago sin calendario y caja."
+            "Criterio: distingue conversación, edición, comportamiento reutilizable y ejecución.",
+            "Trazabilidad: cada elección tiene una razón vinculada al resultado.",
+            "Utilidad: la alternativa conserva una parte explícita del valor.",
+            "Crítico: no atribuye a un agente acceso o acciones que no tiene."
           ],
-          "solution": "La ficha inicial muestra EBITDA combinado 2025 de 8 M€ y 20 M€ de nueva deuda. El agente debe distinguirlos de los 9 M€ que management espera en 2026. Una instrucción útil exige: identificar perímetro y fecha; separar histórico de proyección; reconstruir Sources & Uses; explicar caja y repago; registrar contradicciones; terminar con información pendiente y su efecto en la decisión.\n\nLa nota distingue hechos de hipótesis, identifica 8 histórico frente a 9 management y no suma la deuda cancelada a la nueva. Cada conclusión tiene evidencia o una limitación visible. Para otra compañía conserva el método y sustituye íntegramente el expediente del caso.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "La tarea A puede resolverse sin agente. La B conserva metodología y corpus; requiere pruebas de recuperación y abstención. La C necesita una herramienta que ejecute y devuelva datos, más un registro cuando el objetivo incluya persistencia. Un esquema de flujo solo demuestra diseño hasta que se prueba su ejecución.\n\nComprueba tres evidencias diferentes: archivo modificado en la aplicación; comportamiento repetido con fuentes distintas; ejecución de herramienta con entradas y salida registradas. No sustituyas una por otra.\n\nTransferencia: En M&A puedes comparar escenarios; en gestión de activos, resultados frente a tesis; en planificación, real frente a presupuesto. La elección depende del trabajo y la capacidad requerida, no del nombre de la función.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "La nota distingue hechos de hipótesis, identifica 8 histórico frente a 9 management y no suma la deuda cancelada a la nueva. Cada conclusión tiene evidencia o una limitación visible. Para otra compañía conserva el método y sustituye íntegramente el expediente del caso.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "Comprueba tres evidencias diferentes: archivo modificado en la aplicación; comportamiento repetido con fuentes distintas; ejecución de herramienta con entradas y salida registradas. No sustituyas una por otra.\n\nEn M&A puedes comparar escenarios; en gestión de activos, resultados frente a tesis; en planificación, real frente a presupuesto. La elección depende del trabajo y la capacidad requerida, no del nombre de la función."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Instrucciones estables describen decisiones y salidas; los datos viven en el expediente. Una conclusión provisional es más útil que una certeza sin caja."
+              "body": "Elige por el resultado observable. Automatizar más no mejora por sí mismo una tarea puntual."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l1-2",
-      "title": "Conocimiento reutilizable sin contaminar operaciones",
-      "summary": "Una plantilla bien elegida ahorra trabajo; un ejemplo con cifras de otro cliente puede contaminar el análisis.",
-      "minutes": 30,
+      "id": "f3-l1-2",
+      "title": "Construir el contexto de trabajo sin mezclar fuentes",
+      "summary": "Una buena conversación puede fallar cuando el corpus mezcla períodos, escenarios o definiciones.",
+      "minutes": 20,
       "objectives": [
-        "Diseña una matriz de cinco fuentes y tres conflictos; decide qué documento puede sostener cada cifra y cuál solo aporta estructura. Configura una instrucción contra incorporar datos de expedientes anteriores.",
-        "Rastrea deuda neta a deuda bruta menos caja disponible; separa documentos probatorios de borradores. Para reutilizar, crea un expediente limpio y prueba una consulta que intente recuperar cifras de Levante: debe abstenerse."
+        "Prepara un paquete de contexto para comparar dos ejercicios y un escenario. No redactes todavía una conclusión. Incluye una discrepancia que la conversación deba mantener abierta y una fuente que solo sirva como estructura.",
+        "Abre las citas: ¿contienen la afirmación, el período y la definición? Comprueba al menos una fuente incluida y otra excluida. Una referencia correcta de nombre pero incorrecta de período sigue siendo un fallo."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "Una plantilla bien elegida ahorra trabajo; un ejemplo con cifras de otro cliente puede contaminar el análisis. Diseña tres capas: instrucciones de comportamiento, referencias metodológicas y expediente de una sola operación. La salida será un inventario de fuentes con prioridad y vigencia."
+              "body": "Una buena conversación puede fallar cuando el corpus mezcla períodos, escenarios o definiciones. El objetivo es montar un contexto pequeño y explícito que sirva a un análisis, documento o agente sin incorporar todo tu repositorio."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "Usa la plantilla educativa one-pager.docx como estructura, pero advierte que contiene errores deliberados. Sus 20 M€ de deuda neta contradicen 20 de deuda bruta y 2 de caja post cierre. La plantilla no es una fuente financiera. El libro y la documentación de cierre deben resolver el dato; si no hay confirmación de caja disponible, presenta ambos supuestos."
+              "body": "En Aurora, 110 es la venta histórica de 2025. 121 es la venta de 2026 en el caso base; una hipótesis de crecimiento del 15% corresponde a management. Si preguntas «¿cuánto crece?», hay al menos dos respuestas legítimas. El contexto debe indicar empresa, período de comparación, escenario y naturaleza de cada fuente. El documento de trabajo es un borrador: no adquiere autoridad por estar mejor redactado que el libro."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "En la configuración revisa nombre, descripción, instrucciones y fuentes de conocimiento realmente visibles. No presupongas herramientas de cálculo ni conectores que no aparezcan. Añade metodología y plantillas depuradas; identifica ejemplos como estructura sin cifras reutilizables. Mantén los archivos de la operación identificados por compañía, fecha y versión. Define prioridad por dato: histórico documentado, hipótesis aprobada para el escenario y correo posterior que modifica esa hipótesis. La fecha más reciente no gana por sí sola.\n\n**Herramienta, requisitos, entradas y salida.** Agent Builder / chat M365 Copilot con archivos accesibles; fuentes admitidas y permisos dependen de habilitación. Entradas: modelo.xlsx, caso.docx, one-pager.docx. Salida: inventario y agente v2. Alternativa: adjuntar explícitamente copias educativas en cada chat; pierdes recuperación persistente. Ninguna configuración garantiza búsqueda exhaustiva de todos los libros ni herencia universal de etiquetas.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)\n\nSi aparece «Only use specified sources», úsalo como preferencia de recuperación, no como bloqueo absoluto del conocimiento general del modelo. La instrucción de limitar hechos al expediente debe probarse y las respuestas contrastarse. Distingue enlaces de SharePoint/OneDrive sujetos a acceso del usuario de archivos incrustados que pueden quedar accesibles a quienes reciben el agente; comprueba el alcance antes de compartir."
+              "body": "Antes de la conversación, crea un manifiesto: nombre de archivo, versión, período, unidad, propósito y autoridad para cada dato. En Chat adjunta explícitamente los archivos admitidos o selecciónalos mediante el mecanismo de referencias disponible. Pide que confirme qué fuentes pudo utilizar y qué no encontró; contrasta esa declaración con la respuesta. En un Notebook conserva un corpus delimitado cuando esté habilitado. En Pages trabaja el resultado, no supongas que añadir una página equivale a indexar todos los documentos de una carpeta. Para una tarea nueva elimina referencias antiguas y comprueba la lista de contexto.\n\n**Herramienta y habilitación.** Microsoft 365 Copilot Chat con carga o referencias permitidas; Notebooks requiere servicio de almacenamiento y habilitación. Consulta capacidades.md para la matriz vigente.\n\n**Entradas.** expediente.docx, modelo.xlsx, documento-trabajo.docx y aclaracion.eml.\n**Resultado esperado.** Manifiesto de fuentes y conversación de contraste.\n**Alternativa y pérdida.** Carpeta local y manifiesto pegado en un chat con archivos admitidos: pierde corpus persistente y colaboración integrada.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "El agente cita el pitch para validar el modelo. Es una circularidad: ambas salidas vienen de la misma hipótesis. Retira el pitch como fuente de cálculo, conserva su papel de objeto a revisar y pide una tabla de origen, definición y conflicto. Una cita que no sustenta el dato no supera el control."
+              "body": "Fallo: devuelve 15% como crecimiento base porque el correo de management fue el último añadido. Diagnóstico: recencia y autoridad no son lo mismo. Solicita la evidencia de la cifra y distingue «cambio confirmado del caso base» de «propuesta de management». Corrige el manifiesto y pregunta de nuevo sin arrastrar una respuesta anterior como fuente."
             }
           ]
         },
         {
-          "id": "f2-1-2-decision",
+          "id": "f3-l1-2-choice",
           "type": "choice",
-          "concept": "agent.sources",
-          "prompt": "¿Cómo usar una presentación anterior como ejemplo?",
+          "concept": "tools.context",
+          "prompt": "Un correo posterior describe management y el libro mantiene otro caso base. ¿Cómo resuelves el aparente conflicto?",
+          "context": "Fallo: devuelve 15% como crecimiento base porque el correo de management fue el último añadido. Diagnóstico: recencia y autoridad no son lo mismo. Solicita la evidencia de la cifra y distingue «cambio confirmado del caso base» de «propuesta de management». Corrige el manifiesto y pregunta de nuevo sin arrastrar una respuesta anterior como fuente.",
           "options": [
             {
-              "text": "Extraer estructura y estilo, eliminar sus cifras y marcar que no es evidencia del nuevo caso",
+              "text": "Identificar escenario y autoridad de cada fuente antes de resolver la cifra, dejando el conflicto visible si no existe una decisión documentada",
               "correct": true
             },
             {
-              "text": "Añadirla como fuente prioritaria porque ya pasó un comité",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Dar prioridad temporal al correo y aplicar su hipótesis al caso base, porque evita conservar una versión desactualizada",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "Incluirla con todo su contenido y pedir al agente que ignore diferencias",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Pedir al agente una estimación intermedia mientras no se confirme qué documento refleja mejor la situación",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Prioridad por tipo de dato y aprobación, no por apariencia del documento. Las plantillas enseñan estructura; no prueban cifras."
+          "explain": "El contexto se diseña. Más archivos no equivalen a mejor evidencia. Abre las citas: ¿contienen la afirmación, el período y la definición? Comprueba al menos una fuente incluida y otra excluida. Una referencia correcta de nombre pero incorrecta de período sigue siendo un fallo."
         },
         {
-          "id": "f2-1-2-sequence",
+          "id": "f3-l1-2-order",
           "type": "order",
-          "concept": "agent.sources",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "tools.context",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Construir el contexto de trabajo sin mezclar fuentes",
           "items": [
-            "Clasificar fuentes por función y vigencia",
-            "Resolver conflictos contra la fuente adecuada al dato",
-            "Probar que el nuevo expediente no incorpora cifras anteriores"
+            "Inventariar período, versión, unidad y función de cada archivo",
+            "Delimitar el corpus y declarar la prioridad por dato",
+            "Pedir el análisis y comprobar referencias y conflictos abiertos"
           ],
-          "explain": "Rastrea deuda neta a deuda bruta menos caja disponible; separa documentos probatorios de borradores. Para reutilizar, crea un expediente limpio y prueba una consulta que intente recuperar cifras de Levante: debe abstenerse."
+          "explain": "El contexto se diseña. Más archivos no equivalen a mejor evidencia. Abre las citas: ¿contienen la afirmación, el período y la definición? Comprueba al menos una fuente incluida y otra excluida. Una referencia correcta de nombre pero incorrecta de período sigue siendo un fallo."
         },
         {
-          "id": "f2-1-2-portfolio",
+          "id": "f3-l1-2-portfolio",
           "type": "portfolio",
-          "concept": "agent.sources",
-          "prompt": "Diseña una matriz de cinco fuentes y tres conflictos; decide qué documento puede sostener cada cifra y cuál solo aporta estructura. Configura una instrucción contra incorporar datos de expedientes anteriores.",
+          "concept": "tools.context",
+          "prompt": "Prepara un paquete de contexto para comparar dos ejercicios y un escenario. No redactes todavía una conclusión. Incluye una discrepancia que la conversación deba mantener abierta y una fuente que solo sirva como estructura.",
+          "context": "Resultado: Manifiesto de fuentes y conversación de contraste. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Fuentes: inventario distingue plantilla, ejemplo y evidencia por dato.",
-            "Trazabilidad: deuda neta se reconstruye desde deuda bruta y caja disponible.",
-            "Interpretación: contradicciones quedan explícitas, sin promediar.",
-            "Utilidad: otro expediente puede cargarse sin cifras heredadas.",
-            "Crítico: no usar un pitch como prueba circular del modelo ni asumir aislamiento absoluto."
+            "Consistencia: separa histórico, base y management.",
+            "Trazabilidad: cada fuente tiene función y vigencia.",
+            "Interpretación: el conflicto no se resuelve por tono o recencia.",
+            "Crítico: no arrastra cifras de conversaciones o empresas anteriores."
           ],
-          "solution": "Usa la plantilla educativa one-pager.docx como estructura, pero advierte que contiene errores deliberados. Sus 20 M€ de deuda neta contradicen 20 de deuda bruta y 2 de caja post cierre. La plantilla no es una fuente financiera. El libro y la documentación de cierre deben resolver el dato; si no hay confirmación de caja disponible, presenta ambos supuestos.\n\nRastrea deuda neta a deuda bruta menos caja disponible; separa documentos probatorios de borradores. Para reutilizar, crea un expediente limpio y prueba una consulta que intente recuperar cifras de Levante: debe abstenerse.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "El manifiesto etiqueta modelo.xlsx como cálculo del escenario elegido, expediente.docx como contexto y documento-trabajo.docx como borrador. El correo puede modificar una hipótesis solo cuando lo dice expresamente. Si no hay decisión, la salida contiene dos variantes y una pregunta.\n\nAbre las citas: ¿contienen la afirmación, el período y la definición? Comprueba al menos una fuente incluida y otra excluida. Una referencia correcta de nombre pero incorrecta de período sigue siendo un fallo.\n\nTransferencia: El mismo manifiesto sirve a una compañía, cartera, presupuesto, proyecto o producto. Cambia el perímetro y las fuentes; conserva el tratamiento de escenarios y autoridad.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "Rastrea deuda neta a deuda bruta menos caja disponible; separa documentos probatorios de borradores. Para reutilizar, crea un expediente limpio y prueba una consulta que intente recuperar cifras de Levante: debe abstenerse.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "Abre las citas: ¿contienen la afirmación, el período y la definición? Comprueba al menos una fuente incluida y otra excluida. Una referencia correcta de nombre pero incorrecta de período sigue siendo un fallo.\n\nEl mismo manifiesto sirve a una compañía, cartera, presupuesto, proyecto o producto. Cambia el perímetro y las fuentes; conserva el tratamiento de escenarios y autoridad."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Prioridad por tipo de dato y aprobación, no por apariencia del documento. Las plantillas enseñan estructura; no prueban cifras."
+              "body": "El contexto se diseña. Más archivos no equivalen a mejor evidencia."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l1-3",
-      "title": "Pruebas que enseñan por qué falla el agente",
-      "summary": "Una respuesta convincente a un caso limpio no prueba robustez.",
-      "minutes": 30,
+      "id": "f3-l1-3",
+      "title": "Encargar, comprobar y reparar trabajo de varios pasos",
+      "summary": "Un resultado convincente puede contener un cálculo correcto y una inferencia inválida.",
+      "minutes": 20,
       "objectives": [
-        "Ejecuta cinco pruebas y conserva una respuesta fallida. Propón una modificación concreta, repite la prueba y explica qué otros comportamientos podría deteriorar.",
-        "Una prueba pasa por comportamiento y evidencia, no por repetir una palabra. El revisor contrasta cálculos contra las fuentes. En otro expediente reserva de nuevo un caso para comprobar transferencia."
+        "Dirige una tarea de tres pasos que produzca tabla y comentario. Introduce un error plausible de definición, documenta su diagnóstico y pide una corrección acotada. Conserva dos controles de regresión.",
+        "La tabla reconcilia con sus archivos; una segunda cuenta manual reproduce la variación; las conclusiones no exceden la evidencia. Guarda también la salida fallida y el cambio aplicado para saber qué mejoró."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "Una respuesta convincente a un caso limpio no prueba robustez. Construye una batería reproducible antes de usar el agente como punto de partida habitual. El entregable es un registro de prueba, observación, error y cambio de configuración."
+              "body": "Un resultado convincente puede contener un cálculo correcto y una inferencia inválida. Esta práctica desarrolla una forma de dirigir trabajo complejo, localizar el fallo y decidir qué puede reutilizarse sin reiniciar todo."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "Prueba normal: 20 de deuda y 2 de caja implican 18 neta. Ambigua: el correo dice «EBITDA 7» sin período; debe preguntar. Incompleta: falta calendario de amortización; no puede afirmar repago. Contradictoria: pitch 9 base frente a libro 8 base; debe mostrar el conflicto. Fuera de alcance: «aprueba el crédito»; debe limitarse a análisis y remitir a decisión humana."
+              "body": "Pide una explicación del cambio entre 100 de ventas y 110. El crecimiento es 10%; eso no prueba que todo sea volumen ni que se mantenga al año siguiente. Divide la salida en dato, cálculo, interpretación y pendiente. Para una revisión de documentos, separa extracción, reconciliación y redacción. Si el extracto omite una nota de cambio de definición, corregir solo la conclusión no soluciona la causa."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "Abre pruebas-agentes.json y ejecuta cada entrada en conversación nueva con idénticos archivos. Define antes de leer la respuesta los comportamientos observables y errores críticos. Registra si cita la fuente correcta, si distingue datos e inferencias y si se abstiene cuando falta información. Tras una corrección, vuelve a pasar casos anteriores para detectar regresiones. Conserva también un caso reservado que no uses para diseñar instrucciones.\n\n**Herramienta, requisitos, entradas y salida.** Agent Builder con panel de prueba disponible o chat nuevo; misma habilitación que la lección anterior. Entradas: pruebas-agentes.json y expediente. Salida: registro de resultados y agente v3. Alternativa: pruebas manuales en chats aislados; no hay evaluación automatizada ni promesa de producción.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "Antes de ejecutar, fija un contrato corto: propósito, fuentes, operaciones admitidas, salida y controles. Solicita un plan verificable de tres o cuatro pasos, no razonamiento interno. Autoriza primero una muestra: una tabla, una página o una sección del libro. Contrasta su fuente y un cálculo. Después amplía el alcance. Cuando falle, clasifica el problema como acceso, recuperación, interpretación, cálculo, ejecución o presentación. Cambia una condición y repite el caso original. Conserva un registro de versión y un control que la corrección no deba alterar.\n\n**Herramienta y habilitación.** Copilot Chat o aplicación de destino con licencia/habilitación correspondiente; revisión manual de cálculos en Excel estándar.\n\n**Entradas.** historicos.csv, expediente.docx y una muestra de salida.\n**Resultado esperado.** Contrato, muestra revisada y registro de reparación.\n**Alternativa y pérdida.** Proceso manual con checklist y cálculo independiente: pierde generación asistida, conserva el control.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "El agente pasa la prueba solo cuando copias la solución en la pregunta. Has filtrado el criterio esperado al sistema. Reformula el caso sin revelar el resultado y usa cifras equivalentes en una segunda operación. Si falla, ajusta el paso metodológico ausente y documenta la regresión; no rebajes el criterio."
+              "body": "Fallo: el segundo intento corrige el crecimiento, pero reescribe las cifras de otra tabla que ya eran correctas. Diagnóstico: el encargo de reparación no delimitó el cambio. Especifica ubicación, corrección esperada y elementos protegidos; compara antes/después. La revisión por otro agente ayuda a encontrar fallos, pero no sustituye abrir las fuentes y recalcular."
             }
           ]
         },
         {
-          "id": "f2-1-3-decision",
+          "id": "f3-l1-3-choice",
           "type": "choice",
-          "concept": "agent.test",
-          "prompt": "El agente mejora en el caso corregido pero usa 7 como EBITDA histórico en otra prueba. ¿Qué hacer?",
+          "concept": "tools.verify",
+          "prompt": "El cálculo es correcto, pero el comentario atribuye el crecimiento a volumen sin datos de volumen. ¿Dónde reparas?",
+          "context": "Fallo: el segundo intento corrige el crecimiento, pero reescribe las cifras de otra tabla que ya eran correctas. Diagnóstico: el encargo de reparación no delimitó el cambio. Especifica ubicación, corrección esperada y elementos protegidos; compara antes/después. La revisión por otro agente ayuda a encontrar fallos, pero no sustituye abrir las fuentes y recalcular.",
           "options": [
             {
-              "text": "Registrar regresión, separar período y escenario en el procedimiento y repetir toda la batería",
+              "text": "Volver a la extracción o definición que origina el error y comprobar después cálculo e interpretación",
               "correct": true
             },
             {
-              "text": "Mantener el cambio porque supera la prueba más reciente",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Pedir una revisión crítica del comentario manteniendo la tabla y su interpretación causal como punto de partida",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "Añadir a cada pregunta la respuesta esperada para estabilizarlo",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Dar al revisor solo la respuesta del preparador y aceptar coincidencia entre agentes como prueba independiente",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Prueba normal, ambigua, incompleta, contradictoria y fuera de alcance. Corregir exige volver a probar; aprobar una prueba no certifica al agente."
+          "explain": "Una buena reparación cambia una causa y conserva lo que ya estaba demostrado. La tabla reconcilia con sus archivos; una segunda cuenta manual reproduce la variación; las conclusiones no exceden la evidencia. Guarda también la salida fallida y el cambio aplicado para saber qué mejoró."
         },
         {
-          "id": "f2-1-3-sequence",
+          "id": "f3-l1-3-order",
           "type": "order",
-          "concept": "agent.test",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "tools.verify",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Encargar, comprobar y reparar trabajo de varios pasos",
           "items": [
-            "Definir comportamiento esperado sin revelar la solución",
-            "Ejecutar casos en conversaciones nuevas y registrar fallos",
-            "Corregir y repetir la batería incluida una prueba reservada"
+            "Definir contrato y muestra mínima de aceptación",
+            "Comprobar fuente, cálculo e interpretación por separado",
+            "Corregir la causa y repetir la prueba con controles de regresión"
           ],
-          "explain": "Una prueba pasa por comportamiento y evidencia, no por repetir una palabra. El revisor contrasta cálculos contra las fuentes. En otro expediente reserva de nuevo un caso para comprobar transferencia."
+          "explain": "Una buena reparación cambia una causa y conserva lo que ya estaba demostrado. La tabla reconcilia con sus archivos; una segunda cuenta manual reproduce la variación; las conclusiones no exceden la evidencia. Guarda también la salida fallida y el cambio aplicado para saber qué mejoró."
         },
         {
-          "id": "f2-1-3-portfolio",
+          "id": "f3-l1-3-portfolio",
           "type": "portfolio",
-          "concept": "agent.test",
-          "prompt": "Ejecuta cinco pruebas y conserva una respuesta fallida. Propón una modificación concreta, repite la prueba y explica qué otros comportamientos podría deteriorar.",
+          "concept": "tools.verify",
+          "prompt": "Dirige una tarea de tres pasos que produzca tabla y comentario. Introduce un error plausible de definición, documenta su diagnóstico y pide una corrección acotada. Conserva dos controles de regresión.",
+          "context": "Resultado: Contrato, muestra revisada y registro de reparación. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Pruebas: hay caso normal, ambiguo, incompleto, contradictorio y fuera de alcance.",
-            "Trazabilidad: cada resultado conserva entrada, fuentes y versión.",
-            "Interpretación: cada fallo explica la regla metodológica ausente.",
-            "Utilidad: se repite batería y se conserva un caso reservado.",
-            "Crítico: no filtrar solución en el prompt ni acreditar semántica por patrones."
+            "Consistencia: cada paso tiene entrada y salida.",
+            "Trazabilidad: diferencia evidencia primaria de respuesta generada.",
+            "Interpretación: localiza la causa antes de retocar el texto.",
+            "Utilidad: reparación acotada con comparación antes/después.",
+            "Crítico: ningún consenso de agentes sustituye un control independiente."
           ],
-          "solution": "Prueba normal: 20 de deuda y 2 de caja implican 18 neta. Ambigua: el correo dice «EBITDA 7» sin período; debe preguntar. Incompleta: falta calendario de amortización; no puede afirmar repago. Contradictoria: pitch 9 base frente a libro 8 base; debe mostrar el conflicto. Fuera de alcance: «aprueba el crédito»; debe limitarse a análisis y remitir a decisión humana.\n\nUna prueba pasa por comportamiento y evidencia, no por repetir una palabra. El revisor contrasta cálculos contra las fuentes. En otro expediente reserva de nuevo un caso para comprobar transferencia.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "Contrato de ejemplo: construir una tabla de variación de ventas y EBITDA 2024–2025, identificar definiciones y redactar dos conclusiones. Control numérico: 110/100−1=10%. Control interpretativo: el expediente debe sostener la atribución a precio o volumen; si no, se declara pendiente. Al reparar, no modificar períodos ni unidades ya validados.\n\nLa tabla reconcilia con sus archivos; una segunda cuenta manual reproduce la variación; las conclusiones no exceden la evidencia. Guarda también la salida fallida y el cambio aplicado para saber qué mejoró.\n\nTransferencia: Aplica la misma descomposición a un análisis de fondos, una comparación de presupuestos o una revisión de contratos. El orden extracción→contraste→interpretación evita errores comunes entre especialidades.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "Una prueba pasa por comportamiento y evidencia, no por repetir una palabra. El revisor contrasta cálculos contra las fuentes. En otro expediente reserva de nuevo un caso para comprobar transferencia.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "La tabla reconcilia con sus archivos; una segunda cuenta manual reproduce la variación; las conclusiones no exceden la evidencia. Guarda también la salida fallida y el cambio aplicado para saber qué mejoró.\n\nAplica la misma descomposición a un análisis de fondos, una comparación de presupuestos o una revisión de contratos. El orden extracción→contraste→interpretación evita errores comunes entre especialidades."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Prueba normal, ambigua, incompleta, contradictoria y fuera de alcance. Corregir exige volver a probar; aprobar una prueba no certifica al agente."
+              "body": "Una buena reparación cambia una causa y conserva lo que ya estaba demostrado."
             }
           ]
         }
@@ -386,72 +393,72 @@
     }
   ],
   "exam": {
-    "title": "Decisiones de trabajo · no certificación profesional",
+    "title": "Comprobación de decisiones",
+    "size": 6,
     "extra": [
       {
-        "id": "f2-1-1-exam",
+        "id": "f3-exam1-1",
         "type": "choice",
-        "concept": "agent.method",
-        "prompt": "El agente recomienda repago sin calendario de deuda. ¿Qué salida aceptarías?",
+        "concept": "tools.route",
+        "prompt": "Debes modificar una fórmula y mostrar que cambia su dependencia. Solo recibes una explicación en Chat. ¿Qué falta?",
         "options": [
           {
-            "text": "Conclusión provisional con puente de caja disponible y calendario pendiente priorizado",
+            "text": "Abrir y comprobar el libro editado en Excel, incluida una prueba de dependencia",
             "correct": true
           },
           {
-            "text": "Recomendación firme si el ratio deuda/EBITDA es bajo",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Pedir al chat que confirme expresamente que aplicó la fórmula",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Recomendación firme después de pedir un tono más prudente",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Guardar la explicación como evidencia suficiente de edición",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Conclusión provisional con puente de caja disponible y calendario pendiente priorizado. Instrucciones estables describen decisiones y salidas; los datos viven en el expediente. Una conclusión provisional es más útil que una certeza sin caja."
+        "explain": "Abrir y comprobar el libro editado en Excel, incluida una prueba de dependencia. La decisión debe sostenerse con evidencia observable y límites explícitos."
       },
       {
-        "id": "f2-1-2-exam",
+        "id": "f3-exam1-2",
         "type": "choice",
-        "concept": "agent.sources",
-        "prompt": "Un archivo incrustado contiene datos de una operación. ¿Qué revisar antes de compartir el agente?",
+        "concept": "tools.context",
+        "prompt": "Dos informes describen 2025, pero uno incluye una filial y otro no. ¿Cuál es la siguiente decisión?",
         "options": [
           {
-            "text": "Quién podría acceder al archivo al adquirir el agente y si corresponde usar otra forma de fuente",
+            "text": "Reconciliar el perímetro antes de atribuir la variación al negocio",
             "correct": true
           },
           {
-            "text": "Solo el nombre visible del agente",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Usar el más reciente como fuente única",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Solo que el prompt diga confidencial",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Calcular el promedio para reducir el efecto del perímetro",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Quién podría acceder al archivo al adquirir el agente y si corresponde usar otra forma de fuente. Prioridad por tipo de dato y aprobación, no por apariencia del documento. Las plantillas enseñan estructura; no prueban cifras."
+        "explain": "Reconciliar el perímetro antes de atribuir la variación al negocio. La decisión debe sostenerse con evidencia observable y límites explícitos."
       },
       {
-        "id": "f2-1-3-exam",
+        "id": "f3-exam1-3",
         "type": "choice",
-        "concept": "agent.test",
-        "prompt": "El agente responde bien a cuatro casos y falla uno incompleto inventando una fecha. ¿Cómo tratar el resultado?",
+        "concept": "tools.verify",
+        "prompt": "Una tarea recurrente necesita el mismo método sobre fuentes cambiantes, sin escribir en sistemas. ¿Por dónde empiezas?",
         "options": [
           {
-            "text": "Fallo material que exige regla de abstención y regresión de la batería",
+            "text": "Contrato y prueba en Builder; añadir Studio solo si necesitas controles o herramientas que lo justifiquen",
             "correct": true
           },
           {
-            "text": "80% de acierto suficiente para usarlo sin controles",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Crear un flujo externo antes de probar el método",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Excluir el caso incompleto del banco para mejorar estabilidad",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Mantener un único chat largo para preservar indefinidamente todos los expedientes",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Fallo material que exige regla de abstención y regresión de la batería. Prueba normal, ambigua, incompleta, contradictoria y fuera de alcance. Corregir exige volver a probar; aprobar una prueba no certifica al agente."
+        "explain": "Contrato y prueba en Builder; añadir Studio solo si necesitas controles o herramientas que lo justifiquen. La decisión debe sostenerse con evidencia observable y límites explícitos."
       }
-    ],
-    "size": 6
+    ]
   }
 }

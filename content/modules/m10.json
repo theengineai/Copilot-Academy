@@ -1,0 +1,466 @@
+{
+  "id": "m10",
+  "title": "Reutilizar y automatizar con criterio",
+  "subtitle": "Traspasos, automatización opcional y diseño de un agente propio.",
+  "level": "Herramientas y práctica transferible",
+  "icon": "book",
+  "color": "#5B4FD6",
+  "lessons": [
+    {
+      "id": "f3-l10-1",
+      "title": "Diseñar traspasos de contexto entre herramientas y agentes",
+      "summary": "El trabajo suele pasar por chat, agente, análisis, documento y revisión.",
+      "minutes": 20,
+      "objectives": [
+        "Diseña un proceso de tres etapas para una tarea propia. Define un traspaso manual reproducible y una frontera que podría automatizarse. Justifica si necesitas uno o dos agentes.",
+        "Pide a otra persona continuar desde el paquete sin tu historial de chat. Si necesita inferir qué escenario o versión usar, el contrato de traspaso está incompleto. Verifica que una discrepancia deliberada pueda detectarse."
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Problema profesional",
+          "title": "Capacidad y resultado",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El trabajo suele pasar por chat, agente, análisis, documento y revisión. Lo importante es conservar entradas, definiciones y decisiones. Invocar varios agentes manualmente no construye una orquestación automática ni una verificación independiente."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones antes de ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Un análisis de escenarios produce una tabla en Excel o Analyst; un agente ayuda a clasificar evidencia; Word y PowerPoint presentan resultados. Si el revisor solo recibe la respuesta del preparador, puede repetir su error de definición. El traspaso debe contener fuentes y controles, no únicamente una conclusión bien redactada."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar, ejecutar y observar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Dibuja el proceso con sus etapas, pero define para cada frontera un contrato: artefacto de entrada, versión, campos mínimos, controles superados y pendientes. Usa un manifiesto compartido por los entregables. Para una revisión amplia, separa preparador y revisor cuando cambien propósito, corpus o permisos; para una revisión pequeña puede bastar un agente en contexto limpio más cálculo independiente. Si quieres automatizar una frontera, identifica la herramienta real que la ejecutaría, entradas/salidas y evidencia de ejecución; de lo contrario mantén el traspaso como tarea manual explícita.\n\n**Herramienta y habilitación.** Copilot Chat/Builder y aplicaciones; Studio cuando se requiera una herramienta o flujo real y exista entorno autorizado.\n\n**Entradas.** Tarea propia, artefactos de ensayo y contratos de agentes.\n**Resultado esperado.** Mapa de proceso y dos contratos de traspaso.\n**Alternativa y pérdida.** Checklist manual con archivos versionados: pierde ejecución automática, conserva continuidad y verificabilidad.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Fallo: el segundo agente confirma la cifra errónea porque recibió la nota del primero como única fuente. Diagnóstico: anclaje y fuente derivada. Proporciona documentos primarios y exige cálculos de contraste. Añadir más agentes con el mismo contexto no resuelve esa carencia."
+            }
+          ]
+        },
+        {
+          "id": "f3-l10-1-choice",
+          "type": "choice",
+          "concept": "system.handoff",
+          "prompt": "El agente revisor recibe solo la nota generada y coincide con ella. ¿Qué traspaso falta?",
+          "context": "Fallo: el segundo agente confirma la cifra errónea porque recibió la nota del primero como única fuente. Diagnóstico: anclaje y fuente derivada. Proporciona documentos primarios y exige cálculos de contraste. Añadir más agentes con el mismo contexto no resuelve esa carencia.",
+          "options": [
+            {
+              "text": "Entregar fuentes primarias y contrato de revisión, distinguiendo el traspaso manual de una ejecución orquestada",
+              "correct": true
+            },
+            {
+              "text": "Pedir al revisor que sea más independiente sin cambiar sus fuentes",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            },
+            {
+              "text": "Invocar a otro agente con la misma nota y aceptar mayoría de opiniones",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            }
+          ],
+          "explain": "El traspaso es un contrato de artefactos y evidencia. Más agentes no significan mejor control. Pide a otra persona continuar desde el paquete sin tu historial de chat. Si necesita inferir qué escenario o versión usar, el contrato de traspaso está incompleto. Verifica que una discrepancia deliberada pueda detectarse."
+        },
+        {
+          "id": "f3-l10-1-order",
+          "type": "order",
+          "concept": "system.handoff",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Diseñar traspasos de contexto entre herramientas y agentes",
+          "items": [
+            "Definir etapas, artefactos, versiones y responsabilidades",
+            "Especificar contrato y evidencia en cada traspaso",
+            "Probar una transferencia y verificar fuentes y controles fuera del consenso"
+          ],
+          "explain": "El traspaso es un contrato de artefactos y evidencia. Más agentes no significan mejor control. Pide a otra persona continuar desde el paquete sin tu historial de chat. Si necesita inferir qué escenario o versión usar, el contrato de traspaso está incompleto. Verifica que una discrepancia deliberada pueda detectarse."
+        },
+        {
+          "id": "f3-l10-1-portfolio",
+          "type": "portfolio",
+          "concept": "system.handoff",
+          "prompt": "Diseña un proceso de tres etapas para una tarea propia. Define un traspaso manual reproducible y una frontera que podría automatizarse. Justifica si necesitas uno o dos agentes.",
+          "context": "Resultado: Mapa de proceso y dos contratos de traspaso. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
+          "rubric": [
+            "Arquitectura: etapas y fronteras explícitas.",
+            "Trazabilidad: el traspaso conserva fuentes y versiones.",
+            "Criterio: justifica separar o unir agentes.",
+            "Utilidad: identifica qué parte realmente se automatiza.",
+            "Crítico: no presenta consenso u orquestación manual como verificación independiente."
+          ],
+          "solution": "El traspaso incluye tabla de resultados, definiciones, archivos y controles. El revisor recibe también fuentes primarias. Una frontera manual puede ser válida y más económica; una automática solo se acredita al ejecutar la herramienta o flujo y comprobar su salida.\n\nPide a otra persona continuar desde el paquete sin tu historial de chat. Si necesita inferir qué escenario o versión usar, el contrato de traspaso está incompleto. Verifica que una discrepancia deliberada pueda detectarse.\n\nTransferencia: El proceso puede servir a seguimiento de cartera, análisis corporativo, planificación o documentación. La división de etapas depende de responsabilidad y control, no de títulos profesionales.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Controles y aplicación a otro trabajo",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Pide a otra persona continuar desde el paquete sin tu historial de chat. Si necesita inferir qué escenario o versión usar, el contrato de traspaso está incompleto. Verifica que una discrepancia deliberada pueda detectarse.\n\nEl proceso puede servir a seguimiento de cartera, análisis corporativo, planificación o documentación. La división de etapas depende de responsabilidad y control, no de títulos profesionales."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Decisiones que debes conservar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El traspaso es un contrato de artefactos y evidencia. Más agentes no significan mejor control."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f3-l10-2",
+      "title": "Automatizar solo lo que conserva control y ahorra tiempo neto",
+      "summary": "Programación, Cowork y Studio pueden reducir tareas repetidas, pero incorporan preparación, revisión, consumo y mantenimiento.",
+      "minutes": 20,
+      "objectives": [
+        "Prueba un mecanismo disponible para una tarea recurrente o documenta el diseño pendiente si falta habilitación. Entrega comparación de tiempo y calidad, puntos de revisión y una decisión de continuar, limitar o retirar.",
+        "Repite con una segunda entrada comparable y revisa si el tiempo ahorrado se mantiene. Comprueba presupuesto/consumo cuando la función lo muestre y separa la parte no habilitada. No infieras permisos de producción a partir del laboratorio."
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Problema profesional",
+          "title": "Capacidad y resultado",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Programación, Cowork y Studio pueden reducir tareas repetidas, pero incorporan preparación, revisión, consumo y mantenimiento. Aprenderás a elegir un mecanismo y medir el ahorro neto sin convertir una simulación en capacidad de producción."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones antes de ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Una revisión periódica puede necesitar solo un recordatorio y una consulta preparada. Una tarea de varios pasos puede encajar en Cowork cuando la función, licencia y facturación estén habilitadas. Si necesitas registrar estado, evitar duplicados y manejar errores de conectores, un flujo de Studio puede estar justificado. En todos los casos, compara contra una ejecución manual equivalente, con el mismo estándar de calidad."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar, ejecutar y observar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Mide una línea base: minutos de preparar datos, ejecutar, esperar, verificar y corregir. Define qué puede ejecutarse solo y qué requiere revisión humana. Para programación, comprueba la función disponible y ensaya con fuentes ficticias; no prometas que una consulta programada recalcula un libro o actualiza todos los documentos. Para Cowork delimita entregables, fuentes, puntos de revisión y presupuesto de uso. Para Studio reutiliza contratos, pruebas de error e idempotencia de módulos previos. Mide dos o más ejecuciones comparables y registra fallos y mantenimiento; descarta la automatización si el ahorro neto o la calidad no compensan.\n\n**Herramienta y habilitación.** Programación y Cowork solo con disponibilidad, licencia, habilitación y facturación aplicables; Studio con rol y entorno permitidos. No son requisito del núcleo.\n\n**Entradas.** Tarea recurrente ficticia, dos ejecuciones comparables y registro de tiempos.\n**Resultado esperado.** Experimento o diseño pendiente con decisión de valor y control.\n**Alternativa y pérdida.** Recordatorio de calendario y checklist manual: pierde ejecución delegada, conserva cadencia y medición.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Fallo: se declara ahorro de40 minutos porque la generación tarda5, pero no se cuentan25 de preparación y20 de correcciones. Diagnóstico: medición parcial. Recalcula tiempo total y coste de revisar errores. Si la tarea cambia cada vez, reconsidera si una plantilla o proceso manual asistido es mejor que un flujo."
+            }
+          ]
+        },
+        {
+          "id": "f3-l10-2-choice",
+          "type": "choice",
+          "concept": "system.automate",
+          "prompt": "Generar tarda5min, preparar25 y corregir20 frente a45min manuales. ¿Cómo valoras la automatización?",
+          "context": "Fallo: se declara ahorro de40 minutos porque la generación tarda5, pero no se cuentan25 de preparación y20 de correcciones. Diagnóstico: medición parcial. Recalcula tiempo total y coste de revisar errores. Si la tarea cambia cada vez, reconsidera si una plantilla o proceso manual asistido es mejor que un flujo.",
+          "options": [
+            {
+              "text": "Comparar tiempo total, calidad, consumo y mantenimiento con una línea base equivalente antes de afirmar ahorro",
+              "correct": true
+            },
+            {
+              "text": "Medir solo el tiempo de generación, ya que preparar y revisar forman parte del trabajo habitual",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            },
+            {
+              "text": "Escalar la automatización al completar dos ejecuciones sin registrar los errores corregidos manualmente",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            }
+          ],
+          "explain": "Automatiza una unidad de trabajo verificable y mide el proceso completo. Repite con una segunda entrada comparable y revisa si el tiempo ahorrado se mantiene. Comprueba presupuesto/consumo cuando la función lo muestre y separa la parte no habilitada. No infieras permisos de producción a partir del laboratorio."
+        },
+        {
+          "id": "f3-l10-2-order",
+          "type": "order",
+          "concept": "system.automate",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Automatizar solo lo que conserva control y ahorra tiempo neto",
+          "items": [
+            "Definir línea base, criterio de calidad y puntos de revisión",
+            "Ensayar el mecanismo permitido con límites y registro de fallos",
+            "Medir ahorro neto y decidir mantener, limitar o retirar"
+          ],
+          "explain": "Automatiza una unidad de trabajo verificable y mide el proceso completo. Repite con una segunda entrada comparable y revisa si el tiempo ahorrado se mantiene. Comprueba presupuesto/consumo cuando la función lo muestre y separa la parte no habilitada. No infieras permisos de producción a partir del laboratorio."
+        },
+        {
+          "id": "f3-l10-2-portfolio",
+          "type": "portfolio",
+          "concept": "system.automate",
+          "prompt": "Prueba un mecanismo disponible para una tarea recurrente o documenta el diseño pendiente si falta habilitación. Entrega comparación de tiempo y calidad, puntos de revisión y una decisión de continuar, limitar o retirar.",
+          "context": "Resultado: Experimento o diseño pendiente con decisión de valor y control. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
+          "rubric": [
+            "Medición: incluye preparación, espera, verificación y corrección.",
+            "Control: puntos humanos, errores y límites definidos.",
+            "Capacidades: distingue programación, Cowork y flujo ejecutable.",
+            "Utilidad: decisión basada en calidad y ahorro neto.",
+            "Crítico: no presenta diseño no ejecutado como automatización operativa."
+          ],
+          "solution": "Una medición válida suma todos los tiempos y conserva errores detectados. Si la ejecución manual tardaba45 y el proceso asistido5+25+20=50, no existe ahorro neto aunque la generación sea rápida. El diseño puede ser útil, pero su aceptación requiere otra iteración o menor alcance.\n\nRepite con una segunda entrada comparable y revisa si el tiempo ahorrado se mantiene. Comprueba presupuesto/consumo cuando la función lo muestre y separa la parte no habilitada. No infieras permisos de producción a partir del laboratorio.\n\nTransferencia: Las tareas recurrentes varían entre equipos: seguimiento de indicadores, investigación, informes o documentos. La disciplina de medición y control se mantiene.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Controles y aplicación a otro trabajo",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Repite con una segunda entrada comparable y revisa si el tiempo ahorrado se mantiene. Comprueba presupuesto/consumo cuando la función lo muestre y separa la parte no habilitada. No infieras permisos de producción a partir del laboratorio.\n\nLas tareas recurrentes varían entre equipos: seguimiento de indicadores, investigación, informes o documentos. La disciplina de medición y control se mantiene."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Decisiones que debes conservar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Automatiza una unidad de trabajo verificable y mide el proceso completo."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f3-l10-3",
+      "title": "Construir tu propio agente y demostrar transferencia",
+      "summary": "El proyecto final no consiste en reproducir un agente prefabricado ni completar otra vez el ejemplo de Aurora.",
+      "minutes": 20,
+      "objectives": [
+        "Entrega un agente propio o un prototipo diseñado con ejecución pendiente explícita. Incluye contrato, fuentes, configuración, pruebas con al menos un fallo útil, mejora, límites, alternativa manual y criterio de siguiente iteración.",
+        "Revisa con la rúbrica, abre las fuentes y recalcula controles. Pide revisión externa cuando sea posible, sin confundir otro agente con independencia. Un proyecto pendiente de tenant sigue siendo útil como diseño, pero no acredita ejecución ni producción."
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Problema profesional",
+          "title": "Capacidad y resultado",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El proyecto final no consiste en reproducir un agente prefabricado ni completar otra vez el ejemplo de Aurora. Debe demostrar que sabes elegir una tarea, construir el contrato, configurar fuentes y capacidades, probar fallos y justificar dónde termina el agente."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones antes de ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Un profesional puede elegir revisar hipótesis; otro, preparar comparativas; otro, mantener documentación. Las tres tareas pueden usar el mismo método de diseño sin compartir campos, fuentes o salidas. Si tu agente solo funciona con los nombres y cifras del curso, has aprendido el ejemplo, no la capacidad."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar, ejecutar y observar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Elige una tarea recurrente diferente de los ejemplos y escribe un contrato sin datos confidenciales. Decide Builder o Studio según el control y las herramientas necesarias. Configura un prototipo personal con fuentes ficticias. Si usas Studio, incluye un tema o herramienta realmente ejecutado y una traza; si no está habilitado, entrega diseño y prueba manual, marcando la ejecución como pendiente. Construye cinco familias de pruebas y reserva una sexta. Ejecuta, registra fallos, mejora una versión y repite regresión. Conserva un paquete de entrega para que otra persona pueda repetir la configuración y valorar evidencia.\n\n**Herramienta y habilitación.** Builder o Studio según contrato y habilitación; aplicaciones para verificar artefactos. El proyecto no exige permisos administrativos ni publicación.\n\n**Entradas.** Tarea nueva, corpus ficticio propio, contratos y batería de pruebas.\n**Resultado esperado.** Paquete de agente propio y registro honesto de ejecución.\n**Alternativa y pérdida.** Contrato probado en chats aislados y diseño de Studio pendiente: pierde agente/herramientas configurados, conserva método y pruebas manuales.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Fallo: se presenta un agente con instrucciones largas y varias respuestas favorables, pero no hay corpus aislado, fallos ni rastro de herramientas. Diagnóstico: demostración insuficiente de construcción. Reduce alcance, documenta configuración y ejecuta una prueba que pueda rechazarlo. Si no hay acceso, no reemplaces la evidencia real por una captura del simulador."
+            }
+          ]
+        },
+        {
+          "id": "f3-l10-3-choice",
+          "type": "choice",
+          "concept": "system.transfer",
+          "prompt": "Tu prototipo funciona solo con las cifras y fuentes del ejemplo. ¿Qué demuestra transferencia?",
+          "context": "Fallo: se presenta un agente con instrucciones largas y varias respuestas favorables, pero no hay corpus aislado, fallos ni rastro de herramientas. Diagnóstico: demostración insuficiente de construcción. Reduce alcance, documenta configuración y ejecuta una prueba que pueda rechazarlo. Si no hay acceso, no reemplaces la evidencia real por una captura del simulador.",
+          "options": [
+            {
+              "text": "Demostrar configuración y pruebas reproducibles, diferenciando lo ejecutado, lo diseñado y lo pendiente",
+              "correct": true
+            },
+            {
+              "text": "Aceptar el proyecto por número de instrucciones y respuestas con buen formato",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            },
+            {
+              "text": "Reutilizar el expediente y la solución de Aurora cambiando solo los nombres de empresa",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            }
+          ],
+          "explain": "Domina el método de construcción. El agente específico lo decides tú. Revisa con la rúbrica, abre las fuentes y recalcula controles. Pide revisión externa cuando sea posible, sin confundir otro agente con independencia. Un proyecto pendiente de tenant sigue siendo útil como diseño, pero no acredita ejecución ni producción."
+        },
+        {
+          "id": "f3-l10-3-order",
+          "type": "order",
+          "concept": "system.transfer",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Construir tu propio agente y demostrar transferencia",
+          "items": [
+            "Elegir tarea nueva y diseñar contrato, fuentes y capacidades",
+            "Construir prototipo, ejecutar fallos y mejorar una versión",
+            "Entregar evidencia reproducible, límites y decisión de siguiente iteración"
+          ],
+          "explain": "Domina el método de construcción. El agente específico lo decides tú. Revisa con la rúbrica, abre las fuentes y recalcula controles. Pide revisión externa cuando sea posible, sin confundir otro agente con independencia. Un proyecto pendiente de tenant sigue siendo útil como diseño, pero no acredita ejecución ni producción."
+        },
+        {
+          "id": "f3-l10-3-portfolio",
+          "type": "portfolio",
+          "concept": "system.transfer",
+          "prompt": "Entrega un agente propio o un prototipo diseñado con ejecución pendiente explícita. Incluye contrato, fuentes, configuración, pruebas con al menos un fallo útil, mejora, límites, alternativa manual y criterio de siguiente iteración.",
+          "context": "Resultado: Paquete de agente propio y registro honesto de ejecución. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
+          "rubric": [
+            "Transferencia: tarea y datos diferentes de los ejemplos.",
+            "Construcción: configuración y capacidad elegidas con criterio.",
+            "Pruebas: casos normales y adversos, fallo útil y regresión.",
+            "Trazabilidad: otra persona puede repetir y contrastar.",
+            "Crítico: distingue diseño, simulación y ejecución real sin acreditación automática."
+          ],
+          "solution": "El entregable puede ser pequeño y profundo: un agente de comparación documental con corpus aislado y seis pruebas, o un agente Studio con un tema y flujo contrastados. No se puntúa por complejidad ni cantidad de agentes. La revisión se centra en consistencia, evidencia, utilidad y errores críticos.\n\nRevisa con la rúbrica, abre las fuentes y recalcula controles. Pide revisión externa cuando sea posible, sin confundir otro agente con independencia. Un proyecto pendiente de tenant sigue siendo útil como diseño, pero no acredita ejecución ni producción.\n\nTransferencia: La transferencia ya ocurre al cambiar tarea, corpus y usuario. Después puedes adaptar formatos internos o una especialidad concreta; el programa te ha enseñado cómo construirlos, no cuál deberías usar.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Controles y aplicación a otro trabajo",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Revisa con la rúbrica, abre las fuentes y recalcula controles. Pide revisión externa cuando sea posible, sin confundir otro agente con independencia. Un proyecto pendiente de tenant sigue siendo útil como diseño, pero no acredita ejecución ni producción.\n\nLa transferencia ya ocurre al cambiar tarea, corpus y usuario. Después puedes adaptar formatos internos o una especialidad concreta; el programa te ha enseñado cómo construirlos, no cuál deberías usar."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Decisiones que debes conservar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Domina el método de construcción. El agente específico lo decides tú."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "exam": {
+    "title": "Comprobación de decisiones",
+    "size": 6,
+    "extra": [
+      {
+        "id": "f3-exam10-1",
+        "type": "choice",
+        "concept": "system.handoff",
+        "prompt": "El revisor recibe solo la respuesta del preparador y coincide con ella. ¿Qué demuestra?",
+        "options": [
+          {
+            "text": "Coincidencia sobre una fuente derivada; falta contraste con documentos y cálculos primarios",
+            "correct": true
+          },
+          {
+            "text": "Verificación independiente si las instrucciones del revisor son distintas",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          },
+          {
+            "text": "Orquestación correcta porque participaron dos agentes",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          }
+        ],
+        "explain": "Coincidencia sobre una fuente derivada; falta contraste con documentos y cálculos primarios. La decisión debe sostenerse con evidencia observable y límites explícitos."
+      },
+      {
+        "id": "f3-exam10-2",
+        "type": "choice",
+        "concept": "system.automate",
+        "prompt": "El proceso asistido genera en5min, prepara en25 y corrige en20 frente a45 manuales. ¿Qué concluyes?",
+        "options": [
+          {
+            "text": "No hay ahorro neto de tiempo en ese ensayo; revisar alcance y calidad",
+            "correct": true
+          },
+          {
+            "text": "Hay40 minutos de ahorro porque solo debe contarse generación",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          },
+          {
+            "text": "Hay mejora suficiente si el resultado final tiene mejor formato",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          }
+        ],
+        "explain": "No hay ahorro neto de tiempo en ese ensayo; revisar alcance y calidad. La decisión debe sostenerse con evidencia observable y límites explícitos."
+      },
+      {
+        "id": "f3-exam10-3",
+        "type": "choice",
+        "concept": "system.transfer",
+        "prompt": "Un prototipo solo se ha ensayado en el simulador local. ¿Cómo entregarlo?",
+        "options": [
+          {
+            "text": "Diseñado o simulado, con pruebas reales pendientes y límites explícitos",
+            "correct": true
+          },
+          {
+            "text": "Implementado y validado, pendiente solo de compartirlo",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          },
+          {
+            "text": "Listo para producción si todos los objetivos locales están marcados",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          }
+        ],
+        "explain": "Diseñado o simulado, con pruebas reales pendientes y límites explícitos. La decisión debe sostenerse con evidencia observable y límites explícitos."
+      }
+    ]
+  }
+}

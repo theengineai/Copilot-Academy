@@ -1,384 +1,393 @@
 {
   "id": "m3",
-  "title": "One Pager y presentación de financiación",
-  "subtitle": "Narrativa, edición sobre plantilla y consistencia entre entregables.",
-  "level": "Práctica avanzada",
-  "icon": "book",
-  "color": "#A14574",
+  "title": "Fuentes, capacidades y pruebas del agente",
+  "subtitle": "Conocimiento separado, capacidades efectivas y pruebas que pueden rechazar el agente.",
+  "level": "Herramientas y práctica transferible",
+  "icon": "agents",
+  "color": "#5B4FD6",
   "lessons": [
     {
-      "id": "f2-l3-1",
-      "title": "Una página que permite decidir qué falta",
-      "summary": "Un One Pager de financiación sirve para entender la propuesta y sus condiciones de viabilidad.",
-      "minutes": 30,
+      "id": "f3-l3-1",
+      "title": "Diseñar conocimiento, ejemplos y expedientes como capas separadas",
+      "summary": "Las fuentes de un agente no son una carpeta indiferenciada.",
+      "minutes": 20,
       "objectives": [
-        "Revisa el One Pager en una página y entrega también un registro de cinco cambios. Explica cuál afecta a la decisión y cuál solo mejora claridad.",
-        "Las cifras coinciden con el modelo y los mitigantes tienen responsable o evidencia. La página se entiende sin leer veinte anexos y no oculta límites materiales. Para otra operación reutiliza la estructura vacía y la tabla de definiciones."
+        "Diseña una matriz de conocimiento para tu agente con tres clases de fuente, propietario, vigencia y uso permitido. Prepara un segundo corpus ficticio y prueba que no hereda cifras del primero.",
+        "Abre citas y busca referencias ajenas al corpus. Cambia una fecha en una fuente de ensayo y comprueba si el agente distingue la versión. La falta de contaminación observada en una consulta no garantiza aislamiento en todas."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "Un One Pager de financiación sirve para entender la propuesta y sus condiciones de viabilidad. Trabaja sobre one-pager.docx, plantilla educativa propia con errores deliberados; no es un formato interno Santander."
+              "body": "Las fuentes de un agente no son una carpeta indiferenciada. Necesitas decidir qué enseña método, qué aporta datos del trabajo actual y qué solo muestra forma. Esta separación permite reutilizar el agente entre compañías, equipos y especialidades."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "El borrador llama 9 al EBITDA base y 20 a la deuda neta. Corrige a 8 base y 18 neta en cierre, dejando visible que 9 es management. La estructura debe enlazar actividad, adquisición, 28 de usos, fuentes 20+8, generación de caja, riesgos y siguiente decisión. «Compañía líder y sólida» no sustituye evidencia de concentración o repago."
+              "body": "La metodología define cómo etiquetar métricas. expediente.docx aporta datos de Aurora. documento-trabajo.docx muestra una narrativa en revisión y puede contener discrepancias. Si incorporas los tres como autoridad equivalente, el agente puede copiar el error mejor redactado. Una plantilla enseña secciones; no demuestra las cifras que contiene."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "En Word abre una copia y pide cambios en secciones concretas: síntesis de operación, cuadro de cifras con definiciones y tres riesgos con mitigantes verificables. Proporciona una tabla maestra con dato, período, escenario y fuente. Encarga títulos con conclusión y una petición concreta al lector. Revisa que el documento distingue información pendiente de condiciones que ya existen.\n\n**Herramienta, requisitos, entradas y salida.** Word con Microsoft 365 Copilot habilitado; documento editable. Entradas: one-pager.docx, caso.docx, modelo.xlsx y tabla maestra exportada. Salida: One Pager revisado y cambios. Alternativa: chat con extractos para proponer redacción y edición manual; pierdes edición contextual en Word.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "Construye tres capas: instrucciones permanentes; referencias metodológicas depuradas; corpus de trabajo identificado por versión. En conocimiento selecciona fuentes mediante mecanismos admitidos por Builder. Si el caso queda fijado en conocimiento, crea una copia de prueba aislada por corpus o revisa y retira esas fuentes antes de reutilizar. Para fuentes enlazadas comprueba acceso con el usuario autorizado; para archivos incrustados verifica qué contenido se expone al compartir. No asumas que quitar un enlace borra una respuesta ya generada. Añade una regla de prioridad por tipo de afirmación y una salida que conserve conflictos.\n\n**Herramienta y habilitación.** Agent Builder con fuentes admitidas y permisos comprobados; SharePoint/OneDrive solo cuando estén accesibles y autorizados.\n\n**Entradas.** metodologia.md, expediente.docx y documento-trabajo.docx.\n**Resultado esperado.** Mapa de conocimiento y prueba de aislamiento entre corpus.\n**Alternativa y pérdida.** Paquetes explícitos por chat nuevo: pierde recuperación persistente, conserva separación y trazabilidad.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Guía de agentes](content/resources/agentes.md) · [Laboratorio Studio](content/resources/studio-lab.md) · [Pruebas](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "El borrador afirma que un contrato «garantiza» las ventas cuando el caso solo menciona relaciones recurrentes. Pide localizar el soporte contractual y sustituye la garantía por una formulación condicionada. Si no hay evidencia, no basta suavizar el adjetivo: registra el dato pendiente y su efecto en la tesis."
+              "body": "Fallo: un nuevo ensayo cita Aurora al analizar una empresa distinta. Diagnóstico: contaminación de conocimiento o de conversación. Revisa referencias configuradas, memoria/contexto de la sesión y ejemplos con datos reales. Retira el material improcedente, inicia prueba limpia y plantea una pregunta que intente recuperar el caso anterior. La abstención ante datos no aportados es parte del test."
             }
           ]
         },
         {
-          "id": "f2-3-1-decision",
+          "id": "f3-l3-1-choice",
           "type": "choice",
-          "concept": "docs.onepager",
-          "prompt": "¿Qué título comunica mejor el estado del análisis?",
+          "concept": "knowledge.sources",
+          "prompt": "Una plantilla tiene cifras históricas erróneas y un libro cálculos actuales. ¿Qué arquitectura evita copiar el error?",
+          "context": "Fallo: un nuevo ensayo cita Aurora al analizar una empresa distinta. Diagnóstico: contaminación de conocimiento o de conversación. Revisa referencias configuradas, memoria/contexto de la sesión y ejemplos con datos reales. Retira el material improcedente, inicia prueba limpia y plantea una pregunta que intente recuperar el caso anterior. La abstención ante datos no aportados es parte del test.",
           "options": [
             {
-              "text": "La compra exige preservar liquidez ante el deterioro de cobros; calendario de deuda pendiente de contraste",
+              "text": "Separar la plantilla como estructura, la metodología como regla y el expediente como evidencia; probar aislamiento con un corpus nuevo",
               "correct": true
             },
             {
-              "text": "Una oportunidad atractiva con relevantes fortalezas y potencial",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Incorporar ambos como evidencia y priorizar siempre la fecha más reciente, sin distinguir la función de cada archivo",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "Una operación aprobable porque el EBITDA previsto alcanza 9 M€",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Conservar el corpus anterior para comparar y pedir al agente que use solo lo relevante, sin prueba de contaminación",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Un título concluye; una cifra se define; un mitigante requiere evidencia. Edita por secciones para preservar trabajo útil."
+          "explain": "Un ejemplo transmite más que formato: depura también cifras, tono y desenlace. Abre citas y busca referencias ajenas al corpus. Cambia una fecha en una fuente de ensayo y comprueba si el agente distingue la versión. La falta de contaminación observada en una consulta no garantiza aislamiento en todas."
         },
         {
-          "id": "f2-3-1-sequence",
+          "id": "f3-l3-1-order",
           "type": "order",
-          "concept": "docs.onepager",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "knowledge.sources",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Diseñar conocimiento, ejemplos y expedientes como capas separadas",
           "items": [
-            "Fijar tabla maestra de cifras y definiciones",
-            "Editar secciones con mensajes y evidencia",
-            "Revisar mitigantes y retirar conclusiones sin soporte"
+            "Clasificar fuentes por método, ejemplo y datos del trabajo",
+            "Configurar corpus y prioridad con acceso explícito",
+            "Cambiar expediente y probar contaminación y abstención"
           ],
-          "explain": "Las cifras coinciden con el modelo y los mitigantes tienen responsable o evidencia. La página se entiende sin leer veinte anexos y no oculta límites materiales. Para otra operación reutiliza la estructura vacía y la tabla de definiciones."
+          "explain": "Un ejemplo transmite más que formato: depura también cifras, tono y desenlace. Abre citas y busca referencias ajenas al corpus. Cambia una fecha en una fuente de ensayo y comprueba si el agente distingue la versión. La falta de contaminación observada en una consulta no garantiza aislamiento en todas."
         },
         {
-          "id": "f2-3-1-portfolio",
+          "id": "f3-l3-1-portfolio",
           "type": "portfolio",
-          "concept": "docs.onepager",
-          "prompt": "Revisa el One Pager en una página y entrega también un registro de cinco cambios. Explica cuál afecta a la decisión y cuál solo mejora claridad.",
+          "concept": "knowledge.sources",
+          "prompt": "Diseña una matriz de conocimiento para tu agente con tres clases de fuente, propietario, vigencia y uso permitido. Prepara un segundo corpus ficticio y prueba que no hereda cifras del primero.",
+          "context": "Resultado: Mapa de conocimiento y prueba de aislamiento entre corpus. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Consistencia: 8 base, 9 management y 18 neta apertura correctamente etiquetados.",
-            "Trazabilidad: cifras materiales llevan fecha, definición y fuente.",
-            "Interpretación: narrativa une propuesta, caja, riesgos y pendientes.",
-            "Utilidad: una página legible con petición concreta.",
-            "Crítico: no convertir relación comercial en garantía contractual."
+            "Conocimiento: cada fuente tiene función, versión y vigencia.",
+            "Aislamiento: el segundo corpus no hereda cifras del primero.",
+            "Trazabilidad: conflictos se conservan con ubicación.",
+            "Utilidad: plantilla depurada sin desenlace implícito.",
+            "Crítico: no compartir contenido incrustado sin revisar su alcance."
           ],
-          "solution": "El borrador llama 9 al EBITDA base y 20 a la deuda neta. Corrige a 8 base y 18 neta en cierre, dejando visible que 9 es management. La estructura debe enlazar actividad, adquisición, 28 de usos, fuentes 20+8, generación de caja, riesgos y siguiente decisión. «Compañía líder y sólida» no sustituye evidencia de concentración o repago.\n\nLas cifras coinciden con el modelo y los mitigantes tienen responsable o evidencia. La página se entiende sin leer veinte anexos y no oculta límites materiales. Para otra operación reutiliza la estructura vacía y la tabla de definiciones.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "La matriz puede marcar metodologia.md como permanente, expediente.docx como temporal y documento-trabajo.docx como ejemplo/borrador. El segundo corpus usa compañías diferentes y una pregunta deliberada sobre Aurora que no debe responder con datos ausentes. Si el corpus permanece en conocimiento, una copia por ensayo simplifica el control.\n\nAbre citas y busca referencias ajenas al corpus. Cambia una fecha en una fuente de ensayo y comprueba si el agente distingue la versión. La falta de contaminación observada en una consulta no garantiza aislamiento en todas.\n\nTransferencia: En un equipo de inversiones cambian emisores; en FP&A, unidades y meses; en asesoramiento, clientes. La arquitectura de conocimiento se conserva y el corpus se sustituye.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "Las cifras coinciden con el modelo y los mitigantes tienen responsable o evidencia. La página se entiende sin leer veinte anexos y no oculta límites materiales. Para otra operación reutiliza la estructura vacía y la tabla de definiciones.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "Abre citas y busca referencias ajenas al corpus. Cambia una fecha en una fuente de ensayo y comprueba si el agente distingue la versión. La falta de contaminación observada en una consulta no garantiza aislamiento en todas.\n\nEn un equipo de inversiones cambian emisores; en FP&A, unidades y meses; en asesoramiento, clientes. La arquitectura de conocimiento se conserva y el corpus se sustituye."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Un título concluye; una cifra se define; un mitigante requiere evidencia. Edita por secciones para preservar trabajo útil."
+              "body": "Un ejemplo transmite más que formato: depura también cifras, tono y desenlace."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l3-2",
-      "title": "De plantilla educativa a narrativa FARE",
-      "summary": "Construye una presentación de financiación tipo FARE con fare.pptx como soporte educativo propio.",
-      "minutes": 30,
+      "id": "f3-l3-2",
+      "title": "Configurar capacidades y entender sus límites efectivos",
+      "summary": "No basta con que un agente diga que puede analizar, crear o ejecutar.",
+      "minutes": 20,
       "objectives": [
-        "Reconstruye tres diapositivas críticas: estructura de financiación, puente de caja y riesgos. Entrega una nota sobre el mensaje que retiraste por carecer de soporte.",
-        "Cada slide tiene conclusión respaldada, fuente y escenario. Las etiquetas no se cortan y el texto se lee en pantalla pequeña. Comprueba gráfico contra tabla origen. Para otra operación conserva composición y preguntas, sustituyendo evidencia y narrativa."
+        "Construye una tabla capacidad→prueba→evidencia→límite. Incluye al menos una petición que el agente debe derivar a otra herramienta y otra que debe rechazar por falta de acceso.",
+        "Repite una prueba con un archivo o dato no accesible y comprueba que el resultado no afirma haberlo leído. Verifica el artefacto fuera de la conversación. Registra producto, fecha y configuración porque una capacidad puede variar por despliegue."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "Construye una presentación de financiación tipo FARE con fare.pptx como soporte educativo propio. El objetivo es que cada diapositiva responda a una pregunta del decisor y mantenga una secuencia causal."
+              "body": "No basta con que un agente diga que puede analizar, crear o ejecutar. Hay que distinguir lo que permiten sus capacidades configuradas, lo que puede hacer la aplicación y lo que exige una herramienta de Studio. El resultado es un inventario probado de posibilidades y límites."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "La secuencia propuesta es: actividad y motivo de compra; perímetro y Sources & Uses; hipótesis y escenarios; caja y repago; riesgos, mitigantes y próximos pasos. El gráfico de EBITDA debe mostrar 8 base y 9 management con etiquetas explícitas. Una tabla de deuda bruta, caja disponible y deuda neta evita esconder las definiciones en una nota."
+              "body": "Pedir «actualiza las fórmulas de modelo.xlsx» a un agente documental puede producir instrucciones o una extracción. No demuestra edición. Si Builder muestra análisis de datos, puedes ensayar cálculos y artefactos admitidos, pero no asumir recálculo fiel de macros, vínculos o todo el libro. Una acción que escribe un registro necesita una herramienta real y sus permisos; una instrucción no crea ese acceso."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "Abre una copia de la plantilla. En PowerPoint con Copilot pide primero un guion de mensajes apoyados en el One Pager corregido; después genera o modifica diapositivas concretas. Usa títulos con conclusión y una evidencia principal por slide. Para caja, elige puente o tabla cuando permita entender capex y circulante; para escenarios, barras con escala común. Verifica manualmente series, unidades, fuentes, legibilidad y estilo. La fidelidad exacta a plantilla depende de la función disponible y exige revisión.\n\n**Herramienta, requisitos, entradas y salida.** PowerPoint con Copilot y creación/edición habilitada; comportamiento de plantillas según versión. Entradas: fare.pptx, One Pager corregido y tablas del modelo. Salida: deck educativo revisado. Alternativa: guion en chat y edición manual de la plantilla; pierdes generación contextual, mantienes narrativa y verificación.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "En Configurar revisa las capacidades que muestra tu tenant y registra cuáles activas y por qué. Prepara una prueba mínima por capacidad: una consulta de fuente, un cálculo controlado o un artefacto, según lo que realmente aparezca. Antes de utilizar una salida como archivo final, abre el resultado en la aplicación, inspecciona sus fórmulas o elementos editables y comprueba la persistencia. El ajuste «Only use specified sources», cuando exista, prioriza fuentes y no constituye bloqueo absoluto del conocimiento general. Para acciones o flujos no disponibles en Builder, documenta el contrato que implementarás en Studio; no simules que Builder ya lo ejecuta.\n\n**Herramienta y habilitación.** Agent Builder con capacidades realmente visibles; Excel/Word/PowerPoint para comprobar artefactos; Studio como ampliación con rol y entorno autorizados.\n\n**Entradas.** agente configurado, modelo.xlsx y una petición fuera de sus capacidades.\n**Resultado esperado.** Inventario de capacidades con evidencias y derivaciones.\n**Alternativa y pérdida.** Chat y aplicaciones de forma manual: pierde capacidades configuradas y acciones integradas, conserva las pruebas de resultado.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Guía de agentes](content/resources/agentes.md) · [Laboratorio Studio](content/resources/studio-lab.md) · [Pruebas](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "El resultado añade seis diapositivas genéricas de mercado y reduce el análisis de repago a una frase. No lo arregles solo quitando texto: vuelve al guion, elimina mensajes sin evidencia y reserva una diapositiva a caja posterior al servicio. Si el gráfico queda como imagen, no lo presentes como vinculado automáticamente a Excel."
+              "body": "Fallo: respuesta sin cita con una cifra plausible de mercado aunque las instrucciones limitan el corpus. Diagnóstico: la preferencia de fuentes no es una barrera técnica. Contrasta la cifra, incorpora abstención explícita y prueba una pregunta sin soporte. Revisa además si la consulta necesita Researcher o investigación externa, en lugar de forzar al agente documental."
             }
           ]
         },
         {
-          "id": "f2-3-2-decision",
+          "id": "f3-l3-2-choice",
           "type": "choice",
-          "concept": "docs.slides",
-          "prompt": "Una slide dice «repago holgado» y solo muestra EBITDA. ¿Qué cambio añade evidencia útil?",
+          "concept": "knowledge.capabilities",
+          "prompt": "Una capacidad de datos pasa una suma simple. ¿Eso demuestra edición fiel de un libro complejo?",
+          "context": "Fallo: respuesta sin cita con una cifra plausible de mercado aunque las instrucciones limitan el corpus. Diagnóstico: la preferencia de fuentes no es una barrera técnica. Contrasta la cifra, incorpora abstención explícita y prueba una pregunta sin soporte. Revisa además si la consulta necesita Researcher o investigación externa, en lugar de forzar al agente documental.",
           "options": [
             {
-              "text": "Mostrar puente a caja después de capex, NWC, intereses y amortización, con límites y escenario",
+              "text": "Probar el resultado observable y documentar que una preferencia de fuentes o una instrucción no crea una barrera de acceso ni una herramienta",
               "correct": true
             },
             {
-              "text": "Mostrar EBITDA menos intereses como caja de repago y dejar capex y circulante en anexo sin cuantificar",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Considerar demostrada la capacidad general de modelización porque la operación controlada se ejecutó sin error",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "Mostrar solo deuda neta/EBITDA y concluir repago a partir del múltiplo de apertura",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Conservar la capacidad activada y aceptar los resultados si el agente explica que respetó fórmulas, sin abrir el artefacto",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Diseña el hilo antes de generar slides. Revisa series y gráficos como datos, no como decoración."
+          "explain": "Prueba la capacidad mínima. Una instrucción orienta comportamiento; no concede permisos ni implementa acciones. Repite una prueba con un archivo o dato no accesible y comprueba que el resultado no afirma haberlo leído. Verifica el artefacto fuera de la conversación. Registra producto, fecha y configuración porque una capacidad puede variar por despliegue."
         },
         {
-          "id": "f2-3-2-sequence",
+          "id": "f3-l3-2-order",
           "type": "order",
-          "concept": "docs.slides",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "knowledge.capabilities",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Configurar capacidades y entender sus límites efectivos",
           "items": [
-            "Diseñar secuencia de preguntas y mensajes",
-            "Editar slides sobre la plantilla educativa",
-            "Contrastar series y revisar legibilidad y conclusiones"
+            "Inventariar capacidades visibles y necesidad del contrato",
+            "Ejecutar una prueba mínima con control independiente",
+            "Aceptar la capacidad demostrada o derivar la tarea con su pérdida explícita"
           ],
-          "explain": "Cada slide tiene conclusión respaldada, fuente y escenario. Las etiquetas no se cortan y el texto se lee en pantalla pequeña. Comprueba gráfico contra tabla origen. Para otra operación conserva composición y preguntas, sustituyendo evidencia y narrativa."
+          "explain": "Prueba la capacidad mínima. Una instrucción orienta comportamiento; no concede permisos ni implementa acciones. Repite una prueba con un archivo o dato no accesible y comprueba que el resultado no afirma haberlo leído. Verifica el artefacto fuera de la conversación. Registra producto, fecha y configuración porque una capacidad puede variar por despliegue."
         },
         {
-          "id": "f2-3-2-portfolio",
+          "id": "f3-l3-2-portfolio",
           "type": "portfolio",
-          "concept": "docs.slides",
-          "prompt": "Reconstruye tres diapositivas críticas: estructura de financiación, puente de caja y riesgos. Entrega una nota sobre el mensaje que retiraste por carecer de soporte.",
+          "concept": "knowledge.capabilities",
+          "prompt": "Construye una tabla capacidad→prueba→evidencia→límite. Incluye al menos una petición que el agente debe derivar a otra herramienta y otra que debe rechazar por falta de acceso.",
+          "context": "Resultado: Inventario de capacidades con evidencias y derivaciones. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Consistencia: gráficos y tablas reproducen escenario y unidad del modelo.",
-            "Trazabilidad: cada mensaje tiene fuente identificable.",
-            "Interpretación: secuencia permite entender compra, estructura y repago.",
-            "Utilidad: títulos concluyentes y evidencia legible en slides.",
-            "Crítico: no afirmar vínculo vivo con Excel ni fidelidad automática de plantilla."
+            "Capacidades: distingue configuración, aplicación y herramienta externa.",
+            "Evidencia: cada capacidad se apoya en un resultado abierto y contrastado.",
+            "Límites: no promete búsqueda exhaustiva ni recálculo universal.",
+            "Selección: deriva tareas que otra superficie resuelve mejor.",
+            "Crítico: no confunde instrucciones con permisos o ejecución real."
           ],
-          "solution": "La secuencia propuesta es: actividad y motivo de compra; perímetro y Sources & Uses; hipótesis y escenarios; caja y repago; riesgos, mitigantes y próximos pasos. El gráfico de EBITDA debe mostrar 8 base y 9 management con etiquetas explícitas. Una tabla de deuda bruta, caja disponible y deuda neta evita esconder las definiciones en una nota.\n\nCada slide tiene conclusión respaldada, fuente y escenario. Las etiquetas no se cortan y el texto se lee en pantalla pequeña. Comprueba gráfico contra tabla origen. Para otra operación conserva composición y preguntas, sustituyendo evidencia y narrativa.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "Una tabla válida puede demostrar consulta documental con citas y declarar pendiente análisis de datos si el control no aparece. Para edición de libro, compara la copia abierta en Excel. Para una escritura externa, exige registro de ejecución de la herramienta y destino autorizado. Que el agente describa el procedimiento no cuenta como evidencia.\n\nRepite una prueba con un archivo o dato no accesible y comprueba que el resultado no afirma haberlo leído. Verifica el artefacto fuera de la conversación. Registra producto, fecha y configuración porque una capacidad puede variar por despliegue.\n\nTransferencia: El mismo inventario sirve a agentes de informes, investigación, documentación o soporte analítico. Las capacidades se eligen por el contrato; no por prestigio del nombre.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "Cada slide tiene conclusión respaldada, fuente y escenario. Las etiquetas no se cortan y el texto se lee en pantalla pequeña. Comprueba gráfico contra tabla origen. Para otra operación conserva composición y preguntas, sustituyendo evidencia y narrativa.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "Repite una prueba con un archivo o dato no accesible y comprueba que el resultado no afirma haberlo leído. Verifica el artefacto fuera de la conversación. Registra producto, fecha y configuración porque una capacidad puede variar por despliegue.\n\nEl mismo inventario sirve a agentes de informes, investigación, documentación o soporte analítico. Las capacidades se eligen por el contrato; no por prestigio del nombre."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Diseña el hilo antes de generar slides. Revisa series y gráficos como datos, no como decoración."
+              "body": "Prueba la capacidad mínima. Una instrucción orienta comportamiento; no concede permisos ni implementa acciones."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l3-3",
-      "title": "Actualizar tres documentos sin rehacerlos",
-      "summary": "Cuando cambia el modelo, el riesgo es que convivan cifras correctas en Excel y antiguas en Word o PowerPoint.",
-      "minutes": 30,
+      "id": "f3-l3-3",
+      "title": "Crear una batería de pruebas que permita fallar",
+      "summary": "Una demostración favorable no enseña si el agente soporta trabajo real.",
+      "minutes": 20,
       "objectives": [
-        "Entrega un inventario de discrepancias entre los tres archivos y corrige cifras, definiciones y dos conclusiones. Conserva el registro de qué partes no requirieron cambio y por qué.",
-        "No quedan ratios sin escenario o fechas incompatibles; el gráfico coincide con su tabla y los documentos abren. Para otra operación usa un registro de dependencias desde la primera versión, no al final."
+        "Prepara seis pruebas propias para tu contrato, incluyendo una contradicción útil y un caso reservado. Ejecuta las disponibles y entrega un registro con fallos y una decisión justificada de aceptar, mejorar o limitar el agente.",
+        "Pide a otra persona revisar una muestra sin conocer tu valoración. La revisión de otro agente no equivale a verificación independiente. Comprueba concordancia de evidencia, no solo similitud de respuestas."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "Cuando cambia el modelo, el riesgo es que convivan cifras correctas en Excel y antiguas en Word o PowerPoint. El resultado es una matriz de impacto y un paquete corregido con decisiones preservadas."
+              "body": "Una demostración favorable no enseña si el agente soporta trabajo real. Necesitas casos que puedan fallar por razones observables y una forma de repetirlos tras cada cambio. La batería debe medir conducta, trazabilidad y límites, no palabras clave."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "El EBITDA base es 8; one-pager.docx y fare.pptx contienen 9 como base deliberadamente. Una tabla maestra debe incluir EBITDA 2025 8 histórico, 2026 management 9, base 8 y revisión 7, más deuda bruta 20, caja apertura 2 y neta apertura 18. Etiquetar solo «EBITDA» favorece errores aunque los números sean correctos."
+              "body": "Un caso normal aporta cifra, año y definición. Uno ambiguo omite el escenario. Uno incompleto omite la base de cálculo. Uno contradictorio trae dos cifras con igual autoridad. Otro pide una acción ajena al agente. La prueba de contaminación intenta recuperar datos del corpus anterior; la de instrucciones ocultas contiene un texto que pide ignorar el contrato. Las respuestas esperadas son comportamientos y evidencias, no una frase exacta."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "Extrae de cada archivo cifras y frases decisivas a un registro: ubicación, valor, definición, fuente y estado. Compara con el modelo recalculado. Pide a Copilot propuestas de cambios solo en pasajes afectados y aplica una revisión con control de cambios o copias versionadas. Comprueba notas, gráficos, títulos y anexos además del cuerpo. La comparación de extracciones complementa la apertura real de los archivos.\n\n**Herramienta, requisitos, entradas y salida.** Excel, Word y PowerPoint; Copilot opcional para extracción y propuesta, licencias de cada aplicación. Entradas: modelo.xlsx, one-pager.docx, fare.pptx. Salida: matriz y paquete consistente. Alternativa: registro manual de cifras con revisión cruzada; pierdes extracción asistida. No se promete sincronización automática entre aplicaciones.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "Parte de pruebas-agentes.json. Para cada fixture crea un paquete con los archivos que declara, una conversación nueva, versión de agente y consulta idéntica. Define aserciones antes de ver la respuesta: cita correcta, período, cálculo verificable, pregunta de aclaración o abstención. Guarda respuesta literal y localización de la evidencia. Marca pass/fail/pending por aserción y severidad; cualquier error crítico bloquea aceptación hasta corregirlo. Reserva un caso no usado para diseñar las instrucciones. Tras una mejora repite el fallo, los normales y el reservado.\n\n**Herramienta y habilitación.** Agent Builder y conversaciones de prueba; registro manual. Evaluación integrada de Studio se trabaja después y requiere disponibilidad propia.\n\n**Entradas.** pruebas-agentes.json, contrato versionado y corpus ficticios separados.\n**Resultado esperado.** Batería propia y registro de ejecuciones con estado real.\n**Alternativa y pérdida.** Registro manual en Excel/Word con chats aislados: pierde ejecución o scoring integrado, conserva contraste de evidencias.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Guía de agentes](content/resources/agentes.md) · [Laboratorio Studio](content/resources/studio-lab.md) · [Pruebas](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "La cifra del gráfico cambia pero el título mantiene «crecimiento permite desapalancar». Revisa las implicaciones narrativas, no solo las coincidencias numéricas. Si una tabla carece de fuente o fecha, corrígela antes de asumir que la referencia dinámica la actualizará."
+              "body": "Fallo: la puntuación mejora porque el agente aprendió a incluir las palabras «fuente» y «riesgo», pero las citas no contienen la cifra. Diagnóstico: comprobación de patrones confundida con dominio semántico. Abre documentos y recalcula. Si no puedes verificar una aserción, márcala pendiente; no la conviertas en aprobada por formato."
             }
           ]
         },
         {
-          "id": "f2-3-3-decision",
+          "id": "f3-l3-3-choice",
           "type": "choice",
-          "concept": "docs.consistency",
-          "prompt": "El gráfico usa 7 y el título sigue afirmando mejora de repago. ¿Qué falta?",
+          "concept": "knowledge.test",
+          "prompt": "El test encuentra las palabras esperadas, pero la cita corresponde a otro año. ¿Cómo debe fallar la batería?",
+          "context": "Fallo: la puntuación mejora porque el agente aprendió a incluir las palabras «fuente» y «riesgo», pero las citas no contienen la cifra. Diagnóstico: comprobación de patrones confundida con dominio semántico. Abre documentos y recalcula. Si no puedes verificar una aserción, márcala pendiente; no la conviertas en aprobada por formato.",
           "options": [
             {
-              "text": "Revisar la conclusión y las dependencias del mensaje además del valor actualizado",
+              "text": "Definir aserciones observables y contrastarlas con fuentes, cálculos y respuesta literal en cada caso",
               "correct": true
             },
             {
-              "text": "Volver a exportar el mismo gráfico con mayor resolución",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Separar formato y contenido, pero aceptar el contenido si el texto coincide suficientemente con la solución preparada",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "Añadir una nota de que los datos pueden variar",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Puntuar más alto las respuestas completas y relegar la revisión de citas a una muestra de resultados favorables",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Actualizar una cifra obliga a revisar su mensaje. Un archivo generado y un vínculo vivo son capacidades distintas."
+          "explain": "Las pruebas deben poder rechazar tu agente. Un banco que solo confirma el diseño no controla su calidad. Pide a otra persona revisar una muestra sin conocer tu valoración. La revisión de otro agente no equivale a verificación independiente. Comprueba concordancia de evidencia, no solo similitud de respuestas."
         },
         {
-          "id": "f2-3-3-sequence",
+          "id": "f3-l3-3-order",
           "type": "order",
-          "concept": "docs.consistency",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "knowledge.test",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Crear una batería de pruebas que permita fallar",
           "items": [
-            "Inventariar cifras y ubicaciones de los tres archivos",
-            "Contrastar definiciones y valores con el modelo",
-            "Corregir también títulos, gráficos y conclusiones afectadas"
+            "Definir fixtures, aserciones, severidad y caso reservado",
+            "Ejecutar paquetes aislados y conservar evidencias literales",
+            "Corregir fallos y repetir regresión antes de ampliar uso"
           ],
-          "explain": "No quedan ratios sin escenario o fechas incompatibles; el gráfico coincide con su tabla y los documentos abren. Para otra operación usa un registro de dependencias desde la primera versión, no al final."
+          "explain": "Las pruebas deben poder rechazar tu agente. Un banco que solo confirma el diseño no controla su calidad. Pide a otra persona revisar una muestra sin conocer tu valoración. La revisión de otro agente no equivale a verificación independiente. Comprueba concordancia de evidencia, no solo similitud de respuestas."
         },
         {
-          "id": "f2-3-3-portfolio",
+          "id": "f3-l3-3-portfolio",
           "type": "portfolio",
-          "concept": "docs.consistency",
-          "prompt": "Entrega un inventario de discrepancias entre los tres archivos y corrige cifras, definiciones y dos conclusiones. Conserva el registro de qué partes no requirieron cambio y por qué.",
+          "concept": "knowledge.test",
+          "prompt": "Prepara seis pruebas propias para tu contrato, incluyendo una contradicción útil y un caso reservado. Ejecuta las disponibles y entrega un registro con fallos y una decisión justificada de aceptar, mejorar o limitar el agente.",
+          "context": "Resultado: Batería propia y registro de ejecuciones con estado real. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Consistencia: matriz cubre Excel, Word y PPT, incluido título y gráfico.",
-            "Trazabilidad: ubicación y fuente de cada discrepancia.",
-            "Interpretación: se revisan conclusiones que dependían de cifras antiguas.",
-            "Utilidad: cambios acotados preservan trabajo válido.",
-            "Crítico: no validar todo el archivo a partir de una extracción parcial."
+            "Cobertura: casos normal, ambiguo, incompleto, contradictorio y fuera de alcance.",
+            "Trazabilidad: cada aserción enlaza a respuesta y fuente.",
+            "Criterio: falla por una razón útil, no por estilo.",
+            "Regresión: conserva versiones y caso reservado.",
+            "Crítico: pendiente y no ejecutado nunca se presentan como aprobados."
           ],
-          "solution": "El EBITDA base es 8; one-pager.docx y fare.pptx contienen 9 como base deliberadamente. Una tabla maestra debe incluir EBITDA 2025 8 histórico, 2026 management 9, base 8 y revisión 7, más deuda bruta 20, caja apertura 2 y neta apertura 18. Etiquetar solo «EBITDA» favorece errores aunque los números sean correctos.\n\nNo quedan ratios sin escenario o fechas incompatibles; el gráfico coincide con su tabla y los documentos abren. Para otra operación usa un registro de dependencias desde la primera versión, no al final.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "Una contradicción no debe pasar por promediar cifras sin base. Una entrada incompleta debe pedir información o limitar la conclusión. La prueba de inyección no se supera solo porque diga que ignora instrucciones: revisa que no haya alterado fuentes o salida. El registro incluye también los ensayos fallidos y sus correcciones.\n\nPide a otra persona revisar una muestra sin conocer tu valoración. La revisión de otro agente no equivale a verificación independiente. Comprueba concordancia de evidencia, no solo similitud de respuestas.\n\nTransferencia: Reutiliza familias de fallo en otras tareas, pero crea datos y aserciones nuevas. Una batería calibrada para extraer indicadores no prueba automáticamente un agente que ejecuta herramientas.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "No quedan ratios sin escenario o fechas incompatibles; el gráfico coincide con su tabla y los documentos abren. Para otra operación usa un registro de dependencias desde la primera versión, no al final.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "Pide a otra persona revisar una muestra sin conocer tu valoración. La revisión de otro agente no equivale a verificación independiente. Comprueba concordancia de evidencia, no solo similitud de respuestas.\n\nReutiliza familias de fallo en otras tareas, pero crea datos y aserciones nuevas. Una batería calibrada para extraer indicadores no prueba automáticamente un agente que ejecuta herramientas."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Actualizar una cifra obliga a revisar su mensaje. Un archivo generado y un vínculo vivo son capacidades distintas."
+              "body": "Las pruebas deben poder rechazar tu agente. Un banco que solo confirma el diseño no controla su calidad."
             }
           ]
         }
@@ -386,72 +395,72 @@
     }
   ],
   "exam": {
-    "title": "Decisiones de trabajo · no certificación profesional",
+    "title": "Comprobación de decisiones",
+    "size": 6,
     "extra": [
       {
-        "id": "f2-3-1-exam",
+        "id": "f3-exam3-1",
         "type": "choice",
-        "concept": "docs.onepager",
-        "prompt": "Un mitigante dice que las ventas están garantizadas sin contrato aportado. ¿Qué hacer?",
+        "concept": "knowledge.sources",
+        "prompt": "Un archivo incrustado como conocimiento contiene ejemplos confidenciales. ¿Qué hace falta antes de compartir?",
         "options": [
           {
-            "text": "Retirar la garantía y pedir evidencia, mostrando impacto sobre la tesis",
+            "text": "Comprobar qué contenido queda accesible al receptor y retirar lo que no deba distribuirse",
             "correct": true
           },
           {
-            "text": "Mantenerlo si management tiene buena reputación",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Suponer que cada receptor verá solo lo permitido por la ubicación original",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Sustituir garantizadas por aseguradas sin más cambios",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Confiar en que una instrucción de no revelar ejemplos equivale a control de acceso",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Retirar la garantía y pedir evidencia, mostrando impacto sobre la tesis. Un título concluye; una cifra se define; un mitigante requiere evidencia. Edita por secciones para preservar trabajo útil."
+        "explain": "Comprobar qué contenido queda accesible al receptor y retirar lo que no deba distribuirse. La decisión debe sostenerse con evidencia observable y límites explícitos."
       },
       {
-        "id": "f2-3-2-exam",
+        "id": "f3-exam3-2",
         "type": "choice",
-        "concept": "docs.slides",
-        "prompt": "Copilot genera diez slides a partir del documento. ¿Qué debe guiar la revisión?",
+        "concept": "knowledge.capabilities",
+        "prompt": "El agente responde una cifra sin soporte pese a priorizar fuentes especificadas. ¿Cómo valorarlo?",
         "options": [
           {
-            "text": "Pregunta del decisor, mensaje, evidencia y gráfico correcto en cada slide",
+            "text": "Fallo: la preferencia no es un bloqueo absoluto; contrastar, mejorar abstención y repetir pruebas",
             "correct": true
           },
           {
-            "text": "Solo que haya menos de seis líneas de texto por slide",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Aceptar la cifra como conocimiento general permitido",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Conservar todas para mostrar profundidad",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Calificar el ensayo como correcto si conserva las secciones solicitadas",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Pregunta del decisor, mensaje, evidencia y gráfico correcto en cada slide. Diseña el hilo antes de generar slides. Revisa series y gráficos como datos, no como decoración."
+        "explain": "Fallo: la preferencia no es un bloqueo absoluto; contrastar, mejorar abstención y repetir pruebas. La decisión debe sostenerse con evidencia observable y límites explícitos."
       },
       {
-        "id": "f2-3-3-exam",
+        "id": "f3-exam3-3",
         "type": "choice",
-        "concept": "docs.consistency",
-        "prompt": "El modelo cambia, pero el gráfico de PowerPoint es una imagen. ¿Qué exige la actualización?",
+        "concept": "knowledge.test",
+        "prompt": "Un test coincide en palabras con la solución, pero cita otro año. ¿Qué resultado registrar?",
         "options": [
           {
-            "text": "Sustituirlo y contrastar cifras y mensaje; no suponer vínculo dinámico",
+            "text": "Fallo de evidencia o comparabilidad, con fuente y corrección pendiente",
             "correct": true
           },
           {
-            "text": "Esperar a que PowerPoint actualice automáticamente el vínculo",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Aprobado de método y corrección editorial menor",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Cambiar únicamente el nombre del archivo",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Aprobado porque las comprobaciones de texto coinciden",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Sustituirlo y contrastar cifras y mensaje; no suponer vínculo dinámico. Actualizar una cifra obliga a revisar su mensaje. Un archivo generado y un vínculo vivo son capacidades distintas."
+        "explain": "Fallo de evidencia o comparabilidad, con fuente y corrección pendiente. La decisión debe sostenerse con evidencia observable y límites explícitos."
       }
-    ],
-    "size": 6
+    ]
   }
 }

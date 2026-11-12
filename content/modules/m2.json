@@ -1,384 +1,393 @@
 {
   "id": "m2",
-  "title": "Excel: modificar y contrastar un caso financiero",
-  "subtitle": "Drivers, actualización acotada y capacidad de repago con controles.",
-  "level": "Práctica avanzada",
-  "icon": "chart",
-  "color": "#067B80",
+  "title": "Construir agentes con Agent Builder",
+  "subtitle": "Contrato, configuración real y mejora por fallos observados.",
+  "level": "Herramientas y práctica transferible",
+  "icon": "agents",
+  "color": "#5B4FD6",
   "lessons": [
     {
-      "id": "f2-l2-1",
-      "title": "Leer el modelo para decidir dónde intervenir",
-      "summary": "No necesitas otra auditoría exhaustiva: necesitas modificar una pieza sin romper el resto.",
-      "minutes": 30,
+      "id": "f3-l2-1",
+      "title": "Diseñar el contrato de un agente antes de escribir instrucciones",
+      "summary": "Un agente útil no es un nombre y un prompt largo.",
+      "minutes": 20,
       "objectives": [
-        "Dibuja cinco dependencias del modelo y especifica una modificación acotada con rango de entrada, rango de salida y controles. Conserva una captura o listado de fórmulas antes y después.",
-        "Cambiar DSO debe alterar clientes, necesidad de caja y caja final según la convención del modelo. Con inputs iguales, la copia conserva sus resultados. En otra operación comprueba primero si hay macros, vínculos externos o circularidades que tu procedimiento no cubre."
+        "Elige una tarea recurrente de tu propia función y redacta su contrato. Debe funcionar también con una tarea equivalente de otra especialidad. No copies el ejemplo documental si no resuelve un trabajo tuyo.",
+        "Entrega el contrato a otro profesional sin explicar tu conversación. ¿Puede anticipar la entrada, la salida y tres errores que invalidarían el resultado? Si no, falta precisión. Comprueba que ninguna instrucción contiene cifras de la compañía."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "No necesitas otra auditoría exhaustiva: necesitas modificar una pieza sin romper el resto. Abre modelo.xlsx y localiza Inputs, Historicos, Modelo, SU y Control. El resultado será un mapa de drivers y un encargo acotado de modificación."
+              "body": "Un agente útil no es un nombre y un prompt largo. Es un comportamiento estable, alimentado por fuentes y probado frente a situaciones que pueden fallar. Aquí aprenderás a definirlo para cualquier tarea financiera recurrente."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "En cierre, fuentes 20 de deuda y 8 de equity financian 28 de usos. Los 8 de deuda existente se refinancian y desaparecen; sumar 20+8 duplica deuda. La caja mínima 2 forma parte de usos y de la apertura post cierre. Una extracción tabular ayuda a analizar estos datos; no reproduce por sí misma vínculos ni comportamiento del libro."
+              "body": "Como ejemplo, un agente compara afirmaciones con documentos. Puede servir a una revisión de resultados, un análisis sectorial o un seguimiento de inversión. Su contrato pide: pregunta y período; fuentes; afirmaciones extraídas; evidencia favorable y contraria; cálculos que deben verificarse fuera; límites. No incluye una cifra fija de Aurora ni una conclusión de negocio. La metodología permanece; el expediente cambia."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "En Excel revisa dependencias desde EBITDA, capex y DSO hasta caja final y deuda. Pide a Copilot que explique esas celdas citando hoja y dirección, y comprueba las fórmulas directamente. Define unidades, signos, base de días y período antes de pedir cambios. Guarda una copia de trabajo. Encarga solo una sección: por ejemplo cálculo de clientes mediante ventas/365×DSO, con dependencia explícita de Inputs.\n\n**Herramienta, requisitos, entradas y salida.** Excel con Copilot si la licencia, versión y formato lo admiten; Excel estándar para editar y comprobar fórmulas. Entradas: modelo.xlsx. Salida: mapa de drivers y copia modificada. Alternativa útil: Analyst para analizar una extracción, sin Python local; pierdes la edición y recálculo fiel del libro original, sus macros y vínculos.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)\n\nEn este libro, Inputs!B15 selecciona 1 management, 2 base o 3 revisión. Modelo!B9 calcula clientes con ventas de Modelo!B2 y DSO del escenario. En una copia, conserva la fórmula `=B2*INDEX(Inputs!B5:D5,1,Inputs!$B$15)/365`; encarga explicar cada referencia y prueba DSO +1: clientes debe subir ventas/365 manteniendo lo demás. Comprueba después Modelo!B12 (NWC), B13 (ΔNWC), B14 (CFADS) y B20 (caja)."
+              "body": "Escribe cinco apartados antes de abrir Builder: propósito concreto; entradas mínimas y cómo pedir las ausentes; procedimiento observable; formato de salida; límites y condiciones de abstención. Formula reglas como decisiones: «si los períodos no son comparables, no calcular variación sin aclaración». Usa un ejemplo de salida depurado de cifras y otro que ilustre falta de datos. Elimina adjetivos como «experto y riguroso» que no indiquen una acción comprobable. Define qué debe ocurrir al recibir una solicitud ajena al propósito.\n\n**Herramienta y habilitación.** Diseño personal en Word/Pages o texto; Agent Builder con creación habilitada para la siguiente lección.\n\n**Entradas.** agentes.md, metodologia.md y una tarea propia descrita sin información real.\n**Resultado esperado.** Contrato neutral v1 y criterios de aceptación.\n**Alternativa y pérdida.** Contrato usado en chat nuevo con archivos seleccionados: pierde configuración persistente del agente.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Guía de agentes](content/resources/agentes.md) · [Laboratorio Studio](content/resources/studio-lab.md) · [Pruebas](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "Analyst devuelve un cálculo correcto con un supuesto de 360 días y lo compara con el libro a 365. El resultado difiere por convención, no por capacidad de la compañía. Pide las fórmulas, alinea definiciones y vuelve a conciliar. No declares editado el modelo porque Analyst analizó una tabla extraída."
+              "body": "Fallo: el agente entrega siempre una conclusión positiva porque el ejemplo enseñaba una compañía fuerte. Diagnóstico: el ejemplo transmite también tono y desenlace. Sustitúyelo por una estructura neutral y un caso adverso; añade una prueba en la que la evidencia no permite concluir. No fijes la respuesta esperada de cada empresa en las instrucciones permanentes."
             }
           ]
         },
         {
-          "id": "f2-2-1-decision",
+          "id": "f3-l2-1-choice",
           "type": "choice",
-          "concept": "model.drivers",
-          "prompt": "Analyst entrega una tabla de caja a partir de un CSV. ¿Qué has validado?",
+          "concept": "builder.contract",
+          "prompt": "El agente repite conclusiones favorables incluso con evidencia incompleta. ¿Qué elemento falta en su contrato?",
+          "context": "Fallo: el agente entrega siempre una conclusión positiva porque el ejemplo enseñaba una compañía fuerte. Diagnóstico: el ejemplo transmite también tono y desenlace. Sustitúyelo por una estructura neutral y un caso adverso; añade una prueba en la que la evidencia no permite concluir. No fijes la respuesta esperada de cada empresa en las instrucciones permanentes.",
           "options": [
             {
-              "text": "Un cálculo sobre esa extracción y esos supuestos; falta reconciliarlo con el libro",
+              "text": "Una regla que define cuándo pedir datos o abstenerse y una salida trazable que puede probarse con expedientes distintos",
               "correct": true
             },
             {
-              "text": "La ejecución completa del modelo Excel, incluidas macros",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Un ejemplo favorable más detallado que establezca el estándar y que el agente adapte libremente a los nuevos casos",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "La edición de fórmulas del archivo original",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Una descripción amplia de experto financiero y criterios de estilo para producir conclusiones más equilibradas",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Distingue explicación, análisis de extracción y edición real. Antes de tocar fórmulas define dependencias y un caso de control."
+          "explain": "El contrato describe decisiones que el agente debe ejecutar, no una personalidad que debe representar. Entrega el contrato a otro profesional sin explicar tu conversación. ¿Puede anticipar la entrada, la salida y tres errores que invalidarían el resultado? Si no, falta precisión. Comprueba que ninguna instrucción contiene cifras de la compañía."
         },
         {
-          "id": "f2-2-1-sequence",
+          "id": "f3-l2-1-order",
           "type": "order",
-          "concept": "model.drivers",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "builder.contract",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Diseñar el contrato de un agente antes de escribir instrucciones",
           "items": [
-            "Localizar inputs y dependencias en el libro",
-            "Guardar copia y fijar convención y rango de modificación",
-            "Cambiar un driver y comprobar la dependencia en la salida"
+            "Definir propósito, usuario y resultado repetible",
+            "Especificar entradas, decisiones, salida y límites",
+            "Diseñar casos que puedan falsar el contrato antes de configurarlo"
           ],
-          "explain": "Cambiar DSO debe alterar clientes, necesidad de caja y caja final según la convención del modelo. Con inputs iguales, la copia conserva sus resultados. En otra operación comprueba primero si hay macros, vínculos externos o circularidades que tu procedimiento no cubre."
+          "explain": "El contrato describe decisiones que el agente debe ejecutar, no una personalidad que debe representar. Entrega el contrato a otro profesional sin explicar tu conversación. ¿Puede anticipar la entrada, la salida y tres errores que invalidarían el resultado? Si no, falta precisión. Comprueba que ninguna instrucción contiene cifras de la compañía."
         },
         {
-          "id": "f2-2-1-portfolio",
+          "id": "f3-l2-1-portfolio",
           "type": "portfolio",
-          "concept": "model.drivers",
-          "prompt": "Dibuja cinco dependencias del modelo y especifica una modificación acotada con rango de entrada, rango de salida y controles. Conserva una captura o listado de fórmulas antes y después.",
+          "concept": "builder.contract",
+          "prompt": "Elige una tarea recurrente de tu propia función y redacta su contrato. Debe funcionar también con una tarea equivalente de otra especialidad. No copies el ejemplo documental si no resuelve un trabajo tuyo.",
+          "context": "Resultado: Contrato neutral v1 y criterios de aceptación. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Consistencia: identifica drivers y convenciones reales del libro.",
-            "Trazabilidad: entradas, fórmulas y salidas se localizan por celda.",
-            "Interpretación: describe efecto de DSO en clientes, NWC y caja.",
-            "Utilidad: encargo acotado y caso de control reproducible.",
-            "Crítico: no afirmar edición o recálculo del libro desde una extracción."
+            "Contrato: propósito e inputs mínimos observables.",
+            "Método: reglas condicionales y salida concreta, sin teoría decorativa.",
+            "Reutilización: separa método y expediente.",
+            "Prueba: existe al menos un caso que debería abstenerse.",
+            "Crítico: no promete acceso, cálculos o acciones inexistentes."
           ],
-          "solution": "En cierre, fuentes 20 de deuda y 8 de equity financian 28 de usos. Los 8 de deuda existente se refinancian y desaparecen; sumar 20+8 duplica deuda. La caja mínima 2 forma parte de usos y de la apertura post cierre. Una extracción tabular ayuda a analizar estos datos; no reproduce por sí misma vínculos ni comportamiento del libro.\n\nCambiar DSO debe alterar clientes, necesidad de caja y caja final según la convención del modelo. Con inputs iguales, la copia conserva sus resultados. En otra operación comprueba primero si hay macros, vínculos externos o circularidades que tu procedimiento no cubre.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "Un buen contrato no dice «evalúa todo». Dice qué extrae, qué compara, qué clasifica como evidencia y cómo informa ausencias. Si la tarea elegida es revisar hipótesis comerciales, el agente conserva reglas de comparabilidad pero recibe cada mercado como expediente distinto. La aceptación depende de evidencia y conducta, no de extensión.\n\nEntrega el contrato a otro profesional sin explicar tu conversación. ¿Puede anticipar la entrada, la salida y tres errores que invalidarían el resultado? Si no, falta precisión. Comprueba que ninguna instrucción contiene cifras de la compañía.\n\nTransferencia: Cambiar de M&A a finanzas estructuradas modifica documentos y preguntas; no obliga a reinventar propósito, esquema de evidencia, límites y pruebas. La transferencia prueba el diseño.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "Cambiar DSO debe alterar clientes, necesidad de caja y caja final según la convención del modelo. Con inputs iguales, la copia conserva sus resultados. En otra operación comprueba primero si hay macros, vínculos externos o circularidades que tu procedimiento no cubre.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "Entrega el contrato a otro profesional sin explicar tu conversación. ¿Puede anticipar la entrada, la salida y tres errores que invalidarían el resultado? Si no, falta precisión. Comprueba que ninguna instrucción contiene cifras de la compañía.\n\nCambiar de M&A a finanzas estructuradas modifica documentos y preguntas; no obliga a reinventar propósito, esquema de evidencia, límites y pruebas. La transferencia prueba el diseño."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Distingue explicación, análisis de extracción y edición real. Antes de tocar fórmulas define dependencias y un caso de control."
+              "body": "El contrato describe decisiones que el agente debe ejecutar, no una personalidad que debe representar."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l2-2",
-      "title": "Reconciliar históricos y modificar una sección",
-      "summary": "La actualización financiera combina fuentes que cambian de fecha, perímetro o definición.",
-      "minutes": 30,
+      "id": "f3-l2-2",
+      "title": "Configurar y probar el agente en Agent Builder",
+      "summary": "Ahora convertirás el contrato en una configuración real.",
+      "minutes": 20,
       "objectives": [
-        "Reconcilia 2025 y añade una columna de revisión, manteniendo management y base. Implementa un cambio del driver de cobro y presenta el puente entre cambio de input y efecto en caja.",
-        "Históricos suman 60 y 8; no se mezclan años. Inputs y fórmulas se distinguen; ningún número pegado oculta una diferencia. Un caso con delta cero mantiene resultados. Para otra compañía repite staging antes de adaptar su estructura."
+        "Configura tu contrato como agente privado de prueba. Ejecuta dos consultas nuevas, exporta manualmente la configuración a tu registro y distingue qué has configurado de lo que solo has descrito.",
+        "Compara una consulta normal y otra sin período. La primera debe producir estructura y evidencia; la segunda pedir el dato ausente o declarar la limitación. Abrir una cita y verificar su contenido es obligatorio para dar la prueba por contrastada."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "La actualización financiera combina fuentes que cambian de fecha, perímetro o definición. El entregable es un puente de datos y una sección del modelo actualizada sin sobrescribir hipótesis de otros escenarios."
+              "body": "Ahora convertirás el contrato en una configuración real. Debes saber qué campo afecta al comportamiento, qué fuente se incorpora y qué demuestra el panel de prueba. El objetivo no es recibir una respuesta bonita sino una primera configuración reproducible."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "Los históricos 2025 separan Levante (ventas 45; EBITDA 6) y Murcia Pack (15; 2). El combinado es 60 y 8 antes de ajustes de adquisición. Management propone 9 para 2026; el base permanece 8 sin sinergias. Un aumento de EBITDA por sinergias no es un nuevo histórico.\n\nPara reconciliar archivos, usa [históricos por entidad](content/resources/historicos-entidades.csv) y [correo de aclaración](content/resources/aclaracion.eml). No sumes la columna combinada a las entidades: es un subtotal, no un tercer negocio. Las cifras de apertura post cierre y las de resultados históricos cumplen funciones diferentes."
+              "body": "Un nombre identifica la función; la descripción ayuda a decidir cuándo usarla; las instrucciones establecen método y límites; el conocimiento aporta referencias; las peticiones sugeridas son accesos de ejemplo. Poner «consulta modelo.xlsx» en la descripción no adjunta el libro ni le concede permiso. Una petición sugerida no sustituye a una instrucción que deba aplicarse siempre."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "Crea una tabla de staging con compañía, período, magnitud, unidad, fuente y ajuste. Reconcilia cada subtotal con Historicos y documenta diferencias de perímetro. Copia los datos validados a inputs, dejando fórmulas en la sección de cálculo. Pide en Excel una modificación de la sección de circulante con clientes=ventas×DSO/365 y explica cómo el incremento se convierte en salida de caja. Conserva los escenarios management y base en columnas separadas.\n\n**Herramienta, requisitos, entradas y salida.** Excel para edición, Copilot en Excel si está habilitado; Analyst opcional para reconciliar extracciones sin Python local. Entradas: modelo.xlsx y caso.docx. Salida: copia con sección de circulante modificada y puente. Si Copilot no edita el libro, aplica la fórmula manualmente y usa IA para revisar el encargo y las diferencias.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "En Microsoft 365 Copilot abre la zona de agentes y la opción de crear, cuando el tenant permita autoría. En la experiencia de Builder usa Configurar/Configure para revisar explícitamente nombre, descripción e instrucciones, aunque hayas empezado mediante Describe. Pega el contrato en instrucciones. En conocimiento selecciona únicamente referencias admitidas y necesarias; inspecciona cómo quedan identificadas. Añade dos peticiones sugeridas: una normal y otra con información incompleta. Crea o guarda mediante la opción disponible y usa el panel de prueba con una conversación nueva. Registra captura o copia de cada campo, fuentes y capacidades visibles. Los nombres y ubicación de opciones pueden variar por despliegue; documenta la interfaz que ves, no inventes controles ausentes.\n\n**Herramienta y habilitación.** Agent Builder en Microsoft 365 Copilot con autoría habilitada y licencia o modalidad admitida; fuentes y capacidades dependen del despliegue. Consulta capacidades.md.\n\n**Entradas.** Contrato v1, metodologia.md y expediente.docx.\n**Resultado esperado.** Agente de prueba configurado y registro de dos ejecuciones.\n**Alternativa y pérdida.** Chat nuevo con contrato y documentos explícitos: conserva la práctica de instrucciones, pierde agente guardado y distribución configurada.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Guía de agentes](content/resources/agentes.md) · [Laboratorio Studio](content/resources/studio-lab.md) · [Pruebas](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "Copilot sustituye la fórmula de caja final por un número para hacerla cuadrar. Detecta el problema comparando fórmulas antes/después y variando un input. Recupera la fórmula y localiza la diferencia en staging. Un balance cuadrado por un ajuste sin explicación es un fallo de control."
+              "body": "Fallo: «¿qué documentos utilizaste?» muestra solo la metodología. Diagnóstico: escribir un nombre de archivo en instrucciones no lo incorpora. Revisa conocimiento, accesibilidad y el contexto de la prueba. Añade la fuente mediante un mecanismo admitido, repite en conversación limpia y abre la cita. Si el archivo no puede incorporarse, usa un extracto permitido y declara la pérdida de alcance."
             }
           ]
         },
         {
-          "id": "f2-2-2-decision",
+          "id": "f3-l2-2-choice",
           "type": "choice",
-          "concept": "model.update",
-          "prompt": "Una diferencia desaparece al pegar un valor en caja final. ¿Qué comprobación es decisiva?",
+          "concept": "builder.configure",
+          "prompt": "El documento figura en instrucciones, pero el ensayo cita solo la metodología. ¿Qué verificas?",
+          "context": "Fallo: «¿qué documentos utilizaste?» muestra solo la metodología. Diagnóstico: escribir un nombre de archivo en instrucciones no lo incorpora. Revisa conocimiento, accesibilidad y el contexto de la prueba. Añade la fuente mediante un mecanismo admitido, repite en conversación limpia y abre la cita. Si el archivo no puede incorporarse, usa un extracto permitido y declara la pérdida de alcance.",
           "options": [
             {
-              "text": "Cambiar un driver y verificar la dependencia, recuperando la fórmula y reconciliando el origen",
+              "text": "Revisar el campo de conocimiento y el contexto realmente incorporado, no añadir otra mención al archivo en la descripción",
               "correct": true
             },
             {
-              "text": "Comprobar únicamente que el balance queda a cero",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Añadir su ruta completa a las instrucciones y volver a probar sin revisar el corpus configurado ni los permisos",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "Pedir a un segundo agente que diga si el resultado parece razonable",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Comprobar si responde correctamente la cifra del documento, aceptando ese acierto aunque la cita apunte a otra fuente",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Staging antes de inputs; fórmulas antes de resultados pegados. Un cambio debe explicar su efecto económico y conservar el escenario anterior."
+          "explain": "Los campos no son intercambiables. Describe, configura y prueba son actividades distintas. Compara una consulta normal y otra sin período. La primera debe producir estructura y evidencia; la segunda pedir el dato ausente o declarar la limitación. Abrir una cita y verificar su contenido es obligatorio para dar la prueba por contrastada."
         },
         {
-          "id": "f2-2-2-sequence",
+          "id": "f3-l2-2-order",
           "type": "order",
-          "concept": "model.update",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "builder.configure",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Configurar y probar el agente en Agent Builder",
           "items": [
-            "Preparar staging con período, fuente y unidad",
-            "Reconciliar antes de pasar datos a inputs",
-            "Modificar la sección y comprobar delta cero y caso cambiado"
+            "Crear y revisar los campos explícitos de configuración",
+            "Incorporar referencias mediante fuentes admitidas y registrar capacidades",
+            "Probar en conversación nueva y contrastar citas contra los documentos"
           ],
-          "explain": "Históricos suman 60 y 8; no se mezclan años. Inputs y fórmulas se distinguen; ningún número pegado oculta una diferencia. Un caso con delta cero mantiene resultados. Para otra compañía repite staging antes de adaptar su estructura."
+          "explain": "Los campos no son intercambiables. Describe, configura y prueba son actividades distintas. Compara una consulta normal y otra sin período. La primera debe producir estructura y evidencia; la segunda pedir el dato ausente o declarar la limitación. Abrir una cita y verificar su contenido es obligatorio para dar la prueba por contrastada."
         },
         {
-          "id": "f2-2-2-portfolio",
+          "id": "f3-l2-2-portfolio",
           "type": "portfolio",
-          "concept": "model.update",
-          "prompt": "Reconcilia 2025 y añade una columna de revisión, manteniendo management y base. Implementa un cambio del driver de cobro y presenta el puente entre cambio de input y efecto en caja.",
+          "concept": "builder.configure",
+          "prompt": "Configura tu contrato como agente privado de prueba. Ejecuta dos consultas nuevas, exporta manualmente la configuración a tu registro y distingue qué has configurado de lo que solo has descrito.",
+          "context": "Resultado: Agente de prueba configurado y registro de dos ejecuciones. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Consistencia: históricos 45+15=60 y EBITDA 6+2=8 sin duplicar subtotales.",
-            "Trazabilidad: staging conserva entidad, período, fuente y ajuste.",
-            "Interpretación: cambio de driver explica delta económico.",
-            "Utilidad: escenarios separados e inputs distinguibles de fórmulas.",
-            "Crítico: no cuadrar con plugs ni sobrescribir fórmulas por valores."
+            "Configuración: nombre, descripción e instrucciones cumplen funciones diferentes.",
+            "Fuentes: constan mecanismos de incorporación y acceso.",
+            "Reproducibilidad: se conserva versión de campos y prueba.",
+            "Utilidad: peticiones sugeridas enseñan entrada sin ocultar límites.",
+            "Crítico: no se confunde texto de configuración con acceso efectivo."
           ],
-          "solution": "Los históricos 2025 separan Levante (ventas 45; EBITDA 6) y Murcia Pack (15; 2). El combinado es 60 y 8 antes de ajustes de adquisición. Management propone 9 para 2026; el base permanece 8 sin sinergias. Un aumento de EBITDA por sinergias no es un nuevo histórico.\n\nHistóricos suman 60 y 8; no se mezclan años. Inputs y fórmulas se distinguen; ningún número pegado oculta una diferencia. Un caso con delta cero mantiene resultados. Para otra compañía repite staging antes de adaptar su estructura.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "El registro contiene contrato v1, fuente metodológica seleccionada, documentos del ensayo y respuesta literal. Si solo existe una conversación con el contrato pegado, anota «alternativa en chat», no «agente creado». El panel demuestra el comportamiento de ese ensayo; no prueba recuperación exhaustiva ni despliegue para otros usuarios.\n\nCompara una consulta normal y otra sin período. La primera debe producir estructura y evidencia; la segunda pedir el dato ausente o declarar la limitación. Abrir una cita y verificar su contenido es obligatorio para dar la prueba por contrastada.\n\nTransferencia: Cambia el expediente por datos de otro equipo manteniendo los campos estables. Observa si debes cambiar el método o solo las fuentes: esa diferencia revela si configuraste un agente reutilizable o un encargo de una sola vez.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "Históricos suman 60 y 8; no se mezclan años. Inputs y fórmulas se distinguen; ningún número pegado oculta una diferencia. Un caso con delta cero mantiene resultados. Para otra compañía repite staging antes de adaptar su estructura.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "Compara una consulta normal y otra sin período. La primera debe producir estructura y evidencia; la segunda pedir el dato ausente o declarar la limitación. Abrir una cita y verificar su contenido es obligatorio para dar la prueba por contrastada.\n\nCambia el expediente por datos de otro equipo manteniendo los campos estables. Observa si debes cambiar el método o solo las fuentes: esa diferencia revela si configuraste un agente reutilizable o un encargo de una sola vez."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Staging antes de inputs; fórmulas antes de resultados pegados. Un cambio debe explicar su efecto económico y conservar el escenario anterior."
+              "body": "Los campos no son intercambiables. Describe, configura y prueba son actividades distintas."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l2-3",
-      "title": "Caja, deuda y sensibilidades que cambian una decisión",
-      "summary": "El EBITDA no paga deuda por sí solo.",
-      "minutes": 30,
+      "id": "f3-l2-3",
+      "title": "Mejorar instrucciones a partir de fallos, no por acumulación",
+      "summary": "Añadir párrafos tras cada fallo produce instrucciones contradictorias y dificulta saber qué mejora el agente.",
+      "minutes": 20,
       "objectives": [
-        "Entrega tres escenarios con puente de caja y una recomendación condicional de estructura. Elige una sensibilidad que pueda cambiar el importe, plazo o colchón de liquidez. Monte Carlo es ampliación opcional solo si una distribución defendible aporta algo a esa decisión.",
-        "Usos=fuentes; balance, caja y deuda concilian. Ratios usan perímetro y fecha coherentes; el denominador no cambia sin etiqueta. En otra operación define de nuevo disponibilidad de caja y servicio contractual antes de comparar ratios."
+        "Mejora una versión de tu agente con un fallo observado. Conserva el antes/después de la instrucción y un caso reservado que no hayas usado para redactarla. Explica cualquier regresión y qué harías después.",
+        "Comprueba que el mismo corpus, versión y consulta se usaron al comparar v1 y v2. Una respuesta más breve o más segura no demuestra mejora. Da por fallida la prueba que cite otra fuente o silencie una ausencia material."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "El EBITDA no paga deuda por sí solo. El entregable es una comparación management/base/revisión que explique qué absorbe caja y qué cambia en la estructura de financiación."
+              "body": "Añadir párrafos tras cada fallo produce instrucciones contradictorias y dificulta saber qué mejora el agente. Aprenderás a diagnosticar una salida, cambiar la regla mínima y repetir pruebas sin ajustar el contrato a una única respuesta."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "La apertura tiene deuda bruta 20 y caja 2: deuda neta 18. El múltiplo de cierre sobre EBITDA histórico 8 es 2,25x neto; sobre 9 proyectado sería 2,00x, pero responde a otra definición. En la revisión el EBITDA baja de 8 a 7 y el capex sube de 3 a 4: antes de impuestos y otros efectos, la caja operativa disponible disminuye 2.\n\nEn el libro, CFADS=EBITDA−impuestos pagados−capex−ΔNWC, antes de intereses y principal; DSCR=CFADS/(intereses+amortización). Base 2026: CFADS 5,333562; DSCR 1,666738; caja cierre 4,133562. Revisión 2026: CFADS 1,387671; DSCR 0,433647; caja cierre positiva 0,187671, inferior al mínimo educativo de 2 en 1,812329. No confundir insuficiencia respecto al mínimo con caja negativa. Son resultados del caso, no umbrales de política crediticia."
+              "body": "La versión 1 compara EBITDA 2025 histórico con 2026 proyectado sin etiquetarlos. La corrección útil exige metadatos antes de comparar. Una corrección débil añade «sé preciso» o fija que EBITDA siempre sea 17,6. La versión 2 debe seguir comparando datos de otra empresa y pedir aclaración cuando falte período; no solo acertar el ensayo que viste."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "Construye un puente EBITDA menos impuestos pagados, capex, variación de NWC e intereses hasta caja disponible, distinguiendo ese concepto de CFADS si tu definición cambia. Resta amortización contractual y concilia caja inicial+movimientos=caja final y deuda inicial+disposiciones−amortización=deuda final. Para sensibilidad usa pares de EBITDA y DSO con el resto constante; comenta cuándo el revolver o una menor amortización cambia el déficit. No inventes un umbral crediticio del banco.\n\n**Herramienta, requisitos, entradas y salida.** Excel para escenarios y recálculo; Analyst para encargar puentes y contrastes sobre tablas, sin instalación local de Python. Entradas: modelo.xlsx y actualizacion.eml. Salida: escenarios reconciliados y recomendación. Alternativa: Excel estándar con tablas de sensibilidad; pierdes asistencia, conservas el control de fórmulas.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "Conserva entrada y salida fallida completas. Marca la primera decisión incorrecta: ¿faltó fuente, se eligió la definición errónea, se calculó sin datos o se ignoró el formato? Verifica si la causa depende de instrucciones o de configuración; una regla no repara un permiso. Cambia una sección del contrato y numera la versión. Repite el fallo original, dos casos normales y uno reservado. Compara tasa de errores críticos, ausencia de citas y tiempo de revisión. Elimina reglas duplicadas y resuelve contradicciones indicando prioridad de decisión, no aumentando longitud.\n\n**Herramienta y habilitación.** Agent Builder con panel de prueba o chat nuevo para alternativa; registro de versiones local en Word/Pages o texto.\n\n**Entradas.** agente configurado, pruebas-agentes.json y tres expedientes de ensayo.\n**Resultado esperado.** Versión v2 con diff, resultados y decisión de aceptar o revertir.\n**Alternativa y pérdida.** Pruebas manuales en conversaciones separadas: pierde configuración guardada y evaluación integrada, conserva el diagnóstico.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Guía de agentes](content/resources/agentes.md) · [Laboratorio Studio](content/resources/studio-lab.md) · [Pruebas](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "La sensibilidad resta 1 de EBITDA y 1 de capex, pero ignora cobros. Con ventas 60 y DSO de 60 a 75, el cliente adicional aproximado es 60/365×15=2,466, antes de compensaciones de proveedores u otros efectos. Identifica si ese delta ya estaba en el modelo para no duplicarlo. El calendario de cobro importa más que una simulación sofisticada sin datos.\n\nControl económico adicional: NWC de apertura 11,328767 incluye 2 de colchón de cierre sobre el normalizado 9,328767. Base 2026 normaliza NWC a 9,795205 y libera 1,533562. Esa liberación explica parte de la caja y debe justificarse. Si conservas el colchón de 2, resta 2 al CFADS y caja del primer año; no presentes la caja base como conversión recurrente automática."
+              "body": "Fallo: la regla nueva dice «no comparar si falta el año» y el agente rechaza un caso que sí lo contiene en una tabla. Diagnóstico: puede ser recuperación, no exceso de prudencia. Pide identificar ubicación de la fecha y comprueba la fuente. Si no encuentra la tabla, adapta cómo se incorpora o prepara ese documento; no debilites la regla financiera para pasar el test."
             }
           ]
         },
         {
-          "id": "f2-2-3-decision",
+          "id": "f3-l2-3-choice",
           "type": "choice",
-          "concept": "model.repay",
-          "prompt": "¿Cuál es el efecto incremental aproximado de DSO 60→75 sobre clientes con ventas anuales 60 y año de 365 días?",
+          "concept": "builder.iterate",
+          "prompt": "La regla corregida funciona en tu ensayo, pero causa un rechazo erróneo en otro. ¿Cómo iteras?",
+          "context": "Fallo: la regla nueva dice «no comparar si falta el año» y el agente rechaza un caso que sí lo contiene en una tabla. Diagnóstico: puede ser recuperación, no exceso de prudencia. Pide identificar ubicación de la fecha y comprueba la fuente. Si no encuentra la tabla, adapta cómo se incorpora o prepara ese documento; no debilites la regla financiera para pasar el test.",
           "options": [
             {
-              "text": "+2,466 M€ de clientes, a contrastar con otros movimientos y evitar doble cómputo",
+              "text": "Aplicar una regla observable, repetir el fallo y comprobar casos distintos para descartar sobreajuste",
               "correct": true
             },
             {
-              "text": "+2,5 M€ de clientes calculados con año de 360 días, sin conciliar la convención del libro",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Añadir la respuesta correcta de ambos ensayos a los ejemplos y aceptar si reproduce esas dos salidas",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "+2,466 M€ de salida de caja adicional aunque el cambio de DSO ya esté incorporado en el escenario",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Reescribir contrato y fuentes a la vez para ampliar contexto, evaluando únicamente la versión resultante",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Compara caja después de capex y circulante. Sensibilizar exige mantener definiciones y evitar duplicar el deterioro."
+          "explain": "Mejora por hipótesis de fallo y regresión. Más instrucciones no implican mejor agente. Comprueba que el mismo corpus, versión y consulta se usaron al comparar v1 y v2. Una respuesta más breve o más segura no demuestra mejora. Da por fallida la prueba que cite otra fuente o silencie una ausencia material."
         },
         {
-          "id": "f2-2-3-sequence",
+          "id": "f3-l2-3-order",
           "type": "order",
-          "concept": "model.repay",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "builder.iterate",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Mejorar instrucciones a partir de fallos, no por acumulación",
           "items": [
-            "Definir escenario, caja disponible y servicio de deuda",
-            "Construir puente de EBITDA hasta caja y amortización",
-            "Conciliar y decidir sensibilidad que cambia la estructura"
+            "Localizar la causa y separar instrucciones, fuentes y acceso",
+            "Modificar una regla y conservar una versión recuperable",
+            "Ejecutar fallo, regresión y caso reservado con el mismo protocolo"
           ],
-          "explain": "Usos=fuentes; balance, caja y deuda concilian. Ratios usan perímetro y fecha coherentes; el denominador no cambia sin etiqueta. En otra operación define de nuevo disponibilidad de caja y servicio contractual antes de comparar ratios."
+          "explain": "Mejora por hipótesis de fallo y regresión. Más instrucciones no implican mejor agente. Comprueba que el mismo corpus, versión y consulta se usaron al comparar v1 y v2. Una respuesta más breve o más segura no demuestra mejora. Da por fallida la prueba que cite otra fuente o silencie una ausencia material."
         },
         {
-          "id": "f2-2-3-portfolio",
+          "id": "f3-l2-3-portfolio",
           "type": "portfolio",
-          "concept": "model.repay",
-          "prompt": "Entrega tres escenarios con puente de caja y una recomendación condicional de estructura. Elige una sensibilidad que pueda cambiar el importe, plazo o colchón de liquidez. Monte Carlo es ampliación opcional solo si una distribución defendible aporta algo a esa decisión.",
+          "concept": "builder.iterate",
+          "prompt": "Mejora una versión de tu agente con un fallo observado. Conserva el antes/después de la instrucción y un caso reservado que no hayas usado para redactarla. Explica cualquier regresión y qué harías después.",
+          "context": "Resultado: Versión v2 con diff, resultados y decisión de aceptar o revertir. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Consistencia: CFADS y DSCR coinciden con sus definiciones y períodos.",
-            "Trazabilidad: puente y caja se reproducen desde fórmulas.",
-            "Interpretación: separa caja positiva insuficiente del mínimo y cuestiona liberación de NWC.",
-            "Utilidad: sensibilidad conduce a una decisión condicional de estructura.",
-            "Crítico: no duplicar deuda, ΔNWC, intereses ni atribuir umbrales a Santander."
+            "Diagnóstico: identifica la primera causa y evidencia.",
+            "Cambio: el diff de instrucciones es pequeño y explicable.",
+            "Prueba: repite casos previos y uno reservado.",
+            "Interpretación: mide mejora sin ocultar rechazos o regresiones.",
+            "Crítico: no convierte datos del ensayo en reglas universales."
           ],
-          "solution": "La apertura tiene deuda bruta 20 y caja 2: deuda neta 18. El múltiplo de cierre sobre EBITDA histórico 8 es 2,25x neto; sobre 9 proyectado sería 2,00x, pero responde a otra definición. En la revisión el EBITDA baja de 8 a 7 y el capex sube de 3 a 4: antes de impuestos y otros efectos, la caja operativa disponible disminuye 2.\n\nUsos=fuentes; balance, caja y deuda concilian. Ratios usan perímetro y fecha coherentes; el denominador no cambia sin etiqueta. En otra operación define de nuevo disponibilidad de caja y servicio contractual antes de comparar ratios.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "El cambio «cada métrica lleva período, perímetro, unidad y naturaleza antes de compararse» debe corregir la mezcla sin fijar valores de Aurora. Si el caso reservado no trae período, debe pedirlo. Si uno trae dos definiciones, debe mostrar ambas. El resultado se registra como observado, no como garantía universal.\n\nComprueba que el mismo corpus, versión y consulta se usaron al comparar v1 y v2. Una respuesta más breve o más segura no demuestra mejora. Da por fallida la prueba que cite otra fuente o silencie una ausencia material.\n\nTransferencia: Repite el método al cambiar de revisión documental a comparación de hipótesis o seguimiento de indicadores. Las familias de fallo se conservan aunque cambien las métricas.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "Usos=fuentes; balance, caja y deuda concilian. Ratios usan perímetro y fecha coherentes; el denominador no cambia sin etiqueta. En otra operación define de nuevo disponibilidad de caja y servicio contractual antes de comparar ratios.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "Comprueba que el mismo corpus, versión y consulta se usaron al comparar v1 y v2. Una respuesta más breve o más segura no demuestra mejora. Da por fallida la prueba que cite otra fuente o silencie una ausencia material.\n\nRepite el método al cambiar de revisión documental a comparación de hipótesis o seguimiento de indicadores. Las familias de fallo se conservan aunque cambien las métricas."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Compara caja después de capex y circulante. Sensibilizar exige mantener definiciones y evitar duplicar el deterioro."
+              "body": "Mejora por hipótesis de fallo y regresión. Más instrucciones no implican mejor agente."
             }
           ]
         }
@@ -386,72 +395,72 @@
     }
   ],
   "exam": {
-    "title": "Decisiones de trabajo · no certificación profesional",
+    "title": "Comprobación de decisiones",
+    "size": 6,
     "extra": [
       {
-        "id": "f2-2-1-exam",
+        "id": "f3-exam2-1",
         "type": "choice",
-        "concept": "model.drivers",
-        "prompt": "Inputs!B15 cambia de 2 a 3. ¿Qué prueba del libro importa?",
+        "concept": "builder.contract",
+        "prompt": "Las peticiones sugeridas piden citas, pero las consultas libres no las incluyen. ¿Qué revisar?",
         "options": [
           {
-            "text": "Que fórmulas, escenarios y controles recalculen la revisión con trazabilidad",
+            "text": "La obligación estable debe figurar en instrucciones y probarse en consultas libres",
             "correct": true
           },
           {
-            "text": "Que el texto del resumen diga revisión",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Añadir más peticiones sugeridas y limitar el ensayo a esas consultas",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Que el tamaño del archivo aumente",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Cambiar el nombre para enfatizar que el agente es documental",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Que fórmulas, escenarios y controles recalculen la revisión con trazabilidad. Distingue explicación, análisis de extracción y edición real. Antes de tocar fórmulas define dependencias y un caso de control."
+        "explain": "La obligación estable debe figurar en instrucciones y probarse en consultas libres. La decisión debe sostenerse con evidencia observable y límites explícitos."
       },
       {
-        "id": "f2-2-2-exam",
+        "id": "f3-exam2-2",
         "type": "choice",
-        "concept": "model.update",
-        "prompt": "El subtotal combinado figura junto a dos entidades en una extracción. ¿Cómo evitar duplicación?",
+        "concept": "builder.configure",
+        "prompt": "Un archivo aparece mencionado en instrucciones y el agente no lo recupera. ¿Qué comprobar primero?",
         "options": [
           {
-            "text": "Identificar jerarquía y reconciliar entidades con subtotal antes de sumar",
+            "text": "Incorporación efectiva de la fuente y acceso en el ensayo",
             "correct": true
           },
           {
-            "text": "Sumar todas las filas por ser números del mismo año",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Repetición del nombre de archivo en todos los campos",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Excluir una entidad al azar para acercarse al subtotal",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Extensión del contrato para aportar más contexto verbal",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Identificar jerarquía y reconciliar entidades con subtotal antes de sumar. Staging antes de inputs; fórmulas antes de resultados pegados. Un cambio debe explicar su efecto económico y conservar el escenario anterior."
+        "explain": "Incorporación efectiva de la fuente y acceso en el ensayo. La decisión debe sostenerse con evidencia observable y límites explícitos."
       },
       {
-        "id": "f2-2-3-exam",
+        "id": "f3-exam2-3",
         "type": "choice",
-        "concept": "model.repay",
-        "prompt": "La revisión tiene caja cierre +0,187671 y mínimo educativo 2. ¿Qué concluyes?",
+        "concept": "builder.iterate",
+        "prompt": "Una corrección resuelve tu caso y rompe otros dos. ¿Qué procede?",
         "options": [
           {
-            "text": "Caja positiva con brecha 1,812329 al mínimo; revisar liquidez y supuestos",
+            "text": "Registrar regresiones, revisar o revertir el cambio y repetir el banco",
             "correct": true
           },
           {
-            "text": "Caja negativa de 1,812329 porque equivale al déficit al mínimo",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Aceptar la versión si el caso más reciente es el más importante",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Ausencia de riesgo de liquidez porque la caja es positiva",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Borrar las consultas antiguas del registro porque corresponden a otra versión",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Caja positiva con brecha 1,812329 al mínimo; revisar liquidez y supuestos. Compara caja después de capex y circulante. Sensibilizar exige mantener definiciones y evitar duplicar el deterioro."
+        "explain": "Registrar regresiones, revisar o revertir el cambio y repetir el banco. La decisión debe sostenerse con evidencia observable y límites explícitos."
       }
-    ],
-    "size": 6
+    ]
   }
 }

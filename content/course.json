@@ -1,164 +1,221 @@
 {
-  "title": "Copilot Academy · Financiación corporativa",
-  "edition": "financing-v2",
+  "title": "Copilot Academy · Dominio de Copilot",
+  "edition": "copilot-mastery-v3",
   "docsCheckedAt": "2026-11-12",
   "levels": [
     {
       "id": "L2",
       "title": "Inicio de edición",
-      "description": "Experiencia previa con IA; comienza el sistema de trabajo financiero."
+      "description": "Usuario habitual de IA: comienza una práctica transferible de herramientas y agentes."
     },
     {
       "id": "L3",
       "title": "Prácticas en curso",
-      "description": "Decisiones practicadas en la academia; no certifican ejecución en Copilot real."
+      "description": "Avance de comprobaciones locales; los entregables se contrastan fuera de la app."
     },
     {
       "id": "L4",
       "title": "Programa practicado",
-      "description": "Decisiones y portafolio pendientes de contraste externo del entregable."
+      "description": "Registros y decisiones practicados, sin certificación de ejecución en Microsoft real."
     },
     {
       "id": "L5",
-      "title": "Portafolio revisado",
-      "description": "Requiere evidencia de ejecución real y revisión externa; los cuestionarios no acreditan nivel experto."
+      "title": "Revisión externa pendiente",
+      "description": "La aplicación no concede automáticamente un nivel experto."
     }
   ],
   "competencies": [
     {
-      "id": "agent",
-      "title": "Agente de primera lectura"
+      "id": "tools",
+      "title": "Elegir y dirigir Copilot"
     },
     {
-      "id": "model",
-      "title": "Excel: modificar y contrastar un caso financiero"
+      "id": "builder",
+      "title": "Construir agentes con Agent Builder"
     },
     {
-      "id": "docs",
-      "title": "One Pager y presentación de financiación"
+      "id": "knowledge",
+      "title": "Fuentes, capacidades y pruebas del agente"
+    },
+    {
+      "id": "studio",
+      "title": "Copilot Studio: construir la conversación"
+    },
+    {
+      "id": "flows",
+      "title": "Copilot Studio: herramientas y agent flows"
+    },
+    {
+      "id": "lifecycle",
+      "title": "Copilot Studio: probar, distribuir y gobernar"
+    },
+    {
+      "id": "excel",
+      "title": "Excel y Analyst: construir y comprobar análisis"
     },
     {
       "id": "research",
-      "title": "Investigación aplicada a la operación"
+      "title": "Researcher, Pages y Notebooks"
     },
     {
-      "id": "review",
-      "title": "Agente revisor y defensa ante Riesgos"
+      "id": "communication",
+      "title": "Word y PowerPoint: producir y mejorar"
     },
     {
-      "id": "process",
-      "title": "Actualizaciones y procesos reutilizables"
-    },
-    {
-      "id": "transfer",
-      "title": "Transferencia y defensa final"
+      "id": "system",
+      "title": "Reutilizar y automatizar con criterio"
     }
   ],
   "concepts": [
     {
-      "id": "agent.method",
-      "competency": "agent",
-      "title": "Metodología que el agente puede ejecutar"
+      "id": "tools.route",
+      "competency": "tools",
+      "title": "Elegir la superficie por el resultado"
     },
     {
-      "id": "agent.sources",
-      "competency": "agent",
-      "title": "Conocimiento reutilizable sin contaminar operaciones"
+      "id": "tools.context",
+      "competency": "tools",
+      "title": "Diseñar un contexto verificable"
     },
     {
-      "id": "agent.test",
-      "competency": "agent",
-      "title": "Pruebas que enseñan por qué falla el agente"
+      "id": "tools.verify",
+      "competency": "tools",
+      "title": "Reparar trabajo complejo con controles"
     },
     {
-      "id": "model.drivers",
-      "competency": "model",
-      "title": "Leer el modelo para decidir dónde intervenir"
+      "id": "builder.contract",
+      "competency": "builder",
+      "title": "Diseñar el contrato del agente"
     },
     {
-      "id": "model.update",
-      "competency": "model",
-      "title": "Reconciliar históricos y modificar una sección"
+      "id": "builder.configure",
+      "competency": "builder",
+      "title": "Configurar un agente reproducible"
     },
     {
-      "id": "model.repay",
-      "competency": "model",
-      "title": "Caja, deuda y sensibilidades que cambian una decisión"
+      "id": "builder.iterate",
+      "competency": "builder",
+      "title": "Mejorar con diagnóstico y regresión"
     },
     {
-      "id": "docs.onepager",
-      "competency": "docs",
-      "title": "Una página que permite decidir qué falta"
+      "id": "knowledge.sources",
+      "competency": "knowledge",
+      "title": "Separar método, ejemplos y corpus"
     },
     {
-      "id": "docs.slides",
-      "competency": "docs",
-      "title": "De plantilla educativa a narrativa FARE"
+      "id": "knowledge.capabilities",
+      "competency": "knowledge",
+      "title": "Probar capacidades y límites"
     },
     {
-      "id": "docs.consistency",
-      "competency": "docs",
-      "title": "Actualizar tres documentos sin rehacerlos"
+      "id": "knowledge.test",
+      "competency": "knowledge",
+      "title": "Diseñar baterías contrastables"
     },
     {
-      "id": "research.question",
+      "id": "studio.create",
+      "competency": "studio",
+      "title": "Crear un agente en Studio"
+    },
+    {
+      "id": "studio.topics",
+      "competency": "studio",
+      "title": "Construir una conversación con temas"
+    },
+    {
+      "id": "studio.variables",
+      "competency": "studio",
+      "title": "Manejar variables y condiciones"
+    },
+    {
+      "id": "flows.contract",
+      "competency": "flows",
+      "title": "Definir una herramienta ejecutable"
+    },
+    {
+      "id": "flows.build",
+      "competency": "flows",
+      "title": "Construir y probar un agent flow"
+    },
+    {
+      "id": "flows.recover",
+      "competency": "flows",
+      "title": "Recuperar errores sin duplicar acciones"
+    },
+    {
+      "id": "lifecycle.evaluate",
+      "competency": "lifecycle",
+      "title": "Evaluar ejecuciones y trazas"
+    },
+    {
+      "id": "lifecycle.publish",
+      "competency": "lifecycle",
+      "title": "Distribuir con permisos explícitos"
+    },
+    {
+      "id": "lifecycle.observe",
+      "competency": "lifecycle",
+      "title": "Observar y mejorar el agente"
+    },
+    {
+      "id": "excel.structure",
+      "competency": "excel",
+      "title": "Entender y reconciliar la estructura"
+    },
+    {
+      "id": "excel.edit",
+      "competency": "excel",
+      "title": "Modificar fórmulas con controles"
+    },
+    {
+      "id": "excel.analyse",
+      "competency": "excel",
+      "title": "Encargar y validar análisis con Analyst"
+    },
+    {
+      "id": "research.scope",
       "competency": "research",
-      "title": "Encargar una investigación que sirva al caso"
+      "title": "Delimitar una investigación útil"
     },
     {
       "id": "research.evidence",
       "competency": "research",
-      "title": "Evidencia favorable, contraria e insuficiente"
+      "title": "Contrastar evidencia y comparabilidad"
     },
     {
-      "id": "research.update",
+      "id": "research.workspace",
       "competency": "research",
-      "title": "Nueva información y tesis comercial versionada"
+      "title": "Trabajar con Pages y Notebooks"
     },
     {
-      "id": "review.figures",
-      "competency": "review",
-      "title": "Un revisor que detecta discrepancias concretas"
+      "id": "communication.document",
+      "competency": "communication",
+      "title": "Construir un documento desde evidencia"
     },
     {
-      "id": "review.challenge",
-      "competency": "review",
-      "title": "Preguntas difíciles sobre repago y estructura"
+      "id": "communication.slides",
+      "competency": "communication",
+      "title": "Mejorar narrativa y gráficos"
     },
     {
-      "id": "review.separation",
-      "competency": "review",
-      "title": "Cuándo separar preparación y revisión"
+      "id": "communication.revise",
+      "competency": "communication",
+      "title": "Actualizar sin perder consistencia"
     },
     {
-      "id": "process.delta",
-      "competency": "process",
-      "title": "Actualizar EBITDA, capex y cobros con trazabilidad"
+      "id": "system.handoff",
+      "competency": "system",
+      "title": "Traspasar trabajo y contexto"
     },
     {
-      "id": "process.studio",
-      "competency": "process",
-      "title": "Studio: de traspaso manual a flujo controlado"
+      "id": "system.automate",
+      "competency": "system",
+      "title": "Automatizar con ahorro neto"
     },
     {
-      "id": "process.value",
-      "competency": "process",
-      "title": "Programación, Cowork y ahorro neto medible"
-    },
-    {
-      "id": "transfer.reuse",
-      "competency": "transfer",
-      "title": "Reutilizar el sistema sin arrastrar el caso anterior"
-    },
-    {
-      "id": "transfer.defend",
-      "competency": "transfer",
-      "title": "Defensa con evidencia y límites explícitos"
-    },
-    {
-      "id": "transfer.decision",
-      "competency": "transfer",
-      "title": "Elegir herramienta y medir dominio por entregables"
+      "id": "system.transfer",
+      "competency": "system",
+      "title": "Transferir el diseño a una tarea propia"
     }
   ]
 }
