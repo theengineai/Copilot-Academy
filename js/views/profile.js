@@ -22,7 +22,7 @@ export function renderProfile(page, ctx) {
   page.append(h('header', { class: 'profile-head' },
     h('div', { class: 'level-badge big' }, level),
     h('div', {},
-      h('span', { class: 'kicker' }, 'Nivel de dominio'),
+      h('span', { class: 'kicker' }, 'Avance en prácticas'),
       h('h1', {}, levelInfo?.title || level),
       h('p', { class: 'small muted' }, levelInfo?.description || ''))));
 
@@ -33,13 +33,13 @@ export function renderProfile(page, ctx) {
     stat(`${lessonsDone}/${course.lessons.length}`, 'lecciones', 'book'),
     stat(`${missionsDone}/${course.missions.length}`, 'misiones', 'flag'),
     stat(`${examsPassed}/${course.modules.length}`, 'evaluaciones', 'trophy'),
-    stat(`${accuracy}%`, 'precisión global', 'target')));
+    stat(`${accuracy}%`, 'aciertos en comprobaciones', 'target')));
 
   // Competencias
   const comps = competencyMastery(state, course);
   page.append(h('section', { class: 'card' },
-    h('div', { class: 'card-head' }, h('h2', {}, 'Dominio por competencia'), h('span', { class: 'small muted' }, `${overallMastery(state, course)}% global`)),
-    h('p', { class: 'small muted' }, 'Se calcula con tus respuestas: sube al acertar y baja al fallar. Los conceptos no practicados cuentan como 0.'),
+    h('div', { class: 'card-head' }, h('h2', {}, 'Resultados de comprobaciones'), h('span', { class: 'small muted' }, `${overallMastery(state, course)}% global`)),
+    h('p', { class: 'small muted' }, 'Indicador de respuestas cerradas, no certificación profesional. Los entregables abiertos se autoevalúan con rúbrica.'),
     h('div', { class: 'competencies' }, comps.map(c => h('div', { class: 'comp' },
       h('div', { class: 'comp-row' }, h('span', {}, c.title),
         h('span', {}, h('span', { class: 'small muted' }, `${c.seen}/${c.total} conceptos · `), h('strong', {}, `${c.mastery}%`))),
@@ -72,7 +72,7 @@ export function renderProfile(page, ctx) {
   // Datos
   page.append(h('section', { class: 'card' },
     h('h2', {}, 'Tus datos'),
-    h('p', { class: 'small muted' }, 'El progreso se guarda solo en este dispositivo y navegador. No hay cuentas, servidores ni seguimiento. Exporta una copia de vez en cuando.'),
+    h('p', { class: 'small muted' }, 'El progreso se guarda solo en este dispositivo y navegador. No hay cuentas, servidores ni seguimiento. La copia incluye entregables y el histórico archivado de la edición anterior. Exporta una copia de vez en cuando.'),
     h('div', { class: 'stack' },
       h('button', { class: 'btn btn-soft btn-block', type: 'button', onclick: () => downloadBackup(state) }, icon('download', { size: 18 }), 'Descargar copia (.json)'),
       h('button', { class: 'btn btn-soft btn-block', type: 'button', onclick: () => copyBackup(state) }, icon('copy', { size: 18 }), 'Copiar copia al portapapeles'),

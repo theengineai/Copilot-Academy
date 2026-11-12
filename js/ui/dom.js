@@ -38,6 +38,7 @@ export function esc(s) {
 /** Markdown mínimo y seguro: **negrita**, *cursiva*, `código`, listas "- " y saltos de línea. */
 export function md(text) {
   const inline = s => esc(s)
+    .replace(/\[([^\]]+)\]\((content\/resources\/[a-zA-Z0-9_.-]+)\)/g, '<a href="$2" download>$1</a>')
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/(^|[\s(])\*([^*\s][^*]*)\*/g, '$1<em>$2</em>');

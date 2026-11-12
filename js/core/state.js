@@ -2,11 +2,14 @@
 // Cambia STATE_VERSION y añade una migración si modificas la forma del estado.
 
 export const STORAGE_KEY = 'cpa.state';
-export const STATE_VERSION = 1;
+export const STATE_VERSION = 2;
 
 export function defaultState(now = new Date()) {
   return {
     version: STATE_VERSION,
+    edition: "financing-v2",
+    portfolio: {},
+    history: [],
     createdAt: now.toISOString(),
     xp: 0,
     daily: {},          // { 'AAAA-MM-DD': xp ganada ese día }
@@ -26,8 +29,8 @@ export function defaultState(now = new Date()) {
 }
 
 const MIGRATIONS = {
-  // Ejemplo para futuras versiones:
-  // 2: state => ({ ...state, nuevoCampo: [] }),
+  2: old => ({ ...defaultState(), createdAt: old.createdAt, settings: old.settings,
+    history: [...(old.history || []), { edition: "v1", archivedAt: new Date().toISOString(), state: old }] }),
 };
 
 function isPlainObject(v) {
