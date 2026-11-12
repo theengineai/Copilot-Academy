@@ -34,7 +34,9 @@ export function masteryLevel(state, course) {
   const passed = id => Boolean(state.exams[id]?.passed);
   const ids = course.modules.map(m => m.id);
   const finalDone = Boolean(state.missions[finalMission(course)?.id]?.completedAt);
-  if (ids.every(passed) && finalDone) return 'L5';
+  // L5 is deliberately never awarded by this local guided practice.
+  // Practical work needs review against source files in the user's real environment.
+  if (ids.every(passed) && finalDone) return 'L4';
   if (ids.slice(0, Math.max(2, ids.length - 3)).every(passed)) return 'L4';
   if (ids.slice(0, 2).every(passed)) return 'L3';
   return 'L2';
@@ -123,6 +125,8 @@ export function isLabUnlocked(state, course, challenge) {
 
 /** Registra una respuesta (primer intento cuenta para dominio y repaso). */
 export function recordAnswer(state, exercise, correct, today = localDay()) {
+  if (exercise.type === 'portfolio') return; // completed self-assessment is not a correct answer
+
   state.stats.answers += 1;
   if (correct) state.stats.correct += 1;
   recordConcept(state, exercise.concept, correct, today);
@@ -237,7 +241,7 @@ export function conceptsByCompetency(course) {
   return map;
 }
 
-/** Porcentaje 0..100 de dominio real: media del dominio de los conceptos (no vistos = 0). */
+/** Indicador 0..100 de resultados en práctica local: media de los conceptos (no vistos = 0). */
 export function competencyMastery(state, course) {
   const byComp = conceptsByCompetency(course);
   return course.competencies.map(comp => {
@@ -301,7 +305,7 @@ export function recommendations(state, course, today = localDay()) {
       .filter(c => c.competency === weakest.id && state.concepts[c.id])
       .sort((a, b) => state.concepts[a.id].score - state.concepts[b.id].score)[0];
     const lesson = weakConcept && course.lessons.find(l => l.exercises.some(ex => ex.concept === weakConcept.id));
-    if (lesson) recs.push({ kind: 'lesson', title: `Refuerza: ${lesson.title}`, why: `Tu dominio en ${weakest.title} es del ${weakest.mastery}%.`, route: `#/lesson/${lesson.id}` });
+    if (lesson) recs.push({ kind: 'lesson', title: `Refuerza: ${lesson.title}`, why: `Tus resultados de práctica en ${weakest.title} son del ${weakest.mastery}%; revisa también el entregable.`, route: `#/lesson/${lesson.id}` });
   }
   return recs.slice(0, 3);
 }

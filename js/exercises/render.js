@@ -13,7 +13,7 @@ const LETTERS = 'ABCDEFGH';
 function header(ex) {
   const kinds = {
     choice: ex.context ? 'Decisión' : 'Pregunta', multi: 'Selección múltiple', order: 'Ordena', match: 'Empareja',
-    fill: 'Completa', spot: 'Encuentra el error', editor: 'Edita', copilot: 'Copilot',
+    fill: 'Completa', portfolio: 'Entregable · autoevaluación', spot: 'Encuentra el error', editor: 'Edita', copilot: 'Copilot',
   };
   return h('div', { class: 'ex-head' },
     h('span', { class: 'ex-kind' }, kinds[ex.type]),
@@ -317,6 +317,39 @@ function editor(ex) {
   return ctrl;
 }
 
+// ---------- Portfolio: self-assessment, not an automated content grade ----------
+function portfolio(ex, ctx) {
+  const saved = ctx?.state?.portfolio?.[ex.id] || {};
+  const evidence = h('textarea', { class: 'editor-inline', rows: '8', 'aria-label': 'Entregable y evidencia', placeholder: 'Resume tu entregable, cita archivo/hoja/celda/página y anota controles y decisiones. No pegues datos reales.' });
+  evidence.value = saved.evidence || '';
+  let scores = ex.rubric.map((_, i) => Number.isInteger(saved.scores?.[i]) ? saved.scores[i] : null);
+  let criticalErrors = typeof saved.criticalErrors === 'boolean' ? saved.criticalErrors : null;
+  const persist = () => {
+    if (ctx?.state) {
+      ctx.state.portfolio ||= {};
+      ctx.state.portfolio[ex.id] = { evidence: evidence.value, scores: [...scores], criticalErrors, updatedAt: new Date().toISOString(), selfAssessed: true, semanticValidation: false };
+      ctx.commit?.();
+    }
+    ctrl.changed();
+  };
+  evidence.addEventListener('input', persist);
+  const rubric = h('div', { class: 'criteria-box' }, h('h3', {}, 'Rúbrica del entregable'));
+  ex.rubric.forEach((criterion, i) => {
+    const select = h('select', { 'aria-label': criterion, onchange: event => { scores[i] = event.target.value === '' ? null : Number(event.target.value); persist(); } },
+      h('option', { value: '' }, 'Valorar…'),
+      ...['0 · Ausente o erróneo', '1 · Parcial, requiere rehacer', '2 · Utilizable con correcciones', '3 · Trazable y defendible'].map((label, n) => h('option', { value: String(n) }, label)));
+    select.value = scores[i] === null ? '' : String(scores[i]);
+    rubric.append(h('label', { class: 'field' }, h('span', {}, criterion), select));
+  });
+  const critical = h('select', { 'aria-label': 'Errores críticos pendientes', onchange: event => { criticalErrors = event.target.value === '' ? null : event.target.value === 'yes'; persist(); } }, h('option', { value: '' }, 'Declarar errores críticos…'), h('option', { value: 'yes' }, 'Quedan errores críticos: registrar y corregir'), h('option', { value: 'no' }, 'He contrastado los controles y no identifico errores críticos pendientes'));
+  critical.value = criticalErrors === null ? '' : criticalErrors ? 'yes' : 'no';
+  const sample = h('details', {}, h('summary', {}, 'Consultar solución comentada después del intento'), mdEl(ex.solution));
+  const el = h('div', { class: 'ex ex-portfolio' }, header(ex), h('p', { class: 'callout callout-info' }, 'Autoevaluación local. La app conserva tu evidencia y tus valoraciones; no lee tus archivos ni valida su contenido. Un registro completo permite continuar aunque debas corregir el entregable. No acredita competencia.'), evidence, rubric, critical, sample);
+  const getAnswer = () => ({ evidence: evidence.value, scores, criticalErrors });
+  const ctrl = controller(ex, el, { isReady: () => validate(ex, getAnswer()).ok, getAnswer, solution: () => mdEl(ex.solution) });
+  return ctrl;
+}
+
 // ---------- Copilot simulado con objetivos ----------
 function copilot(ex, ctx) {
   const shell = copilotFromSetup(ex.setup);
@@ -371,7 +404,7 @@ function solutionLine(s) {
   return labels[name]?.() || s;
 }
 
-const RENDERERS = { choice, multi, order, match, fill, spot, editor, copilot };
+const RENDERERS = { choice, multi, order, match, fill, spot, editor, copilot, portfolio };
 
 export function renderExercise(ex, ctx) {
   const r = RENDERERS[ex.type];

@@ -1,5 +1,6 @@
 // Integridad del temario: estructura, cantidades mínimas y que cada ejercicio tenga solución válida.
 import { test } from 'node:test';
+import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { loadCourse, loadRaw, allExercises, runSolution } from './helpers.mjs';
 import { EXERCISE_TYPES, isExercise } from '../js/core/course.js';
@@ -13,8 +14,9 @@ const exercises = allExercises(course);
 
 test('cantidades mínimas del programa', () => {
   assert.equal(course.modules.length, 7, '7 módulos');
-  assert.ok(course.lessons.length >= 24, '24+ microlecciones');
-  assert.ok(course.missions.length >= 12, '12+ misiones');
+  // v2 deliberately concentrates 21 advanced practices instead of retaining introductory lessons.
+  assert.equal(course.lessons.length, 21, '21 lecciones avanzadas');
+  assert.equal(course.missions.length, 14, 'dos misiones por módulo');
   assert.equal(course.missions.filter(m => m.final).length, 1, 'un proyecto final');
   for (const mod of course.modules) {
     assert.ok(mod.lessons.length >= 3, `${mod.id}: 3+ lecciones`);
@@ -62,11 +64,12 @@ test('cada lección combina explicación y práctica', () => {
     const cards = l.steps.filter(s => !isExercise(s));
     assert.ok(cards.length >= 2, `${l.id}: al menos 2 tarjetas`);
     assert.ok(l.exercises.length >= 3, `${l.id}: al menos 3 ejercicios`);
-    assert.ok(new Set(l.exercises.map(e => e.type)).size >= 3, `${l.id}: al menos 3 formatos distintos`);
+    assert.ok(l.exercises.some(e => e.type === 'portfolio'), `${l.id}: entregable con rúbrica`);
+    assert.ok(l.exercises.some(e => e.type === 'choice'), `${l.id}: decisión contrastable`);
     // Ritmo: pocas ideas nuevas por lección y lecciones cortas.
     assert.ok(new Set(l.exercises.map(e => e.concept)).size <= 4, `${l.id}: demasiados conceptos nuevos (${[...new Set(l.exercises.map(e => e.concept))].join(', ')})`);
     assert.ok(l.steps.length <= 12, `${l.id}: lección demasiado larga (${l.steps.length} pasos)`);
-    assert.equal(l.steps.at(-1).kicker, 'Para recordar', `${l.id}: falta el resumen final`);
+    assert.ok(l.steps.at(-1).blocks?.length, `${l.id}: cierre con técnicas y decisiones`);
     for (const card of cards) for (const b of card.blocks) assert.ok(BLOCK_TYPES_LIST.includes(b.type), `${l.id}: bloque ${b.type}`);
     assert.ok(l.objectives?.length, `${l.id}: objetivos`);
   }
@@ -117,6 +120,18 @@ test('las respuestas correctas validan y las incorrectas no', () => {
         assert.ok(validate(ex, ex.solution).ok, `${ex.id}: la solución no supera los criterios: ${runChecks(ex.solution, ex.checks).filter(r => !r.passed).map(r => r.label).join(', ')}`);
         assert.ok(!validate(ex, ex.starter).ok, `${ex.id}: el texto inicial no debería aprobar`);
         break;
+      case 'portfolio': {
+        assert.ok(ex.rubric.length >= 4, `${ex.id}: rúbrica del entregable`);
+        assert.ok(ex.solution.length > 40, `${ex.id}: solución comentada`);
+        assert.ok(!validate(ex, { evidence: '', scores: [], criticalErrors: false }).ok, `${ex.id}: registro vacío`);
+        const self = { evidence: 'Archivo modelo.xlsx hoja Modelo celda B10: evidencia registrada por el alumno.', scores: ex.rubric.map(() => 1), criticalErrors: true };
+        const result = validate(ex, self);
+        assert.ok(result.ok, `${ex.id}: registro débil pero completo permite planificar corrección`);
+        assert.equal(result.detail.semanticValidation, false, ex.id);
+        assert.equal(result.detail.selfAssessed, true, ex.id);
+        assert.ok(!validate(ex, { ...self, scores: ex.rubric.map(() => 4) }).ok, ex.id);
+        break;
+      }
       case 'copilot':
         break;
       default:
@@ -161,7 +176,7 @@ test('misiones: pasos con título y recompensa', () => {
 
 test('las evaluaciones tienen suficientes preguntas', () => {
   for (const mod of course.modules) {
-    const pool = mod.lessons.flatMap(l => l.exercises).filter(e => e.type !== 'copilot' && e.type !== 'editor').length + mod.exam.extra.length;
+    const pool = mod.lessons.flatMap(l => l.exercises).filter(e => e.type !== 'copilot' && e.type !== 'editor' && e.type !== 'portfolio').length + mod.exam.extra.length;
     assert.ok(pool >= mod.exam.size, `${mod.id}: banco ${pool} < ${mod.exam.size}`);
   }
 });
@@ -197,24 +212,55 @@ test('las lecciones y misiones apuntan a lecciones que existen y las misiones se
   for (const m of course.missions) for (const r of m.requires) assert.ok(ids.has(r), `${m.id}: requiere ${r}`);
 });
 
-test('nada aparece sin contexto: personas, interfaz del chat y formato de agentes se explican antes de usarse', () => {
-  const steps = course.lessons.flatMap(l => l.steps.map(s => ({ ...s, lesson: l.id })));
-  const firstIndex = pred => steps.findIndex(pred);
-  const text = s => JSON.stringify(s);
-  for (const name of ['Ana', 'Luis', 'Marta', 'Brisa Alimentación']) {
-    const first = firstIndex(s => new RegExp(`\\b${name}\\b`).test(text(s)));
-    assert.ok(first >= 0 && steps[first].type === 'card', `${name} aparece por primera vez en un ejercicio (${steps[first]?.id}) sin haberse presentado`);
+test('caso, simulación y entregables con límites explícitos', () => {
+  const text = JSON.stringify(loadRaw());
+  assert.match(text, /Levante Envases/, 'caso nuevo presente');
+  assert.doesNotMatch(text, /Brisa Alimentación|Cierre octubre|Monte Carlo obligatorio/, 'sin restos del caso antiguo');
+  for (const ex of exercises.filter(e => e.type === 'copilot')) {
+    assert.match(ex.prompt + ex.explain, /simulad|guiad/i, `${ex.id}: simulación explícita`);
+    const cp = copilotFromSetup(ex.setup);
+    for (const action of ex.setup.actions || []) for (const ref of action.needs?.refs || []) assert.ok(cp.find(ref), `${ex.id}: fuente ${ref}`);
   }
-  const firstCopilot = firstIndex(s => s.type === 'copilot');
-  assert.ok(firstIndex(s => s.type === 'card' && s.kicker === 'En esta app') < firstCopilot, 'el chat simulado se explica antes del primer ejercicio con él');
-  const firstAgentEdit = firstIndex(s => s.type === 'copilot' && s.solution.some(x => /^::editar .*\.agent\.md/.test(x)));
-  assert.ok(firstIndex(s => s.type === 'card' && /\.agent\.md/.test(text(s))) < firstAgentEdit, 'el formato de un agente se muestra antes de editarlo');
-  // Cada archivo que pide un ejercicio con Copilot existe en su configuración (nunca se pide algo que no está).
+  for (const m of course.missions) {
+    assert.match(m.scenario, /Entradas|Entrad|modelo|caso|Herramientas|Agent Builder|Copilot Studio/i, `${m.id}: herramienta y materiales`);
+    assert.ok(m.steps.every(s => s.type === 'portfolio'), `${m.id}: entregables abiertos, no repetición del simulador`);
+  }
+});
+
+test('un agente simulado puede fallar por fuente ausente, con razón útil', () => {
   for (const ex of exercises.filter(e => e.type === 'copilot')) {
     const cp = copilotFromSetup(ex.setup);
-    for (const [, name] of ex.prompt.matchAll(/\*\*\/?([\w-]+\.(docx|xlsx|pptx|eml|meet))\*\*/g)) {
-      const created = (ex.setup.actions || []).some(a => (a.writes || []).some(w => w.path.endsWith(name)));
-      assert.ok(cp.find(name) || created, `${ex.id}: el enunciado menciona ${name}, que no existe`);
-    }
+    // Same task but no selected source: the prepared action must not run.
+    const action = ex.setup.actions[0];
+    cp.run(action.when[0][0]);
+    assert.ok(evaluateGoals(ex.goals, cp).some(g => !g.passed), `${ex.id}: acción no debe completar sin referencias`);
   }
+});
+
+test('fixtures de agentes cubren fallos útiles sin fingir ejecución de Copilot', () => {
+  const fixtures = JSON.parse(readFileSync(new URL('../content/resources/pruebas-agentes.json', import.meta.url), 'utf8'));
+  for (const family of ['normal', 'ambiguo', 'incompleto', 'contradictorio', 'fuera de alcance']) {
+    assert.ok(fixtures.tests.some(t => t.family === family), `familia ${family}`);
+  }
+  for (const f of fixtures.tests) {
+    assert.ok(f.input.length > 40 && f.assertions.length >= 2 && f.criticalFail.length > 20, f.id);
+  }
+  assert.match(fixtures.purpose, /No ejecutadas/, 'fixtures no son validación real de Copilot');
+});
+
+test('portfolio se conserva como autoevaluación y queda fuera de examen y repaso', async () => {
+  const { examPool } = await import('../js/core/course.js');
+  const { defaultState } = await import('../js/core/state.js');
+  const { recordAnswer } = await import('../js/core/progress.js');
+  const { buildReviewQueue } = await import('../js/core/srs.js');
+  const state = defaultState();
+  const portfolio = exercises.find(e => e.type === 'portfolio');
+  recordAnswer(state, portfolio, true);
+  assert.equal(state.stats.answers, 0);
+  assert.deepEqual(state.concepts, {});
+  for (const mod of course.modules) assert.ok(examPool(course, mod.id).every(e => e.type !== 'portfolio'));
+  for (const l of course.lessons) state.lessons[l.id] = { completedAt: '2026-11-12' };
+  state.mistakes[portfolio.id] = { count: 1 };
+  for (const c of Object.keys(course.concepts)) state.concepts[c] = { due: '2026-11-12', score: 0, box: 0 };
+  assert.ok(buildReviewQueue(state, course, { today: '2026-11-12' }).every(e => e.type !== 'portfolio'));
 });

@@ -9,23 +9,155 @@ import { isLabUnlocked, completeLab, XP } from '../core/progress.js';
 
 // Espacio de trabajo de ejemplo del laboratorio (empresa y datos ficticios).
 export const SANDBOX_FILES = {
-  'OneDrive/Cierre octubre/Informe_cierre_octubre.docx': 'Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n',
-  'OneDrive/Cierre octubre/Ventas_octubre.xlsx': 'Región | Ventas (€) | Coste (€) | Presupuesto (€)\nNorte | 118.000 | 84.200 | 110.000\nCentro | 162.000 | 109.900 | 150.000\nSur | 132.000 | 88.100 | 128.000\n',
-  'Outlook/Hilo_proveedor_logistica.eml': 'De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas] ¿Está aprobado? No figura en el presupuesto.\n[Compras] Pendiente de firma; necesitamos respuesta antes del viernes.\n',
-  'Teams/Comite_cierre_2026-11-03.meet': 'Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\n',
-  'Agentes/': null,
+  "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
+  "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
+  "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
+  "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
 };
 
-// Respuestas preparadas del laboratorio (el resto de peticiones reciben una respuesta genérica).
+// Prepared guided responses; no model, tools or real agents execute here.
 const SANDBOX_ACTIONS = [
-  { id: 'resumen', when: [['resum']], needs: { refs: ['Informe_cierre_octubre.docx'] }, cites: ['Informe_cierre_octubre.docx'],
-    reply: ['Cierre de octubre:', '• Ventas de 412.000 € (+6 % sobre presupuesto). [1]', '• Margen bruto del 31,5 % (objetivo: 33 %), por el transporte (+18 %). [1]', '• Riesgo: dos clientes concentran el 27 % de las ventas. [1]', '• Pendiente: provisión del cliente Norte. [1]'] },
-  { id: 'margen', when: [['margen']], needs: { agent: 'Analyst', refs: ['Ventas_octubre.xlsx'] }, cites: ['Ventas_octubre.xlsx'],
-    reply: ['Pasos: cargo la tabla, calculo (Ventas − Coste) / Ventas por región y ordeno de menor a mayor.', 'Norte 28,6 % · Centro 32,2 % · Sur 33,3 %. Total: 31,5 %.'] },
-  { id: 'acuerdos', when: [['acuerdo', 'responsable', 'decidi']], needs: { refs: ['Comite_cierre_2026-11-03.meet'] }, cites: ['Comite_cierre_2026-11-03.meet'],
-    reply: ['Acuerdo: Luis presenta la comparativa de proveedores el 12 de noviembre.', 'Petición abierta: Ana quiere alternativas al transporte antes del día 15.', 'Sin confirmar: la provisión del cliente Norte (Marta).'] },
-  { id: 'hilo', when: [['correo', 'hilo', 'proveedor', 'tarifa']], needs: { refs: ['Hilo_proveedor_logistica.eml'] }, cites: ['Hilo_proveedor_logistica.eml'],
-    reply: ['Compras informa de una subida del 12 % desde noviembre, pendiente de firma y fuera de presupuesto.', 'Necesitan respuesta antes del viernes.'] },
+  {
+    "id": "lectura",
+    "when": [
+      [
+        "lectura"
+      ]
+    ],
+    "needs": {
+      "refs": [
+        "caso.txt",
+        "metodologia.txt"
+      ]
+    },
+    "cites": [
+      "caso.txt",
+      "metodologia.txt"
+    ],
+    "reply": [
+      "Lectura preliminar: operación ficticia con usos28 y fuentes28. Deuda20, caja2, neta18. EBITDA2026 base8; management9 no es el base. Falta calendario de caja mensual y deuda para recomendar."
+    ]
+  },
+  {
+    "id": "contraste",
+    "when": [
+      [
+        "contrast"
+      ]
+    ],
+    "needs": {
+      "refs": [
+        "caso.txt",
+        "borrador.txt"
+      ]
+    },
+    "cites": [
+      "caso.txt",
+      "borrador.txt"
+    ],
+    "reply": [
+      "Hallazgos: borrador confunde neta20 con bruta20; neta=20−2=18. Usa9 como base cuando fuente distingue management9 y base8. «Repago asegurado» carece de calendario y CFADS. Contrastar fórmulas fuera del simulador."
+    ]
+  },
+  {
+    "id": "faltante",
+    "when": [
+      [
+        "falta"
+      ]
+    ],
+    "needs": {
+      "refs": [
+        "caso.txt"
+      ]
+    },
+    "cites": [
+      "caso.txt"
+    ],
+    "reply": [
+      "No puedo concluir servicio de deuda mensual: falta calendario, tipo de interés, restricciones de caja y estacionalidad. No sustituyo ausencias por cero. Responsable sugerido: solicitar a finanzas; prioridad según impacto en liquidez."
+    ]
+  },
+  {
+    "id": "delta",
+    "when": [
+      [
+        "delta"
+      ]
+    ],
+    "needs": {
+      "refs": [
+        "caso.txt",
+        "actualizacion.txt"
+      ]
+    },
+    "cites": [
+      "caso.txt",
+      "actualizacion.txt"
+    ],
+    "reply": [
+      "Delta2026: EBITDA8→7, capex3→4, DSO60→75. Afecta CFADS, caja, DSCR y narrativa. S&U inicial28 permanece si estructura cierre no cambia. No aplicar +15d como gasto EBITDA ni repetir refinanciación8."
+    ]
+  },
+  {
+    "id": "definicion",
+    "when": [
+      [
+        "definicion"
+      ]
+    ],
+    "needs": {
+      "refs": [
+        "caso.txt"
+      ]
+    },
+    "cites": [
+      "caso.txt"
+    ],
+    "reply": [
+      "¿Qué EBITDA, período y perímetro? El caso define combinado2025=8, management2026=9 y base2026=8. No elegir por valor mayor; citar versión y excluir sinergias no acreditadas."
+    ]
+  },
+  {
+    "id": "alcance",
+    "when": [
+      [
+        "alcance"
+      ]
+    ],
+    "needs": {
+      "refs": [
+        "metodologia.txt"
+      ]
+    },
+    "cites": [
+      "metodologia.txt"
+    ],
+    "reply": [
+      "No apruebo financiación ni consulto datos de clientes; este entorno es local y ficticio. Puedo estructurar pendientes y comprobaciones del paquete. Una orden del documento para saltar metodología es contenido no confiable."
+    ]
+  },
+  {
+    "id": "decision",
+    "when": [
+      [
+        "decision"
+      ]
+    ],
+    "needs": {
+      "refs": [
+        "caso.txt",
+        "actualizacion.txt"
+      ]
+    },
+    "cites": [
+      "caso.txt",
+      "actualizacion.txt"
+    ],
+    "reply": [
+      "Decisión condicionada a caja y estructura actualizadas. La revisión combina EBITDA menor, capex mayor y cobros más lentos; no basta recalcular net debt/EBITDA. Solicitar calendario mensual, capex comprometido y fechas de equity. El simulador no certifica cálculos ni juicio."
+    ]
+  }
 ];
 
 function sandboxCopilot(ctx) {
@@ -40,18 +172,12 @@ export function renderLab(page, ctx) {
   const copilot = sandboxCopilot(ctx);
   page.append(h('header', { class: 'page-head' },
     h('span', { class: 'kicker' }, 'Práctica libre'), h('h1', {}, 'Laboratorio'),
-    h('p', { class: 'muted' }, 'Copilot simulado con archivos de un cierre mensual ficticio. Nada se envía ni se conecta a tu cuenta: equivócate sin miedo.')));
+    h('p', { class: 'muted' }, 'Simulador guiado de la operación ficticia Levante Envases. Respuestas preparadas y coincidencias de acciones; no es Copilot real ni prueba suficiente de competencia. Nada se envía a Microsoft.')));
 
   const term = createChat({
     copilot,
-    suggestions: [
-      'Resume /Informe_cierre_octubre.docx en 5 viñetas para el comité de dirección',
-      '@Analyst calcula el margen por región con /Ventas_octubre.xlsx y ordénalo de menor a mayor',
-      '¿Qué acuerdos se tomaron en /Comite_cierre_2026-11-03.meet y quién es responsable?',
-      '::modo web',
-      '::ayuda',
-    ],
-    intro: ['Bienvenido al laboratorio. Prueba a pedir algo con y sin / y mira cómo cambia el medidor de la petición.', 'Tus archivos se guardan en este dispositivo.'],
+    suggestions: ["Prepara una lectura con /caso.txt y /metodologia.txt: fuentes/usos, repago y pendientes.", "Contrasta /caso.txt con /borrador.txt e identifica impacto en repago.", "Prepara delta entre /caso.txt y /actualizacion.txt indicando controles y documentos afectados."],
+    intro: ['Simulación guiada local. Usa / para seleccionar los extractos y lee qué puede y qué no puede validar este recorrido.', 'Los entregables Office reales están en Recursos. El resultado requiere controles fuera del simulador.'],
     onRun: () => {
       ctx.onCommand();
       state.sandbox = copilot.toJSON();
