@@ -13,10 +13,10 @@ const course = loadCourse();
 const exercises = allExercises(course);
 
 test('cantidades mínimas del programa', () => {
-  assert.equal(course.modules.length, 7, '7 módulos');
-  // v2 deliberately concentrates 21 advanced practices instead of retaining introductory lessons.
-  assert.equal(course.lessons.length, 21, '21 lecciones avanzadas');
-  assert.equal(course.missions.length, 14, 'dos misiones por módulo');
+  assert.equal(course.modules.length, 10, '10 módulos transferibles');
+  // v3 deliberately devotes five full modules to agent construction and Studio, independent of finance specialty.
+  assert.equal(course.lessons.length, 30, '30 lecciones, 15 de construcción de agentes/Studio');
+  assert.equal(course.missions.length, 15, '15 misiones con práctica adicional de agentes/Studio');
   assert.equal(course.missions.filter(m => m.final).length, 1, 'un proyecto final');
   for (const mod of course.modules) {
     assert.ok(mod.lessons.length >= 3, `${mod.id}: 3+ lecciones`);
@@ -214,8 +214,8 @@ test('las lecciones y misiones apuntan a lecciones que existen y las misiones se
 
 test('caso, simulación y entregables con límites explícitos', () => {
   const text = JSON.stringify(loadRaw());
-  assert.match(text, /Levante Envases/, 'caso nuevo presente');
-  assert.doesNotMatch(text, /Brisa Alimentación|Cierre octubre|Monte Carlo obligatorio/, 'sin restos del caso antiguo');
+  assert.match(text, /Aurora|Boreal/, 'ejemplos financieros transferibles presentes');
+  assert.doesNotMatch(text, /Brisa Alimentación|Levante Envases|Murcia Pack|FARE|Cierre octubre|Monte Carlo obligatorio/, 'sin restos del caso antiguo');
   for (const ex of exercises.filter(e => e.type === 'copilot')) {
     assert.match(ex.prompt + ex.explain, /simulad|guiad/i, `${ex.id}: simulación explícita`);
     const cp = copilotFromSetup(ex.setup);
@@ -244,6 +244,8 @@ test('fixtures de agentes cubren fallos útiles sin fingir ejecución de Copilot
   }
   for (const f of fixtures.tests) {
     assert.ok(f.input.length > 40 && f.assertions.length >= 2 && f.criticalFail.length > 20, f.id);
+    assert.ok(Object.keys(f.files || {}).length >= 1 && Object.values(f.files).every(x => x.length > 40), `${f.id}: paquete reproducible`);
+    assert.equal(f.status, 'pending', `${f.id}: no fingir ejecución real`);
   }
   assert.match(fixtures.purpose, /No ejecutadas/, 'fixtures no son validación real de Copilot');
 });
@@ -263,4 +265,17 @@ test('portfolio se conserva como autoevaluación y queda fuera de examen y repas
   state.mistakes[portfolio.id] = { count: 1 };
   for (const c of Object.keys(course.concepts)) state.concepts[c] = { due: '2026-11-12', score: 0, box: 0 };
   assert.ok(buildReviewQueue(state, course, { today: '2026-11-12' }).every(e => e.type !== 'portfolio'));
+});
+
+
+test('Studio desarrolla construcción ejecutable y pruebas propias, no solo prompts', () => {
+  for (const id of ['m4','m5','m6']) {
+    const m=course.moduleById[id];
+    assert.equal(m.lessons.length,3);
+    assert.ok(m.lessons.every(l=>l.exercises.some(e=>e.type==='portfolio')));
+  }
+  const text=JSON.stringify(course.moduleById.m5);
+  for (const term of ['When an agent calls the flow','Respond to the agent','BaseValue','CurrentValue','Flow checker','403','unicidad']) assert.ok(text.includes(term),term);
+  const lab=readFileSync(new URL('../content/resources/studio-lab.md',import.meta.url),'utf8');
+  for (const term of ['standard harness','Dataverse','RelativeAvailable','base-negative',"variables('CurrentValue')",'test panel','pending']) assert.ok(lab.includes(term),term);
 });

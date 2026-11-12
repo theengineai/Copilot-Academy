@@ -1,42 +1,43 @@
 [
   {
-    "id": "f2-lab-lectura",
-    "title": "Primera lectura con perímetro",
-    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
+    "id": "f3-lab-contrato",
+    "title": "Delimitar un agente",
+    "summary": "Recorrido guiado con respuesta preparada. Contrasta después la capacidad en la herramienta real.",
     "requires": [
-      "f2-l1-1"
+      "f3-l2-1"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "agent.method",
-      "prompt": "Práctica guiada: Prepara una lectura con /caso.txt y /metodologia.txt: fuentes/usos, repago y pendientes. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
+      "concept": "builder.contract",
+      "prompt": "Práctica guiada: Define contrato con /contrato.txt y /datos.txt: propósito, inputs, salida y límites. La acción comprueba el recorrido, no calidad semántica ni ejecución de Microsoft.",
       "setup": {
         "files": {
-          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
-          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
-          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
-          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+          "Metodo/contrato.txt": "FICTICIO. Contrato reusable: compara datos solo cuando definición, entidad, período y unidad son explícitos. Ausente no es0. Cita fuentes, muestra cálculo y marca pendientes. No accede a ERP ni publica acciones.",
+          "Fuentes/datos.txt": "EXTRACTO FICTICIO: Aurora2024 ventas100M€ EBITDA15M€;2025 ventas110M€ EBITDA17,6M€. Misma definición/perímetro. Boreal2025 ventas80M€ EBITDA12M€; no2024.",
+          "Fuentes/contradiccion.txt": "EXTRACTO FICTICIO: nota posterior dice Aurora EBITDA2025=18,1M€ sin explicar ajuste ni aprobación. No sustituye expresamente17,6.",
+          "Herramientas/delta.txt": "CONTRATO TOOL EDUCATIVO: Base/Actual Number comparables; Delta=Actual−Base; relativa solo base>0; base0 devuelve RelativeAvailable=false Status=base-zero;403 devuelve failed-permission, no registrado.",
+          "Diseño/rutas.txt": "DISEÑO FICTICIO: tema captura Metric/Unit/Period/Base/Actual; rama incompleta debe acabar pendiente y no invocar tool. Variables locales por comparación; Global requiere regla de limpieza al cambiar entidad."
         },
         "actions": [
           {
-            "id": "lectura",
+            "id": "contrato",
             "when": [
               [
-                "lectura"
+                "contrato"
               ]
             ],
             "needs": {
               "refs": [
-                "caso.txt",
-                "metodologia.txt"
+                "contrato.txt",
+                "datos.txt"
               ]
             },
             "cites": [
-              "caso.txt",
-              "metodologia.txt"
+              "contrato.txt",
+              "datos.txt"
             ],
             "reply": [
-              "Lectura preliminar: operación ficticia con usos28 y fuentes28. Deuda20, caja2, neta18. EBITDA2026 base8; management9 no es el base. Falta calendario de caja mensual y deuda para recomendar."
+              "Contrato observado en el recorrido: comparar evidencia ficticia con unidad, definición y período; pedir ausencias; no ejecutar acciones no configuradas. Esta respuesta está preparada y no construye un agente real."
             ]
           }
         ]
@@ -44,58 +45,59 @@
       "goals": [
         {
           "type": "action",
-          "id": "lectura",
-          "label": "Ejecutar la acción guiada con las fuentes exigidas",
-          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
+          "id": "contrato",
+          "label": "Completar el recorrido guiado con fuentes seleccionadas",
+          "hint": "Usa las referencias y solicita la tarea concreta del enunciado."
         }
       ],
       "solution": [
-        "Prepara una lectura con /caso.txt y /metodologia.txt: fuentes/usos, repago y pendientes."
+        "Define contrato con /contrato.txt y /datos.txt: propósito, inputs, salida y límites."
       ],
-      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "explain": "Contrato observado en el recorrido: comparar evidencia ficticia con unidad, definición y período; pedir ausencias; no ejecutar acciones no configuradas. Esta respuesta está preparada y no construye un agente real. La academia no valida la calidad del agente por patrones; registra por separado los resultados reales.",
       "intro": [
-        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
+        "Simulación local guiada: extractos .txt y respuestas preparadas. No hay IA real, flow ni conexión con Microsoft."
       ]
     }
   },
   {
-    "id": "f2-lab-contraste",
-    "title": "Detectar una conclusión sin soporte",
-    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
+    "id": "f3-lab-ambiguedad",
+    "title": "Preguntar antes de calcular",
+    "summary": "Recorrido guiado con respuesta preparada. Contrasta después la capacidad en la herramienta real.",
     "requires": [
-      "f2-l5-1"
+      "f3-l3-3"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "review.figures",
-      "prompt": "Práctica guiada: Contrasta /caso.txt con /borrador.txt e identifica impacto en repago. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
+      "concept": "knowledge.test",
+      "prompt": "Práctica guiada: Diagnostica ambiguedad con /contrato.txt y /datos.txt cuando el usuario solo pide margen. La acción comprueba el recorrido, no calidad semántica ni ejecución de Microsoft.",
       "setup": {
         "files": {
-          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
-          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
-          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
-          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+          "Metodo/contrato.txt": "FICTICIO. Contrato reusable: compara datos solo cuando definición, entidad, período y unidad son explícitos. Ausente no es0. Cita fuentes, muestra cálculo y marca pendientes. No accede a ERP ni publica acciones.",
+          "Fuentes/datos.txt": "EXTRACTO FICTICIO: Aurora2024 ventas100M€ EBITDA15M€;2025 ventas110M€ EBITDA17,6M€. Misma definición/perímetro. Boreal2025 ventas80M€ EBITDA12M€; no2024.",
+          "Fuentes/contradiccion.txt": "EXTRACTO FICTICIO: nota posterior dice Aurora EBITDA2025=18,1M€ sin explicar ajuste ni aprobación. No sustituye expresamente17,6.",
+          "Herramientas/delta.txt": "CONTRATO TOOL EDUCATIVO: Base/Actual Number comparables; Delta=Actual−Base; relativa solo base>0; base0 devuelve RelativeAvailable=false Status=base-zero;403 devuelve failed-permission, no registrado.",
+          "Diseño/rutas.txt": "DISEÑO FICTICIO: tema captura Metric/Unit/Period/Base/Actual; rama incompleta debe acabar pendiente y no invocar tool. Variables locales por comparación; Global requiere regla de limpieza al cambiar entidad."
         },
         "actions": [
           {
-            "id": "contraste",
+            "id": "ambiguedad",
             "when": [
               [
-                "contrast"
+                "ambiguedad"
               ]
             ],
             "needs": {
               "refs": [
-                "caso.txt",
-                "borrador.txt"
+                "contrato.txt",
+                "datos.txt"
               ]
             },
             "cites": [
-              "caso.txt",
-              "borrador.txt"
+              "contrato.txt",
+              "datos.txt"
             ],
             "reply": [
-              "Hallazgos: borrador confunde neta20 con bruta20; neta=20−2=18. Usa9 como base cuando fuente distingue management9 y base8. «Repago asegurado» carece de calendario y CFADS. Contrastar fórmulas fuera del simulador."
+              "Falta definición del margen y período base. Pregunta antes de comparar; no selecciona EBITDA o bruto por conveniencia. Simulación: debe ensayarse luego con un agente real."
             ]
           }
         ]
@@ -103,56 +105,59 @@
       "goals": [
         {
           "type": "action",
-          "id": "contraste",
-          "label": "Ejecutar la acción guiada con las fuentes exigidas",
-          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
+          "id": "ambiguedad",
+          "label": "Completar el recorrido guiado con fuentes seleccionadas",
+          "hint": "Usa las referencias y solicita la tarea concreta del enunciado."
         }
       ],
       "solution": [
-        "Contrasta /caso.txt con /borrador.txt e identifica impacto en repago."
+        "Diagnostica ambiguedad con /contrato.txt y /datos.txt cuando el usuario solo pide margen."
       ],
-      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "explain": "Falta definición del margen y período base. Pregunta antes de comparar; no selecciona EBITDA o bruto por conveniencia. Simulación: debe ensayarse luego con un agente real. La academia no valida la calidad del agente por patrones; registra por separado los resultados reales.",
       "intro": [
-        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
+        "Simulación local guiada: extractos .txt y respuestas preparadas. No hay IA real, flow ni conexión con Microsoft."
       ]
     }
   },
   {
-    "id": "f2-lab-hueco",
-    "title": "Información insuficiente",
-    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
+    "id": "f3-lab-contradiccion",
+    "title": "Conservar fuentes en conflicto",
+    "summary": "Recorrido guiado con respuesta preparada. Contrasta después la capacidad en la herramienta real.",
     "requires": [
-      "f2-l1-1"
+      "f3-l3-1"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "agent.test",
-      "prompt": "Práctica guiada: Con /caso.txt indica qué falta para verificar el servicio mensual de deuda. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
+      "concept": "knowledge.sources",
+      "prompt": "Práctica guiada: Contrasta contradiccion entre /datos.txt y /contradiccion.txt sin inventar conciliación. La acción comprueba el recorrido, no calidad semántica ni ejecución de Microsoft.",
       "setup": {
         "files": {
-          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
-          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
-          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
-          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+          "Metodo/contrato.txt": "FICTICIO. Contrato reusable: compara datos solo cuando definición, entidad, período y unidad son explícitos. Ausente no es0. Cita fuentes, muestra cálculo y marca pendientes. No accede a ERP ni publica acciones.",
+          "Fuentes/datos.txt": "EXTRACTO FICTICIO: Aurora2024 ventas100M€ EBITDA15M€;2025 ventas110M€ EBITDA17,6M€. Misma definición/perímetro. Boreal2025 ventas80M€ EBITDA12M€; no2024.",
+          "Fuentes/contradiccion.txt": "EXTRACTO FICTICIO: nota posterior dice Aurora EBITDA2025=18,1M€ sin explicar ajuste ni aprobación. No sustituye expresamente17,6.",
+          "Herramientas/delta.txt": "CONTRATO TOOL EDUCATIVO: Base/Actual Number comparables; Delta=Actual−Base; relativa solo base>0; base0 devuelve RelativeAvailable=false Status=base-zero;403 devuelve failed-permission, no registrado.",
+          "Diseño/rutas.txt": "DISEÑO FICTICIO: tema captura Metric/Unit/Period/Base/Actual; rama incompleta debe acabar pendiente y no invocar tool. Variables locales por comparación; Global requiere regla de limpieza al cambiar entidad."
         },
         "actions": [
           {
-            "id": "faltante",
+            "id": "contradiccion",
             "when": [
               [
-                "falta"
+                "contradiccion"
               ]
             ],
             "needs": {
               "refs": [
-                "caso.txt"
+                "datos.txt",
+                "contradiccion.txt"
               ]
             },
             "cites": [
-              "caso.txt"
+              "datos.txt",
+              "contradiccion.txt"
             ],
             "reply": [
-              "No puedo concluir servicio de deuda mensual: falta calendario, tipo de interés, restricciones de caja y estacionalidad. No sustituyo ausencias por cero. Responsable sugerido: solicitar a finanzas; prioridad según impacto en liquidez."
+              "La fuente inicial17,6 y posterior18,1 no se concilian por promedio ni fecha sola. Solicitar definición/ajustes/aprobación. La coincidencia de esta acción no prueba recuperación real de fuentes."
             ]
           }
         ]
@@ -160,58 +165,59 @@
       "goals": [
         {
           "type": "action",
-          "id": "faltante",
-          "label": "Ejecutar la acción guiada con las fuentes exigidas",
-          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
+          "id": "contradiccion",
+          "label": "Completar el recorrido guiado con fuentes seleccionadas",
+          "hint": "Usa las referencias y solicita la tarea concreta del enunciado."
         }
       ],
       "solution": [
-        "Con /caso.txt indica qué falta para verificar el servicio mensual de deuda."
+        "Contrasta contradiccion entre /datos.txt y /contradiccion.txt sin inventar conciliación."
       ],
-      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "explain": "La fuente inicial17,6 y posterior18,1 no se concilian por promedio ni fecha sola. Solicitar definición/ajustes/aprobación. La coincidencia de esta acción no prueba recuperación real de fuentes. La academia no valida la calidad del agente por patrones; registra por separado los resultados reales.",
       "intro": [
-        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
+        "Simulación local guiada: extractos .txt y respuestas preparadas. No hay IA real, flow ni conexión con Microsoft."
       ]
     }
   },
   {
-    "id": "f2-lab-delta",
-    "title": "Actualizar sin doble cómputo",
-    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
+    "id": "f3-lab-ruta",
+    "title": "Bloquear la rama incompleta",
+    "summary": "Recorrido guiado con respuesta preparada. Contrasta después la capacidad en la herramienta real.",
     "requires": [
-      "f2-l6-1"
+      "f3-l4-2"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "process.delta",
-      "prompt": "Práctica guiada: Prepara delta entre /caso.txt y /actualizacion.txt indicando controles y documentos afectados. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
+      "concept": "studio.topics",
+      "prompt": "Práctica guiada: Diagnostica ruta de /rutas.txt y /contrato.txt: una advertencia deja seguir sin unidad. La acción comprueba el recorrido, no calidad semántica ni ejecución de Microsoft.",
       "setup": {
         "files": {
-          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
-          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
-          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
-          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+          "Metodo/contrato.txt": "FICTICIO. Contrato reusable: compara datos solo cuando definición, entidad, período y unidad son explícitos. Ausente no es0. Cita fuentes, muestra cálculo y marca pendientes. No accede a ERP ni publica acciones.",
+          "Fuentes/datos.txt": "EXTRACTO FICTICIO: Aurora2024 ventas100M€ EBITDA15M€;2025 ventas110M€ EBITDA17,6M€. Misma definición/perímetro. Boreal2025 ventas80M€ EBITDA12M€; no2024.",
+          "Fuentes/contradiccion.txt": "EXTRACTO FICTICIO: nota posterior dice Aurora EBITDA2025=18,1M€ sin explicar ajuste ni aprobación. No sustituye expresamente17,6.",
+          "Herramientas/delta.txt": "CONTRATO TOOL EDUCATIVO: Base/Actual Number comparables; Delta=Actual−Base; relativa solo base>0; base0 devuelve RelativeAvailable=false Status=base-zero;403 devuelve failed-permission, no registrado.",
+          "Diseño/rutas.txt": "DISEÑO FICTICIO: tema captura Metric/Unit/Period/Base/Actual; rama incompleta debe acabar pendiente y no invocar tool. Variables locales por comparación; Global requiere regla de limpieza al cambiar entidad."
         },
         "actions": [
           {
-            "id": "delta",
+            "id": "ruta",
             "when": [
               [
-                "delta"
+                "ruta"
               ]
             ],
             "needs": {
               "refs": [
-                "caso.txt",
-                "actualizacion.txt"
+                "rutas.txt",
+                "contrato.txt"
               ]
             },
             "cites": [
-              "caso.txt",
-              "actualizacion.txt"
+              "rutas.txt",
+              "contrato.txt"
             ],
             "reply": [
-              "Delta2026: EBITDA8→7, capex3→4, DSO60→75. Afecta CFADS, caja, DSCR y narrativa. S&U inicial28 permanece si estructura cierre no cambia. No aplicar +15d como gasto EBITDA ni repetir refinanciación8."
+              "Fallo de control: advertir no termina la ruta. La rama incompleta debe devolver pendiente sin alcanzar la herramienta; inspeccionar conexiones/condiciones del tema. Aquí no se ejecuta Studio."
             ]
           }
         ]
@@ -219,56 +225,59 @@
       "goals": [
         {
           "type": "action",
-          "id": "delta",
-          "label": "Ejecutar la acción guiada con las fuentes exigidas",
-          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
+          "id": "ruta",
+          "label": "Completar el recorrido guiado con fuentes seleccionadas",
+          "hint": "Usa las referencias y solicita la tarea concreta del enunciado."
         }
       ],
       "solution": [
-        "Prepara delta entre /caso.txt y /actualizacion.txt indicando controles y documentos afectados."
+        "Diagnostica ruta de /rutas.txt y /contrato.txt: una advertencia deja seguir sin unidad."
       ],
-      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "explain": "Fallo de control: advertir no termina la ruta. La rama incompleta debe devolver pendiente sin alcanzar la herramienta; inspeccionar conexiones/condiciones del tema. Aquí no se ejecuta Studio. La academia no valida la calidad del agente por patrones; registra por separado los resultados reales.",
       "intro": [
-        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
+        "Simulación local guiada: extractos .txt y respuestas preparadas. No hay IA real, flow ni conexión con Microsoft."
       ]
     }
   },
   {
-    "id": "f2-lab-ambigua",
-    "title": "Resolver una definición ambigua",
-    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
+    "id": "f3-lab-variable",
+    "title": "Aislar datos de segunda entidad",
+    "summary": "Recorrido guiado con respuesta preparada. Contrasta después la capacidad en la herramienta real.",
     "requires": [
-      "f2-l1-1"
+      "f3-l4-3"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "agent.sources",
-      "prompt": "Práctica guiada: Aclara la definición de EBITDA en /caso.txt antes de comparar apalancamiento. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
+      "concept": "studio.variables",
+      "prompt": "Práctica guiada: Diagnostica variable con /rutas.txt y /datos.txt: Boreal hereda EBITDA2024 de Aurora. La acción comprueba el recorrido, no calidad semántica ni ejecución de Microsoft.",
       "setup": {
         "files": {
-          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
-          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
-          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
-          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+          "Metodo/contrato.txt": "FICTICIO. Contrato reusable: compara datos solo cuando definición, entidad, período y unidad son explícitos. Ausente no es0. Cita fuentes, muestra cálculo y marca pendientes. No accede a ERP ni publica acciones.",
+          "Fuentes/datos.txt": "EXTRACTO FICTICIO: Aurora2024 ventas100M€ EBITDA15M€;2025 ventas110M€ EBITDA17,6M€. Misma definición/perímetro. Boreal2025 ventas80M€ EBITDA12M€; no2024.",
+          "Fuentes/contradiccion.txt": "EXTRACTO FICTICIO: nota posterior dice Aurora EBITDA2025=18,1M€ sin explicar ajuste ni aprobación. No sustituye expresamente17,6.",
+          "Herramientas/delta.txt": "CONTRATO TOOL EDUCATIVO: Base/Actual Number comparables; Delta=Actual−Base; relativa solo base>0; base0 devuelve RelativeAvailable=false Status=base-zero;403 devuelve failed-permission, no registrado.",
+          "Diseño/rutas.txt": "DISEÑO FICTICIO: tema captura Metric/Unit/Period/Base/Actual; rama incompleta debe acabar pendiente y no invocar tool. Variables locales por comparación; Global requiere regla de limpieza al cambiar entidad."
         },
         "actions": [
           {
-            "id": "definicion",
+            "id": "variable",
             "when": [
               [
-                "definicion"
+                "variable"
               ]
             ],
             "needs": {
               "refs": [
-                "caso.txt"
+                "rutas.txt",
+                "datos.txt"
               ]
             },
             "cites": [
-              "caso.txt"
+              "rutas.txt",
+              "datos.txt"
             ],
             "reply": [
-              "¿Qué EBITDA, período y perímetro? El caso define combinado2025=8, management2026=9 y base2026=8. No elegir por valor mayor; citar versión y excluir sinergias no acreditadas."
+              "El alcance global conserva un valor de otra entidad. Usar local o limpiar/reconfirmar en cambio de contexto. Boreal no tiene2024: no heredar15. Es diagnóstico guiado, no inspección real de variables."
             ]
           }
         ]
@@ -276,56 +285,59 @@
       "goals": [
         {
           "type": "action",
-          "id": "definicion",
-          "label": "Ejecutar la acción guiada con las fuentes exigidas",
-          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
+          "id": "variable",
+          "label": "Completar el recorrido guiado con fuentes seleccionadas",
+          "hint": "Usa las referencias y solicita la tarea concreta del enunciado."
         }
       ],
       "solution": [
-        "Aclara la definición de EBITDA en /caso.txt antes de comparar apalancamiento."
+        "Diagnostica variable con /rutas.txt y /datos.txt: Boreal hereda EBITDA2024 de Aurora."
       ],
-      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "explain": "El alcance global conserva un valor de otra entidad. Usar local o limpiar/reconfirmar en cambio de contexto. Boreal no tiene2024: no heredar15. Es diagnóstico guiado, no inspección real de variables. La academia no valida la calidad del agente por patrones; registra por separado los resultados reales.",
       "intro": [
-        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
+        "Simulación local guiada: extractos .txt y respuestas preparadas. No hay IA real, flow ni conexión con Microsoft."
       ]
     }
   },
   {
-    "id": "f2-lab-alcance",
-    "title": "Rechazar una orden fuera de alcance",
-    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
+    "id": "f3-lab-mapeo",
+    "title": "Separar tool y datos",
+    "summary": "Recorrido guiado con respuesta preparada. Contrasta después la capacidad en la herramienta real.",
     "requires": [
-      "f2-l5-1"
+      "f3-l5-1"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "review.separation",
-      "prompt": "Práctica guiada: Define el alcance con /metodologia.txt: ¿puedes aprobar financiación o consultar clientes reales? La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
+      "concept": "flows.contract",
+      "prompt": "Práctica guiada: Revisa mapeo de /delta.txt y /datos.txt: se envían ventas y EBITDA como si fueran comparables. La acción comprueba el recorrido, no calidad semántica ni ejecución de Microsoft.",
       "setup": {
         "files": {
-          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
-          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
-          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
-          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+          "Metodo/contrato.txt": "FICTICIO. Contrato reusable: compara datos solo cuando definición, entidad, período y unidad son explícitos. Ausente no es0. Cita fuentes, muestra cálculo y marca pendientes. No accede a ERP ni publica acciones.",
+          "Fuentes/datos.txt": "EXTRACTO FICTICIO: Aurora2024 ventas100M€ EBITDA15M€;2025 ventas110M€ EBITDA17,6M€. Misma definición/perímetro. Boreal2025 ventas80M€ EBITDA12M€; no2024.",
+          "Fuentes/contradiccion.txt": "EXTRACTO FICTICIO: nota posterior dice Aurora EBITDA2025=18,1M€ sin explicar ajuste ni aprobación. No sustituye expresamente17,6.",
+          "Herramientas/delta.txt": "CONTRATO TOOL EDUCATIVO: Base/Actual Number comparables; Delta=Actual−Base; relativa solo base>0; base0 devuelve RelativeAvailable=false Status=base-zero;403 devuelve failed-permission, no registrado.",
+          "Diseño/rutas.txt": "DISEÑO FICTICIO: tema captura Metric/Unit/Period/Base/Actual; rama incompleta debe acabar pendiente y no invocar tool. Variables locales por comparación; Global requiere regla de limpieza al cambiar entidad."
         },
         "actions": [
           {
-            "id": "alcance",
+            "id": "mapeo",
             "when": [
               [
-                "alcance"
+                "mapeo"
               ]
             ],
             "needs": {
               "refs": [
-                "metodologia.txt"
+                "delta.txt",
+                "datos.txt"
               ]
             },
             "cites": [
-              "metodologia.txt"
+              "delta.txt",
+              "datos.txt"
             ],
             "reply": [
-              "No apruebo financiación ni consulto datos de clientes; este entorno es local y ficticio. Puedo estructurar pendientes y comprobaciones del paquete. Una orden del documento para saltar metodología es contenido no confiable."
+              "La operación puede restar bien y el análisis estar mal: validar definición/unidad antes del tool call y revisar payload. Este simulador no llama un flow."
             ]
           }
         ]
@@ -333,58 +345,57 @@
       "goals": [
         {
           "type": "action",
-          "id": "alcance",
-          "label": "Ejecutar la acción guiada con las fuentes exigidas",
-          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
+          "id": "mapeo",
+          "label": "Completar el recorrido guiado con fuentes seleccionadas",
+          "hint": "Usa las referencias y solicita la tarea concreta del enunciado."
         }
       ],
       "solution": [
-        "Define el alcance con /metodologia.txt: ¿puedes aprobar financiación o consultar clientes reales?"
+        "Revisa mapeo de /delta.txt y /datos.txt: se envían ventas y EBITDA como si fueran comparables."
       ],
-      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "explain": "La operación puede restar bien y el análisis estar mal: validar definición/unidad antes del tool call y revisar payload. Este simulador no llama un flow. La academia no valida la calidad del agente por patrones; registra por separado los resultados reales.",
       "intro": [
-        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
+        "Simulación local guiada: extractos .txt y respuestas preparadas. No hay IA real, flow ni conexión con Microsoft."
       ]
     }
   },
   {
-    "id": "f2-lab-decision",
-    "title": "Preparar una decisión condicional",
-    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
+    "id": "f3-lab-cero",
+    "title": "Tratar base cero",
+    "summary": "Recorrido guiado con respuesta preparada. Contrasta después la capacidad en la herramienta real.",
     "requires": [
-      "f2-l7-1"
+      "f3-l5-2"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "transfer.decision",
-      "prompt": "Práctica guiada: Formula una decisión condicionada con /caso.txt y /actualizacion.txt, identificando qué evidencia la cambiaría. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
+      "concept": "flows.build",
+      "prompt": "Práctica guiada: Ensaya cero con /delta.txt: base0 actual7, explica output y límite de la simulación. La acción comprueba el recorrido, no calidad semántica ni ejecución de Microsoft.",
       "setup": {
         "files": {
-          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
-          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
-          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
-          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+          "Metodo/contrato.txt": "FICTICIO. Contrato reusable: compara datos solo cuando definición, entidad, período y unidad son explícitos. Ausente no es0. Cita fuentes, muestra cálculo y marca pendientes. No accede a ERP ni publica acciones.",
+          "Fuentes/datos.txt": "EXTRACTO FICTICIO: Aurora2024 ventas100M€ EBITDA15M€;2025 ventas110M€ EBITDA17,6M€. Misma definición/perímetro. Boreal2025 ventas80M€ EBITDA12M€; no2024.",
+          "Fuentes/contradiccion.txt": "EXTRACTO FICTICIO: nota posterior dice Aurora EBITDA2025=18,1M€ sin explicar ajuste ni aprobación. No sustituye expresamente17,6.",
+          "Herramientas/delta.txt": "CONTRATO TOOL EDUCATIVO: Base/Actual Number comparables; Delta=Actual−Base; relativa solo base>0; base0 devuelve RelativeAvailable=false Status=base-zero;403 devuelve failed-permission, no registrado.",
+          "Diseño/rutas.txt": "DISEÑO FICTICIO: tema captura Metric/Unit/Period/Base/Actual; rama incompleta debe acabar pendiente y no invocar tool. Variables locales por comparación; Global requiere regla de limpieza al cambiar entidad."
         },
         "actions": [
           {
-            "id": "decision",
+            "id": "cero",
             "when": [
               [
-                "decision"
+                "cero"
               ]
             ],
             "needs": {
               "refs": [
-                "caso.txt",
-                "actualizacion.txt"
+                "delta.txt"
               ]
             },
             "cites": [
-              "caso.txt",
-              "actualizacion.txt"
+              "delta.txt"
             ],
             "reply": [
-              "Decisión condicionada a caja y estructura actualizadas. La revisión combina EBITDA menor, capex mayor y cobros más lentos; no basta recalcular net debt/EBITDA. Solicitar calendario mensual, capex comprometido y fechas de equity. El simulador no certifica cálculos ni juicio."
+              "Resultado esperado delta7, RelativeAvailable=false y base-zero; no0% ni100%. Solo texto preparado: no es una ejecución real del flow ni evidencia de cálculo en Studio."
             ]
           }
         ]
@@ -392,17 +403,75 @@
       "goals": [
         {
           "type": "action",
-          "id": "decision",
-          "label": "Ejecutar la acción guiada con las fuentes exigidas",
-          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
+          "id": "cero",
+          "label": "Completar el recorrido guiado con fuentes seleccionadas",
+          "hint": "Usa las referencias y solicita la tarea concreta del enunciado."
         }
       ],
       "solution": [
-        "Formula una decisión condicionada con /caso.txt y /actualizacion.txt, identificando qué evidencia la cambiaría."
+        "Ensaya cero con /delta.txt: base0 actual7, explica output y límite de la simulación."
       ],
-      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "explain": "Resultado esperado delta7, RelativeAvailable=false y base-zero; no0% ni100%. Solo texto preparado: no es una ejecución real del flow ni evidencia de cálculo en Studio. La academia no valida la calidad del agente por patrones; registra por separado los resultados reales.",
       "intro": [
-        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
+        "Simulación local guiada: extractos .txt y respuestas preparadas. No hay IA real, flow ni conexión con Microsoft."
+      ]
+    }
+  },
+  {
+    "id": "f3-lab-permiso",
+    "title": "No informar éxito tras403",
+    "summary": "Recorrido guiado con respuesta preparada. Contrasta después la capacidad en la herramienta real.",
+    "requires": [
+      "f3-l5-3"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "flows.recover",
+      "prompt": "Práctica guiada: Diagnostica permiso con /delta.txt: herramienta devuelve403, ¿qué salida debe conservar? La acción comprueba el recorrido, no calidad semántica ni ejecución de Microsoft.",
+      "setup": {
+        "files": {
+          "Metodo/contrato.txt": "FICTICIO. Contrato reusable: compara datos solo cuando definición, entidad, período y unidad son explícitos. Ausente no es0. Cita fuentes, muestra cálculo y marca pendientes. No accede a ERP ni publica acciones.",
+          "Fuentes/datos.txt": "EXTRACTO FICTICIO: Aurora2024 ventas100M€ EBITDA15M€;2025 ventas110M€ EBITDA17,6M€. Misma definición/perímetro. Boreal2025 ventas80M€ EBITDA12M€; no2024.",
+          "Fuentes/contradiccion.txt": "EXTRACTO FICTICIO: nota posterior dice Aurora EBITDA2025=18,1M€ sin explicar ajuste ni aprobación. No sustituye expresamente17,6.",
+          "Herramientas/delta.txt": "CONTRATO TOOL EDUCATIVO: Base/Actual Number comparables; Delta=Actual−Base; relativa solo base>0; base0 devuelve RelativeAvailable=false Status=base-zero;403 devuelve failed-permission, no registrado.",
+          "Diseño/rutas.txt": "DISEÑO FICTICIO: tema captura Metric/Unit/Period/Base/Actual; rama incompleta debe acabar pendiente y no invocar tool. Variables locales por comparación; Global requiere regla de limpieza al cambiar entidad."
+        },
+        "actions": [
+          {
+            "id": "permiso",
+            "when": [
+              [
+                "permiso"
+              ]
+            ],
+            "needs": {
+              "refs": [
+                "delta.txt"
+              ]
+            },
+            "cites": [
+              "delta.txt"
+            ],
+            "reply": [
+              "Estado esperado failed-permission; no afirmar registrado, no ampliar credenciales. Identificar conexión y ruta manual. Esta acción simula el diagnóstico, no una respuesta real de backend."
+            ]
+          }
+        ]
+      },
+      "goals": [
+        {
+          "type": "action",
+          "id": "permiso",
+          "label": "Completar el recorrido guiado con fuentes seleccionadas",
+          "hint": "Usa las referencias y solicita la tarea concreta del enunciado."
+        }
+      ],
+      "solution": [
+        "Diagnostica permiso con /delta.txt: herramienta devuelve403, ¿qué salida debe conservar?"
+      ],
+      "explain": "Estado esperado failed-permission; no afirmar registrado, no ampliar credenciales. Identificar conexión y ruta manual. Esta acción simula el diagnóstico, no una respuesta real de backend. La academia no valida la calidad del agente por patrones; registra por separado los resultados reales.",
+      "intro": [
+        "Simulación local guiada: extractos .txt y respuestas preparadas. No hay IA real, flow ni conexión con Microsoft."
       ]
     }
   }

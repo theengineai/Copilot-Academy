@@ -17,14 +17,14 @@ const memoryStorage = () => { const m = new Map(); return { getItem: k => m.get(
 
 test('XP: completar una lección suma XP y repetir solo suma la mejora', () => {
   const s = defaultState();
-  const r1 = P.completeLesson(s, 'f2-l1-1', 0.5, '2026-11-01');
+  const r1 = P.completeLesson(s, 'f3-l1-1', 0.5, '2026-11-01');
   assert.equal(r1.gained, P.lessonXp(0.5));
-  const r2 = P.completeLesson(s, 'f2-l1-1', 0.5, '2026-11-01');
+  const r2 = P.completeLesson(s, 'f3-l1-1', 0.5, '2026-11-01');
   assert.equal(r2.gained, 0, 'repetir igual no suma');
-  const r3 = P.completeLesson(s, 'f2-l1-1', 1, '2026-11-02');
+  const r3 = P.completeLesson(s, 'f3-l1-1', 1, '2026-11-02');
   assert.equal(r3.gained, P.lessonXp(1) - P.lessonXp(0.5), 'solo la mejora');
   assert.equal(s.xp, P.lessonXp(1));
-  assert.equal(s.lessons['f2-l1-1'].stars, 3);
+  assert.equal(s.lessons['f3-l1-1'].stars, 3);
 });
 
 test('progreso depende del aprendizaje: suspender un examen no desbloquea el módulo', () => {
@@ -39,18 +39,18 @@ test('progreso depende del aprendizaje: suspender un examen no desbloquea el mó
   const pass = P.completeExam(s, 'm1', 0.75);
   assert.equal(pass.passed, true);
   assert.ok(P.isModuleUnlocked(s, course, 'm2'));
-  assert.ok(P.isLessonUnlocked(s, course, 'f2-l2-1'));
-  assert.ok(!P.isLessonUnlocked(s, course, 'f2-l2-2'), 'las lecciones se desbloquean en orden');
+  assert.ok(P.isLessonUnlocked(s, course, 'f3-l2-1'));
+  assert.ok(!P.isLessonUnlocked(s, course, 'f3-l2-2'), 'las lecciones se desbloquean en orden');
 });
 
 test('desbloqueo secuencial de lecciones y misiones', () => {
   const s = defaultState();
-  assert.ok(P.isLessonUnlocked(s, course, 'f2-l1-1'));
-  assert.ok(!P.isLessonUnlocked(s, course, 'f2-l1-2'));
+  assert.ok(P.isLessonUnlocked(s, course, 'f3-l1-1'));
+  assert.ok(!P.isLessonUnlocked(s, course, 'f3-l1-2'));
   assert.ok(!P.isMissionUnlocked(s, course, course.missions[0].id));
-  P.completeLesson(s, 'f2-l1-1', 1);
-  P.completeLesson(s, 'f2-l1-2', 1);
-  P.completeLesson(s, 'f2-l1-3', 1);
+  P.completeLesson(s, 'f3-l1-1', 1);
+  P.completeLesson(s, 'f3-l1-2', 1);
+  P.completeLesson(s, 'f3-l1-3', 1);
   assert.ok(P.isMissionUnlocked(s, course, course.missions[0].id));
   assert.ok(!P.isMissionUnlocked(s, course, P.finalMission(course).id), 'proyecto final bloqueado');
 });
@@ -60,10 +60,10 @@ test('niveles L2 → L5 y rangos de XP', () => {
   assert.equal(P.masteryLevel(s, course), 'L2');
   for (const m of course.modules.slice(0, 2)) s.exams[m.id] = { passed: true };
   assert.equal(P.masteryLevel(s, course), 'L3');
-  for (const m of course.modules.slice(0, 4)) s.exams[m.id] = { passed: true };
+  for (const m of course.modules) s.exams[m.id] = { passed: true };
   assert.equal(P.masteryLevel(s, course), 'L4');
   for (const m of course.modules) s.exams[m.id] = { passed: true };
-  assert.equal(P.masteryLevel(s, course), 'L4', 'L5 exige también el proyecto final');
+  assert.equal(P.masteryLevel(s, course), 'L4', 'sin acreditar experto' );
   s.missions[P.finalMission(course).id] = { completedAt: 'x' };
   assert.equal(P.masteryLevel(s, course), 'L4', 'autoevaluación y exámenes no acreditan experto');
   assert.equal(P.rankInfo(0).rank, 1);
@@ -95,30 +95,30 @@ test('repaso espaciado: fallar programa repaso hoy; acertar lo espacia', () => {
 
 test('repaso inteligente: prioriza errores y solo usa lecciones vistas', () => {
   const s = defaultState();
-  P.completeLesson(s, 'f2-l1-1', 0.5);
+  P.completeLesson(s, 'f3-l1-1', 0.5);
   const ex = course.lessons[0].exercises[0];
   P.recordAnswer(s, ex, false);
   const queue = buildReviewQueue(s, course);
   assert.equal(queue[0].id, course.lessons[0].exercises[0].id);
-  assert.ok(queue.every(e => course.exercises[e.id].source.id === 'f2-l1-1'));
+  assert.ok(queue.every(e => course.exercises[e.id].source.id === 'f3-l1-1'));
   P.clearMistake(s, course.lessons[0].exercises[0].id);
   assert.ok(!s.mistakes[course.lessons[0].exercises[0].id]);
 });
 
 test('dominio por competencia refleja aciertos y fallos', () => {
   const s = defaultState();
-  const before = P.competencyMastery(s, course).find(c => c.id === 'agent').mastery;
+  const before = P.competencyMastery(s, course).find(c => c.id === 'tools').mastery;
   assert.equal(before, 0);
-  for (const c of Object.values(course.concepts).filter(c => c.competency === 'agent')) recordConcept(s, c.id, true);
-  const after = P.competencyMastery(s, course).find(c => c.id === 'agent').mastery;
+  for (const c of Object.values(course.concepts).filter(c => c.competency === 'tools')) recordConcept(s, c.id, true);
+  const after = P.competencyMastery(s, course).find(c => c.id === 'tools').mastery;
   assert.equal(after, 70);
-  for (const c of Object.values(course.concepts).filter(c => c.competency === 'agent')) recordConcept(s, c.id, false);
-  assert.ok(P.competencyMastery(s, course).find(c => c.id === 'agent').mastery < after);
+  for (const c of Object.values(course.concepts).filter(c => c.competency === 'tools')) recordConcept(s, c.id, false);
+  assert.ok(P.competencyMastery(s, course).find(c => c.id === 'tools').mastery < after);
 });
 
 test('recomendaciones y siguiente paso', () => {
   const s = defaultState();
-  assert.equal(P.nextStep(s, course).id, 'f2-l1-1');
+  assert.equal(P.nextStep(s, course).id, 'f3-l1-1');
   for (const l of course.modules[0].lessons) P.completeLesson(s, l.id, 1);
   assert.equal(P.nextStep(s, course).kind, 'exam');
   const recs = P.recommendations(s, course);
@@ -129,7 +129,7 @@ test('recomendaciones y siguiente paso', () => {
 test('logros se desbloquean por hechos reales', () => {
   const s = defaultState();
   assert.deepEqual(checkAchievements(s, course), []);
-  P.completeLesson(s, 'f2-l1-1', 1);
+  P.completeLesson(s, 'f3-l1-1', 1);
   const got = checkAchievements(s, course).map(a => a.id);
   assert.ok(got.includes('first-lesson') && got.includes('perfect'));
   assert.deepEqual(checkAchievements(s, course), [], 'no se repiten');
@@ -138,11 +138,11 @@ test('logros se desbloquean por hechos reales', () => {
 test('persistencia: guardar, recargar, exportar e importar', () => {
   const storage = memoryStorage();
   const s = defaultState();
-  P.completeLesson(s, 'f2-l1-1', 1);
+  P.completeLesson(s, 'f3-l1-1', 1);
   assert.ok(saveState(storage, s));
   const loaded = loadState(storage);
   assert.equal(loaded.xp, s.xp);
-  assert.ok(loaded.lessons['f2-l1-1'].completedAt);
+  assert.ok(loaded.lessons['f3-l1-1'].completedAt);
 
   storage.setItem(STORAGE_KEY, '{roto');
   assert.equal(loadState(storage).xp, 0, 'datos corruptos → estado nuevo');

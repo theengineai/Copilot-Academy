@@ -1,384 +1,354 @@
 {
   "id": "m6",
-  "title": "Actualizaciones y procesos reutilizables",
-  "subtitle": "Gestionar cambios, Studio opcional y ahorro neto con control.",
-  "level": "Práctica avanzada",
-  "icon": "refresh",
-  "color": "#497146",
+  "title": "Copilot Studio: probar, distribuir y gobernar",
+  "subtitle": "Trazas, autenticación, distribución y mantenimiento.",
+  "level": "Construcción práctica",
+  "icon": "shield",
+  "color": "#2765A7",
   "lessons": [
     {
-      "id": "f2-l6-1",
-      "title": "Actualizar EBITDA, capex y cobros con trazabilidad",
-      "summary": "La actualización es una nueva decisión sobre un análisis existente.",
-      "minutes": 30,
+      "id": "f3-l6-1",
+      "title": "Probar con trazas y casos reservados",
+      "summary": "Distinguir respuesta plausible, ruta correcta y resultado verificado.",
+      "minutes": 20,
       "objectives": [
-        "Procesa actualizacion.eml y entrega modelo revisado, nota delta y tres cambios concretos del paquete. Decide qué mantienes y qué queda pendiente de confirmación.",
-        "Cada input nuevo enlaza al correo; no quedan valores antiguos en conclusiones afectadas. Balance, deuda, caja y SU siguen conciliados. Para otra compañía empieza por su propio mapa de dependencias."
+        "Prueba tu agente con el banco de fixtures adaptado a tu tarea. Entrega cinco resultados y un caso reservado, explicando un fallo real y su cambio de configuración. No basta marcar todas las filas como aprobadas.",
+        "Las condiciones de aceptación se fijan antes de ver el resultado; los estados pending/fail se conservan con evidencia."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "kicker": "Problema transferible",
+          "title": "Qué capacidad vas a construir",
           "blocks": [
             {
               "type": "text",
-              "body": "La actualización es una nueva decisión sobre un análisis existente. El resultado será un paquete delta que conserve base, revisión y registro de implicaciones."
+              "body": "Probar un agente con las preguntas usadas para diseñarlo produce una confianza débil. Necesitas un banco reproducible, trazas y un caso reservado que pueda fallar por un motivo útil."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Una decisión y su configuración",
           "blocks": [
             {
               "type": "text",
-              "body": "El correo propone EBITDA 7 en vez de 8, capex 4 en vez de 3 y DSO 75 en vez de 60. Con ventas 60, el efecto aproximado de clientes adicionales es 2,466. Junto a los 2 de menor EBITDA y mayor capex, presiona caja antes de impuestos y otras compensaciones. No lo sumes de nuevo si Modelo ya recoge ese circulante.\n\nEl ejemplo de 60 de ventas mantiene ventas constantes para aislar el DSO. La revisión real del libro usa 61 en 2026: recalcula con su combinación completa, no pegues la aproximación como resultado del escenario. La caja cierre 2026 es +0,187671 y está por debajo del mínimo 2; en 2027 el escenario prolongado puede producir caja negativa. Contrasta ambos años en el libro y en [resultados de control](content/resources/resultados-control.json)."
+              "body": "La prueba «compara100 y110» pasa, pero «¿cuánto cambió el margen?» también devuelve10 porque conserva inputs anteriores. Evalúa tres dimensiones por separado: selección del tema/herramienta, payload/estado y significado financiero. La revisión de otro agente puede ayudar, pero no es contraste independiente contra datos y cálculos."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Construir y probar en Studio",
           "blocks": [
             {
               "type": "text",
-              "body": "Registra recepción, responsable, fecha de corte y alcance. Duplica escenario, actualiza solo inputs aprobados y recalcula. Revisa identidades en Control; exporta puente de cambios y compara cifras con versión anterior. Usa una matriz para marcar efectos en One Pager, gráficos, conclusiones de repago, preguntas y condiciones. Mantén un registro de decisiones con motivo y evidencia.\n\n**Herramienta, requisitos, entradas y salida.** Excel/Word/PowerPoint con o sin Copilot; licencia de aplicaciones y asistencia según tenant. Entradas: modelo.xlsx, documentos, actualizacion.eml. Salida: paquete revisionado y registro. Alternativa: edición manual con comparación de versiones; pierdes asistencia contextual, conservas trazabilidad.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "1. Antes de ejecutar crea una fila por fixture con entrada, archivos exactos, configuración del agente, comportamiento esperado y fallo crítico. Reserva casos no usados para redactar instrucciones.\n2. En Test your agent usa conversación nueva para cada escenario. Abre activity map cuando trabajes con orquestación generativa y Track between topics para seguir temas cuando esté disponible. En Variables observa los valores; guarda también la respuesta literal.\n3. Identifica el tema y herramienta seleccionados, inputs/outputs y estado. Una traza no garantiza ver todo el razonamiento ni todas las actividades internas: registra su alcance. Contrasta fuentes citadas y cálculo fuera del agente.\n4. Si la función está habilitada, abre Evaluation > New evaluation > Single responses (o la ruta equivalente visible), define el conjunto, añade preguntas y resultados esperados compatibles y selecciona evaluadores; registra configuración y ejecuciones. La evaluación usa la cuenta conectada: no simula otra identidad por pedirlo en una pregunta. Si el conector/permisos necesarios están bloqueados, no puedes dar por probada esa evaluación. Los warnings no siempre bloquean Publish: el gate educativo lo defines tú.  no conviertas una puntuación automática en prueba de verdad financiera. Si no aparece, la tabla manual y las transcripciones son una alternativa completa para contrastar comportamiento, aunque pierdes ejecución en lote y seguimiento automatizado.\n5. Cambia una regla por fallo y repite el caso fallido, normales y reservado. Guarda versión antes/después y el coste de revisión.\n\n**Herramienta y acceso.** Copilot Studio web con standard harness, en entorno de prueba autorizado, con acceso de autor y licencia/capacidad para la función. Los agent flows requieren Dataverse completo; Dataverse for Teams no basta. Microsoft365Copilot no garantiza acceso al Studio completo. No necesitas ERP ni datos reales. La prueba gratuita permite diseñar/probar agentes, pero no presupone publicación ni disponibilidad de flujos. Si no tienes Studio, usa el lienzo y tabla de pruebas de studio-lab.md y ejecuta a mano los casos: aprendes contrato y diagnóstico, pero la ejecución en Studio queda pendiente; no la marques validada. Una función o canal bloqueados por política requieren TI, no otra formulación del prompt.\n\n**Entradas:** studio-lab.md, agentes.md y fixtures ficticias. **Salida:** configuración versionada y registro de pruebas de esta lección. Tiempo orientativo: 15–20 min de lectura y 30–60 min de práctica exterior inicial.\n\n[Recetas reproducibles](content/resources/studio-lab.md) · [Contrato y construcción de agentes](content/resources/agentes.md) · [Pruebas y fixtures](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado falla",
           "blocks": [
             {
               "type": "text",
-              "body": "La presentación sigue llamando «caso base» a la revisión porque se copió la última tabla. Distingue cambio informativo, escenario provisional y base aprobado. Renombra columnas y títulos, conserva la versión anterior y explica el estado. Un historial de archivos sin decisiones no basta para reconstruir el análisis."
+              "body": "La puntuación global mejora, pero desaparece el caso con documentación incompleta. No aceptes una media que oculte el fallo crítico de inventar una cifra. Mantén el banco, desagrega por comportamiento y compara el mismo conjunto. Si el trace no muestra una llamada, no supongas que el cálculo ocurrió en el flow porque coincide el número."
             }
           ]
         },
         {
-          "id": "f2-6-1-decision",
+          "id": "f3-l6-1-choice",
           "type": "choice",
-          "concept": "process.delta",
-          "prompt": "El puente ya incorpora la subida de clientes por DSO. ¿Cómo añadir el impacto del correo?",
+          "concept": "lifecycle.evaluate",
+          "prompt": "El banco puntúa92%, pero inventa un valor en una fixture incompleta. El alcance incluye documentos incompletos. ¿Qué decisión corresponde?",
           "options": [
             {
-              "text": "Actualizar el driver una vez y comprobar el delta; no restar otra vez 2,466 en caja",
+              "text": "Bloquear aceptación para ese alcance, corregir la causa y repetir regresión y reservado",
               "correct": true
             },
             {
-              "text": "Restar otros 2,466 para ser conservador",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Aceptar el mismo alcance si la media supera el objetivo y se añade una advertencia de revisión",
+              "feedback": "La advertencia no elimina el comportamiento ni cambia honestamente el alcance."
             },
             {
-              "text": "Ignorar el DSO porque ya existía una fórmula de clientes",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Repetir solo los casos normales para comprobar que la invención no afecta al uso mayoritario",
+              "feedback": "El ensayo normal no comprueba el caso que se sabe defectuoso."
             }
           ],
-          "explain": "Delta de inputs, delta de caja y delta de mensaje deben concordar. Conservar versiones permite explicar una decisión."
+          "explain": "La media no reemplaza condiciones críticas. La evidencia debe demostrar selección, payload, resultado y abstención cuando faltan fuentes."
         },
         {
-          "id": "f2-6-1-sequence",
+          "id": "f3-l6-1-order",
           "type": "order",
-          "concept": "process.delta",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "lifecycle.evaluate",
+          "prompt": "Ordena este procedimiento de construcción y contraste.",
           "items": [
-            "Registrar alcance y autoridad del cambio",
-            "Crear revisión y modificar inputs una sola vez",
-            "Recalcular controles y actualizar mensajes afectados"
+            "Fijar banco, fuentes y criterios antes del ensayo",
+            "Ejecutar conversaciones nuevas y registrar trazas/variables",
+            "Contrastar resultados con fuentes y cálculos independientes",
+            "Corregir una causa y repetir regresión más caso reservado"
           ],
-          "explain": "Cada input nuevo enlaza al correo; no quedan valores antiguos en conclusiones afectadas. Balance, deuda, caja y SU siguen conciliados. Para otra compañía empieza por su propio mapa de dependencias."
+          "explain": "La media no reemplaza condiciones críticas. La evidencia debe demostrar selección, payload, resultado y abstención cuando faltan fuentes."
         },
         {
-          "id": "f2-6-1-portfolio",
+          "id": "f3-l6-1-portfolio",
           "type": "portfolio",
-          "concept": "process.delta",
-          "prompt": "Procesa actualizacion.eml y entrega modelo revisado, nota delta y tres cambios concretos del paquete. Decide qué mantienes y qué queda pendiente de confirmación.",
+          "concept": "lifecycle.evaluate",
+          "prompt": "Prueba tu agente con el banco de fixtures adaptado a tu tarea. Entrega cinco resultados y un caso reservado, explicando un fallo real y su cambio de configuración. No basta marcar todas las filas como aprobadas.",
           "rubric": [
-            "Consistencia: revisión cambia inputs una vez y conserva base.",
-            "Trazabilidad: correo→input→cálculo→mensaje en matriz de impacto.",
-            "Interpretación: caja positiva inferior al mínimo exige una explicación de liquidez.",
-            "Utilidad: paquete y registro permiten reconstruir la decisión.",
-            "Crítico: no duplicar impacto de DSO ni ocultar hipótesis de NWC."
+            "Cobertura: normales y adversos con un caso reservado.",
+            "Trazabilidad: configuración, fuentes y respuesta literal identificadas.",
+            "Interpretación: distingue ruta, resultado y verdad financiera.",
+            "Diagnóstico: vincula un fallo a una modificación y a su regresión.",
+            "Errores críticos: no compensa invención o acceso indebido con una media."
           ],
-          "solution": "El correo propone EBITDA 7 en vez de 8, capex 4 en vez de 3 y DSO 75 en vez de 60. Con ventas 60, el efecto aproximado de clientes adicionales es 2,466. Junto a los 2 de menor EBITDA y mayor capex, presiona caja antes de impuestos y otras compensaciones. No lo sumes de nuevo si Modelo ya recoge ese circulante.\n\nCada input nuevo enlaza al correo; no quedan valores antiguos en conclusiones afectadas. Balance, deuda, caja y SU siguen conciliados. Para otra compañía empieza por su propio mapa de dependencias.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "Una revisión válida puede concluir «no aceptado todavía». Debe conservar entrada y respuesta completa, ruta observada, fuente/cálculo de contraste y acción correctora. El caso incompleto debe pedir el dato; el contradictorio debe conservar ambas versiones hasta resolverlas; el reservado comprueba si la corrección generaliza.",
+          "explain": "Registro de autoevaluación: conserva configuración, ejecución observada y límites. La aplicación no accede a Copilot Studio ni comprueba semánticamente tu entregable; si solo has diseñado el flujo, marca ejecución pendiente."
         },
         {
           "type": "card",
-          "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "kicker": "Validación y transferencia",
+          "title": "Decisiones que conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Cada input nuevo enlaza al correo; no quedan valores antiguos en conclusiones afectadas. Balance, deuda, caja y SU siguen conciliados. Para otra compañía empieza por su propio mapa de dependencias.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
-            }
-          ]
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Delta de inputs, delta de caja y delta de mensaje deben concordar. Conservar versiones permite explicar una decisión."
+              "body": "Las condiciones de aceptación se fijan antes de ver el resultado; los estados pending/fail se conservan con evidencia.\n\nAdapta el banco a otra tarea sin cambiar el criterio de evidencia: no evalúes una revisión de documentos solo por detectar las mismas palabras."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l6-2",
-      "title": "Studio: de traspaso manual a flujo controlado",
-      "summary": "La ampliación con Copilot Studio tiene sentido cuando el proceso recurrente exige estado, herramientas y acciones controladas.",
-      "minutes": 30,
+      "id": "f3-l6-2",
+      "title": "Autenticación, publicación y distribución",
+      "summary": "Qué puede hacer un autor y qué requiere entorno, licencias, permisos o TI.",
+      "minutes": 20,
       "objectives": [
-        "Entrega contrato de entradas/salidas y diseño del flujo con cuatro pruebas. Si tienes sandbox autorizado, implementa el registro en una lista educativa y conserva ejecución y error. Si no, deja la implementación real marcada pendiente.",
-        "Una ejecución fallida no aparece completada; un duplicado no crea dos registros; no se mezclan expedientes. Para otro proceso redefine acciones, identidad y aprobación antes de reutilizar."
+        "Prepara el paquete de release de tu agente sin publicar fuera del entorno autorizado. Entrega matriz de acceso con dos identidades y un caso que debe denegarse, más la lista de pasos pendientes de TI.",
+        "La evidencia es el comportamiento con la identidad adecuada y un caso denegado, no la pantalla de publicación completada."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "kicker": "Problema transferible",
+          "title": "Qué capacidad vas a construir",
           "blocks": [
             {
               "type": "text",
-              "body": "La ampliación con Copilot Studio tiene sentido cuando el proceso recurrente exige estado, herramientas y acciones controladas. El núcleo del curso funciona sin ERP ni permisos de administrador; esta práctica se diseña en sandbox autorizado."
+              "body": "Un agente funciona para su creador y falla o expone más de lo previsto al compartirlo. Publicar una versión, distribuirla en un canal y dar permiso a los datos son decisiones diferentes."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Una decisión y su configuración",
           "blocks": [
             {
               "type": "text",
-              "body": "Un flujo educativo recibe identificador de expediente y versión, comprueba archivos obligatorios, genera borrador de registro delta y solicita revisión humana antes de marcarlo aceptado. No envía propuestas de crédito ni modifica un sistema bancario. El riesgo real es procesar dos veces el mismo correo o mezclar expedientes."
+              "body": "El maker puede tener acceso a la lista educativa mientras un compañero no lo tiene. Si el flow utiliza una conexión configurada, esa identidad puede ser distinta del usuario que pregunta. «Está en Teams» no demuestra que herede cada permiso ni que todos puedan usarlo. La práctica diseña el paso a usuarios sin exigir publicar un agente en producción."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Construir y probar en Studio",
           "blocks": [
             {
               "type": "text",
-              "body": "En Studio, si tienes acceso de autor, crea un agente de prueba con instrucciones y conocimiento de la carpeta educativa. Diseña una herramienta/flujo con entradas tipadas expedienteId, version y archivoCambio; salida estado, fuentes y errores. En el flujo valida campos, comprueba una clave de idempotencia expediente+version, registra resultado y devuelve pendientes si falta información. Requiere aprobación antes de cualquier acción externa. Prueba éxito, entrada incompleta, reintento duplicado y fallo del conector. Conectores, DLP, licencias/capacidad, entornos y publicación requieren validación con TI.\n\n**Herramienta, requisitos, entradas y salida.** Copilot Studio con autoría y entorno/capacidad permitidos; flujos y conectores habilitados según licenciamiento y DLP. Entradas: contrato y archivos ficticios. Salida: prototipo probado o especificación ejecutable pendiente. Alternativa personal: checklist y registro manual; pierdes ejecución automática y conectores. Publicación y conectores corporativos son ampliaciones con TI.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "1. En el agente abre Settings > Security > Authentication y registra el método disponible y su alcance. La autenticación con Microsoft y la autenticación manual tienen requisitos y compatibilidad de canal; no elijas No authentication para evitar un error de acceso en datos financieros.\n2. Revisa cada fuente y herramienta: acceso a documento, conexión de flow, credenciales de ejecución y políticas. Diferencia rol de maker, permisos al entorno, licencia/capacidad y autorización a datos. Que el diseñador deje guardar una herramienta no concede esos permisos.\n3. Prepara checklist de release: versión, banco aprobado, propietarios, usuarios de prueba, permisos y recuperación. En una copia de sandbox autorizada puede usarse Publish para publicar una versión del agente; el canal y acceso siguen configurándose aparte. La prueba gratuita no concede publicación de agentes. Aquí puedes entregar el checklist y test panel sin publicar.\n4. En Channels examina los canales realmente disponibles, por ejemplo Teams y Microsoft365Copilot. Anota requisitos de distribución y aprobación corporativa. Para probar con otro usuario usa solo un usuario autorizado y corpus educativo; si esa prueba necesita TI, márcala pendiente.\n5. Registra el plan de retirada o nueva versión; no prometas que una actualización ya está en todos los canales sin comprobarlos.\n\n**Herramienta y acceso.** Copilot Studio web con standard harness, en entorno de prueba autorizado, con acceso de autor y licencia/capacidad para la función. Los agent flows requieren Dataverse completo; Dataverse for Teams no basta. Microsoft365Copilot no garantiza acceso al Studio completo. No necesitas ERP ni datos reales. La prueba gratuita permite diseñar/probar agentes, pero no presupone publicación ni disponibilidad de flujos. Si no tienes Studio, usa el lienzo y tabla de pruebas de studio-lab.md y ejecuta a mano los casos: aprendes contrato y diagnóstico, pero la ejecución en Studio queda pendiente; no la marques validada. Una función o canal bloqueados por política requieren TI, no otra formulación del prompt.\n\n**Entradas:** studio-lab.md, agentes.md y fixtures ficticias. **Salida:** configuración versionada y registro de pruebas de esta lección. Tiempo orientativo: 15–20 min de lectura y 30–60 min de práctica exterior inicial.\n\n[Recetas reproducibles](content/resources/studio-lab.md) · [Contrato y construcción de agentes](content/resources/agentes.md) · [Pruebas y fixtures](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado falla",
           "blocks": [
             {
               "type": "text",
-              "body": "Un conector falla y el agente afirma que guardó el borrador. Usa salida explícita de error y un estado no completado; prueba reintento sin duplicación. No infieras funcionamiento de producción a partir de un simulador ni de un diagrama. La cuenta que ejecuta cada acción y sus permisos deben probarse en el entorno real."
+              "body": "La demo web deja usar el agente, pero el canal corporativo no permite la conexión. Comprueba autenticación y compatibilidad de canal, no dupliques el agente con permisos más amplios para sortearlo. Si otra persona no ve fuentes, prueba con esa identidad autorizada: la sesión del maker no es una prueba representativa. Publicar más veces no repara un403 de los datos."
             }
           ]
         },
         {
-          "id": "f2-6-2-decision",
+          "id": "f3-l6-2-choice",
           "type": "choice",
-          "concept": "process.studio",
-          "prompt": "Un flujo recibe dos veces expediente LE-v2. ¿Qué control evita doble procesamiento?",
+          "concept": "lifecycle.publish",
+          "prompt": "El maker consulta una fuente, pero un usuario del canal recibe403. ¿Qué comprobar antes de tocar permisos?",
           "options": [
             {
-              "text": "Una clave persistente expediente+versión con resultado de reintento definido",
+              "text": "Identidad, conexión efectiva, acceso a datos y configuración de autenticación/canal de la versión publicada",
               "correct": true
             },
             {
-              "text": "Pedir al modelo que recuerde no duplicarlo sin registro",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Volver a publicar el mismo borrador, asumiendo que la publicación sincroniza los permisos del maker",
+              "feedback": "Publicar no concede por sí solo permisos de datos ni sustituye la conexión."
             },
             {
-              "text": "Crear un nuevo identificador aleatorio en cada recepción",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Compartir el documento con el usuario y dar por resuelto el acceso sin revisar qué conexión ejecuta el flow",
+              "feedback": "Puede ser parte de la solución autorizada, pero no demuestra que esa sea la identidad que usa el flow."
             }
           ],
-          "explain": "Automatizar requiere contrato, estado, errores e idempotencia. El prototipo describe lo que debe probarse; no acredita producción."
+          "explain": "Publicación, canal y datos tienen controles propios. El acceso debe probarse con identidad y contexto representativos."
         },
         {
-          "id": "f2-6-2-sequence",
+          "id": "f3-l6-2-order",
           "type": "order",
-          "concept": "process.studio",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "lifecycle.publish",
+          "prompt": "Ordena este procedimiento de construcción y contraste.",
           "items": [
-            "Definir contrato de entradas, salidas e identidad",
-            "Implementar estado, idempotencia y errores en sandbox autorizado",
-            "Probar casos y validar habilitación antes de ampliar"
+            "Identificar usuarios, canal y método de autenticación",
+            "Revisar permisos al entorno/datos y conexiones",
+            "Contrastar banco y preparar versión/recuperación",
+            "Distribuir solo si está autorizado y probar con usuario representativo"
           ],
-          "explain": "Una ejecución fallida no aparece completada; un duplicado no crea dos registros; no se mezclan expedientes. Para otro proceso redefine acciones, identidad y aprobación antes de reutilizar."
+          "explain": "Publicación, canal y datos tienen controles propios. El acceso debe probarse con identidad y contexto representativos."
         },
         {
-          "id": "f2-6-2-portfolio",
+          "id": "f3-l6-2-portfolio",
           "type": "portfolio",
-          "concept": "process.studio",
-          "prompt": "Entrega contrato de entradas/salidas y diseño del flujo con cuatro pruebas. Si tienes sandbox autorizado, implementa el registro en una lista educativa y conserva ejecución y error. Si no, deja la implementación real marcada pendiente.",
+          "concept": "lifecycle.publish",
+          "prompt": "Prepara el paquete de release de tu agente sin publicar fuera del entorno autorizado. Entrega matriz de acceso con dos identidades y un caso que debe denegarse, más la lista de pasos pendientes de TI.",
           "rubric": [
-            "Consistencia: contrato de entradas/salidas, estado y clave idempotente definidos.",
-            "Trazabilidad: ejecuciones y errores conservan expediente y versión.",
-            "Interpretación: diferencia prototipo diseñado de flujo realmente ejecutado.",
-            "Utilidad: incluye éxito, incompleto, duplicado y fallo de conector.",
-            "Crítico: no marcar éxito sin acción confirmada ni asumir permisos corporativos."
+            "Permisos: distingue identidad, licencia, entorno y acceso a datos.",
+            "Distribución: separa publicar versión y habilitar canal/usuarios.",
+            "Trazabilidad: dos identidades y caso denegado definidos o probados.",
+            "Utilidad: requisitos de TI concretos y recuperación identificada.",
+            "Errores críticos: no evita autenticación ni amplía permisos para que pase la demo."
           ],
-          "solution": "Un flujo educativo recibe identificador de expediente y versión, comprueba archivos obligatorios, genera borrador de registro delta y solicita revisión humana antes de marcarlo aceptado. No envía propuestas de crédito ni modifica un sistema bancario. El riesgo real es procesar dos veces el mismo correo o mezclar expedientes.\n\nUna ejecución fallida no aparece completada; un duplicado no crea dos registros; no se mezclan expedientes. Para otro proceso redefine acciones, identidad y aprobación antes de reutilizar.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "La matriz puede separar maker, usuario autorizado y usuario sin acceso. Debe indicar qué permisos son de datos, cuáles del entorno y qué identidad ejecuta el flow. Un «pendiente de TI» concreto es mejor que suponer que todos heredan acceso. Si se publica una copia educativa en sandbox, registra versión y canal probado; no lo confundas con producción.",
+          "explain": "Registro de autoevaluación: conserva configuración, ejecución observada y límites. La aplicación no accede a Copilot Studio ni comprueba semánticamente tu entregable; si solo has diseñado el flujo, marca ejecución pendiente."
         },
         {
           "type": "card",
-          "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "kicker": "Validación y transferencia",
+          "title": "Decisiones que conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Una ejecución fallida no aparece completada; un duplicado no crea dos registros; no se mezclan expedientes. Para otro proceso redefine acciones, identidad y aprobación antes de reutilizar.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
-            }
-          ]
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Automatizar requiere contrato, estado, errores e idempotencia. El prototipo describe lo que debe probarse; no acredita producción."
+              "body": "La evidencia es el comportamiento con la identidad adecuada y un caso denegado, no la pantalla de publicación completada.\n\nConserva esta matriz al trasladar el agente entre equipos o especialidades; cambia el corpus y verifica de nuevo el canal."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l6-3",
-      "title": "Programación, Cowork y ahorro neto medible",
-      "summary": "La automatización útil reduce trabajo total manteniendo calidad.",
-      "minutes": 30,
+      "id": "f3-l6-3",
+      "title": "Observar uso, consumo y cambios de versión",
+      "summary": "Convertir un prototipo útil en una práctica mantenible sin asumir controles de producción que no se han probado.",
+      "minutes": 20,
       "objectives": [
-        "Mide dos formas de producir la nota delta y decide si merece repetición, programación o flujo. Incluye el coste de revisar una respuesta equivocada y el tiempo de mantenimiento de instrucciones.",
-        "El ahorro es neto y comparable; la calidad se evalúa con rúbrica y errores críticos. Para otra operación repite medición porque cambia la complejidad y cobertura documental."
+        "Diseña un ciclo de mantenimiento de tu agente: muestra de diez tareas, métricas de resultado, fuente de observación, regla para corregir/retirar y procedimiento para volver a una versión conocida. Registra una ejecución real o marca datos de medición pendientes.",
+        "Una mejora requiere evidencia de utilidad neta y calidad; una demo y un contador de sesiones no bastan."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "kicker": "Problema transferible",
+          "title": "Qué capacidad vas a construir",
           "blocks": [
             {
               "type": "text",
-              "body": "La automatización útil reduce trabajo total manteniendo calidad. El resultado es una decisión de qué repetir con IA, qué programar y qué mantener manual."
+              "body": "Un agente puede ahorrar tiempo en la demo y generar más revisión cuando cambian archivos, instrucciones o usuarios. Necesitas saber qué se ha ejecutado, cuánto se corrige y qué versión produjo cada resultado."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Una decisión y su configuración",
           "blocks": [
             {
               "type": "text",
-              "body": "Si preparar una actualización requiere 45 minutos manuales y con IA son 15 de preparación, 20 de verificación y 15 de retrabajo, has gastado 50: no ahorraste tiempo. Registra también errores críticos y utilidad del entregable; generar muchas páginas no es productividad."
+              "body": "Mide diez tareas comparables: antes40 minutos cada una; con agente10 de preparación+8 de revisión+12 de corrección=30, ahorro neto10, no30. Si tres respuestas fallan por una fuente antigua, mejorar la recuperación aporta más que añadir otra herramienta. Un aumento de uso no demuestra más calidad."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Construir y probar en Studio",
           "blocks": [
             {
               "type": "text",
-              "body": "Mide una línea base comparable durante varias actualizaciones. Separa preparación, espera, revisión y corrección. Un prompt programado puede recordar una revisión o ejecutar una tarea admitida cuando esa función esté habilitada; no equivale a recalcular todo un modelo. Cowork, si aparece habilitado en tu entorno y la tarea lo permite, puede apoyar trabajo de varios pasos; define entregables, puntos de revisión y límites antes de delegar. Para procesos con conectores y estado considera Studio, con TI cuando corresponda.\n\n**Herramienta, requisitos, entradas y salida.** M365 Copilot, programación/Cowork solo si están disponibles y autorizados; Studio como ampliación. Entradas: dos ejecuciones comparables y registro de tiempo/calidad. Salida: decisión de proceso. Alternativa: checklist recurrente en calendario personal sin automatización; pierdes ejecución delegada, conservas disciplina de revisión.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "1. Mantén un registro con versión de agente, fuentes, resultado, tiempo de preparación/revisión/corrección, fallos críticos y consumo visible. No uses datos sensibles en el registro educativo.\n2. En Monitor/Analytics y en el historial de actividad/conversaciones que tu entorno permita, busca sesiones, resultados de interacción, errores y uso; nombres/métricas y disponibilidad dependen de experiencia, permisos y retención. Las sesiones del test panel no alimentan Analytics: para uso real necesitas sesiones autorizadas del canal publicado; el dashboard puede tardar en actualizarse. Relaciona una muestra con los run IDs del flow y sus estados.\n3. Revisa transcripciones solo con acceso y política apropiados; pueden contener información del usuario. Si no puedes verlas, usa conversaciones de prueba capturadas y un registro manual: pierdes observación de uso real, no la capacidad de evaluar un prototipo.\n4. Antes de cambiar instrucciones o conocimiento guarda la configuración y fuentes, describe el cambio y repite el banco. En entornos con solutions, exportación/versionado y despliegue de soluciones pueden apoyar el traslado; no presupongas rollback de un clic. Planifica restaurar configuración conocida y volver a probar/publicar cuando corresponda.\n5. Consulta capacidad/consumo con el responsable cuando no sea visible al maker. Los agent flows pueden consumir capacidad de Copilot Studio; no asumas que tener Microsoft365Copilot incluye cualquier conector, canal o ejecución autónoma.\n\n**Herramienta y acceso.** Copilot Studio web con standard harness, en entorno de prueba autorizado, con acceso de autor y licencia/capacidad para la función. Los agent flows requieren Dataverse completo; Dataverse for Teams no basta. Microsoft365Copilot no garantiza acceso al Studio completo. No necesitas ERP ni datos reales. La prueba gratuita permite diseñar/probar agentes, pero no presupone publicación ni disponibilidad de flujos. Si no tienes Studio, usa el lienzo y tabla de pruebas de studio-lab.md y ejecuta a mano los casos: aprendes contrato y diagnóstico, pero la ejecución en Studio queda pendiente; no la marques validada. Una función o canal bloqueados por política requieren TI, no otra formulación del prompt.\n\n**Entradas:** studio-lab.md, agentes.md y fixtures ficticias. **Salida:** configuración versionada y registro de pruebas de esta lección. Tiempo orientativo: 15–20 min de lectura y 30–60 min de práctica exterior inicial.\n\n[Recetas reproducibles](content/resources/studio-lab.md) · [Contrato y construcción de agentes](content/resources/agentes.md) · [Pruebas y fixtures](content/resources/pruebas-agentes.json) · [Capacidades y licencias](content/resources/capacidades.md)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado falla",
           "blocks": [
             {
               "type": "text",
-              "body": "Una ejecución programada resume información vieja porque no detecta una versión nueva. Exige fecha de corte y comparación de versiones, y registra «sin actualización confirmada» en lugar de fabricar un delta. No atribuyas a Cowork disponibilidad ni acceso que no has comprobado."
+              "body": "El dashboard muestra más sesiones y menos abandonos, pero el entregable requiere corrección adicional. Añade una muestra revisada contra fuentes y mide tiempo neto, no solo adopción. Si cambias cinco piezas a la vez no podrás atribuir la mejora: registra una hipótesis, cambia una causa y compara el mismo banco. Sin historial disponible, declara el límite de observabilidad."
             }
           ]
         },
         {
-          "id": "f2-6-3-decision",
+          "id": "f3-l6-3-choice",
           "type": "choice",
-          "concept": "process.value",
-          "prompt": "¿Qué ahorro neto hay frente a 45 min manuales si IA exige 15+20+15 min?",
+          "concept": "lifecycle.observe",
+          "prompt": "Antes40min. Con agente10 preparación+8 revisión+12 corrección. ¿Qué registrar para evaluar productividad?",
           "options": [
             {
-              "text": "−5 minutos: el proceso asistido tarda 50 y necesita mejora",
+              "text": "Ahorro neto10min por tarea comparable; conservar calidad y consumo como medidas separadas",
               "correct": true
             },
             {
-              "text": "10 minutos de ahorro al computar preparación y revisión pero omitir retrabajo",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Ahorro30min de preparación como ahorro total, dejando revisión/corrección fuera de la comparación",
+              "feedback": "30 describe reducción bruta de preparación y puede informarse así, pero no es ahorro end-to-end."
             },
             {
-              "text": "30 minutos de ahorro si se mide solo preparación y se trata la verificación como coste ajeno al proceso",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Ahorro22min al contar preparación y revisión, sin atribuir la corrección al proceso con agente",
+              "feedback": "La corrección forma parte del trabajo necesario para obtener un resultado utilizable."
             }
           ],
-          "explain": "Mide preparación+verificación+retrabajo. Programar una petición no convierte el proceso en una integración fiable."
+          "explain": "El ahorro neto incluye preparación, revisión y corrección comparables; calidad y consumo son dimensiones adicionales que no se deducen del tiempo."
         },
         {
-          "id": "f2-6-3-sequence",
+          "id": "f3-l6-3-order",
           "type": "order",
-          "concept": "process.value",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "lifecycle.observe",
+          "prompt": "Ordena este procedimiento de construcción y contraste.",
           "items": [
-            "Medir línea base y calidad con una tarea comparable",
-            "Sumar preparación, verificación, retrabajo y mantenimiento",
-            "Elegir proceso por ahorro neto y calidad observada"
+            "Fijar línea base comparable y registro por versión",
+            "Observar sesiones/ejecuciones y revisar muestra contra fuentes",
+            "Separar tiempo neto, calidad y consumo",
+            "Cambiar una causa, repetir banco y conservar recuperación"
           ],
-          "explain": "El ahorro es neto y comparable; la calidad se evalúa con rúbrica y errores críticos. Para otra operación repite medición porque cambia la complejidad y cobertura documental."
+          "explain": "El ahorro neto incluye preparación, revisión y corrección comparables; calidad y consumo son dimensiones adicionales que no se deducen del tiempo."
         },
         {
-          "id": "f2-6-3-portfolio",
+          "id": "f3-l6-3-portfolio",
           "type": "portfolio",
-          "concept": "process.value",
-          "prompt": "Mide dos formas de producir la nota delta y decide si merece repetición, programación o flujo. Incluye el coste de revisar una respuesta equivocada y el tiempo de mantenimiento de instrucciones.",
+          "concept": "lifecycle.observe",
+          "prompt": "Diseña un ciclo de mantenimiento de tu agente: muestra de diez tareas, métricas de resultado, fuente de observación, regla para corregir/retirar y procedimiento para volver a una versión conocida. Registra una ejecución real o marca datos de medición pendientes.",
           "rubric": [
-            "Consistencia: línea base y prueba asistida son comparables.",
-            "Trazabilidad: tiempos separan preparación, verificación y retrabajo.",
-            "Interpretación: ahorro neto incorpora calidad y mantenimiento.",
-            "Utilidad: elección de programación o flujo responde a evidencia.",
-            "Crítico: no asumir Cowork habilitado ni acceso o ejecución automática no comprobados."
+            "Medición: calcula ahorro neto con tareas comparables.",
+            "Calidad: muestra revisada y fallos críticos aparte de adopción.",
+            "Trazabilidad: cada resultado conserva versión y fuentes.",
+            "Mantenimiento: cambio, regresión y recuperación concretos.",
+            "Errores críticos: no inventa analytics/consumo ni afirma rollback no probado."
           ],
-          "solution": "Si preparar una actualización requiere 45 minutos manuales y con IA son 15 de preparación, 20 de verificación y 15 de retrabajo, has gastado 50: no ahorraste tiempo. Registra también errores críticos y utilidad del entregable; generar muchas páginas no es productividad.\n\nEl ahorro es neto y comparable; la calidad se evalúa con rúbrica y errores críticos. Para otra operación repite medición porque cambia la complejidad y cobertura documental.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "Una tabla defendible registra tiempo antes y después incluyendo corrección, tasa de fallos críticos, utilidad y consumo visible. Los umbrales son decisiones educativas del propietario, no políticas bancarias. La recuperación identifica archivos/configuración y cómo volver a probarlos; una exportación sin ensayo de recuperación no demuestra continuidad.",
+          "explain": "Registro de autoevaluación: conserva configuración, ejecución observada y límites. La aplicación no accede a Copilot Studio ni comprueba semánticamente tu entregable; si solo has diseñado el flujo, marca ejecución pendiente."
         },
         {
           "type": "card",
-          "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "kicker": "Validación y transferencia",
+          "title": "Decisiones que conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "El ahorro es neto y comparable; la calidad se evalúa con rúbrica y errores críticos. Para otra operación repite medición porque cambia la complejidad y cobertura documental.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
-            }
-          ]
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Mide preparación+verificación+retrabajo. Programar una petición no convierte el proceso en una integración fiable."
+              "body": "Una mejora requiere evidencia de utilidad neta y calidad; una demo y un contador de sesiones no bastan.\n\nAl reutilizar el agente en otra función, conserva el ciclo de medición y reestima línea base, corpus y coste de corrección."
             }
           ]
         }
@@ -386,72 +356,71 @@
     }
   ],
   "exam": {
-    "title": "Decisiones de trabajo · no certificación profesional",
+    "size": 6,
     "extra": [
       {
-        "id": "f2-6-1-exam",
+        "id": "f3-m6-exam-1",
         "type": "choice",
-        "concept": "process.delta",
-        "prompt": "El base libera un colchón NWC de 2 en el primer año. ¿Qué contraste añade valor?",
+        "concept": "lifecycle.evaluate",
+        "prompt": "Cambias una descripción de tool para corregir selección. ¿Qué banco ejecutas?",
         "options": [
           {
-            "text": "Mantener el colchón y medir impacto de −2 en CFADS/caja del primer año",
+            "text": "Caso fallido, normales, fronteras de otras herramientas y reservado con la nueva versión",
             "correct": true
           },
           {
-            "text": "Atribuir la liberación a crecimiento sostenible del negocio",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Solo la petición exacta que motivó el cambio",
+            "feedback": "Las correcciones pueden introducir regresiones y el caso reservado mide generalización."
           },
           {
-            "text": "Eliminar la variación de NWC para simplificar",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Un nuevo banco sin los casos previos para evitar memoria del agente",
+            "feedback": "Las correcciones pueden introducir regresiones y el caso reservado mide generalización."
           }
         ],
-        "explain": "Mantener el colchón y medir impacto de −2 en CFADS/caja del primer año. Delta de inputs, delta de caja y delta de mensaje deben concordar. Conservar versiones permite explicar una decisión."
+        "explain": "Las correcciones pueden introducir regresiones y el caso reservado mide generalización."
       },
       {
-        "id": "f2-6-2-exam",
+        "id": "f3-m6-exam-2",
         "type": "choice",
-        "concept": "process.studio",
-        "prompt": "Un conector devuelve 403. ¿Qué debe devolver el flujo?",
+        "concept": "lifecycle.publish",
+        "prompt": "Has guardado un cambio de autenticación en el borrador. El usuario del canal no ve el cambio. ¿Qué distinguir?",
         "options": [
           {
-            "text": "Estado no completado con error de permisos y ruta de revisión/reintento controlado",
+            "text": "Configuración guardada, publicación de versión y prueba del canal con identidad real",
             "correct": true
           },
           {
-            "text": "Estado completado porque el modelo redactó el borrador",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "El panel Test y el canal siempre usan la misma última configuración",
+            "feedback": "El borrador no sustituye por sí solo la versión publicada ni su contexto de autenticación."
           },
           {
-            "text": "Reintentos ilimitados hasta que cambien permisos",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Analytics debe recalcular permisos cuando aparezca una sesión nueva",
+            "feedback": "El borrador no sustituye por sí solo la versión publicada ni su contexto de autenticación."
           }
         ],
-        "explain": "Estado no completado con error de permisos y ruta de revisión/reintento controlado. Automatizar requiere contrato, estado, errores e idempotencia. El prototipo describe lo que debe probarse; no acredita producción."
+        "explain": "El borrador no sustituye por sí solo la versión publicada ni su contexto de autenticación."
       },
       {
-        "id": "f2-6-3-exam",
+        "id": "f3-m6-exam-3",
         "type": "choice",
-        "concept": "process.value",
-        "prompt": "La tarea asistida ahorra borrador pero exige más revisión. ¿Cómo decidir?",
+        "concept": "lifecycle.observe",
+        "prompt": "Probaste20 conversaciones en Test y Analytics sigue vacío. ¿Qué conclusión es válida?",
         "options": [
           {
-            "text": "Comparar tiempo total neto, calidad y mantenimiento contra una línea base comparable",
+            "text": "El test panel no alimenta esas métricas; medir diseño con pruebas y uso publicado con sesiones autorizadas del canal",
             "correct": true
           },
           {
-            "text": "Contar solo minutos de generación",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "El agente no funciona porque no aparecen sesiones en el dashboard",
+            "feedback": "Test y Analytics observan ámbitos distintos; no atribuir ausencia de dashboard a fallo del comportamiento probado."
           },
           {
-            "text": "Contar número de agentes utilizados",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Hay que publicar repetidamente hasta que los tests se conviertan en sesiones de uso",
+            "feedback": "Test y Analytics observan ámbitos distintos; no atribuir ausencia de dashboard a fallo del comportamiento probado."
           }
         ],
-        "explain": "Comparar tiempo total neto, calidad y mantenimiento contra una línea base comparable. Mide preparación+verificación+retrabajo. Programar una petición no convierte el proceso en una integración fiable."
+        "explain": "Test y Analytics observan ámbitos distintos; no atribuir ausencia de dashboard a fallo del comportamiento probado."
       }
-    ],
-    "size": 6
+    ]
   }
 }

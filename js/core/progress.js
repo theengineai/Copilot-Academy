@@ -28,7 +28,7 @@ export function rankInfo(xp) {
   return { rank, from, to, progress: (xp - from) / (to - from) };
 }
 
-/** Avance de práctica local: L3 módulos 1–2, L4 módulos 1–4. No acredita experto. */
+/** Avance de práctica local: L3 módulos 1–2, L4 todas las evaluaciones. No acredita experto. */
 export function masteryLevel(state, course) {
   const passed = id => Boolean(state.exams[id]?.passed);
   const ids = course.modules.map(m => m.id);
@@ -36,7 +36,7 @@ export function masteryLevel(state, course) {
   // L5 is deliberately never awarded by this local guided practice.
   // Practical work needs review against source files in the user's real environment.
   if (ids.every(passed) && finalDone) return 'L4';
-  if (ids.slice(0, Math.max(2, ids.length - 3)).every(passed)) return 'L4';
+  if (ids.length && ids.every(passed)) return 'L4';
   if (ids.slice(0, 2).every(passed)) return 'L3';
   return 'L2';
 }

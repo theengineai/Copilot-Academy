@@ -1,27 +1,34 @@
-# Verificación de edición 2 · 12 noviembre 2026
+# Verificación · edición 3
 
-## Base y publicación
+## Base y alcance
 
-Repositorio clonado limpio, sin cambios ajenos ni AGENTS.md en el checkout. Rama por defecto: `claude/funny-hopper-mj74xd`. Rama que dispara Pages y origen del último despliegue: `main`. Ambas en `647694808f78072b1b15ac06f9c053aaaaada257`, sin diferencias. Confirmado contra despliegue de GitHub y sitio público: `sw.js` sirve VERSION `64769480`. Pages usa workflow; el campo source de configuración todavía menciona la rama por defecto, por lo que se contrastó con el despliegue real. Rama nueva `codex/finance-agents-edition`, PR contra `main`. Sin merge, workflow manual ni despliegue.
+Se parte de `main` publicada en f07fd4a (edición2). La rama por defecto sigue `claude/funny-hopper-mj74xd`, anterior; se conserva la base publicada para no perder mejoras de motor, portfolio y PWA. Rama de trabajo `codex/copilot-mastery-v3`. Abrir la PR no publica por sí mismo. Tras revisión y pruebas, se actualiza el mismo Pages con la autorización de publicación ya dada en esta sesión.
 
-## Controles locales
+Corrección de alcance del usuario: dominio de Copilot con ejemplos financieros transferibles y formación sustancial en construcción de agentes/Studio. Se retira del runtime el caso de adquisición y la estructura de entregables de una especialidad. Los archivos y contenidos anteriores siguen disponibles en el historial Git. Se amplía a10módulos/30lecciones con IDs nuevos y migración de estado3 que archiva edición2 e histórico1, conservando preferencias y exportación.
 
-- `npm test`: cinco archivos de pruebas pasan. Ejecución sin aislamiento (`node --test --test-isolation=none tests/*.test.mjs`, Node 24): **47 pruebas individuales**, todas pasan. Integridad de IDs/conceptos/prerrequisitos, soluciones, evaluaciones, SRS, desbloqueos, XP, simulador, PWA, migración y revisión independiente.
-- `npm run test:materials`: abre XLSX/DOCX/PPTX con librerías OOXML. Recalcula independientemente todas las fórmulas admitidas del modelo en tres escenarios y dos años; contrasta resultados y cachés del escenario base. Controles de balance, caja, deuda y fuentes/usos. Una mutación intencionada de la fórmula de deuda provoca fallo del control. Reconcilia CSV contra históricos y verifica tabla y gráfico nativos en PPTX.
-- Browser: Chromium/Playwright, móvil 390×844 y escritorio 1440×1000. El runner lee el contenido vigente para recorrer las actividades. Las respuestas del test son claves del curso, no evidencia de habilidad profesional. El estado de acceso se prepara explícitamente tras comprobar la primera lección; las reglas de desbloqueo se prueban separadamente en el motor.
+## Pruebas y criterio
 
-El shock no produce caja negativa en 2026: queda 0,187671, bajo el mínimo didáctico de 2; DSCR 0,433647. En 2027 sí hay caja negativa. El caso explica la liberación del colchón NWC y exige sensibilidad sin liberación. Las identidades no prueban la validez económica de ese supuesto.
+Se mantiene la suite de motor y se actualizan IDs, competencia inicial y umbrales de progreso a la nueva estructura. L4 exige superar todas las evaluaciones locales, sin acreditar ejecución ni nivel experto. Los ejercicios portfolio no entran en aciertos, SRS ni exámenes. Las cantidades de contenido se actualizan a30 lecciones y15 dedicadas a construir agentes (9deStudio) por el cambio pedagógico explícito; no se eliminan controles de IDs, fuentes, soluciones o coherencia.
 
-## Justificación de cambios en tests
+Pruebas Office: abre XLSX/DOCX/PPTX reales; evalúa cada fórmula del libro educativo de forma independiente en3escenarios×2años y contrasta cachés del caso base. Compara CSV contra históricos, EV/EBITDA reportado de comparables, tabla y gráfico nativos del PPTX. Control metamórfico +1capex debe restar1caja y sumar1PPE sin modificar resultado o deuda. Una mutación de signo en la fórmula de deuda tiene que fallar.
 
-Se sustituyeron IDs y cantidades de la edición antigua por 21 lecciones y 21 conceptos nuevos. Las misiones son entregables abiertos, no simulaciones con respuesta preparada: se comprueba la estructura del registro y la rúbrica, sin afirmar verdad semántica. Portfolio se excluye de examen, repaso, aciertos y dominio; los resultados de sesión distinguen registro de comprobación cerrada. Se conserva el control de respuestas incorrectas, soluciones del simulador, prerrequisitos, XP sin duplicación y persistencia. El runner navegador anterior dependía de IDs retirados: ahora deriva rutas del contenido e incluye todas las actividades nuevas.
+Pruebas navegador: Chromium con pantalla390×844 y1440×1000. El runner deriva las actividades del contenido vigente y recorre lecciones, exámenes, misiones y simulaciones guiadas. Las claves de respuesta usadas para conducir la interfaz no son evidencia de competencia del alumno. El estado de acceso se prepara como fixture explícita tras probar la primera lección, y las reglas de desbloqueo se comprueban por separado en el motor. Verifica también evidencia, exportación/restauración, reanudación, error, modo oscuro, reinicio, migración de caché, descargas OOXML offline y navegación sin red.
 
-## Límites de la evidencia
+## Límites
 
-No se ha usado el tenant del alumno ni se han ejecutado Agent Builder, Analyst, Researcher, Cowork o Studio reales. Las nueve pruebas de agentes son fixtures manuales pendientes, con condiciones de fallo y registros de evidencia. Licencia, disponibilidad, fuentes, permisos, conectores y comportamiento real deben contrastarse allí. Documentación oficial comprobada en [CAPACIDADES.md](CAPACIDADES.md), también distribuida offline.
+No se accede al tenant del alumno ni se ejecutan Agent Builder, Studio, Analyst, Researcher o Cowork reales. Laboratorios Studio con procedimientos reales pero estado «pendiente» hasta ejecutarlos en entorno/licencia habilitados; el modo simulado o de diseño no sustituye esa prueba. Los fixtures conservan datos y aserciones por escenario, no un supuesto resultado de Microsoft.
 
-La apertura OOXML mediante librerías no es renderizado ni recálculo en Microsoft Office. El evaluador de fórmulas admite las operaciones usadas en este libro educativo; no es un motor Excel general ni prueba de macros/vínculos. No se ha probado instalación PWA en dispositivo iOS físico. Capturas de la app en `docs/screenshots/edition-*.png`; no se atribuye al simulador acceso real, verificación independiente ni capacidad de producción.
+Apertura con librerías OOXML y evaluador limitado al libro no son renderizado/recálculo en Microsoft Office. No se valida PPA, leases, macros, vínculos ni liquidez mensual. No se ha probado instalación en iOS físico. La documentación oficial no demuestra disponibilidad de funciones, permisos o consumo en un tenant concreto.
 
-## Resultado final de navegador
+La matriz Microsoft se distribuye también en `content/resources/capacidades.md`; la revisión independiente está en [REVIEW3.md](REVIEW3.md). Los resultados finales ejecutados se añaden al cerrar la integración.
 
-`npm run test:e2e` terminó con código 0: 21 lecciones, 7 evaluaciones, 14 misiones y 7 laboratorios guiados. Sin errores JavaScript ni desbordamiento horizontal en rutas comprobadas. Exportación/restauración de evidencia, reanudación y feedback de respuesta errónea, modo oscuro y reinicio completo comprobados. Cachés antiguas `cpa-*` y `cca-*` eliminadas al activar nueva edición; recarga y navegación offline; descarga real de `modelo.xlsx` offline con firma OOXML `PK`. Capturas móvil, escritorio, portfolio y perfil oscuro guardadas. Dos confirmaciones del reinicio se identifican por nombre y se espera el estado persistido: se corrigió una carrera del test que antes pulsaba el mismo botón dos veces.
+## Resultados ejecutados
+
+- `npm test`: seis archivos de pruebas pasan. `node --test --test-isolation=none tests/*.test.mjs`: **52/52 pruebas individuales**.
+- `npm run test:materials`: código0; OOXML/CSV/gráfico/tabla y todas las fórmulas en3escenarios×2años, controles e identidades, perturbación capex y mutación deuda.
+- `npm run test:e2e`: código0, **30lecciones,10evaluaciones,15misiones y8laboratorios**. Móvil390×844, escritorio1440×1000, modooscuro, error/reanudación/exportación/restauración/reinicio, cachés antiguas y descarga realXLSX offline. Sin erroresJavaScript.
+- La primera pasada detectó desbordamiento de los nuevos nombres de logros en perfil móvil; se corrigió la cuadrícula y se repitió el recorrido completo. No se ocultó el desbordamiento ni se eliminó el control.
+- `git diff --check`: sin incidencias. Capturas actuales `docs/screenshots/v3-*.png`, inspeccionadas para el inicio y el portfolio móvil.
+- Revisión editorial: los recursos activos no conservan FARE, Levante/Murcia ni el caso de adquisición anterior. La revisión independiente confirma procedimientos distintos de Builder/Studio y aplicación a diferentes tareas financieras.
+
+Publicación en el mismo GitHub Pages autorizada en la conversación, después de preparar PR y completar estos controles. La ejecución en Microsoft real permanece pendiente como se detalla arriba.

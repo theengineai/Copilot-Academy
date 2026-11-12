@@ -31,13 +31,14 @@ export function renderHome(page, ctx) {
   );
 
   page.append(h('section', { class: 'card' },
-    h('h2', {}, 'Financiación corporativa · edición 2'),
-    h('p', {}, 'Agentes desde la primera operación: metodología, modelo, narrativa, revisión y actualización. Todo el caso es ficticio. Las autoevaluaciones no acreditan dominio profesional.'),
+    h('h2', {}, 'Dominar Copilot · edición 3'),
+    h('p', {}, 'Aprende a elegir herramientas, construir agentes y trabajar con Copilot Studio. Ejemplos financieros que puedes trasladar a tu especialidad. Las prácticas locales no acreditan ejecución real.'),
+    h('p', { class: 'small muted' }, 'Construcción de agentes: módulos 2–6. Copilot Studio: 9 lecciones con temas, variables, herramientas, flujos y ciclo de vida. Adapta los ejemplos a tu función.'),
     state.history?.length ? h('p', { class: 'callout' }, 'Tu edición anterior se ha archivado sin trasladar competencias. Puedes exportarla junto al progreso actual desde Perfil.') : null,
-    h('details', {}, h('summary', {}, 'Archivos del caso · descargar materiales'),
+    h('details', {}, h('summary', {}, 'Materiales y laboratorios · descargar'),
     h('p', { class: 'small muted' }, 'Disponibles sin conexión tras completar la descarga inicial.'),
     h('div', { class: 'stack' },
-      ...[['capacidades.md','Herramientas, licencias y alternativas'],['modelo.xlsx','Modelo editable con fórmulas'],['caso.docx','Caso e históricos'],['one-pager.docx','One Pager para corregir'],['fare.pptx','Presentación educativa para mejorar'],['actualizacion.eml','Correo de actualización'],['aclaracion.eml','Aclaraciones de cierre'],['historicos-entidades.csv','Históricos por entidad'],['agentes.md','Instrucciones de agentes'],['metodologia.md','Metodología'],['pruebas-agentes.json','Batería de pruebas'],['soluciones.md','Soluciones comentadas']].map(([file,label]) => h('a', { class: 'btn btn-soft', href: `content/resources/${file}`, download: file }, label))))));
+      ...[['capacidades.md','Herramientas, licencias y alternativas'],['agentes.md','Guía para construir agentes'],['studio-lab.md','Laboratorios de Copilot Studio'],['pruebas-agentes.json','Pruebas y fallos de agentes'],['modelo.xlsx','Libro para prácticas de Excel y Analyst'],['expediente.docx','Fuentes financieras de ejemplo'],['documento-trabajo.docx','Documento profesional para mejorar'],['presentacion.pptx','Presentación editable'],['historicos.csv','Históricos para reconciliar'],['comparables.csv','Datos comparables de ejemplo'],['actualizacion.eml','Información nueva para incorporar'],['aclaracion.eml','Aclaración de fuentes'],['metodologia.md','Reglas de trazabilidad'],['soluciones.md','Soluciones comentadas']].map(([file,label]) => h('a', { class: 'btn btn-soft', href: `content/resources/${file}`, download: file }, label))))));
 
   // Tarjeta principal: continuar.
   if (next) {
@@ -48,14 +49,14 @@ export function renderHome(page, ctx) {
       h('div', { class: 'hero-text' },
         h('span', { class: 'kicker' }, mod ? `Módulo ${mod.index} · ${mod.title}` : 'Proyecto final'),
         h('h1', {}, next.title),
-        h('p', {}, lesson ? lesson.summary : next.kind === 'exam' ? 'Contrasta decisiones para desbloquear el siguiente módulo.' : 'Integra los entregables de una operación ficticia.'),
+        h('p', {}, lesson ? lesson.summary : next.kind === 'exam' ? 'Contrasta decisiones para desbloquear el siguiente módulo.' : 'Diseña y prueba tu propio sistema de trabajo con Copilot.'),
         h('span', { class: 'btn btn-primary btn-hero' }, icon('play', { size: 18 }), (() => {
           const partial = savedProgress(state, `${next.kind}:${next.id}`);
           return partial ? `Continuar · paso ${partial.furthest + 1}` : state.xp ? 'Continuar' : 'Empezar';
         })()),
       ),
       h('div', { class: 'hero-art', 'aria-hidden': 'true' },
-        h('div', { class: 'mini-term' }, h('span', {}, 'Contrasta /caso.docx'), h('span', {}, 'con /modelo.xlsx'), h('span', { class: 'cursor' }, '▍')),
+        h('div', { class: 'mini-term' }, h('span', {}, 'Prueba tu agente'), h('span', {}, 'con fuentes y controles'), h('span', { class: 'cursor' }, '▍')),
         prog ? h('div', { class: 'hero-prog' }, `${prog.done}/${prog.total}`) : null),
     ));
   } else {

@@ -1,384 +1,393 @@
 {
   "id": "m7",
-  "title": "Transferencia y defensa final",
-  "subtitle": "Demostrar criterio sobre un expediente nuevo y un cambio posterior.",
-  "level": "Práctica avanzada",
-  "icon": "flag",
-  "color": "#6B57A6",
+  "title": "Excel y Analyst: construir y comprobar análisis",
+  "subtitle": "Reconciliar archivos, editar dependencias y validar análisis y escenarios.",
+  "level": "Herramientas y práctica transferible",
+  "icon": "book",
+  "color": "#5B4FD6",
   "lessons": [
     {
-      "id": "f2-l7-1",
-      "title": "Reutilizar el sistema sin arrastrar el caso anterior",
-      "summary": "El sistema solo es reutilizable si conserva método y elimina datos de la operación anterior.",
-      "minutes": 30,
+      "id": "f3-l7-1",
+      "title": "Reconstruir la estructura y reconciliar varios archivos",
+      "summary": "Antes de encargar análisis necesitas saber qué contiene el libro y qué tendría que cambiar.",
+      "minutes": 20,
       "objectives": [
-        "Construye un paquete reutilizable para una operación de capex sin compra. Elige qué piezas conservar, adaptar o retirar y justifica tres decisiones. No uses la solución de Levante como datos de entrada.",
-        "No hay nombres, cifras ni decisiones heredadas. El flujo sigue produciendo preguntas y controles útiles. En un tercer caso prueba una refinanciación para comprobar que la reutilización no dependía del tipo de operación."
+        "Entrega un mapa de seis dependencias del libro y una reconciliación histórica contra el CSV. Identifica dónde incorporarías un nuevo histórico y qué celdas no deberían tocarse directamente.",
+        "Comprueba números, tipos de dato y un ratio con cálculo separado. Una igualdad de totales no demuestra igualdad de períodos o definiciones. Guarda una copia y un registro de celdas que tocarías, sin ejecutarlo aún."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "El sistema solo es reutilizable si conserva método y elimina datos de la operación anterior. El entregable es un paquete limpio de instrucciones, plantillas vacías y pruebas de aislamiento."
+              "body": "Antes de encargar análisis necesitas saber qué contiene el libro y qué tendría que cambiar. Esta lección enseña a reconciliar una extracción y un modelo con drivers explícitos, sin convertir el trabajo en una auditoría exhaustiva ni enseñar Excel elemental."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "En un segundo caso educativo, Costa Componentes necesita capex y circulante, sin adquisición. Si aparecen los 12 M€ de compra de Murcia Pack, el agente está copiando hechos del ejemplo. La estructura financiera debe adaptarse al propósito, no rellenar todas las casillas del caso Levante."
+              "body": "Aurora presenta ventas 100 y EBITDA 15 en 2024; 110 y 17,6 en 2025. La extracción histórica y el libro deben coincidir en período, unidad y perímetro. 17,6/110=16% es margen histórico; no debe mezclarse con 18% de management 2026. El valor 121 de ventas base 2026 resulta de 110×1,10, no de un nuevo histórico."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "Duplica metodología y plantillas depuradas; crea expediente nuevo y un inventario de fuentes. Retira referencias de conocimiento que contengan cifras de Levante. Define nuevamente propósito, fuentes, usos, métricas y escenarios. Ejecuta una pregunta de control que pida una cifra del caso anterior: debe declarar que queda fuera del expediente y no incorporarla al análisis.\n\n**Herramienta, requisitos, entradas y salida.** Agent Builder/chat y aplicaciones de Office disponibles; mismos requisitos personales que las prácticas previas. Entradas: metodología y plantillas depuradas, expediente nuevo creado por el alumno. Salida: paquete limpio y pruebas. Alternativa: instrucciones en documento y chat aislado; pierdes persistencia, conservas separación.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "Abre modelo.xlsx y localiza Historicos, Inputs, Modelo y Control. Pide a Copilot en Excel que describa la cadena de un indicador hasta sus dependencias y verifica las celdas directamente. Importa o prepara historicos.csv en una copia de trabajo; conserva una tabla de staging con fuente, período y unidad antes de sustituir datos. Reconcilia por año ventas y EBITDA contra Historicos. Señala fórmulas, inputs y salidas: una celda calculada no se actualiza pegando la nueva respuesta encima. Para cualquier dato no conciliado mantén incidencia, causa posible y siguiente comprobación.\n\n**Herramienta y habilitación.** Excel estándar para abrir y verificar; Copilot en Excel requiere licencia/habilitación y formato admitido. Analyst puede ayudar a interpretar la extracción, pero no sustituye la inspección del libro.\n\n**Entradas.** modelo.xlsx y historicos.csv.\n**Resultado esperado.** Mapa de drivers, staging y reconciliación de históricos.\n**Alternativa y pérdida.** Excel manual con fórmulas de conciliación: pierde explicación asistida, conserva edición y controles.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "El agente mantiene una sección de adquisición vacía y propone deuda para financiarla. Cambia las instrucciones para que las secciones respondan al propósito de la operación y marquen no aplicable con motivo, sin inventar contenido. Repite prueba normal y de contaminación."
+              "body": "Fallo: al cargar el CSV, la configuración regional interpreta el valor 17.6 del CSV como texto o como 176. El archivo de práctica usa punto decimal; el texto de la lección presenta las cifras con coma española. Diagnóstico: problema de importación/unidad, no de negocio. Revisa tipo de dato y configuración regional, vuelve a importar y compara sumas y ratios de control. No repares el comentario explicando un salto de EBITDA que no existe."
             }
           ]
         },
         {
-          "id": "f2-7-1-decision",
+          "id": "f3-l7-1-choice",
           "type": "choice",
-          "concept": "transfer.reuse",
-          "prompt": "Costa solo necesita capex. ¿Qué hacer con Sources & Uses de adquisición?",
+          "concept": "excel.structure",
+          "prompt": "El CSV introduce EBITDA176 donde la fuente dice17,6. ¿Cuál es la primera intervención?",
+          "context": "Fallo: al cargar el CSV, el separador decimal convierte 17,6 en 176 o en texto. Diagnóstico: problema de importación/unidad, no de negocio. Revisa tipo de dato y configuración regional, vuelve a importar y compara sumas y ratios de control. No repares el comentario explicando un salto de EBITDA que no existe.",
           "options": [
             {
-              "text": "Reconstruir usos y fuentes según su propósito y justificar secciones no aplicables",
+              "text": "Revisar tipos, unidades y staging, y reconciliar antes de modificar hipótesis o comentar variaciones",
               "correct": true
             },
             {
-              "text": "Conservar el esquema de adquisición, renombrar precio como inversión y mantener el resto sin reconciliar",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Aceptar el gráfico si el patrón parece razonable y corregir solo el formato de los números",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "Eliminar Sources & Uses porque el capex ya aparece en el flujo y la refinanciación no cambia EBITDA",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Sustituir las salidas calculadas por la extracción para que ambos archivos coincidan",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Reutiliza método, no hechos. Las secciones siguen la decisión económica, no un formulario rígido."
+          "explain": "Entiende dónde intervenir antes de pedir cambios. Reconciliar no es forzar dos totales a coincidir. Comprueba números, tipos de dato y un ratio con cálculo separado. Una igualdad de totales no demuestra igualdad de períodos o definiciones. Guarda una copia y un registro de celdas que tocarías, sin ejecutarlo aún."
         },
         {
-          "id": "f2-7-1-sequence",
+          "id": "f3-l7-1-order",
           "type": "order",
-          "concept": "transfer.reuse",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "excel.structure",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Reconstruir la estructura y reconciliar varios archivos",
           "items": [
-            "Separar método de hechos y depurar plantillas",
-            "Crear expediente nuevo con propósito y fuentes propios",
-            "Probar contaminación y utilidad de secciones adaptadas"
+            "Identificar estructura, unidades, fórmulas e inputs",
+            "Preparar staging y reconciliar históricos por período",
+            "Localizar el bloque de intervención y conservar incidencias abiertas"
           ],
-          "explain": "No hay nombres, cifras ni decisiones heredadas. El flujo sigue produciendo preguntas y controles útiles. En un tercer caso prueba una refinanciación para comprobar que la reutilización no dependía del tipo de operación."
+          "explain": "Entiende dónde intervenir antes de pedir cambios. Reconciliar no es forzar dos totales a coincidir. Comprueba números, tipos de dato y un ratio con cálculo separado. Una igualdad de totales no demuestra igualdad de períodos o definiciones. Guarda una copia y un registro de celdas que tocarías, sin ejecutarlo aún."
         },
         {
-          "id": "f2-7-1-portfolio",
+          "id": "f3-l7-1-portfolio",
           "type": "portfolio",
-          "concept": "transfer.reuse",
-          "prompt": "Construye un paquete reutilizable para una operación de capex sin compra. Elige qué piezas conservar, adaptar o retirar y justifica tres decisiones. No uses la solución de Levante como datos de entrada.",
+          "concept": "excel.structure",
+          "prompt": "Entrega un mapa de seis dependencias del libro y una reconciliación histórica contra el CSV. Identifica dónde incorporarías un nuevo histórico y qué celdas no deberían tocarse directamente.",
+          "context": "Resultado: Mapa de drivers, staging y reconciliación de históricos. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Consistencia: propósito del nuevo caso guía las secciones.",
-            "Trazabilidad: expediente nuevo e inventario sin fuentes antiguas.",
-            "Interpretación: adapta metodología y elimina supuestos no aplicables.",
-            "Utilidad: paquete limpio y prueba de contaminación.",
-            "Crítico: no trasladar precio de compra ni cifras de Levante al caso nuevo."
+            "Estructura: distingue inputs, fórmulas, salidas y staging.",
+            "Consistencia: CSV y libro reconcilian por año y definición.",
+            "Trazabilidad: el mapa identifica hojas y celdas comprobadas.",
+            "Utilidad: sabe dónde incorporar información nueva.",
+            "Crítico: no sobrescribe fórmulas ni convierte un problema de importación en conclusión económica."
           ],
-          "solution": "En un segundo caso educativo, Costa Componentes necesita capex y circulante, sin adquisición. Si aparecen los 12 M€ de compra de Murcia Pack, el agente está copiando hechos del ejemplo. La estructura financiera debe adaptarse al propósito, no rellenar todas las casillas del caso Levante.\n\nNo hay nombres, cifras ni decisiones heredadas. El flujo sigue produciendo preguntas y controles útiles. En un tercer caso prueba una refinanciación para comprobar que la reutilización no dependía del tipo de operación.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "La reconciliación muestra ventas 100/110 y EBITDA 15/17,6. Los márgenes son 15% y 16%. El escenario 2026 se trata en Inputs y Modelo; no se añade a históricos como dato realizado. El mapa debe permitir seguir ventas, margen, NWC y caja hasta los inputs que los determinan.\n\nComprueba números, tipos de dato y un ratio con cálculo separado. Una igualdad de totales no demuestra igualdad de períodos o definiciones. Guarda una copia y un registro de celdas que tocarías, sin ejecutarlo aún.\n\nTransferencia: La misma técnica sirve a una compañía, un presupuesto por unidad o una extracción de cartera. Cambia las dimensiones de conciliación; conserva staging, tipos, unidades y mapa de dependencias.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "No hay nombres, cifras ni decisiones heredadas. El flujo sigue produciendo preguntas y controles útiles. En un tercer caso prueba una refinanciación para comprobar que la reutilización no dependía del tipo de operación.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "Comprueba números, tipos de dato y un ratio con cálculo separado. Una igualdad de totales no demuestra igualdad de períodos o definiciones. Guarda una copia y un registro de celdas que tocarías, sin ejecutarlo aún.\n\nLa misma técnica sirve a una compañía, un presupuesto por unidad o una extracción de cartera. Cambia las dimensiones de conciliación; conserva staging, tipos, unidades y mapa de dependencias."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Reutiliza método, no hechos. Las secciones siguen la decisión económica, no un formulario rígido."
+              "body": "Entiende dónde intervenir antes de pedir cambios. Reconciliar no es forzar dos totales a coincidir."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l7-2",
-      "title": "Defensa con evidencia y límites explícitos",
-      "summary": "La defensa final debe sostener una propuesta bajo preguntas que no conoces de antemano.",
-      "minutes": 30,
+      "id": "f3-l7-2",
+      "title": "Modificar una sección con fórmulas y probar sus dependencias",
+      "summary": "El trabajo avanzado en Excel consiste también en construir o modificar un bloque pequeño y comprobar qué mueve.",
+      "minutes": 20,
       "objectives": [
-        "Defiende en cinco minutos la revisión y responde por escrito tres preguntas que podrían hacer cambiar tu conclusión. Una debe quedar abierta cuando falte evidencia. Incluye la evidencia que permitiría cerrarla.",
-        "Un revisor puede reconstruir cifras y decisiones sin adivinar. Ningún error crítico queda oculto por la puntuación media. Para otra operación repite la defensa con sus incertidumbres reales, sin recitar respuestas memorizadas."
+        "Reconstruye en una copia el bloque de NWC o un indicador equivalente. Entrega fórmulas, mapa de cambios y dos casos de control que permitan detectar una implementación equivocada.",
+        "Abre fórmulas y verifica dependencias; controles cero son necesarios pero no suficientes. Reproduce la base y la sensibilidad tras la intervención. Una extracción calculada por Python no demuestra haber conservado fórmulas, macros o vínculos de Excel."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "La defensa final debe sostener una propuesta bajo preguntas que no conoces de antemano. No se supera por mencionar palabras clave. El resultado es un expediente y una exposición breve con respuestas trazables."
+              "body": "El trabajo avanzado en Excel consiste también en construir o modificar un bloque pequeño y comprobar qué mueve. Aquí el objetivo es entregar fórmulas editables con dependencias explícitas y pruebas económicas, no un comentario sobre un modelo ajeno."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "El proyecto final usa la revisión de Levante porque evalúa una capacidad distinta: actualizar una propuesta cuando empeoran EBITDA, capex y cobros. No repite el cierre original. Debes explicar qué cambia en repago y qué estructura o información adicional condiciona la recomendación."
+              "body": "En la base 2026, ventas=121 y margen EBITDA=16%, de modo que EBITDA=19,36. NWC al 15% de ventas es 18,15; frente a 16,5 de apertura, consume 1,65. El modelo parte de caja 8 y acaba en 11,995 después de intereses, impuestos, capex y principal. Un aumento de capex de 1 debe reducir caja en 1 y aumentar PPE en 1, sin modificar EBITDA, resultado o deuda en este bloque simplificado."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "Congela el paquete antes de defenderlo: modelo, One Pager, deck, matriz de fuentes, registro de cambios y pruebas de agentes. Entrega una recomendación condicional con riesgos y pendientes. Pide a otra persona revisar las cinco dimensiones de la rúbrica: consistencia, trazabilidad, interpretación, utilidad y errores críticos. Si usas otro agente para practicar preguntas, contrasta sus objeciones con el expediente.\n\n**Herramienta, requisitos, entradas y salida.** Office y Copilot disponibles para producción; evaluación externa por persona, no certificación de la app. Entradas: paquete actualizado y rúbrica. Salida: defensa y hallazgos. Alternativa: grabación o escrito con revisión posterior; pierdes interacción en directo. Uso real de Copilot queda pendiente hasta ejecutarlo en el tenant.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "Guarda una copia y delimita el encargo: reconstruir clientes o NWC como ventas×porcentaje desde Inputs, mantener nombres de hojas y no alterar los demás bloques. Pide primero las fórmulas propuestas y sus dependencias; luego aplica mediante el modo de edición disponible o introdúcelas manualmente. En este material, Inputs!B12 elige 1 base, 2 management o 3 sensibilidad. Comprueba Modelo!B10 (NWC), B11 (variación), B12 (CFO), B13 (FCF antes de principal), B17 (caja), B19 (deuda) y controles B27:B29. Ejecuta un caso de control: capex+1; después otro: crecimiento cero conservando los demás drivers. Restaura inputs y documenta resultados.\n\n**Herramienta y habilitación.** Excel con modo de edición de Copilot disponible o introducción manual; licencia/habilitación y características del libro condicionan la edición asistida.\n\n**Entradas.** modelo.xlsx, copia de trabajo y contrato de intervención.\n**Resultado esperado.** Libro modificado con fórmulas y registro de controles.\n**Alternativa y pérdida.** Edición manual de las fórmulas propuestas: pierde aplicación asistida, conserva el aprendizaje y control del bloque.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "Una respuesta brillante no encuentra la celda que sustenta la cifra. Regresa a la tabla maestra y corrige la trazabilidad; si el cálculo no se reproduce, retira la afirmación. El simulador de la academia sirve para ensayar decisiones, no demuestra ejecución en Copilot real."
+              "body": "Fallo: la nueva fórmula usa NWC completo como salida de caja en lugar de su variación. Diagnóstico: confundir saldo con flujo. Rastrea apertura, cierre y delta; conserva la definición de signo. Si el control de balance falla tras el cambio, localiza la dependencia omitida en vez de añadir una partida de ajuste."
             }
           ]
         },
         {
-          "id": "f2-7-2-decision",
+          "id": "f3-l7-2-choice",
           "type": "choice",
-          "concept": "transfer.defend",
-          "prompt": "Un entregable obtiene buena media pero duplica 8 M€ de deuda refinanciada. ¿Qué decisión corresponde?",
+          "concept": "excel.edit",
+          "prompt": "El nuevo bloque trata NWC de cierre como salida anual de caja. ¿Cómo corriges saldo frente a flujo?",
+          "context": "Fallo: la nueva fórmula usa NWC completo como salida de caja en lugar de su variación. Diagnóstico: confundir saldo con flujo. Rastrea apertura, cierre y delta; conserva la definición de signo. Si el control de balance falla tras el cambio, localiza la dependencia omitida en vez de añadir una partida de ajuste.",
           "options": [
             {
-              "text": "Corregir el error crítico y repetir los controles antes de considerarlo aceptable",
+              "text": "Usar variación de NWC, comprobar la dependencia con el saldo de apertura y repetir los controles de caja y balance",
               "correct": true
             },
             {
-              "text": "Aceptar la media porque la narrativa es convincente",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Cambiar el texto del encabezado a inversión en NWC para que explique la salida mayor",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "Trasladar la diferencia a caja para cuadrar el balance",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Añadir un ajuste de caja que restaure el saldo esperado sin revisar el origen del cálculo",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Defender es conectar fuente, cálculo e implicación. Reconocer un pendiente material forma parte del criterio profesional."
+          "explain": "Construye poco, prueba mucho y evita partidas que hagan cuadrar sin explicar. Abre fórmulas y verifica dependencias; controles cero son necesarios pero no suficientes. Reproduce la base y la sensibilidad tras la intervención. Una extracción calculada por Python no demuestra haber conservado fórmulas, macros o vínculos de Excel."
         },
         {
-          "id": "f2-7-2-sequence",
+          "id": "f3-l7-2-order",
           "type": "order",
-          "concept": "transfer.defend",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "excel.edit",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Modificar una sección con fórmulas y probar sus dependencias",
           "items": [
-            "Congelar paquete trazable y recomendación condicional",
-            "Responder con fuente, cálculo e implicación",
-            "Corregir errores críticos y registrar cuestiones abiertas"
+            "Delimitar bloque, referencias y resultados que deben conservarse",
+            "Implementar fórmulas con inputs y dependencias explícitas",
+            "Probar perturbaciones, reconciliar y restaurar la copia base"
           ],
-          "explain": "Un revisor puede reconstruir cifras y decisiones sin adivinar. Ningún error crítico queda oculto por la puntuación media. Para otra operación repite la defensa con sus incertidumbres reales, sin recitar respuestas memorizadas."
+          "explain": "Construye poco, prueba mucho y evita partidas que hagan cuadrar sin explicar. Abre fórmulas y verifica dependencias; controles cero son necesarios pero no suficientes. Reproduce la base y la sensibilidad tras la intervención. Una extracción calculada por Python no demuestra haber conservado fórmulas, macros o vínculos de Excel."
         },
         {
-          "id": "f2-7-2-portfolio",
+          "id": "f3-l7-2-portfolio",
           "type": "portfolio",
-          "concept": "transfer.defend",
-          "prompt": "Defiende en cinco minutos la revisión y responde por escrito tres preguntas que podrían hacer cambiar tu conclusión. Una debe quedar abierta cuando falte evidencia. Incluye la evidencia que permitiría cerrarla.",
+          "concept": "excel.edit",
+          "prompt": "Reconstruye en una copia el bloque de NWC o un indicador equivalente. Entrega fórmulas, mapa de cambios y dos casos de control que permitan detectar una implementación equivocada.",
+          "context": "Resultado: Libro modificado con fórmulas y registro de controles. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Consistencia: paquete completo y sin errores financieros críticos.",
-            "Trazabilidad: cada cifra material se reproduce en fuente y cálculo.",
-            "Interpretación: recomendación y respuestas conectan caja con estructura.",
-            "Utilidad: pendientes explican qué permitiría cerrarlos.",
-            "Crítico: no compensar deuda duplicada o datos inventados con una buena puntuación media."
+            "Construcción: fórmulas editables y dependencias explícitas.",
+            "Consistencia: diferencia saldos de variaciones y respeta signos.",
+            "Pruebas: dos perturbaciones tienen efecto esperado documentado.",
+            "Trazabilidad: registro de celdas antes/después y versión.",
+            "Crítico: no oculta errores con ajustes ni afirma edición sin abrir el libro."
           ],
-          "solution": "El proyecto final usa la revisión de Levante porque evalúa una capacidad distinta: actualizar una propuesta cuando empeoran EBITDA, capex y cobros. No repite el cierre original. Debes explicar qué cambia en repago y qué estructura o información adicional condiciona la recomendación.\n\nUn revisor puede reconstruir cifras y decisiones sin adivinar. Ningún error crítico queda oculto por la puntuación media. Para otra operación repite la defensa con sus incertidumbres reales, sin recitar respuestas memorizadas.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "El bloque correcto toma NWC del escenario, resta apertura para caja y enlaza el cierre a activos. Con capex+1: caja−1 y PPE+1; EBITDA y deuda iguales. El control de balance sigue en cero. Si se trabaja con otra sección, define de antemano una identidad y una perturbación con resultado predecible.\n\nAbre fórmulas y verifica dependencias; controles cero son necesarios pero no suficientes. Reproduce la base y la sensibilidad tras la intervención. Una extracción calculada por Python no demuestra haber conservado fórmulas, macros o vínculos de Excel.\n\nTransferencia: Puedes aplicar este método a una sección de ingresos, deuda, costes o valoración. El bloque cambia; el contrato de intervención y las pruebas de identidad/perturbación permanecen.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "Un revisor puede reconstruir cifras y decisiones sin adivinar. Ningún error crítico queda oculto por la puntuación media. Para otra operación repite la defensa con sus incertidumbres reales, sin recitar respuestas memorizadas.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "Abre fórmulas y verifica dependencias; controles cero son necesarios pero no suficientes. Reproduce la base y la sensibilidad tras la intervención. Una extracción calculada por Python no demuestra haber conservado fórmulas, macros o vínculos de Excel.\n\nPuedes aplicar este método a una sección de ingresos, deuda, costes o valoración. El bloque cambia; el contrato de intervención y las pruebas de identidad/perturbación permanecen."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Defender es conectar fuente, cálculo e implicación. Reconocer un pendiente material forma parte del criterio profesional."
+              "body": "Construye poco, prueba mucho y evita partidas que hagan cuadrar sin explicar."
             }
           ]
         }
       ]
     },
     {
-      "id": "f2-l7-3",
-      "title": "Elegir herramienta y medir dominio por entregables",
-      "summary": "El cierre del programa es un criterio de trabajo, no una colección de asistentes.",
-      "minutes": 30,
+      "id": "f3-l7-3",
+      "title": "Encargar análisis a Analyst y validar escenarios",
+      "summary": "Analyst permite encargar análisis sin programar ni instalar Python localmente.",
+      "minutes": 20,
       "objectives": [
-        "Entrega tu mapa de cinco tareas y una lista priorizada de dos mejoras. Señala qué ejecutaste en Copilot real, qué solo simulaste y qué depende de licencia o TI. Elige una métrica de calidad y otra de tiempo para seguimiento.",
-        "La elección responde a persistencia, fuentes, acción y control; la competencia se prueba con entregables revisados. Los tests de decisiones de la app no desbloquean por sí solos una certificación experta. Para otra función profesional vuelve a mapear necesidades antes de copiar agentes."
+        "Encarga una comparación de escenarios con una tabla y un gráfico. Valida dos resultados numéricos y una interpretación, registra discrepancias y propone una sensibilidad con sentido económico.",
+        "Contrasta al menos una operación simple, una reconciliación completa y el vínculo entre gráfico y tabla. Comprueba filas, filtros, período y tratamiento de ausentes. Una coincidencia aproximada no resuelve diferencias de definición."
       ],
       "steps": [
         {
           "type": "card",
           "kicker": "Problema profesional",
-          "title": "Resultado y contexto",
+          "title": "Capacidad y resultado",
           "blocks": [
             {
               "type": "text",
-              "body": "El cierre del programa es un criterio de trabajo, no una colección de asistentes. El resultado es un mapa personal de tareas, herramienta, control y frecuencia de revisión."
+              "body": "Analyst permite encargar análisis sin programar ni instalar Python localmente. La capacidad útil es formular el análisis, revisar su transformación y validar conclusiones. No debes confundir el análisis de una tabla extraída con la ejecución fiel de un modelo Excel."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Ejemplo trabajado",
-          "title": "Decisiones con el expediente",
+          "title": "Decisiones antes de ejecutar",
           "blocks": [
             {
               "type": "text",
-              "body": "Una actualización de fórmula en Excel pertenece al libro; un puente sobre datos extraídos puede encargarse a Analyst. Researcher aporta contraste multifuente, Agent Builder una metodología persistente y Studio acciones/estado con habilitación. Pages ayuda a consolidar trabajo y Notebooks a delimitar contexto según su función disponible; ninguno sustituye el cálculo."
+              "body": "Con los tres escenarios de Aurora puedes comparar ventas, margen, conversión de caja y sensibilidad. En la base, CFO es 12,995 y FCF antes de principal 6,995; EBITDA 19,36 no es caja generada. El análisis debe explicar qué parte del cambio procede de crecimiento, margen, capex o NWC. Una correlación entre dos series cortas no identifica causalidad ni sustituye la definición financiera."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Procedimiento",
-          "title": "Configurar y ejecutar",
+          "title": "Configurar, ejecutar y observar",
           "blocks": [
             {
               "type": "text",
-              "body": "Para cinco tareas frecuentes escribe qué debe persistir, qué fuente debe consultar y qué salida debe producir. Si basta una tarea puntual, usa la aplicación o un chat directo. Si se repite metodología y conocimiento, valora Agent Builder. Si requiere acciones entre sistemas, estado o desencadenantes, diseña Studio y valida con TI. Revisa trimestralmente disponibilidad y documentación oficial: no extrapoles una simulación a un producto.\n\n**Herramienta, requisitos, entradas y salida.** M365 Copilot y aplicaciones según disponibilidad; Agent Builder/Analyst/Researcher/Pages/Notebooks/Cowork/Studio se comprueban por separado. Entradas: portafolio y registro de tiempo. Salida: mapa y plan de mejora. Alternativa: ejecutar el sistema con Office y procedimientos documentados, señalando capacidades asistidas que no pudieron probarse.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+              "body": "En Copilot selecciona Analyst si la licencia y el tenant lo ofrecen. Adjunta una extracción definida de los escenarios o archivos admitidos; describe unidad, períodos, escenario y operaciones deseadas. Encarga una tabla de resultados, descripción de tratamiento de datos, comprobaciones y gráfico con etiquetas. Pide señalar filas omitidas o transformadas y devolver datos subyacentes, no solo la imagen. Valida una fila manualmente y reconcilia cada escenario contra Excel recalculado. Si Analyst produce código como parte de su ejecución, revisa supuestos y resultados; no necesitas aprender a programar para exigir controles. Monte Carlo solo es ampliación si una distribución defendible cambia una decisión real.\n\n**Herramienta y habilitación.** Analyst en Microsoft 365 Copilot con licencia y habilitación correspondiente; no necesita Python local. Excel recalculado para el contraste.\n\n**Entradas.** modelo.xlsx o extracción de escenarios identificada, historicos.csv y comparables.csv.\n**Resultado esperado.** Tabla y gráfico de escenarios con reconciliación y límites.\n**Alternativa y pérdida.** Excel con tablas/fórmulas y Copilot Chat para interpretación: pierde ejecución analítica de Analyst, conserva control numérico.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Cuando falla",
-          "title": "Diagnóstico y reparación",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
           "blocks": [
             {
               "type": "text",
-              "body": "Has creado cinco agentes que solo repiten variantes del mismo prompt. Consolida el método, conserva roles separados únicamente si añaden cobertura o control y usa herramientas directas para cálculos o edición. Compara el resultado y coste contra tu línea base."
+              "body": "Fallo: Analyst presenta resultados distintos del libro y afirma haberlo reproducido. Diagnóstico: puede haber leído valores guardados, aplicado otra definición o ignorado fórmulas/vínculos. Solicita el conjunto de datos efectivamente utilizado y la transformación. Compara una fila; clasifica el análisis como extracción hasta demostrar el alcance. No cambies el modelo para que coincida con una salida no reconciliada."
             }
           ]
         },
         {
-          "id": "f2-7-3-decision",
+          "id": "f3-l7-3-choice",
           "type": "choice",
-          "concept": "transfer.decision",
-          "prompt": "¿Qué tarea justifica mejor Agent Builder frente a un encargo puntual a Analyst?",
+          "concept": "excel.analyse",
+          "prompt": "Analyst y Excel no coinciden al analizar un XLSX con fórmulas. ¿Qué evidencia debes obtener?",
+          "context": "Fallo: Analyst presenta resultados distintos del libro y afirma haberlo reproducido. Diagnóstico: puede haber leído valores guardados, aplicado otra definición o ignorado fórmulas/vínculos. Solicita el conjunto de datos efectivamente utilizado y la transformación. Compara una fila; clasifica el análisis como extracción hasta demostrar el alcance. No cambies el modelo para que coincida con una salida no reconciliada.",
           "options": [
             {
-              "text": "Aplicar repetidamente una metodología de primera lectura con referencias estables y pruebas de comportamiento",
+              "text": "Reconciliar el dataset y las transformaciones con Excel, sin asumir que ejecutar Python reproduce el libro original",
               "correct": true
             },
             {
-              "text": "Cambiar una única fórmula de clientes en un libro abierto",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Preferir el resultado de Analyst porque ejecuta cálculos de forma determinista",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             },
             {
-              "text": "Calcular una tabla de sensibilidad aislada sobre una extracción",
-              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
+              "text": "Aceptar la tabla si el orden de escenarios coincide, aunque no sus definiciones",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
             }
           ],
-          "explain": "Herramienta según trabajo: libro, análisis, investigación, metodología o acción. El dominio se observa en un resultado verificable y reutilizable."
+          "explain": "Analyst ejecuta análisis; tú defines el significado, la evidencia y los límites del resultado. Contrasta al menos una operación simple, una reconciliación completa y el vínculo entre gráfico y tabla. Comprueba filas, filtros, período y tratamiento de ausentes. Una coincidencia aproximada no resuelve diferencias de definición."
         },
         {
-          "id": "f2-7-3-sequence",
+          "id": "f3-l7-3-order",
           "type": "order",
-          "concept": "transfer.decision",
-          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "concept": "excel.analyse",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Encargar análisis a Analyst y validar escenarios",
           "items": [
-            "Definir persistencia, fuentes, acción y control de la tarea",
-            "Elegir herramienta según capacidad disponible",
-            "Medir entregable, tiempo neto y pruebas pendientes"
+            "Definir datos, métricas, escenarios y controles antes del encargo",
+            "Revisar transformaciones, resultados y datos del gráfico",
+            "Reconciliar con el libro y limitar la conclusión a lo demostrado"
           ],
-          "explain": "La elección responde a persistencia, fuentes, acción y control; la competencia se prueba con entregables revisados. Los tests de decisiones de la app no desbloquean por sí solos una certificación experta. Para otra función profesional vuelve a mapear necesidades antes de copiar agentes."
+          "explain": "Analyst ejecuta análisis; tú defines el significado, la evidencia y los límites del resultado. Contrasta al menos una operación simple, una reconciliación completa y el vínculo entre gráfico y tabla. Comprueba filas, filtros, período y tratamiento de ausentes. Una coincidencia aproximada no resuelve diferencias de definición."
         },
         {
-          "id": "f2-7-3-portfolio",
+          "id": "f3-l7-3-portfolio",
           "type": "portfolio",
-          "concept": "transfer.decision",
-          "prompt": "Entrega tu mapa de cinco tareas y una lista priorizada de dos mejoras. Señala qué ejecutaste en Copilot real, qué solo simulaste y qué depende de licencia o TI. Elige una métrica de calidad y otra de tiempo para seguimiento.",
+          "concept": "excel.analyse",
+          "prompt": "Encarga una comparación de escenarios con una tabla y un gráfico. Valida dos resultados numéricos y una interpretación, registra discrepancias y propone una sensibilidad con sentido económico.",
+          "context": "Resultado: Tabla y gráfico de escenarios con reconciliación y límites. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
           "rubric": [
-            "Consistencia: tarea y capacidad elegida coinciden.",
-            "Trazabilidad: distingue ejecutado, simulado y pendiente por herramienta.",
-            "Interpretación: justifica agentes por persistencia/metodología y Studio por acción/estado.",
-            "Utilidad: dos mejoras priorizadas con tiempo y calidad medibles.",
-            "Crítico: no declarar competencia experta por cuestionarios ni validación real no ejecutada."
+            "Encargo: preguntas, unidades y métricas explícitas.",
+            "Consistencia: resultados reconciliados con Excel.",
+            "Interpretación: distingue EBITDA, CFO y FCF antes de principal.",
+            "Utilidad: gráfico y sensibilidad responden una pregunta.",
+            "Crítico: extracción no se presenta como reproducción fiel del libro."
           ],
-          "solution": "Una actualización de fórmula en Excel pertenece al libro; un puente sobre datos extraídos puede encargarse a Analyst. Researcher aporta contraste multifuente, Agent Builder una metodología persistente y Studio acciones/estado con habilitación. Pages ayuda a consolidar trabajo y Notebooks a delimitar contexto según su función disponible; ninguno sustituye el cálculo.\n\nLa elección responde a persistencia, fuentes, acción y control; la competencia se prueba con entregables revisados. Los tests de decisiones de la app no desbloquean por sí solos una certificación experta. Para otra función profesional vuelve a mapear necesidades antes de copiar agentes.",
-          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+          "solution": "La base debe mostrar ventas121, EBITDA19,36, CFO12,995 y FCF antes de principal6,995 con las definiciones del material. Una sensibilidad debe descomponer sus drivers, no concluir solo que el EBITDA es menor. Guarda datos subyacentes y confirma si el libro se recalculó o si se utilizó una extracción.\n\nContrasta al menos una operación simple, una reconciliación completa y el vínculo entre gráfico y tabla. Comprueba filas, filtros, período y tratamiento de ausentes. Una coincidencia aproximada no resuelve diferencias de definición.\n\nTransferencia: En inversiones puede ser comparación de emisores; en planificación, presupuestos; en asesoramiento, escenarios. Lo transferible es encargar y validar análisis, no dominar una técnica estadística exótica.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
         },
         {
           "type": "card",
           "kicker": "Validar y transferir",
-          "title": "Comprobar antes de reutilizar",
+          "title": "Controles y aplicación a otro trabajo",
           "blocks": [
             {
               "type": "text",
-              "body": "La elección responde a persistencia, fuentes, acción y control; la competencia se prueba con entregables revisados. Los tests de decisiones de la app no desbloquean por sí solos una certificación experta. Para otra función profesional vuelve a mapear necesidades antes de copiar agentes.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+              "body": "Contrasta al menos una operación simple, una reconciliación completa y el vínculo entre gráfico y tabla. Comprueba filas, filtros, período y tratamiento de ausentes. Una coincidencia aproximada no resuelve diferencias de definición.\n\nEn inversiones puede ser comparación de emisores; en planificación, presupuestos; en asesoramiento, escenarios. Lo transferible es encargar y validar análisis, no dominar una técnica estadística exótica."
             }
           ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Decisiones y técnicas",
+          "title": "Decisiones que debes conservar",
           "blocks": [
             {
               "type": "text",
-              "body": "Herramienta según trabajo: libro, análisis, investigación, metodología o acción. El dominio se observa en un resultado verificable y reutilizable."
+              "body": "Analyst ejecuta análisis; tú defines el significado, la evidencia y los límites del resultado."
             }
           ]
         }
@@ -386,72 +395,72 @@
     }
   ],
   "exam": {
-    "title": "Decisiones de trabajo · no certificación profesional",
+    "title": "Comprobación de decisiones",
+    "size": 6,
     "extra": [
       {
-        "id": "f2-7-1-exam",
+        "id": "f3-exam7-1",
         "type": "choice",
-        "concept": "transfer.reuse",
-        "prompt": "El expediente nuevo no tiene adquisición. ¿Qué prueba de reutilización importa?",
+        "concept": "excel.structure",
+        "prompt": "Tras cargar históricos, EBITDA pasa de17,6 a176 sin explicación. ¿Qué revisar primero?",
         "options": [
           {
-            "text": "Que no aparezcan precio de compra ni deuda cancelada del caso anterior",
+            "text": "Tipo de dato, separador decimal y unidad de importación",
             "correct": true
           },
           {
-            "text": "Que mantenga las mismas cifras para preservar comparabilidad",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Cambiar la proyección para que siga la nueva tendencia",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Que siempre produzca exactamente el mismo número de secciones",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Reescribir la conclusión para explicar un EBITDA extraordinario",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Que no aparezcan precio de compra ni deuda cancelada del caso anterior. Reutiliza método, no hechos. Las secciones siguen la decisión económica, no un formulario rígido."
+        "explain": "Tipo de dato, separador decimal y unidad de importación. La decisión debe sostenerse con evidencia observable y límites explícitos."
       },
       {
-        "id": "f2-7-2-exam",
+        "id": "f3-exam7-2",
         "type": "choice",
-        "concept": "transfer.defend",
-        "prompt": "Una conclusión no tiene cálculo reproducible durante la defensa. ¿Qué hacer?",
+        "concept": "excel.edit",
+        "prompt": "Capex sube1 en el bloque simplificado. ¿Qué control económico esperas?",
         "options": [
           {
-            "text": "Retirarla o condicionarla hasta reconstruir evidencia y cálculo",
+            "text": "Caja baja1 y PPE sube1; EBITDA y deuda permanecen iguales",
             "correct": true
           },
           {
-            "text": "Mantenerla por coherencia de la narrativa",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Caja y EBITDA bajan1; deuda sube1 automáticamente",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Pedir a Copilot que la formule con más seguridad",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "Solo cambia PPE porque el capex ya estaba implícito en EBITDA",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Retirarla o condicionarla hasta reconstruir evidencia y cálculo. Defender es conectar fuente, cálculo e implicación. Reconocer un pendiente material forma parte del criterio profesional."
+        "explain": "Caja baja1 y PPE sube1; EBITDA y deuda permanecen iguales. La decisión debe sostenerse con evidencia observable y límites explícitos."
       },
       {
-        "id": "f2-7-3-exam",
+        "id": "f3-exam7-3",
         "type": "choice",
-        "concept": "transfer.decision",
-        "prompt": "La app muestra decisiones acertadas y portafolio autoevaluado. ¿Qué falta para acreditar ejecución en tu entorno?",
+        "concept": "excel.analyse",
+        "prompt": "Analyst usa valores extraídos de un XLSX con vínculos. ¿Qué puedes afirmar?",
         "options": [
           {
-            "text": "Producir entregables en Copilot real y contrastarlos externamente con evidencia",
+            "text": "Ha analizado la extracción utilizada; el recálculo del libro y sus vínculos requiere verificación separada",
             "correct": true
           },
           {
-            "text": "Responder otra vez las mismas preguntas",
-            "feedback": "Esta opción no resuelve el control material de la situación."
+            "text": "Ha ejecutado el modelo porque leyó un archivo XLSX",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           },
           {
-            "text": "Crear un agente con nombre experto",
-            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
+            "text": "La diferencia frente a Excel demuestra que las fórmulas originales son erróneas",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
           }
         ],
-        "explain": "Producir entregables en Copilot real y contrastarlos externamente con evidencia. Herramienta según trabajo: libro, análisis, investigación, metodología o acción. El dominio se observa en un resultado verificable y reutilizable."
+        "explain": "Ha analizado la extracción utilizada; el recálculo del libro y sus vínculos requiere verificación separada. La decisión debe sostenerse con evidencia observable y límites explícitos."
       }
-    ],
-    "size": 6
+    ]
   }
 }

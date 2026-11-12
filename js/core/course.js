@@ -5,7 +5,7 @@ export const CONTENT_FILES = {
   course: 'content/course.json',
   missions: 'content/missions.json',
   lab: 'content/lab.json',
-  modules: ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7'].map(id => `content/modules/${id}.json`),
+  modules: Array.from({ length: 10 }, (_, i) => `m${i + 1}`).map(id => `content/modules/${id}.json`),
 };
 
 export const EXERCISE_TYPES = ['choice', 'multi', 'order', 'match', 'fill', 'spot', 'editor', 'copilot', 'portfolio'];

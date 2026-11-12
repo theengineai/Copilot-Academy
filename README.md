@@ -1,22 +1,41 @@
-# Copilot Academy · Financiación corporativa
+# Copilot Academy · Dominio de Copilot para profesionales financieros
 
-Edición 2 para un profesional habitual de IA en financiación mid-market: construir agentes con metodología y fuentes, modificar un bloque de modelo integrado, producir documentación y defender el repago. Caso ficticio Levante Envases / Murcia Pack; sin datos ni formatos internos de Santander.
-
-La PWA conserva navegación móvil, accesibilidad, progreso local, exportación, repaso y funcionamiento offline. No se conecta a Microsoft. El laboratorio es una simulación guiada con respuestas preparadas: no es evidencia suficiente de competencia.
+Edición 3: aprender a dominar Microsoft 365 Copilot y construir agentes reutilizables, con ejemplos financieros que sirven a diferentes funciones. No requiere trabajar en una operación, un formato documental o una especialidad concreta.
 
 ## Programa
 
-1. Agente de primera lectura: metodología, fuentes separadas y pruebas de fallo.
-2. Excel y Analyst: reconciliar archivos, modificar drivers, escenarios, caja y repago.
-3. One Pager y FARE educativa: narrativa, plantilla existente, tablas, gráficos y consistencia.
-4. Researcher: preguntas de operación, evidencia contraria y actualización.
-5. Revisor y Riesgos: cifras, argumentos, preguntas difíciles y verificación contra fuentes.
-6. Cambios y reutilización: delta, registro, Studio/flujos y ahorro neto.
-7. Transferencia y defensa: otra compañía, selección de herramientas y decisión documentada.
+| Módulo | Capacidad que desarrolla |
+|---|---|
+| 1. Elegir y dirigir Copilot | Elegir chat, aplicación, Analyst, Researcher o agente; controlar contexto y verificar |
+| 2. Construir con Agent Builder | Diseñar contrato e instrucciones, configurar y mejorar por fallos |
+| 3. Conocimiento y pruebas | Separar fuentes, configurar capacidades y probar el agente |
+| 4. Studio: conversación | Crear agente, temas, preguntas, condiciones y variables |
+| 5. Studio: herramientas y flujos | Construir agent flow sin conectores, mapear entradas/salidas, probar errores |
+| 6. Studio: ciclo de vida | Test, trazas, autenticación, distribución, analítica y cambios |
+| 7. Excel y Analyst | Comprender estructura, editar fórmulas y encargar análisis verificado |
+| 8. Researcher, Pages, Notebooks | Investigar con evidencia y organizar trabajo/fuentes |
+| 9. Word y PowerPoint | Crear, transformar y mejorar documentos existentes |
+| 10. Sistema reutilizable | Traspasos, automatización opcional, ahorro neto y agente propio |
 
-Cada lección incluye un problema, ejemplo trabajado, procedimiento, diagnóstico de fallo, práctica, controles y transferencia. Las misiones reducen pistas y el proyecto final responde a un cambio posterior: exige explicar qué cambia y qué se conserva.
+30 lecciones: **15 dedicadas a construir agentes (módulos 2–6), de las cuales 9 son de Copilot Studio**. Los agentes se presentan desde el primer módulo. El alumno aprende a diseñarlos y probarlos; las plantillas y ejemplos son puntos de partida para otras tareas.
 
-## Ejecutar y verificar
+No se enseña finanzas básicas ni programación. Cada lección incluye ejemplo trabajado, decisiones, procedimiento, fallo diagnosticable, práctica menos guiada, controles y transferencia. Analyst no requiere Python instalado; analizar una extracción no equivale a editar/recalcular el libro Excel. Studio tiene laboratorios reales reproducibles cuando existe acceso de autor y entorno; una simulación o diseño no demuestra ejecución real.
+
+## Materiales y aplicación
+
+PWA estática, sin servidor de aplicación ni API de IA. Navegación móvil/escritorio, accesibilidad, progreso local, copia exportable y recursos offline tras la descarga inicial. La web publicada no cambia por abrir una PR.
+
+Descargables reales en Inicio: libro XLSX con fórmulas y controles de balance/caja/deuda, fuentes DOCX, documento DOCX y presentación PPTX editables con errores deliberados identificados, CSV y correos. Aurora y comparables son ficticios, sin información ni criterios de una entidad. Cada archivo sirve a distintas prácticas; no hay una transacción obligatoria.
+
+Recursos de agentes: guía de construcción, instrucciones, metodología, batería con fixtures, soluciones y **studio-lab.md** con pasos, campos, tipos, entradas/salidas y diagnóstico. La matriz de licencias y alternativas también se descarga offline.
+
+## Evaluación y migración
+
+Preguntas cerradas comprueban decisiones acotadas. Portfolio conserva evidencia, rúbrica y errores críticos declarados; no lee los archivos del alumno ni hace validación semántica. No otorga aciertos, SRS ni acreditación de experto. El laboratorio es una simulación local guiada con respuestas preparadas.
+
+La edición 3 usa IDs nuevos y archiva el progreso de las ediciones anteriores, conservando preferencias e histórico exportable. Perfil permite descargar todo en JSON. Los aprobados de actividades distintas no se trasladan a competencias nuevas.
+
+## Ejecutar y probar
 
 ```sh
 python3 -m http.server 4173
@@ -25,33 +44,8 @@ npm run test:materials
 npm run test:e2e
 ```
 
-Instala dependencias de pruebas con `python3 -m pip install -r requirements-test.txt` en un entorno virtual.
+Node >=20. Pruebas: `python3 -m pip install -r requirements-test.txt` en un entorno virtual, Chromium en `/usr/bin/chromium`. El servidor debe estar activo para e2e. Producción sin dependencias de terceros ni CDN. Regenerar Office: `python3 scripts/build-materials.py`.
 
-Node >=20. Producción sin dependencias ni CDN. Pruebas Office: Python con openpyxl, python-docx y python-pptx. Para regenerar materiales: `python3 scripts/build-materials.py` (además xlsxwriter). Pruebas navegador: Python Playwright + `/usr/bin/chromium`, servidor en 4173. No abrir mediante `file://`.
+[Capacidades y fuentes Microsoft](docs/CAPACIDADES.md) · [Revisión independiente v3](docs/REVIEW3.md) · [Verificación](docs/VERIFICACION.md) · [Publicar en Pages](docs/PUBLICAR.md) · [Instalar en iPhone](docs/INSTALAR_IPHONE.md)
 
-## Materiales
-
-Descargas en Inicio y enlaces de lecciones; todos en `content/resources` y precargados offline:
-
-- Modelo XLSX con inputs azules, fórmulas, históricos, S&U y controles de balance/caja/deuda.
-- Caso DOCX, One Pager DOCX y PPTX educativo con tabla y gráfico editables. Los dos borradores contienen errores deliberados identificados.
-- Históricos CSV por entidad, correos de aclaración y actualización.
-- Metodología, instrucciones de agentes, batería de pruebas y soluciones comentadas.
-
-El modelo es integrado y acotado, no un modelo completo de adquisición: no incluye PPA, goodwill, leases ni caja mensual. El caso explica el colchón temporal de NWC y exige sensibilidad sin liberación. No hay umbrales presentados como política de crédito.
-
-## Evaluación y progreso
-
-Las preguntas cerradas comprueban decisiones y cálculos acotados. Los entregables abiertos conservan evidencia, rúbrica y declaración de errores críticos; se registran como autoevaluación, sin validación semántica. No suman aciertos ni dominio de conceptos. El avance/XP refleja actividad educativa, no acreditación profesional; no se concede experto automáticamente.
-
-La migración de edición archiva íntegramente el estado anterior, reinicia competencias nuevas y conserva preferencias. Perfil permite exportar todo el histórico y los entregables en JSON. Los IDs de actividades nuevas no reutilizan las acreditaciones antiguas.
-
-## Capacidades y límites
-
-[Capacidades y licencias verificadas con fuentes oficiales](docs/CAPACIDADES.md), [revisión independiente](docs/REVIEW.md) y [verificación](docs/VERIFICACION.md). Cada práctica distingue herramienta, habilitación, entradas, salida y alternativa. No se ha accedido al tenant del alumno ni ejecutado las prácticas en Copilot real. Disponibilidad y consumo dependen de licencia, despliegue y configuración.
-
-Agent Builder y Copilot Studio no son intercambiables. Analyst no requiere Python local, pero analizar una extracción no equivale a recalcular fórmulas, macros o vínculos de Excel. Dos agentes invocados manualmente no son una orquestación automática, ni una revisión independiente de fuentes.
-
-[Publicación](docs/PUBLICAR.md) · [Instalación iPhone](docs/INSTALAR_IPHONE.md) · [Especificación de edición](docs/EDITION-SPEC.md)
-
-Sin merge ni despliegue en esta entrega. El workflow publica únicamente cambios en `main`; la rama de trabajo se entrega para revisión.
+Validación pendiente en el tenant del alumno: creación/recuperación de agentes, ejecución real de flujos, permisos, capacidades y consumo. Las fuentes oficiales no demuestran habilitación individual. Las pruebas OOXML no son renderizado ni recálculo con Microsoft Office. La PWA no se conecta a Microsoft ni ejecuta un agente de producción.

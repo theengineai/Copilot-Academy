@@ -1,0 +1,466 @@
+{
+  "id": "m8",
+  "title": "Researcher, Pages y Notebooks",
+  "subtitle": "Investigación aplicada, evidencia y espacios de trabajo con funciones distintas.",
+  "level": "Herramientas y práctica transferible",
+  "icon": "book",
+  "color": "#5B4FD6",
+  "lessons": [
+    {
+      "id": "f3-l8-1",
+      "title": "Definir una investigación que reduzca una incertidumbre",
+      "summary": "Researcher aporta valor cuando responde una pregunta delimitada y documenta qué puede sostenerse.",
+      "minutes": 20,
+      "objectives": [
+        "Diseña y ejecuta una investigación acotada sobre un driver relevante para un trabajo tuyo. Elige dos compañías o fuentes primarias comparables y define antes qué hallazgo cambiaría tu interpretación.",
+        "Abre una fuente primaria favorable y otra contraria. Comprueba que sostienen la afirmación y la fecha. Una lista de enlaces es insuficiente si no puedes localizar la evidencia que cambia la conclusión."
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Problema profesional",
+          "title": "Capacidad y resultado",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Researcher aporta valor cuando responde una pregunta delimitada y documenta qué puede sostenerse. No se trata de aprender a buscar en internet, sino de decidir qué evidencia necesitas antes de cambiar un análisis financiero."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones antes de ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Pregunta débil: «investiga el sector». Pregunta útil: «¿qué evidencia permite distinguir crecimiento de volumen y precio en dos compañías del mismo sector durante los dos últimos ejercicios?». La comparabilidad exige período, perímetro y definición. El objetivo puede servir a una tesis de inversión, un presupuesto o un análisis corporativo sin imponer una especialidad."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar, ejecutar y observar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Abre Researcher cuando esté disponible y formula el encargo con decisión a informar, pregunta, alcance temporal/geográfico, fuentes prioritarias y condiciones de parada. Pide un plan de investigación y ajusta lagunas antes de generar el informe. Prioriza informes anuales, presentaciones oficiales y estadísticas primarias; utiliza fuentes secundarias para localizar y contextualizar. Exige tabla afirmación→fuente→fecha→alcance→limitación, evidencia contraria y cuestiones no resueltas. Diferencia datos aportados por ti de resultados externos. Guarda el corte de información para poder actualizarlo después.\n\n**Herramienta y habilitación.** Researcher con licencia y habilitación aplicables; acceso a fuentes depende de permisos y disponibilidad. Consulta capacidades.md.\n\n**Entradas.** Pregunta propia sin datos reales sensibles, comparables.csv como ejercicio metodológico y dos fuentes primarias públicas.\n**Resultado esperado.** Encargo, matriz de evidencia e interpretación limitada.\n**Alternativa y pérdida.** Investigación manual con Chat y documentos seleccionados: pierde investigación multietapa integrada, conserva criterio de fuentes y comparación.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Fallo: el informe de mercado global sostiene una previsión de ventas local sin puente. Diagnóstico: evidencia a un nivel de agregación distinto. Pide explicitar qué es extrapolación y qué dato local falta. Si no existe evidencia suficiente, limita la conclusión y formula una pregunta concreta para obtenerla; no rellenes el hueco con una cifra promedio."
+            }
+          ]
+        },
+        {
+          "id": "f3-l8-1-choice",
+          "type": "choice",
+          "concept": "research.scope",
+          "prompt": "Researcher aplica crecimiento sectorial global a una unidad local. ¿Cómo limitas esa inferencia?",
+          "context": "Fallo: el informe de mercado global sostiene una previsión de ventas local sin puente. Diagnóstico: evidencia a un nivel de agregación distinto. Pide explicitar qué es extrapolación y qué dato local falta. Si no existe evidencia suficiente, limita la conclusión y formula una pregunta concreta para obtenerla; no rellenes el hueco con una cifra promedio.",
+          "options": [
+            {
+              "text": "Alinear la evidencia con período, geografía y perímetro de la pregunta, declarando cualquier extrapolación pendiente",
+              "correct": true
+            },
+            {
+              "text": "Ampliar el número de artículos secundarios para compensar la falta de datos del perímetro",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            },
+            {
+              "text": "Mantener la conclusión y añadir una nota genérica de que el mercado puede variar",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            }
+          ],
+          "explain": "Investiga para resolver una incertidumbre, no para producir más páginas. Abre una fuente primaria favorable y otra contraria. Comprueba que sostienen la afirmación y la fecha. Una lista de enlaces es insuficiente si no puedes localizar la evidencia que cambia la conclusión."
+        },
+        {
+          "id": "f3-l8-1-order",
+          "type": "order",
+          "concept": "research.scope",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Definir una investigación que reduzca una incertidumbre",
+          "items": [
+            "Definir incertidumbre, decisión y condiciones de comparabilidad",
+            "Aprobar plan, fuentes prioritarias y límites del encargo",
+            "Contrastar evidencia y decidir qué pregunta sigue abierta"
+          ],
+          "explain": "Investiga para resolver una incertidumbre, no para producir más páginas. Abre una fuente primaria favorable y otra contraria. Comprueba que sostienen la afirmación y la fecha. Una lista de enlaces es insuficiente si no puedes localizar la evidencia que cambia la conclusión."
+        },
+        {
+          "id": "f3-l8-1-portfolio",
+          "type": "portfolio",
+          "concept": "research.scope",
+          "prompt": "Diseña y ejecuta una investigación acotada sobre un driver relevante para un trabajo tuyo. Elige dos compañías o fuentes primarias comparables y define antes qué hallazgo cambiaría tu interpretación.",
+          "context": "Resultado: Encargo, matriz de evidencia e interpretación limitada. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
+          "rubric": [
+            "Alcance: pregunta y decisión delimitadas.",
+            "Fuentes: prioridad primaria y fecha de corte.",
+            "Interpretación: diferencia prueba, extrapolación y ausencia.",
+            "Utilidad: define qué hallazgo cambia el análisis.",
+            "Crítico: no aplica evidencia de otro perímetro como demostración directa."
+          ],
+          "solution": "La investigación entrega una matriz con dos compañías y sus definiciones, no una enciclopedia sectorial. Si una no desglosa precio/volumen, se anota ausencia y se limita la comparación. La conclusión identifica qué evidencia favorable y contraria afecta al driver; no promete precisión universal.\n\nAbre una fuente primaria favorable y otra contraria. Comprueba que sostienen la afirmación y la fecha. Una lista de enlaces es insuficiente si no puedes localizar la evidencia que cambia la conclusión.\n\nTransferencia: El driver puede ser demanda, costes, regulación, tipos o mix de producto. Cambia la pregunta de negocio; conserva alcance, criterio de evidencia y condición de cambio.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Controles y aplicación a otro trabajo",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Abre una fuente primaria favorable y otra contraria. Comprueba que sostienen la afirmación y la fecha. Una lista de enlaces es insuficiente si no puedes localizar la evidencia que cambia la conclusión.\n\nEl driver puede ser demanda, costes, regulación, tipos o mix de producto. Cambia la pregunta de negocio; conserva alcance, criterio de evidencia y condición de cambio."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Decisiones que debes conservar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Investiga para resolver una incertidumbre, no para producir más páginas."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f3-l8-2",
+      "title": "Contrastar evidencia favorable, contraria e incompatible",
+      "summary": "Una respuesta bien citada todavía puede comparar definiciones incompatibles.",
+      "minutes": 20,
+      "objectives": [
+        "Revisa cinco afirmaciones de un resultado de Researcher. Invalida o limita al menos una, documenta evidencia contraria y prepara una actualización que conserve la conclusión anterior con fecha.",
+        "Comprueba una operación numérica y una afirmación cualitativa. Revisa citas en su contexto, no solo el fragmento extraído. Si no puedes acceder a la fuente, deja la aserción pendiente y explica el efecto."
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Problema profesional",
+          "title": "Capacidad y resultado",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Una respuesta bien citada todavía puede comparar definiciones incompatibles. Aprenderás a revisar qué sostiene cada fuente, evitar consensos aparentes y actualizar una conclusión cuando la evidencia contraria cambia el alcance."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones antes de ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Los comparables ficticios B y C tienen ventas80/120, EBITDA12/24 y EV96/192. Ambos muestran EV/EBITDA8x, pero sus márgenes son15% y20%. La igualdad del múltiplo no prueba igual calidad ni comparabilidad si períodos o ajustes difieren. Una fuente que describe EBITDA ajustado no demuestra el EBITDA reportado. Dos artículos que repiten la misma nota de prensa son una sola cadena de evidencia, no dos contrastes independientes."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar, ejecutar y observar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Construye una tabla con afirmación literal, definición, período, fuente primaria, evidencia contraria y efecto en conclusión. Traza fuentes secundarias hasta su origen. Para cada dato, clasifica comparable, reconciliable o incompatible. Si es reconciliable, muestra el puente y conserva ambas definiciones. Redacta una conclusión graduada: sostenida, provisional o no sostenible, indicando qué información la haría cambiar. Ante información nueva, identifica las filas afectadas y fecha la revisión; no reescribas como si siempre la hubieras conocido.\n\n**Herramienta y habilitación.** Researcher o Copilot Chat para contraste documental, con revisión manual de fuentes; Excel para cálculos de control.\n\n**Entradas.** Resultado de investigación, comparables.csv y fuentes primarias utilizadas.\n**Resultado esperado.** Cinco afirmaciones revisadas y actualización versionada.\n**Alternativa y pérdida.** Tabla manual de afirmaciones y búsqueda dirigida: pierde síntesis multietapa integrada, conserva contraste e independencia de fuentes.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Fallo: el informe afirma «tres fuentes independientes confirman el crecimiento» y las tres remiten a una comunicación de la empresa. Diagnóstico: independencia aparente. Sigue los enlaces, identifica origen y distingue declaración de management de dato contrastado. Busca una fuente de naturaleza distinta o limita la confianza; no multipliques evidencia copiando citas."
+            }
+          ]
+        },
+        {
+          "id": "f3-l8-2-choice",
+          "type": "choice",
+          "concept": "research.evidence",
+          "prompt": "Tres artículos remiten a la misma nota de prensa. ¿Qué cambia en tu valoración de evidencia?",
+          "context": "Fallo: el informe afirma «tres fuentes independientes confirman el crecimiento» y las tres remiten a una comunicación de la empresa. Diagnóstico: independencia aparente. Sigue los enlaces, identifica origen y distingue declaración de management de dato contrastado. Busca una fuente de naturaleza distinta o limita la confianza; no multipliques evidencia copiando citas.",
+          "options": [
+            {
+              "text": "Rastrear el origen de la evidencia, comprobar definiciones y limitar la conclusión si varias citas dependen de una misma fuente",
+              "correct": true
+            },
+            {
+              "text": "Contar el número de enlaces como medida principal de solidez",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            },
+            {
+              "text": "Excluir la evidencia contraria si procede de un formato distinto al informe principal",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            }
+          ],
+          "explain": "Varias citas pueden ser una sola evidencia. Comparar exige definir antes de calcular. Comprueba una operación numérica y una afirmación cualitativa. Revisa citas en su contexto, no solo el fragmento extraído. Si no puedes acceder a la fuente, deja la aserción pendiente y explica el efecto."
+        },
+        {
+          "id": "f3-l8-2-order",
+          "type": "order",
+          "concept": "research.evidence",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Contrastar evidencia favorable, contraria e incompatible",
+          "items": [
+            "Extraer afirmaciones con definición, período y origen",
+            "Contrastar comparabilidad, independencia y evidencia contraria",
+            "Revisar la conclusión y conservar el cambio de versión"
+          ],
+          "explain": "Varias citas pueden ser una sola evidencia. Comparar exige definir antes de calcular. Comprueba una operación numérica y una afirmación cualitativa. Revisa citas en su contexto, no solo el fragmento extraído. Si no puedes acceder a la fuente, deja la aserción pendiente y explica el efecto."
+        },
+        {
+          "id": "f3-l8-2-portfolio",
+          "type": "portfolio",
+          "concept": "research.evidence",
+          "prompt": "Revisa cinco afirmaciones de un resultado de Researcher. Invalida o limita al menos una, documenta evidencia contraria y prepara una actualización que conserve la conclusión anterior con fecha.",
+          "context": "Resultado: Cinco afirmaciones revisadas y actualización versionada. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
+          "rubric": [
+            "Trazabilidad: cada afirmación llega a su origen comprobado.",
+            "Comparabilidad: separa definiciones y períodos.",
+            "Interpretación: explica la evidencia contraria y su materialidad.",
+            "Actualización: conserva antes/después con fecha.",
+            "Crítico: no cuenta réplicas de una fuente como verificación independiente."
+          ],
+          "solution": "La comparación ficticia permite recalcular múltiplos y márgenes, pero no construir una recomendación de inversión. En una investigación real debes verificar período y ajustes. Una actualización útil indica qué afirmación cambia, cuál se mantiene y qué sigue sin poder concluirse.\n\nComprueba una operación numérica y una afirmación cualitativa. Revisa citas en su contexto, no solo el fragmento extraído. Si no puedes acceder a la fuente, deja la aserción pendiente y explica el efecto.\n\nTransferencia: El mismo esquema sirve a informes de mercado, comparativas de productos, estudios de costes o análisis de contrapartes. La calidad depende de evidencia y definición, no del vocabulario de la especialidad.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Controles y aplicación a otro trabajo",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Comprueba una operación numérica y una afirmación cualitativa. Revisa citas en su contexto, no solo el fragmento extraído. Si no puedes acceder a la fuente, deja la aserción pendiente y explica el efecto.\n\nEl mismo esquema sirve a informes de mercado, comparativas de productos, estudios de costes o análisis de contrapartes. La calidad depende de evidencia y definición, no del vocabulario de la especialidad."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Decisiones que debes conservar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Varias citas pueden ser una sola evidencia. Comparar exige definir antes de calcular."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f3-l8-3",
+      "title": "Usar Pages y Notebooks como espacios de trabajo distintos",
+      "summary": "Pages y Notebooks resuelven necesidades diferentes.",
+      "minutes": 20,
+      "objectives": [
+        "Organiza una investigación en un espacio de resultado y un corpus de referencias. Documenta qué cambia al actualizar una fuente y cómo comprobarías acceso y vigencia. No es obligatorio compartir ni publicar para completar el diseño.",
+        "Abre una referencia desde el resultado, comprueba fecha y verifica una consulta contra el corpus. Registra qué fue actualizado automáticamente, qué revisaste tú y qué quedó pendiente; no infieras propagación por semejanza de títulos."
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Problema profesional",
+          "title": "Capacidad y resultado",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Pages y Notebooks resuelven necesidades diferentes. Debes entender dónde conservar un resultado editable y dónde delimitar un conjunto de referencias. Ninguno sustituye las fuentes originales ni garantiza que todos los cambios se propaguen a todo el trabajo."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones antes de ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Una investigación produce una tabla, argumentos y preguntas. Pages permite desarrollar y editar ese resultado colaborativo. Un Notebook delimita referencias para consultar un corpus de trabajo cuando esté habilitado. Si actualizas un archivo de referencia, no puedes asumir que un texto copiado a una página, una tabla de Excel o una diapositiva se ha actualizado automáticamente."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar, ejecutar y observar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "En una conversación compatible, utiliza la opción de editar o llevar el resultado a Pages y revisa títulos, estructura y referencias. Conserva en la página fecha de corte, definiciones y enlaces comprobados. Crea un Notebook cuando tu cuenta lo permita y añade solo referencias admitidas del corpus, con propietario y versión. Formula una consulta dentro del Notebook y comprueba qué fuentes emplea. Ensaya un cambio: identifica dónde se guarda la nueva fuente y qué resultado derivado debes revisar manualmente. Antes de colaborar, comprueba acceso real del destinatario autorizado; compartir el espacio no garantiza acceso a cada fuente.\n\n**Herramienta y habilitación.** Pages y Notebooks con identidad, almacenamiento y habilitación aplicables; disponibilidad no se deduce solo de tener una licencia de Copilot. Véase capacidades.md.\n\n**Entradas.** Matriz de investigación, fuentes seleccionadas y una modificación de ensayo.\n**Resultado esperado.** Espacio de trabajo con mapa de vigencia, acceso e impactos.\n**Alternativa y pérdida.** Word o documento local y carpeta con manifiesto: pierde funciones de colaboración y corpus integrado, conserva estructura y control de cambios.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Fallo: un colaborador ve el texto final pero no puede abrir la referencia. Diagnóstico: permisos distintos entre resultado y fuente. Comprueba ambos recursos con el destinatario autorizado y usa el mecanismo de acceso aprobado; no eludas permisos pegando información restringida. Si el corpus no está actualizado, registra el límite y refresca el resultado afectado."
+            }
+          ]
+        },
+        {
+          "id": "f3-l8-3-choice",
+          "type": "choice",
+          "concept": "research.workspace",
+          "prompt": "Un colaborador abre la Page, pero no una fuente enlazada. ¿Cómo diagnosticas el acceso?",
+          "context": "Fallo: un colaborador ve el texto final pero no puede abrir la referencia. Diagnóstico: permisos distintos entre resultado y fuente. Comprueba ambos recursos con el destinatario autorizado y usa el mecanismo de acceso aprobado; no eludas permisos pegando información restringida. Si el corpus no está actualizado, registra el límite y refresca el resultado afectado.",
+          "options": [
+            {
+              "text": "Comprobar permisos y actualización por recurso, distinguiendo el resultado editable de las referencias que lo sustentan",
+              "correct": true
+            },
+            {
+              "text": "Dar por actualizados todos los documentos derivados al cambiar la referencia del Notebook",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            },
+            {
+              "text": "Copiar el contenido de la fuente al resultado para evitar revisar los permisos del destinatario",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            }
+          ],
+          "explain": "Pages desarrolla un resultado; Notebooks delimita referencias. Ninguno elimina el control de vigencia y permisos. Abre una referencia desde el resultado, comprueba fecha y verifica una consulta contra el corpus. Registra qué fue actualizado automáticamente, qué revisaste tú y qué quedó pendiente; no infieras propagación por semejanza de títulos."
+        },
+        {
+          "id": "f3-l8-3-order",
+          "type": "order",
+          "concept": "research.workspace",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Usar Pages y Notebooks como espacios de trabajo distintos",
+          "items": [
+            "Separar resultado editable, corpus y fuentes originales",
+            "Crear el espacio admitido con referencias y fecha de corte",
+            "Probar una consulta, un cambio y la accesibilidad autorizada"
+          ],
+          "explain": "Pages desarrolla un resultado; Notebooks delimita referencias. Ninguno elimina el control de vigencia y permisos. Abre una referencia desde el resultado, comprueba fecha y verifica una consulta contra el corpus. Registra qué fue actualizado automáticamente, qué revisaste tú y qué quedó pendiente; no infieras propagación por semejanza de títulos."
+        },
+        {
+          "id": "f3-l8-3-portfolio",
+          "type": "portfolio",
+          "concept": "research.workspace",
+          "prompt": "Organiza una investigación en un espacio de resultado y un corpus de referencias. Documenta qué cambia al actualizar una fuente y cómo comprobarías acceso y vigencia. No es obligatorio compartir ni publicar para completar el diseño.",
+          "context": "Resultado: Espacio de trabajo con mapa de vigencia, acceso e impactos. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
+          "rubric": [
+            "Arquitectura: diferencia Page, Notebook y documento original.",
+            "Vigencia: registra qué resultados derivados hay que revisar.",
+            "Acceso: comprueba permisos por recurso sin eludirlos.",
+            "Utilidad: el espacio ayuda a continuar trabajo y decisiones.",
+            "Crítico: no promete sincronización total ni acceso por compartir un contenedor."
+          ],
+          "solution": "La Page conserva síntesis y decisiones; el Notebook delimita referencias; Excel y PowerPoint siguen siendo entregables propios. La actualización se gestiona con una lista de impactos y evidencia de revisión. Si una función no aparece, una carpeta con manifiesto y un documento de trabajo puede conservar el método.\n\nAbre una referencia desde el resultado, comprueba fecha y verifica una consulta contra el corpus. Registra qué fue actualizado automáticamente, qué revisaste tú y qué quedó pendiente; no infieras propagación por semejanza de títulos.\n\nTransferencia: Este diseño sirve a seguimiento de inversiones, análisis de compañía, planificación o investigación de productos. El contenedor cambia con la cuenta; la separación entre fuentes y resultados permanece.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Controles y aplicación a otro trabajo",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Abre una referencia desde el resultado, comprueba fecha y verifica una consulta contra el corpus. Registra qué fue actualizado automáticamente, qué revisaste tú y qué quedó pendiente; no infieras propagación por semejanza de títulos.\n\nEste diseño sirve a seguimiento de inversiones, análisis de compañía, planificación o investigación de productos. El contenedor cambia con la cuenta; la separación entre fuentes y resultados permanece."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Decisiones que debes conservar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Pages desarrolla un resultado; Notebooks delimita referencias. Ninguno elimina el control de vigencia y permisos."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "exam": {
+    "title": "Comprobación de decisiones",
+    "size": 6,
+    "extra": [
+      {
+        "id": "f3-exam8-1",
+        "type": "choice",
+        "concept": "research.scope",
+        "prompt": "Un dato sectorial global se usa para explicar una unidad local. ¿Qué procede?",
+        "options": [
+          {
+            "text": "Mostrar el puente o declarar la extrapolación y la evidencia local que falta",
+            "correct": true
+          },
+          {
+            "text": "Aceptar la atribución si el informe sectorial es reciente",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          },
+          {
+            "text": "Añadir más fuentes globales hasta que la conclusión sea estable",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          }
+        ],
+        "explain": "Mostrar el puente o declarar la extrapolación y la evidencia local que falta. La decisión debe sostenerse con evidencia observable y límites explícitos."
+      },
+      {
+        "id": "f3-exam8-2",
+        "type": "choice",
+        "concept": "research.evidence",
+        "prompt": "Tres artículos citan una misma nota de prensa. ¿Cómo contarlos?",
+        "options": [
+          {
+            "text": "Como una cadena de evidencia originada en una fuente, buscando contraste de naturaleza distinta",
+            "correct": true
+          },
+          {
+            "text": "Como tres comprobaciones independientes por estar publicados en medios distintos",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          },
+          {
+            "text": "Como evidencia secundaria suficiente si usan palabras diferentes",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          }
+        ],
+        "explain": "Como una cadena de evidencia originada en una fuente, buscando contraste de naturaleza distinta. La decisión debe sostenerse con evidencia observable y límites explícitos."
+      },
+      {
+        "id": "f3-exam8-3",
+        "type": "choice",
+        "concept": "research.workspace",
+        "prompt": "Actualizas una referencia del Notebook. ¿Qué debes comprobar?",
+        "options": [
+          {
+            "text": "Qué consultas usan la nueva versión y qué resultados derivados requieren revisión separada",
+            "correct": true
+          },
+          {
+            "text": "Que todas las Pages, tablas y diapositivas se hayan actualizado automáticamente",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          },
+          {
+            "text": "Solo que el nombre del archivo siga siendo igual",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          }
+        ],
+        "explain": "Qué consultas usan la nueva versión y qué resultados derivados requieren revisión separada. La decisión debe sostenerse con evidencia observable y límites explícitos."
+      }
+    ]
+  }
+}

@@ -1,0 +1,466 @@
+{
+  "id": "m9",
+  "title": "Word y PowerPoint: producir y mejorar",
+  "subtitle": "Documentos y presentaciones reutilizables, con evidencia y cambios acotados.",
+  "level": "Herramientas y práctica transferible",
+  "icon": "book",
+  "color": "#5B4FD6",
+  "lessons": [
+    {
+      "id": "f3-l9-1",
+      "title": "Producir un documento útil a partir de evidencia",
+      "summary": "Una nota profesional debe permitir entender una conclusión, su evidencia y sus límites.",
+      "minutes": 20,
+      "objectives": [
+        "Reestructura el documento existente para una audiencia elegida por ti. Corrige discrepancias y produce una conclusión de máximo cinco líneas, una tabla trazable y una sección de limitaciones.",
+        "Compara cifras con el libro, prueba que cada título tiene respaldo y busca frases que seguirían siendo ciertas para cualquier compañía. Si no añaden información, sustitúyelas por evidencia o elimínalas."
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Problema profesional",
+          "title": "Capacidad y resultado",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Una nota profesional debe permitir entender una conclusión, su evidencia y sus límites. El objetivo es transformar análisis en un documento reusable sin imponer un formato propio de una especialidad ni llenar páginas con texto genérico."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones antes de ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El documento de trabajo de Aurora contiene un error deliberado: llama «caja» a EBITDA19,36. El modelo base muestra caja final11,995, después de movimientos que no aparecen en EBITDA. Un documento útil expone la pregunta, hechos y cálculos, interpretación y pendientes; no necesita adoptar un formato bancario para sostener esa distinción."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar, ejecutar y observar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Abre documento-trabajo.docx en Word y guarda copia. Identifica audiencia, pregunta y decisión que el texto debe apoyar. Pide a Copilot un esquema basado en la plantilla educativa existente y en las fuentes que añadas explícitamente. Trabaja una sección cada vez: conclusión, tabla de evidencia y límites. Exige que cada cifra incluya período, unidad, definición y escenario; comprueba en Excel las relevantes. Acepta o rechaza cambios con comparación contra el original. Si el modo disponible no edita el documento, aplica manualmente la propuesta y registra esa intervención.\n\n**Herramienta y habilitación.** Word con Copilot y documentos accesibles según licencia/habilitación; Word estándar para verificar y aplicar cambios.\n\n**Entradas.** documento-trabajo.docx, expediente.docx y modelo.xlsx.\n**Resultado esperado.** Documento corregido sobre plantilla educativa propia.\n**Alternativa y pérdida.** Copilot Chat para borrador y edición manual en Word: pierde edición integrada y referencias contextuales de la aplicación.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Fallo: «Aurora presenta una generación de caja robusta» sustituye el error sin explicar cómo se obtiene la caja. Diagnóstico: reparación retórica, no financiera. Pide un puente desde EBITDA hasta CFO, FCF y caja final, o una limitación si no dispone de datos. Revisa términos que hagan parecer demostrada una causalidad."
+            }
+          ]
+        },
+        {
+          "id": "f3-l9-1-choice",
+          "type": "choice",
+          "concept": "communication.document",
+          "prompt": "Copilot cambia «caja19,36» por «caja robusta» sin verificar el libro. ¿Qué reparación hace falta?",
+          "context": "Fallo: «Aurora presenta una generación de caja robusta» sustituye el error sin explicar cómo se obtiene la caja. Diagnóstico: reparación retórica, no financiera. Pide un puente desde EBITDA hasta CFO, FCF y caja final, o una limitación si no dispone de datos. Revisa términos que hagan parecer demostrada una causalidad.",
+          "options": [
+            {
+              "text": "Reconstruir la evidencia y la definición de caja antes de reescribir la conclusión",
+              "correct": true
+            },
+            {
+              "text": "Mantener la cifra del borrador y suavizar el adjetivo para reducir la contundencia",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            },
+            {
+              "text": "Eliminar la cifra y conservar la conclusión general sin abrir el modelo",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            }
+          ],
+          "explain": "La narrativa debe explicar datos y decisiones; la fluidez no corrige una definición equivocada. Compara cifras con el libro, prueba que cada título tiene respaldo y busca frases que seguirían siendo ciertas para cualquier compañía. Si no añaden información, sustitúyelas por evidencia o elimínalas."
+        },
+        {
+          "id": "f3-l9-1-order",
+          "type": "order",
+          "concept": "communication.document",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Producir un documento útil a partir de evidencia",
+          "items": [
+            "Definir audiencia, pregunta y estructura sobre la plantilla",
+            "Construir texto y tabla con evidencia y definiciones",
+            "Comparar con fuentes, corregir y conservar cambios"
+          ],
+          "explain": "La narrativa debe explicar datos y decisiones; la fluidez no corrige una definición equivocada. Compara cifras con el libro, prueba que cada título tiene respaldo y busca frases que seguirían siendo ciertas para cualquier compañía. Si no añaden información, sustitúyelas por evidencia o elimínalas."
+        },
+        {
+          "id": "f3-l9-1-portfolio",
+          "type": "portfolio",
+          "concept": "communication.document",
+          "prompt": "Reestructura el documento existente para una audiencia elegida por ti. Corrige discrepancias y produce una conclusión de máximo cinco líneas, una tabla trazable y una sección de limitaciones.",
+          "context": "Resultado: Documento corregido sobre plantilla educativa propia. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
+          "rubric": [
+            "Consistencia: distingue EBITDA, flujo y caja final.",
+            "Trazabilidad: cifras vinculadas a fuente, período y escenario.",
+            "Interpretación: conclusión proporcionada a la evidencia.",
+            "Utilidad: estructura adaptada a una audiencia real.",
+            "Crítico: no encubre una discrepancia numérica con lenguaje genérico."
+          ],
+          "solution": "La nota corregida identifica EBITDA19,36 y caja final11,995 como magnitudes diferentes. Puede usar una tabla con CFO12,995, capex6, FCF antes de principal6,995 y principal3. La interpretación conserva limitaciones del modelo y no inventa política, mandato o criterio de aprobación.\n\nCompara cifras con el libro, prueba que cada título tiene respaldo y busca frases que seguirían siendo ciertas para cualquier compañía. Si no añaden información, sustitúyelas por evidencia o elimínalas.\n\nTransferencia: La estructura sirve a una nota de resultados, informe de inversión, actualización presupuestaria o análisis interno. La audiencia modifica énfasis y profundidad; el control de evidencia no cambia.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Controles y aplicación a otro trabajo",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Compara cifras con el libro, prueba que cada título tiene respaldo y busca frases que seguirían siendo ciertas para cualquier compañía. Si no añaden información, sustitúyelas por evidencia o elimínalas.\n\nLa estructura sirve a una nota de resultados, informe de inversión, actualización presupuestaria o análisis interno. La audiencia modifica énfasis y profundidad; el control de evidencia no cambia."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Decisiones que debes conservar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "La narrativa debe explicar datos y decisiones; la fluidez no corrige una definición equivocada."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f3-l9-2",
+      "title": "Construir narrativa y mejorar una presentación existente",
+      "summary": "PowerPoint exige decisiones que un resumen de Word no resuelve: secuencia, títulos con conclusión, selección de evidencia y jerarquía visual.",
+      "minutes": 20,
+      "objectives": [
+        "Mejora cuatro páginas de la presentación existente. Conserva un antes/después, un gráfico nativo, una tabla trazable y al menos un título cuya conclusión hayas limitado tras revisar evidencia.",
+        "Lee solo los títulos: deben construir un argumento. Luego abre gráfico y tabla para comprobar cifras, e inspecciona móvil/pantalla completa para legibilidad. La app no renderiza ni valida tu PowerPoint real."
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Problema profesional",
+          "title": "Capacidad y resultado",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "PowerPoint exige decisiones que un resumen de Word no resuelve: secuencia, títulos con conclusión, selección de evidencia y jerarquía visual. Practicarás sobre una presentación editable genérica, no sobre un formato de un banco o departamento."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones antes de ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "La presentación de Aurora incluye una discrepancia deliberada: margen base18%, cuando la base usa16%. La narrativa puede separar evolución histórica, escenario, factores de caja e incertidumbres. El título «Escenarios» describe una sección; «El crecimiento aumenta EBITDA, pero el circulante absorbe parte de la caja» expresa una conclusión que debes demostrar con cifras y gráfico."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar, ejecutar y observar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Abre presentacion.pptx y guarda una copia. Antes de pedir diapositivas, escribe una secuencia de cuatro mensajes con evidencia y función de cada página. Usa Copilot en PowerPoint para crear o modificar desde fuentes admitidas y la presentación existente, según las opciones habilitadas. Revisa diseño y contenido por separado. Conserva un gráfico y una tabla editables con unidades, período y escenario. Si Copilot solo aporta un borrador o una imagen, reconstruye o edita manualmente lo necesario; comprueba datos subyacentes y que no haya convertido cada párrafo en una diapositiva.\n\n**Herramienta y habilitación.** PowerPoint con Copilot y funciones de creación/edición habilitadas; PowerPoint estándar para editar y revisar elementos nativos.\n\n**Entradas.** presentacion.pptx, modelo.xlsx y documento-trabajo.docx.\n**Resultado esperado.** Presentación mejorada con mensajes, tabla y gráfico editables.\n**Alternativa y pérdida.** Chat para esquema y edición manual en PowerPoint: pierde generación/contexto integrado, conserva narrativa y control visual.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Fallo: la diapositiva tiene muchas cifras correctas pero ninguna pregunta resuelta. Diagnóstico: falta selección y jerarquía, no más diseño decorativo. Define una conclusión, conserva la evidencia imprescindible, elimina repetición y pon límites cerca del mensaje. Si el gráfico contradice la tabla, verifica el rango y el escenario antes de cambiar el título."
+            }
+          ]
+        },
+        {
+          "id": "f3-l9-2-choice",
+          "type": "choice",
+          "concept": "communication.slides",
+          "prompt": "La tabla usa base y el gráfico management. ¿Qué revisas antes de mejorar el diseño?",
+          "context": "Fallo: la diapositiva tiene muchas cifras correctas pero ninguna pregunta resuelta. Diagnóstico: falta selección y jerarquía, no más diseño decorativo. Define una conclusión, conserva la evidencia imprescindible, elimina repetición y pon límites cerca del mensaje. Si el gráfico contradice la tabla, verifica el rango y el escenario antes de cambiar el título.",
+          "options": [
+            {
+              "text": "Comprobar escenario y datos del gráfico, fijar una conclusión por página y reducir texto sin perder evidencia",
+              "correct": true
+            },
+            {
+              "text": "Cambiar colores y tamaños manteniendo toda la información para no omitir detalles",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            },
+            {
+              "text": "Transformar el gráfico en imagen para evitar discrepancias con sus datos editables",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            }
+          ],
+          "explain": "Una presentación profesional es una secuencia de decisiones de comunicación, no una acumulación de resúmenes. Lee solo los títulos: deben construir un argumento. Luego abre gráfico y tabla para comprobar cifras, e inspecciona móvil/pantalla completa para legibilidad. La app no renderiza ni valida tu PowerPoint real."
+        },
+        {
+          "id": "f3-l9-2-order",
+          "type": "order",
+          "concept": "communication.slides",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Construir narrativa y mejorar una presentación existente",
+          "items": [
+            "Definir secuencia de mensajes y evidencia por página",
+            "Modificar sobre la presentación con tabla y gráfico editables",
+            "Revisar contenido, jerarquía visual y consistencia de datos"
+          ],
+          "explain": "Una presentación profesional es una secuencia de decisiones de comunicación, no una acumulación de resúmenes. Lee solo los títulos: deben construir un argumento. Luego abre gráfico y tabla para comprobar cifras, e inspecciona móvil/pantalla completa para legibilidad. La app no renderiza ni valida tu PowerPoint real."
+        },
+        {
+          "id": "f3-l9-2-portfolio",
+          "type": "portfolio",
+          "concept": "communication.slides",
+          "prompt": "Mejora cuatro páginas de la presentación existente. Conserva un antes/después, un gráfico nativo, una tabla trazable y al menos un título cuya conclusión hayas limitado tras revisar evidencia.",
+          "context": "Resultado: Presentación mejorada con mensajes, tabla y gráfico editables. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
+          "rubric": [
+            "Narrativa: cada página tiene una conclusión y una función.",
+            "Consistencia: escenario y cifras coinciden con fuentes.",
+            "Diseño: jerarquía, legibilidad y selección de evidencia.",
+            "Edición: tabla y gráfico mantienen datos comprobables.",
+            "Crítico: no usa imágenes o títulos genéricos para ocultar discrepancias."
+          ],
+          "solution": "Una secuencia válida muestra históricos, base frente a variantes, puente de caja y cuestiones abiertas. La base usa16%, no18%. Un gráfico debe poder abrirse y contrastarse con su tabla; el título se limita si el material no prueba una atribución causal. Guarda una copia editable y comentarios de revisión.\n\nLee solo los títulos: deben construir un argumento. Luego abre gráfico y tabla para comprobar cifras, e inspecciona móvil/pantalla completa para legibilidad. La app no renderiza ni valida tu PowerPoint real.\n\nTransferencia: Puedes usar esta técnica en un pitch, comité, presupuesto o presentación de resultados. El formato propio se incorpora después; primero domina narrativa, evidencia y edición.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Controles y aplicación a otro trabajo",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Lee solo los títulos: deben construir un argumento. Luego abre gráfico y tabla para comprobar cifras, e inspecciona móvil/pantalla completa para legibilidad. La app no renderiza ni valida tu PowerPoint real.\n\nPuedes usar esta técnica en un pitch, comité, presupuesto o presentación de resultados. El formato propio se incorpora después; primero domina narrativa, evidencia y edición."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Decisiones que debes conservar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Una presentación profesional es una secuencia de decisiones de comunicación, no una acumulación de resúmenes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f3-l9-3",
+      "title": "Actualizar varios entregables sin reescribirlos enteros",
+      "summary": "Cuando cambia una hipótesis, rehacer todos los documentos puede introducir errores nuevos y borrar decisiones válidas.",
+      "minutes": 20,
+      "objectives": [
+        "Aplica una modificación a tu copia de modelo, documento y presentación. Entrega un registro de impactos y evidencia de que al menos dos elementos no afectados se conservaron.",
+        "Revisa una cifra, una conclusión y un elemento no afectado en cada versión. No basta con buscar el número antiguo: puede haber redondeos, imágenes o conclusiones sin cifra explícita."
+      ],
+      "steps": [
+        {
+          "type": "card",
+          "kicker": "Problema profesional",
+          "title": "Capacidad y resultado",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Cuando cambia una hipótesis, rehacer todos los documentos puede introducir errores nuevos y borrar decisiones válidas. Necesitas localizar impactos entre libro, texto y presentación, aplicar cambios acotados y demostrar qué permanece igual."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones antes de ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Si el cambio de ensayo eleva capex en1, el modelo reduce caja en1 y aumenta PPE en1 sin mover EBITDA ni deuda en este bloque. No debes cambiar un título de margen por ese evento. Una tabla de impactos localiza la celda del modelo, el párrafo afectado, el dato del gráfico y la conclusión que quizá debe matizarse."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar, ejecutar y observar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Guarda versiones identificadas de los tres archivos. Lee aclaracion.eml y actualizacion.eml y decide qué modifica cada uno. Actualiza primero inputs y fórmulas en Excel y ejecuta controles. Construye un manifiesto de impacto: dato anterior/nuevo, definición, celda, ubicación documental y decisión. En Word pide revisar solo las secciones afectadas. En PowerPoint verifica datos del gráfico y títulos; no presupongas actualización automática por haber usado el mismo archivo de origen. Compara versiones y documenta también dos elementos que deban permanecer sin cambio.\n\n**Herramienta y habilitación.** Excel, Word y PowerPoint con capacidades Copilot disponibles; comparación y edición manual de copias cuando haga falta.\n\n**Entradas.** modelo.xlsx, documento-trabajo.docx, presentacion.pptx, aclaracion.eml y actualizacion.eml.\n**Resultado esperado.** Paquete actualizado y registro de impactos y no cambios.\n**Alternativa y pérdida.** Revisión manual sobre copias versionadas: pierde asistencia entre aplicaciones, conserva control de dependencias y comparación.\n\nLectura orientativa: 15–20 minutos. La práctica en herramienta real puede requerir 30–45 minutos; no se ejecuta dentro de esta app.\n\n[Modelo](content/resources/modelo.xlsx) · [Expediente](content/resources/expediente.docx) · [Documento de trabajo](content/resources/documento-trabajo.docx) · [Presentación](content/resources/presentacion.pptx)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Diagnóstico",
+          "title": "Cuando el primer resultado no sirve",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Fallo: la tabla ya refleja la nueva cifra, pero el título conserva la conclusión anterior. Diagnóstico: el proceso actualizó datos, no mensajes. Revisa implicaciones y referencias derivadas. Si un vínculo no se refresca o el modo disponible no edita el elemento, actualiza manualmente y registra cómo se verificó."
+            }
+          ]
+        },
+        {
+          "id": "f3-l9-3-choice",
+          "type": "choice",
+          "concept": "communication.revise",
+          "prompt": "Una actualización cambia la tabla, pero deja intacto un título ya insostenible. ¿Qué proceso corrige el fallo?",
+          "context": "Fallo: la tabla ya refleja la nueva cifra, pero el título conserva la conclusión anterior. Diagnóstico: el proceso actualizó datos, no mensajes. Revisa implicaciones y referencias derivadas. Si un vínculo no se refresca o el modo disponible no edita el elemento, actualiza manualmente y registra cómo se verificó.",
+          "options": [
+            {
+              "text": "Actualizar primero el cálculo y después cada dato y mensaje derivado, comprobando qué se mantiene estable",
+              "correct": true
+            },
+            {
+              "text": "Regenerar los tres archivos completos para garantizar una apariencia uniforme",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            },
+            {
+              "text": "Corregir únicamente las cifras que Copilot encuentre mediante búsqueda de texto",
+              "feedback": "Contrasta la causa descrita con las capacidades y evidencia disponibles. Esta decisión no corrige esa causa."
+            }
+          ],
+          "explain": "Gestiona el delta entre versiones. Actualizar números y actualizar conclusiones son controles diferentes. Revisa una cifra, una conclusión y un elemento no afectado en cada versión. No basta con buscar el número antiguo: puede haber redondeos, imágenes o conclusiones sin cifra explícita."
+        },
+        {
+          "id": "f3-l9-3-order",
+          "type": "order",
+          "concept": "communication.revise",
+          "prompt": "Ordena las decisiones para ejecutar y contrastar esta capacidad.",
+          "context": "Actualizar varios entregables sin reescribirlos enteros",
+          "items": [
+            "Versionar y validar el cambio en el modelo",
+            "Localizar datos, gráficos y conclusiones afectados",
+            "Aplicar cambios acotados y comparar controles y mensajes"
+          ],
+          "explain": "Gestiona el delta entre versiones. Actualizar números y actualizar conclusiones son controles diferentes. Revisa una cifra, una conclusión y un elemento no afectado en cada versión. No basta con buscar el número antiguo: puede haber redondeos, imágenes o conclusiones sin cifra explícita."
+        },
+        {
+          "id": "f3-l9-3-portfolio",
+          "type": "portfolio",
+          "concept": "communication.revise",
+          "prompt": "Aplica una modificación a tu copia de modelo, documento y presentación. Entrega un registro de impactos y evidencia de que al menos dos elementos no afectados se conservaron.",
+          "context": "Resultado: Paquete actualizado y registro de impactos y no cambios. Conserva evidencia literal y registra qué ejecutaste y qué quedó pendiente.",
+          "rubric": [
+            "Consistencia: Excel, texto y gráfico usan misma versión y definición.",
+            "Trazabilidad: manifiesto de impactos con ubicación.",
+            "Interpretación: revisa mensajes, no solo cifras.",
+            "Utilidad: conserva elementos no afectados y decisiones.",
+            "Crítico: no promete sincronización automática sin haberla comprobado."
+          ],
+          "solution": "El registro distingue el cambio de input del cambio de interpretación. Un capex+1 afecta caja y PPE, no margen en este modelo. Después de la actualización se repiten controles y se inspeccionan referencias del documento y datos del gráfico. Un contenido no editable queda señalado, no declarado actualizado.\n\nRevisa una cifra, una conclusión y un elemento no afectado en cada versión. No basta con buscar el número antiguo: puede haber redondeos, imágenes o conclusiones sin cifra explícita.\n\nTransferencia: El método sirve al llegar un cierre, un guidance, una revisión de costes o un nuevo informe. Lo transferible es la gestión de dependencias entre entregables.",
+          "explain": "Registro de autoevaluación: la app conserva evidencia y rúbrica, sin leer tus archivos ni validar semánticamente el entregable. Una tarea no ejecutada en la herramienta se marca pendiente."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Controles y aplicación a otro trabajo",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Revisa una cifra, una conclusión y un elemento no afectado en cada versión. No basta con buscar el número antiguo: puede haber redondeos, imágenes o conclusiones sin cifra explícita.\n\nEl método sirve al llegar un cierre, un guidance, una revisión de costes o un nuevo informe. Lo transferible es la gestión de dependencias entre entregables."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Para recordar",
+          "title": "Decisiones que debes conservar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Gestiona el delta entre versiones. Actualizar números y actualizar conclusiones son controles diferentes."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "exam": {
+    "title": "Comprobación de decisiones",
+    "size": 6,
+    "extra": [
+      {
+        "id": "f3-exam9-1",
+        "type": "choice",
+        "concept": "communication.document",
+        "prompt": "Un borrador llama caja al EBITDA. Copilot suaviza el adjetivo pero conserva la cifra. ¿Qué falta?",
+        "options": [
+          {
+            "text": "Corregir definición y puente numérico antes de aceptar la narrativa",
+            "correct": true
+          },
+          {
+            "text": "Una conclusión aún más prudente para compensar incertidumbre",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          },
+          {
+            "text": "Cambiar el gráfico por texto para reducir exposición del número",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          }
+        ],
+        "explain": "Corregir definición y puente numérico antes de aceptar la narrativa. La decisión debe sostenerse con evidencia observable y límites explícitos."
+      },
+      {
+        "id": "f3-exam9-2",
+        "type": "choice",
+        "concept": "communication.slides",
+        "prompt": "Una presentación tiene tabla correcta y gráfico de otro escenario. ¿Qué corregir primero?",
+        "options": [
+          {
+            "text": "Fuente y escenario del gráfico, y luego el mensaje que depende de él",
+            "correct": true
+          },
+          {
+            "text": "El título, conservando ambos datos como perspectivas alternativas",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          },
+          {
+            "text": "La paleta, para distinguir visualmente los escenarios sin tocar datos",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          }
+        ],
+        "explain": "Fuente y escenario del gráfico, y luego el mensaje que depende de él. La decisión debe sostenerse con evidencia observable y límites explícitos."
+      },
+      {
+        "id": "f3-exam9-3",
+        "type": "choice",
+        "concept": "communication.revise",
+        "prompt": "Llega una modificación de capex. ¿Qué proceso conserva mejor calidad?",
+        "options": [
+          {
+            "text": "Actualizar modelo, localizar impactos en datos y mensajes y comparar versiones",
+            "correct": true
+          },
+          {
+            "text": "Regenerar los documentos completos para evitar referencias antiguas",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          },
+          {
+            "text": "Buscar el número anterior en texto y sustituir todas sus apariciones",
+            "feedback": "Revisa la evidencia de ejecución, el alcance y la causa del fallo."
+          }
+        ],
+        "explain": "Actualizar modelo, localizar impactos en datos y mensajes y comparar versiones. La decisión debe sostenerse con evidencia observable y límites explícitos."
+      }
+    ]
+  }
+}
