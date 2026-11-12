@@ -1,232 +1,164 @@
 {
-  "title": "Copilot Academy",
-  "docsCheckedAt": "2026-11-10",
+  "title": "Copilot Academy · Financiación corporativa",
+  "edition": "financing-v2",
+  "docsCheckedAt": "2026-11-12",
   "levels": [
     {
       "id": "L2",
-      "title": "Usuario habitual",
-      "description": "Usas Copilot en el día a día: chat, resúmenes, borradores y archivos con /."
+      "title": "Inicio de edición",
+      "description": "Experiencia previa con IA; comienza el sistema de trabajo financiero."
     },
     {
       "id": "L3",
-      "title": "Usuario con método",
-      "description": "Entiendes cómo razona y falla Copilot, verificas como un profesional y diriges conversaciones complejas."
+      "title": "Prácticas en curso",
+      "description": "Decisiones practicadas en la academia; no certifican ejecución en Copilot real."
     },
     {
       "id": "L4",
-      "title": "Usuario profesional",
-      "description": "Usas Copilot y Analyst para auditar y estresar modelos, y montas un reporting a dirección trazable y coherente."
+      "title": "Programa practicado",
+      "description": "Decisiones y portafolio pendientes de contraste externo del entregable."
     },
     {
       "id": "L5",
-      "title": "Experto",
-      "description": "Automatizas el trabajo recurrente, investigas con Researcher y diseñas agentes con Copilot Studio, con gobierno y control."
+      "title": "Portafolio revisado",
+      "description": "Requiere evidencia de ejecución real y revisión externa; los cuestionarios no acreditan nivel experto."
     }
   ],
   "competencies": [
     {
-      "id": "fund",
-      "title": "Fundamentos y confianza"
+      "id": "agent",
+      "title": "Agente de primera lectura"
     },
     {
-      "id": "prompt",
-      "title": "Prompts y contexto"
+      "id": "model",
+      "title": "Excel: modificar y contrastar un caso financiero"
     },
     {
       "id": "docs",
-      "title": "Reporting a dirección"
+      "title": "One Pager y presentación de financiación"
     },
     {
-      "id": "datos",
-      "title": "Modelización"
+      "id": "research",
+      "title": "Investigación aplicada a la operación"
     },
     {
-      "id": "com",
-      "title": "Automatización del trabajo recurrente"
+      "id": "review",
+      "title": "Agente revisor y defensa ante Riesgos"
     },
     {
-      "id": "inv",
-      "title": "Investigación y análisis"
+      "id": "process",
+      "title": "Actualizaciones y procesos reutilizables"
     },
     {
-      "id": "agent",
-      "title": "Agentes y Copilot Studio"
-    },
-    {
-      "id": "gob",
-      "title": "Seguridad y buen uso"
+      "id": "transfer",
+      "title": "Transferencia y defensa final"
     }
   ],
   "concepts": [
     {
-      "id": "fund.grounding",
-      "competency": "fund",
-      "title": "Cómo encuentra Copilot la información"
-    },
-    {
-      "id": "fund.limits",
-      "competency": "fund",
-      "title": "Por qué no encuentra algo o se equivoca"
-    },
-    {
-      "id": "fund.verify",
-      "competency": "fund",
-      "title": "Verificación profesional"
-    },
-    {
-      "id": "fund.personal",
-      "competency": "fund",
-      "title": "Memoria e instrucciones personalizadas"
-    },
-    {
-      "id": "prompt.spec",
-      "competency": "prompt",
-      "title": "Especificar el resultado: estructura, criterios y ejemplos"
-    },
-    {
-      "id": "prompt.clarify",
-      "competency": "prompt",
-      "title": "Que Copilot pregunte y planifique antes"
-    },
-    {
-      "id": "prompt.chain",
-      "competency": "prompt",
-      "title": "Encadenar tareas y conversaciones largas"
-    },
-    {
-      "id": "prompt.multisource",
-      "competency": "prompt",
-      "title": "Varias fuentes, fechas y contradicciones"
-    },
-    {
-      "id": "prompt.critique",
-      "competency": "prompt",
-      "title": "Autocrítica y revisión de la respuesta"
-    },
-    {
-      "id": "prompt.reuse",
-      "competency": "prompt",
-      "title": "Biblioteca de prompts y prompts programados"
-    },
-    {
-      "id": "datos.audit",
-      "competency": "datos",
-      "title": "Auditar un modelo ajeno"
-    },
-    {
-      "id": "datos.document",
-      "competency": "datos",
-      "title": "Documentar y traspasar un modelo"
-    },
-    {
-      "id": "datos.python",
-      "competency": "datos",
-      "title": "Analyst y Python: simulación y estadística"
-    },
-    {
-      "id": "datos.assumptions",
-      "competency": "datos",
-      "title": "Contrastar supuestos con las fuentes"
-    },
-    {
-      "id": "docs.trace",
-      "competency": "docs",
-      "title": "Cifras trazables al modelo"
-    },
-    {
-      "id": "docs.consistency",
-      "competency": "docs",
-      "title": "Coherencia entre Excel, Word y PowerPoint"
-    },
-    {
-      "id": "docs.variance",
-      "competency": "docs",
-      "title": "Explicar desviaciones"
-    },
-    {
-      "id": "docs.pack",
-      "competency": "docs",
-      "title": "El pack mensual como sistema"
-    },
-    {
-      "id": "com.select",
-      "competency": "com",
-      "title": "Qué automatizar y qué no"
-    },
-    {
-      "id": "com.scheduled",
-      "competency": "com",
-      "title": "Prompts programados y Notebooks como sistema"
-    },
-    {
-      "id": "com.cowork",
-      "competency": "com",
-      "title": "Copilot Cowork: tareas de varios pasos"
-    },
-    {
-      "id": "com.impact",
-      "competency": "com",
-      "title": "Medir el impacto"
-    },
-    {
-      "id": "inv.researcher",
-      "competency": "inv",
-      "title": "Researcher: investigación en varios pasos"
-    },
-    {
-      "id": "inv.pages",
-      "competency": "inv",
-      "title": "Pages y Notebooks"
-    },
-    {
-      "id": "inv.sources",
-      "competency": "inv",
-      "title": "Fuentes internas, web y fiabilidad"
-    },
-    {
-      "id": "agent.design",
+      "id": "agent.method",
       "competency": "agent",
-      "title": "Diseñar un agente: caso, alcance y herramienta"
+      "title": "Metodología que el agente puede ejecutar"
     },
     {
-      "id": "agent.instructions",
+      "id": "agent.sources",
       "competency": "agent",
-      "title": "Instrucciones que funcionan"
-    },
-    {
-      "id": "agent.knowledge",
-      "competency": "agent",
-      "title": "Conocimiento y acciones"
-    },
-    {
-      "id": "agent.studio",
-      "competency": "agent",
-      "title": "Copilot Studio: herramientas, flujos y agentes autónomos"
+      "title": "Conocimiento reutilizable sin contaminar operaciones"
     },
     {
       "id": "agent.test",
       "competency": "agent",
-      "title": "Probar, publicar y gobernar"
+      "title": "Pruebas que enseñan por qué falla el agente"
     },
     {
-      "id": "gob.labels",
-      "competency": "gob",
-      "title": "Etiquetas de confidencialidad y protección de datos"
+      "id": "model.drivers",
+      "competency": "model",
+      "title": "Leer el modelo para decidir dónde intervenir"
     },
     {
-      "id": "gob.permissions",
-      "competency": "gob",
-      "title": "Permisos y sobreexposición de datos"
+      "id": "model.update",
+      "competency": "model",
+      "title": "Reconciliar históricos y modificar una sección"
     },
     {
-      "id": "gob.injection",
-      "competency": "gob",
-      "title": "Contenido malicioso e instrucciones ocultas"
+      "id": "model.repay",
+      "competency": "model",
+      "title": "Caja, deuda y sensibilidades que cambian una decisión"
     },
     {
-      "id": "gob.human",
-      "competency": "gob",
-      "title": "Supervisión humana y responsabilidad"
+      "id": "docs.onepager",
+      "competency": "docs",
+      "title": "Una página que permite decidir qué falta"
+    },
+    {
+      "id": "docs.slides",
+      "competency": "docs",
+      "title": "De plantilla educativa a narrativa FARE"
+    },
+    {
+      "id": "docs.consistency",
+      "competency": "docs",
+      "title": "Actualizar tres documentos sin rehacerlos"
+    },
+    {
+      "id": "research.question",
+      "competency": "research",
+      "title": "Encargar una investigación que sirva al caso"
+    },
+    {
+      "id": "research.evidence",
+      "competency": "research",
+      "title": "Evidencia favorable, contraria e insuficiente"
+    },
+    {
+      "id": "research.update",
+      "competency": "research",
+      "title": "Nueva información y tesis comercial versionada"
+    },
+    {
+      "id": "review.figures",
+      "competency": "review",
+      "title": "Un revisor que detecta discrepancias concretas"
+    },
+    {
+      "id": "review.challenge",
+      "competency": "review",
+      "title": "Preguntas difíciles sobre repago y estructura"
+    },
+    {
+      "id": "review.separation",
+      "competency": "review",
+      "title": "Cuándo separar preparación y revisión"
+    },
+    {
+      "id": "process.delta",
+      "competency": "process",
+      "title": "Actualizar EBITDA, capex y cobros con trazabilidad"
+    },
+    {
+      "id": "process.studio",
+      "competency": "process",
+      "title": "Studio: de traspaso manual a flujo controlado"
+    },
+    {
+      "id": "process.value",
+      "competency": "process",
+      "title": "Programación, Cowork y ahorro neto medible"
+    },
+    {
+      "id": "transfer.reuse",
+      "competency": "transfer",
+      "title": "Reutilizar el sistema sin arrastrar el caso anterior"
+    },
+    {
+      "id": "transfer.defend",
+      "competency": "transfer",
+      "title": "Defensa con evidencia y límites explícitos"
+    },
+    {
+      "id": "transfer.decision",
+      "competency": "transfer",
+      "title": "Elegir herramienta y medir dominio por entregables"
     }
   ]
 }

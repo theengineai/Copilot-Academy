@@ -2,7 +2,7 @@
   "id": "./",
   "name": "Copilot Academy",
   "short_name": "Copilot Academy",
-  "description": "Aprende Microsoft 365 Copilot y Copilot Studio con microlecciones, un chat simulado, misiones y repaso inteligente.",
+  "description": "Practica agentes y Microsoft 365 Copilot en operaciones de financiación: modelos, documentación, investigación y revisión con un caso ficticio.",
   "lang": "es",
   "dir": "ltr",
   "start_url": "./#/home",

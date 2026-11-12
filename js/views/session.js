@@ -174,7 +174,7 @@ export function runSession(ctx, options) {
       if (sol) wrap.append(h('div', { class: 'review-solution' }, h('span', { class: 'small muted' }, 'Solución'), sol));
     }
     footer.append(h('div', { class: `feedback ${ans.ok ? 'ok' : 'bad'} review` },
-      h('div', { class: 'fb-head' }, icon(ans.ok ? 'check' : 'x', { size: 20 }), h('strong', {}, ans.ok ? 'La acertaste a la primera' : 'Esta te costó: repasa la explicación')),
+      h('div', { class: 'fb-head' }, icon(ans.ok ? 'check' : 'x', { size: 20 }), h('strong', {}, ex.type === 'portfolio' ? 'Autoevaluación registrada · pendiente de revisión humana' : ans.ok ? 'La acertaste a la primera' : 'Esta te costó: repasa la explicación')),
       ex.explain ? mdEl(ex.explain, 'md fb-explain') : null,
       goForwardButton()));
   }
@@ -223,7 +223,7 @@ export function runSession(ctx, options) {
   function feedback(ok, message, ex, { retry = false, solution = null, onRetry } = {}) {
     clear(footer);
     const panel = h('div', { class: `feedback ${ok ? 'ok' : 'bad'}`, role: 'alert' },
-      h('div', { class: 'fb-head' }, icon(ok ? 'check' : 'x', { size: 22 }), h('strong', {}, ok ? pick(['¡Correcto!', '¡Bien visto!', '¡Exacto!']) : retry ? 'Todavía no' : 'No es correcto')),
+      h('div', { class: 'fb-head' }, icon(ok ? 'check' : 'x', { size: 22 }), h('strong', {}, ex.type === 'portfolio' && ok ? 'Autoevaluación registrada · no valida el entregable' : ok ? pick(['¡Correcto!', '¡Bien visto!', '¡Exacto!']) : retry ? 'Todavía no' : 'No es correcto')),
       !ok && message ? h('div', { class: 'fb-msg' }, message) : null,
       ex.explain && (ok || !retry) ? mdEl(ex.explain, 'md fb-explain') : null,
       solution ? h('details', { class: 'fb-solution', open: !retry }, h('summary', {}, 'Ver solución'), solution) : null,
@@ -236,7 +236,7 @@ export function runSession(ctx, options) {
 
   function finish() {
     clearSaved();
-    const exercises = queue.filter(q => !q.retry).map(q => steps[q.i]).filter(isExercise);
+    const exercises = queue.filter(q => !q.retry).map(q => steps[q.i]).filter(s => isExercise(s) && s.type !== 'portfolio');
     const correct = exercises.filter(ex => firstTry.get(ex.id)).length;
     const accuracy = exercises.length ? correct / exercises.length : 1;
     const outcome = options.onFinish({ accuracy, correct, total: exercises.length }) || {};
@@ -252,7 +252,7 @@ export function runSession(ctx, options) {
       outcome.subtitle ? h('p', { class: 'muted' }, outcome.subtitle) : null,
       h('div', { class: 'results-stats' },
         h('div', { class: 'tile' }, xpEl, h('span', {}, 'XP ganada')),
-        h('div', { class: 'tile' }, h('strong', { class: 'stat-big' }, `${Math.round(accuracy * 100)}%`), h('span', {}, 'a la primera')),
+        h('div', { class: 'tile' }, h('strong', { class: 'stat-big' }, exercises.length ? `${Math.round(accuracy * 100)}%` : 'Registro'), h('span', {}, exercises.length ? 'comprobaciones a la primera' : 'autoevaluación sin validar')),
         outcome.stars ? h('div', { class: 'tile' }, h('strong', { class: 'stars' }, [1, 2, 3].map(i => icon('star', { size: 22, cls: i <= outcome.stars ? 'on' : '' }))), h('span', {}, 'estrellas')) : null),
       outcome.note ? h('div', { class: 'callout callout-info' }, icon('info', { size: 18 }), h('div', {}, outcome.note)) : null,
       (outcome.achievements || []).length ? h('div', { class: 'new-achievements' },

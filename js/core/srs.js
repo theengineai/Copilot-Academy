@@ -37,7 +37,7 @@ export function dueConcepts(state, today = localDay()) {
 export function buildReviewQueue(state, course, { today = localDay(), size = 8 } = {}) {
   const seenSources = new Set(Object.keys(state.lessons));
   const eligible = Object.values(course.exercises)
-    .filter(({ exercise, source }) => source.kind === 'lesson' && seenSources.has(source.id) && exercise.type !== 'copilot');
+    .filter(({ exercise, source }) => source.kind === 'lesson' && seenSources.has(source.id) && exercise.type !== 'copilot' && exercise.type !== 'portfolio');
 
   const queue = [];
   const add = ex => { if (queue.length < size && !queue.includes(ex)) queue.push(ex); };
@@ -45,7 +45,7 @@ export function buildReviewQueue(state, course, { today = localDay(), size = 8 }
   const mistakes = Object.entries(state.mistakes).sort((a, b) => b[1].count - a[1].count).map(([id]) => id);
   for (const id of mistakes) {
     const entry = course.exercises[id];
-    if (entry && entry.exercise.type !== 'copilot') add(entry.exercise);
+    if (entry && entry.exercise.type !== 'copilot' && entry.exercise.type !== 'portfolio') add(entry.exercise);
   }
   for (const conceptId of dueConcepts(state, today)) {
     const candidate = eligible.find(({ exercise }) => exercise.concept === conceptId && !queue.includes(exercise));

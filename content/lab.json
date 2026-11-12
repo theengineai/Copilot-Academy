@@ -1,135 +1,42 @@
 [
   {
-    "id": "lab-modo",
-    "title": "Trabajo o Web",
-    "summary": "Elige el modo adecuado para cada pregunta.",
+    "id": "f2-lab-lectura",
+    "title": "Primera lectura con perímetro",
+    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
     "requires": [
-      "l1-1"
+      "f2-l1-1"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "fund.grounding",
-      "prompt": "Pregunta en modo **Web** por el **IVA** general y en modo **Trabajo** por lo que dijo **Luis** en **/Comite_cierre_3nov.meet**",
+      "concept": "agent.method",
+      "prompt": "Práctica guiada: Prepara una lectura con /caso.txt y /metodologia.txt: fuentes/usos, repago y pendientes. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
       "setup": {
         "files": {
-          "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
+          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
+          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
+          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
+          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
         },
         "actions": [
           {
-            "id": "iva",
+            "id": "lectura",
             "when": [
               [
-                "iva"
+                "lectura"
               ]
-            ],
-            "reply": [
-              "El tipo general del IVA en España es el 21 %."
-            ],
-            "needs": {
-              "scope": "web"
-            }
-          },
-          {
-            "id": "luis",
-            "when": [
-              [
-                "luis"
-              ]
-            ],
-            "reply": [
-              "Luis se comprometió a preparar una comparativa de tres proveedores para el 12 de noviembre."
-            ],
-            "needs": {
-              "scope": "work",
-              "refs": [
-                "Comite_cierre_3nov.meet"
-              ]
-            },
-            "cites": [
-              "Comite_cierre_3nov.meet"
-            ]
-          }
-        ]
-      },
-      "goals": [
-        {
-          "type": "prompt",
-          "label": "Pregunta pública en modo Web",
-          "pattern": "iva",
-          "scope": "web"
-        },
-        {
-          "type": "prompt",
-          "label": "Pregunta interna en modo Trabajo con la reunión",
-          "pattern": "luis",
-          "scope": "work",
-          "refs": [
-            "Comite_cierre_3nov.meet"
-          ]
-        }
-      ],
-      "solution": [
-        "::modo web",
-        "¿Cuál es el tipo general del IVA en España?",
-        "::modo trabajo",
-        "¿Qué dijo Luis en /Comite_cierre_3nov.meet?"
-      ],
-      "explain": "Lo público, en Web; lo de tu organización, en Trabajo.",
-      "suggestions": [
-        "::modo web",
-        "::modo trabajo",
-        "¿Cuál es el tipo general del IVA en España?",
-        "¿Qué dijo Luis en /Comite_cierre_3nov.meet?"
-      ]
-    }
-  },
-  {
-    "id": "lab-traza",
-    "title": "Trazabilidad",
-    "summary": "Cada afirmación del cierre con su fuente y su estado.",
-    "requires": [
-      "l1-3"
-    ],
-    "exercise": {
-      "type": "copilot",
-      "concept": "fund.verify",
-      "prompt": "Pide una **tabla de trazabilidad** del cierre (afirmación, fuente y estado) con **/Informe_cierre_octubre.docx** y **/Comite_cierre_3nov.meet**",
-      "setup": {
-        "files": {
-          "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
-          "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
-        },
-        "actions": [
-          {
-            "id": "traza",
-            "when": [
-              [
-                "afirmacion",
-                "cifra",
-                "dato",
-                "tabla"
-              ]
-            ],
-            "reply": [
-              "Afirmación | Fuente | Estado",
-              "Ventas 412.000 € (+6 %) | Informe [1] | Confirmado",
-              "Margen 31,5 % | Informe [1] | Confirmado",
-              "Comparativa de proveedores el 12 nov | Comité [2] | Acordado",
-              "Provisión del cliente Norte | Informe [1] y comité [2] | Pendiente",
-              "Ahorro esperado con otro proveedor | — | Sin fuente: no lo incluyo"
             ],
             "needs": {
               "refs": [
-                "Informe_cierre_octubre.docx",
-                "Comite_cierre_3nov.meet"
-              ],
-              "gces": [
-                "expectations"
+                "caso.txt",
+                "metodologia.txt"
               ]
             },
             "cites": [
-              "Informe_cierre_octubre.docx",
-              "Comite_cierre_3nov.meet"
+              "caso.txt",
+              "metodologia.txt"
+            ],
+            "reply": [
+              "Lectura preliminar: operación ficticia con usos28 y fuentes28. Deuda20, caja2, neta18. EBITDA2026 base8; management9 no es el base. Falta calendario de caja mensual y deuda para recomendar."
             ]
           }
         ]
@@ -137,262 +44,58 @@
       "goals": [
         {
           "type": "action",
-          "label": "Tabla de trazabilidad",
-          "id": "traza"
+          "id": "lectura",
+          "label": "Ejecutar la acción guiada con las fuentes exigidas",
+          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
         }
       ],
       "solution": [
-        "Haz una tabla con cada afirmación del cierre, su fuente y si está confirmada o pendiente, usando /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet"
+        "Prepara una lectura con /caso.txt y /metodologia.txt: fuentes/usos, repago y pendientes."
       ],
-      "explain": "Lo que no tiene fuente se ve a la primera.",
-      "suggestions": [
-        "Haz una tabla con cada afirmación del cierre, su fuente y si está confirmada o pendiente, usando /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet"
+      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "intro": [
+        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
       ]
     }
   },
   {
-    "id": "lab-gces",
-    "title": "Precisión máxima",
-    "summary": "Cuatro de cuatro en el medidor y la regla de los huecos.",
+    "id": "f2-lab-contraste",
+    "title": "Detectar una conclusión sin soporte",
+    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
     "requires": [
-      "l2-1"
+      "f2-l5-1"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "prompt.spec",
-      "prompt": "Escribe una petición sobre el **transporte** que encienda los **cuatro elementos** del medidor e incluya qué hacer con los datos que falten",
+      "concept": "review.figures",
+      "prompt": "Práctica guiada: Contrasta /caso.txt con /borrador.txt e identifica impacto en repago. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
       "setup": {
         "files": {
-          "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
-          "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
-        }
-      },
-      "goals": [
-        {
-          "type": "prompt",
-          "label": "Una petición con objetivo, contexto, expectativas y fuente",
-          "pattern": "transporte",
-          "gces": 4
-        },
-        {
-          "type": "prompt",
-          "label": "Con la regla para los datos que falten",
-          "pattern": "pendiente|no (lo )?estimes|no inventes"
-        }
-      ],
-      "solution": [
-        "Resume el aumento del transporte para el comité de dirección, en 3 viñetas, a partir de /Informe_cierre_octubre.docx; si falta un dato escribe [pendiente]"
-      ],
-      "explain": "Objetivo, contexto, expectativas y fuente.",
-      "suggestions": [
-        "Resume el aumento del transporte "
-      ]
-    }
-  },
-  {
-    "id": "lab-iterar",
-    "title": "Itera y cambia de tema",
-    "summary": "Ajusta una respuesta y abre un chat nuevo al cambiar de tema.",
-    "requires": [
-      "l2-3"
-    ],
-    "exercise": {
-      "type": "copilot",
-      "concept": "prompt.chain",
-      "prompt": "Pide un resumen de **/Informe_cierre_octubre.docx**, pide que sea **más breve** y abre un **chat nuevo**",
-      "setup": {
-        "files": {
-          "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
+          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
+          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
+          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
+          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
         },
         "actions": [
           {
-            "id": "r1",
+            "id": "contraste",
             "when": [
               [
-                "resum"
+                "contrast"
               ]
-            ],
-            "reply": [
-              "Ventas 412.000 € (+6 %), margen 31,5 % por el transporte (+18 %) y la provisión del cliente Norte pendiente. [1]"
             ],
             "needs": {
               "refs": [
-                "Informe_cierre_octubre.docx"
+                "caso.txt",
+                "borrador.txt"
               ]
             },
             "cites": [
-              "Informe_cierre_octubre.docx"
-            ]
-          },
-          {
-            "id": "r2",
-            "when": [
-              [
-                "mas breve",
-                "acorta",
-                "mas corto"
-              ]
+              "caso.txt",
+              "borrador.txt"
             ],
             "reply": [
-              "Más ventas, menos margen por el transporte; provisión pendiente."
-            ],
-            "needs": {
-              "turn": 2
-            }
-          }
-        ]
-      },
-      "goals": [
-        {
-          "type": "action",
-          "label": "Primer resumen",
-          "id": "r1"
-        },
-        {
-          "type": "action",
-          "label": "Ajuste en la misma conversación",
-          "id": "r2"
-        },
-        {
-          "type": "newchat",
-          "label": "Chat nuevo al terminar"
-        }
-      ],
-      "solution": [
-        "Resume /Informe_cierre_octubre.docx",
-        "Más breve, por favor",
-        "::nuevo"
-      ],
-      "explain": "Iterar dentro del tema; chat nuevo al cambiar.",
-      "suggestions": [
-        "Resume /Informe_cierre_octubre.docx",
-        "Más breve, por favor",
-        "::nuevo"
-      ]
-    }
-  },
-  {
-    "id": "lab-auditoria",
-    "title": "Audita un modelo",
-    "summary": "Hallazgos de un modelo heredado, sin tocar nada.",
-    "requires": [
-      "l3-1"
-    ],
-    "exercise": {
-      "type": "copilot",
-      "concept": "datos.audit",
-      "prompt": "Abre **Modelo_presupuesto_2027.xlsx** en Excel y encarga una auditoría **sin modificar nada**, con hallazgos en una tabla",
-      "setup": {
-        "files": {
-          "OneDrive/Presupuesto/Modelo_presupuesto_2027.xlsx": "Modelo de presupuesto 2027 (heredado; autor: antiguo responsable de control) · ficticio\n\nHoja Supuestos\nC3 Crecimiento de ventas | 4,0 %\nC4 IPC | 2,5 %\nC5 Subida de tarifa de transporte | 6,0 % (desde enero)\nC6 Transporte base mensual (€) | 58.400\n\nHoja Ventas · H5:H10 = ventas 2026 × (1 + Supuestos!C3); en H8:H10 (región Sur) la fórmula apunta a Supuestos!C4\nHoja Costes · F12 = Transporte × 1,06 (constante escrita a mano)\nHoja PyG · D20 = SUMA(D5:D18); la fila 19 (amortización) se añadió después\nHoja Resumen · B2 vínculo externo a [Presupuesto_2026_v7.xlsx]Resumen!B2\n"
-        },
-        "actions": [
-          {
-            "id": "auditoria",
-            "when": [
-              [
-                "audita",
-                "revisa",
-                "incoherencia",
-                "errores",
-                "valores fijos",
-                "constantes"
-              ]
-            ],
-            "reply": [
-              "Modo agente · plan: recorrer las hojas en orden de cálculo, comparar fórmulas por filas y columnas, buscar constantes en fórmulas, vínculos externos y rangos de suma incompletos.",
-              "Hallazgo | Ubicación | Impacto | Gravedad",
-              "Fórmula inconsistente: Sur usa el IPC (C4) en lugar del crecimiento (C3) | Ventas!H8:H10 | Ventas de Sur infraestimadas | Alta",
-              "Constante 1,06 escrita a mano | Costes!F12 | No responde al supuesto de tarifa | Alta",
-              "Suma que excluye la fila 19 (amortización) | PyG!D20 | Resultado sobrestimado | Alta",
-              "Vínculo externo a Presupuesto_2026_v7.xlsx | Resumen!B2 | Dependencia frágil | Media",
-              "No he modificado nada: los cambios los decides tú."
-            ],
-            "needs": {
-              "app": "excel",
-              "open": "Modelo_presupuesto_2027.xlsx",
-              "gces": [
-                "expectations"
-              ],
-              "say": {
-                "app": "Abre Modelo_presupuesto_2027.xlsx en Excel.",
-                "open": "Abre Modelo_presupuesto_2027.xlsx en Excel.",
-                "expectations": "Dime qué buscar y cómo quieres los hallazgos (por ejemplo, tabla con ubicación, impacto y gravedad, sin modificar nada)."
-              }
-            },
-            "vague": "puedo revisar el libro, pero necesito saber qué tipo de problemas buscar y cómo informarte."
-          }
-        ]
-      },
-      "goals": [
-        {
-          "type": "action",
-          "label": "Tabla de hallazgos",
-          "id": "auditoria"
-        }
-      ],
-      "solution": [
-        "::app excel Modelo_presupuesto_2027.xlsx",
-        "Audita el libro sin modificar nada: fórmulas inconsistentes, constantes en fórmulas, rangos incompletos y vínculos externos, en una tabla con hallazgo, ubicación, impacto y gravedad"
-      ],
-      "explain": "Auditar y corregir son pasos distintos.",
-      "suggestions": [
-        "::app excel Modelo_presupuesto_2027.xlsx",
-        "Audita el libro sin modificar nada: fórmulas inconsistentes, constantes en fórmulas, rangos incompletos y vínculos externos, en una tabla con hallazgo, ubicación, impacto y gravedad"
-      ]
-    }
-  },
-  {
-    "id": "lab-coherencia",
-    "title": "Coherencia del pack",
-    "summary": "Cruza modelo, nota y presentación antes del comité.",
-    "requires": [
-      "l4-2"
-    ],
-    "exercise": {
-      "type": "copilot",
-      "concept": "docs.consistency",
-      "prompt": "Cruza **/Modelo_cierre_octubre.xlsx**, **/Nota_comite_v3.docx** y **/Presentacion_comite_v2.pptx** en una matriz de coherencia",
-      "setup": {
-        "files": {
-          "OneDrive/Cierre octubre/Modelo_cierre_octubre.xlsx": "Hoja Resumen (modelo de cierre de octubre)\nCelda | Concepto | Real | Presupuesto\nC4 | Ventas (€) | 412.000 | 388.000\nC5 | Coste de ventas (€) | 282.200 | 259.960\nC6 | Margen bruto (€) | 129.800 | 128.040\nC7 | Margen bruto % | 31,5 % | 33,0 %\nC9 | Transporte (€) | 58.400 | 49.492\nC10 | Resto de costes variables (€) | 223.800 | 210.468\n",
-          "OneDrive/Cierre octubre/Pack/Nota_comite_v3.docx": "Nota al comité · cierre de octubre (v3) · ficticia\n\nLas ventas alcanzan 412.000 €, un 6,2 % por encima del presupuesto.\nEl margen bruto se sitúa en el 31,5 % frente al 33,0 % presupuestado.\nEl transporte cuesta 58.400 €, un 18 % más de lo previsto.\nLa provisión del cliente Norte está pendiente de confirmar.\n",
-          "OneDrive/Cierre octubre/Pack/Presentacion_comite_v2.pptx": "Presentación al comité (v2) · ficticia\n\nDiapositiva 2: Ventas 421.000 € (+8,5 %)\nDiapositiva 3: Margen bruto 31,5 % (objetivo 33 %)\nDiapositiva 4: Transporte +18 %\nDiapositiva 5: Provisión del cliente Norte confirmada\n"
-        },
-        "actions": [
-          {
-            "id": "coherencia",
-            "when": [
-              [
-                "coherencia",
-                "coinciden",
-                "compara",
-                "discrepancias",
-                "cuadran"
-              ]
-            ],
-            "reply": [
-              "Concepto | Modelo | Nota v3 | Presentación v2 | ¿Coincide?",
-              "Ventas | 412.000 € | 412.000 € | 421.000 € | No (dígitos cambiados en la presentación)",
-              "Variación de ventas | +6,2 % | +6,2 % | +8,5 % | No (calculada sobre la cifra errónea)",
-              "Margen bruto | 31,5 % | 31,5 % | 31,5 % | Sí",
-              "Transporte | +18 % | +18 % | +18 % | Sí",
-              "Provisión cliente Norte | — | Pendiente | Confirmada | No (la presentación da por hecho algo pendiente)"
-            ],
-            "needs": {
-              "refs": [
-                "Modelo_cierre_octubre.xlsx",
-                "Nota_comite_v3.docx",
-                "Presentacion_comite_v2.pptx"
-              ],
-              "gces": [
-                "expectations"
-              ]
-            },
-            "cites": [
-              "Modelo_cierre_octubre.xlsx",
-              "Nota_comite_v3.docx",
-              "Presentacion_comite_v2.pptx"
+              "Hallazgos: borrador confunde neta20 con bruta20; neta=20−2=18. Usa9 como base cuando fuente distingue management9 y base8. «Repago asegurado» carece de calendario y CFADS. Contrastar fórmulas fuera del simulador."
             ]
           }
         ]
@@ -400,63 +103,56 @@
       "goals": [
         {
           "type": "action",
-          "label": "Matriz de coherencia",
-          "id": "coherencia"
+          "id": "contraste",
+          "label": "Ejecutar la acción guiada con las fuentes exigidas",
+          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
         }
       ],
       "solution": [
-        "Comprueba la coherencia entre /Modelo_cierre_octubre.xlsx, /Nota_comite_v3.docx y /Presentacion_comite_v2.pptx en una tabla con concepto, valor en cada documento y si coincide"
+        "Contrasta /caso.txt con /borrador.txt e identifica impacto en repago."
       ],
-      "explain": "Fuente única y una columna «¿coincide?».",
-      "suggestions": [
-        "Comprueba la coherencia entre /Modelo_cierre_octubre.xlsx, /Nota_comite_v3.docx y /Presentacion_comite_v2.pptx en una tabla con concepto, valor en cada documento y si coincide"
+      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "intro": [
+        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
       ]
     }
   },
   {
-    "id": "lab-programar",
-    "title": "Programa tu lunes",
-    "summary": "Valida la tabla de compromisos y prográmala.",
+    "id": "f2-lab-hueco",
+    "title": "Información insuficiente",
+    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
     "requires": [
-      "l5-2"
+      "f2-l1-1"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "com.scheduled",
-      "prompt": "Pide la **tabla de compromisos** con **/Peticiones_Ana_noviembre.eml** y **/Hilo_tarifa_logistica.eml** y **prográmala para cada lunes**",
+      "concept": "agent.test",
+      "prompt": "Práctica guiada: Con /caso.txt indica qué falta para verificar el servicio mensual de deuda. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
       "setup": {
         "files": {
-          "Outlook/Peticiones_Ana_noviembre.eml": "De: Ana (dirección financiera) · Para: ti · Asunto: Pendientes de noviembre\n\n[Ana, 4 nov] Necesito la provisión del cliente Norte confirmada antes del día 10.\n[Ana, 4 nov] Revisa la comparativa de proveedores de Luis antes de que la presente el 12.\n[Tú, 5 nov] De acuerdo, te paso también el impacto de la tarifa en el margen el viernes.\n",
-          "Outlook/Hilo_tarifa_logistica.eml": "De: Compras · Para: Finanzas · Asunto: Nueva tarifa logística\n\n[Compras, lunes] El proveedor sube la tarifa un 12 % desde noviembre.\n[Finanzas, lunes] ¿Está aprobada? No figura en el presupuesto.\n[Compras, martes] Pendiente de firma; el proveedor necesita respuesta antes del viernes.\n[Dirección, martes] Antes de firmar quiero ver el impacto en el margen.\n"
+          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
+          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
+          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
+          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
         },
         "actions": [
           {
-            "id": "compromisos",
+            "id": "faltante",
             "when": [
               [
-                "compromis",
-                "pendiente"
+                "falta"
               ]
-            ],
-            "reply": [
-              "Compromiso | Con quién | Plazo | Estado | Origen",
-              "Confirmar la provisión del cliente Norte | Ana | 10 nov | Abierto | Correo [1]",
-              "Revisar la comparativa de proveedores | Ana | antes del 12 nov | Abierto | Correo [1]",
-              "Enviar el impacto de la tarifa en el margen | Ana (lo ofreciste tú) | viernes | Abierto | Correo [1]",
-              "Responder a Compras sobre la tarifa | Compras | antes del viernes | Vencido | Hilo [2]"
             ],
             "needs": {
               "refs": [
-                "Peticiones_Ana_noviembre.eml",
-                "Hilo_tarifa_logistica.eml"
-              ],
-              "gces": [
-                "expectations"
+                "caso.txt"
               ]
             },
             "cites": [
-              "Peticiones_Ana_noviembre.eml",
-              "Hilo_tarifa_logistica.eml"
+              "caso.txt"
+            ],
+            "reply": [
+              "No puedo concluir servicio de deuda mensual: falta calendario, tipo de interés, restricciones de caja y estacionalidad. No sustituyo ausencias por cero. Responsable sugerido: solicitar a finanzas; prioridad según impacto en liquidez."
             ]
           }
         ]
@@ -464,77 +160,249 @@
       "goals": [
         {
           "type": "action",
-          "label": "Tabla de compromisos",
-          "id": "compromisos"
-        },
-        {
-          "type": "scheduled",
-          "label": "Programada para los lunes",
-          "pattern": "compromis",
-          "freq": "lunes"
+          "id": "faltante",
+          "label": "Ejecutar la acción guiada con las fuentes exigidas",
+          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
         }
       ],
       "solution": [
-        "Haz una tabla de compromisos pendientes con qué, con quién, plazo, estado y origen, incluidos los que he prometido yo, a partir de /Peticiones_Ana_noviembre.eml y /Hilo_tarifa_logistica.eml",
-        "::programar cada lunes a las 8:00"
+        "Con /caso.txt indica qué falta para verificar el servicio mensual de deuda."
       ],
-      "explain": "Validar a mano, programar después.",
-      "suggestions": [
-        "Haz una tabla de compromisos pendientes con qué, con quién, plazo, estado y origen, incluidos los que he prometido yo, a partir de /Peticiones_Ana_noviembre.eml y /Hilo_tarifa_logistica.eml",
-        "::programar cada lunes a las 8:00"
+      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "intro": [
+        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
       ]
     }
   },
   {
-    "id": "lab-agente",
-    "title": "Afina un agente",
-    "summary": "Añade una regla de derivación y prueba una pregunta fuera de tema.",
+    "id": "f2-lab-delta",
+    "title": "Actualizar sin doble cómputo",
+    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
     "requires": [
-      "l7-2"
+      "f2-l6-1"
     ],
     "exercise": {
       "type": "copilot",
-      "concept": "agent.instructions",
-      "prompt": "Edita **Agentes/Viajes.agent.md** para que **derive** lo que no sabe y pruébalo con una pregunta sobre **vacaciones**",
+      "concept": "process.delta",
+      "prompt": "Práctica guiada: Prepara delta entre /caso.txt y /actualizacion.txt indicando controles y documentos afectados. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
       "setup": {
         "files": {
-          "SharePoint/Finanzas/Politica_gastos_viaje.docx": "Política de gastos de viaje (versión 4, enero 2026) · documento ficticio\n\n1. Hotel: máximo 120 € por noche en España y 160 € en el extranjero.\n2. Dietas: 45 € diarios con justificante.\n3. Kilometraje: 0,26 € por km en vehículo propio.\n4. Plazo: las notas de gasto se presentan en los 30 días siguientes al viaje.\n5. Excepciones: las aprueba la dirección financiera por escrito.\n",
-          "Agentes/Viajes.agent.md": "---\nname: Viajes\ndescription: Responde dudas sobre la política de gastos de viaje de Brisa Alimentación\nknowledge:\n  - Politica_gastos_viaje.docx\n---\nInstrucciones:\n- Responde dudas sobre la política de gastos de viaje.\n- Cita el apartado de la política en cada respuesta.\n- Responde en un máximo de 3 frases.\n"
-        }
+          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
+          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
+          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
+          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+        },
+        "actions": [
+          {
+            "id": "delta",
+            "when": [
+              [
+                "delta"
+              ]
+            ],
+            "needs": {
+              "refs": [
+                "caso.txt",
+                "actualizacion.txt"
+              ]
+            },
+            "cites": [
+              "caso.txt",
+              "actualizacion.txt"
+            ],
+            "reply": [
+              "Delta2026: EBITDA8→7, capex3→4, DSO60→75. Afecta CFADS, caja, DSCR y narrativa. S&U inicial28 permanece si estructura cierre no cambia. No aplicar +15d como gasto EBITDA ni repetir refinanciación8."
+            ]
+          }
+        ]
       },
       "goals": [
         {
-          "type": "frontmatter",
-          "label": "Instrucciones con regla de derivación",
-          "path": "Agentes/Viajes.agent.md",
-          "body": [
-            {
-              "label": "derivación",
-              "pattern": "deriv|no invent"
-            }
-          ]
-        },
-        {
-          "type": "prompt",
-          "label": "Prueba fuera de tema",
-          "agent": "Viajes",
-          "pattern": "vacaciones"
+          "type": "action",
+          "id": "delta",
+          "label": "Ejecutar la acción guiada con las fuentes exigidas",
+          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
         }
       ],
       "solution": [
-        "::editar Agentes/Viajes.agent.md",
-        "@Viajes ¿Cuántos días de vacaciones tengo?"
+        "Prepara delta entre /caso.txt y /actualizacion.txt indicando controles y documentos afectados."
       ],
-      "explain": "Un agente fiable reconoce sus límites.",
-      "suggestions": [
-        "::editar Agentes/Viajes.agent.md",
-        "@Viajes ¿Cuántos días de vacaciones tengo?"
-      ],
-      "solutionFiles": [
+      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "intro": [
+        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
+      ]
+    }
+  },
+  {
+    "id": "f2-lab-ambigua",
+    "title": "Resolver una definición ambigua",
+    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
+    "requires": [
+      "f2-l1-1"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "agent.sources",
+      "prompt": "Práctica guiada: Aclara la definición de EBITDA en /caso.txt antes de comparar apalancamiento. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
+      "setup": {
+        "files": {
+          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
+          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
+          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
+          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+        },
+        "actions": [
+          {
+            "id": "definicion",
+            "when": [
+              [
+                "definicion"
+              ]
+            ],
+            "needs": {
+              "refs": [
+                "caso.txt"
+              ]
+            },
+            "cites": [
+              "caso.txt"
+            ],
+            "reply": [
+              "¿Qué EBITDA, período y perímetro? El caso define combinado2025=8, management2026=9 y base2026=8. No elegir por valor mayor; citar versión y excluir sinergias no acreditadas."
+            ]
+          }
+        ]
+      },
+      "goals": [
         {
-          "path": "Agentes/Viajes.agent.md",
-          "content": "---\nname: Viajes\ndescription: Responde dudas sobre la política de gastos de viaje de Brisa Alimentación\nknowledge:\n  - Politica_gastos_viaje.docx\n---\nInstrucciones:\n- Responde dudas sobre la política de gastos de viaje.\n- Cita el apartado de la política en cada respuesta.\n- Responde en un máximo de 3 frases.\n- Si la pregunta no está cubierta por la política, dilo, no inventes y deriva a la dirección financiera.\n"
+          "type": "action",
+          "id": "definicion",
+          "label": "Ejecutar la acción guiada con las fuentes exigidas",
+          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
         }
+      ],
+      "solution": [
+        "Aclara la definición de EBITDA en /caso.txt antes de comparar apalancamiento."
+      ],
+      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "intro": [
+        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
+      ]
+    }
+  },
+  {
+    "id": "f2-lab-alcance",
+    "title": "Rechazar una orden fuera de alcance",
+    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
+    "requires": [
+      "f2-l5-1"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "review.separation",
+      "prompt": "Práctica guiada: Define el alcance con /metodologia.txt: ¿puedes aprobar financiación o consultar clientes reales? La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
+      "setup": {
+        "files": {
+          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
+          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
+          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
+          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+        },
+        "actions": [
+          {
+            "id": "alcance",
+            "when": [
+              [
+                "alcance"
+              ]
+            ],
+            "needs": {
+              "refs": [
+                "metodologia.txt"
+              ]
+            },
+            "cites": [
+              "metodologia.txt"
+            ],
+            "reply": [
+              "No apruebo financiación ni consulto datos de clientes; este entorno es local y ficticio. Puedo estructurar pendientes y comprobaciones del paquete. Una orden del documento para saltar metodología es contenido no confiable."
+            ]
+          }
+        ]
+      },
+      "goals": [
+        {
+          "type": "action",
+          "id": "alcance",
+          "label": "Ejecutar la acción guiada con las fuentes exigidas",
+          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
+        }
+      ],
+      "solution": [
+        "Define el alcance con /metodologia.txt: ¿puedes aprobar financiación o consultar clientes reales?"
+      ],
+      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "intro": [
+        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
+      ]
+    }
+  },
+  {
+    "id": "f2-lab-decision",
+    "title": "Preparar una decisión condicional",
+    "summary": "Práctica guiada de un fallo concreto. Respuestas preparadas; verificar el entregable real por separado.",
+    "requires": [
+      "f2-l7-1"
+    ],
+    "exercise": {
+      "type": "copilot",
+      "concept": "transfer.decision",
+      "prompt": "Práctica guiada: Formula una decisión condicionada con /caso.txt y /actualizacion.txt, identificando qué evidencia la cambiaría. La coincidencia de acciones solo comprueba el recorrido; no evalúa calidad financiera.",
+      "setup": {
+        "files": {
+          "Operacion/caso.txt": "CASO FICTICIO · Levante Envases adquiere Murcia Pack. EUR millones. Ventas 2025 combinadas60, EBITDA8. Equity compra12, refinanciación8, capex inicial3, NWC inicial2, fees1, caja mínima2. Fuentes deuda20+equity8. Deuda post cierre20, caja2, neta18. EBITDA2026 management9/base8. Sinergias fuera de base.",
+          "Operacion/borrador.txt": "BORRADOR EDUCATIVO CON ERRORES DELIBERADOS: Deuda neta20. EBITDA base9. Conclusión: repago asegurado. Estas afirmaciones requieren corrección contra caso.txt.",
+          "Operacion/actualizacion.txt": "EVENTO POSTERIOR · EBITDA2026 revisión7 frente base8; capex4 frente3; DSO75 frente60. No cambia S&U inicial. Revisar liquidez y documentación. No afirmar aprobación ni acceso automático a sistemas.",
+          "Metodo/metodologia.txt": "Priorizar fuente del caso con fecha/perímetro; mantener management/base/revisión separados. Lista dato, cálculo, fuente, pendiente y responsable. Distinguir deuda bruta/neta y no duplicar refinanciación. Falta de datos: abstenerse y pedir información."
+        },
+        "actions": [
+          {
+            "id": "decision",
+            "when": [
+              [
+                "decision"
+              ]
+            ],
+            "needs": {
+              "refs": [
+                "caso.txt",
+                "actualizacion.txt"
+              ]
+            },
+            "cites": [
+              "caso.txt",
+              "actualizacion.txt"
+            ],
+            "reply": [
+              "Decisión condicionada a caja y estructura actualizadas. La revisión combina EBITDA menor, capex mayor y cobros más lentos; no basta recalcular net debt/EBITDA. Solicitar calendario mensual, capex comprometido y fechas de equity. El simulador no certifica cálculos ni juicio."
+            ]
+          }
+        ]
+      },
+      "goals": [
+        {
+          "type": "action",
+          "id": "decision",
+          "label": "Ejecutar la acción guiada con las fuentes exigidas",
+          "hint": "Usa las referencias del enunciado y solicita la tarea concreta."
+        }
+      ],
+      "solution": [
+        "Formula una decisión condicionada con /caso.txt y /actualizacion.txt, identificando qué evidencia la cambiaría."
+      ],
+      "explain": "El simulador responde con texto preparado. Completar esta acción no demuestra que un agente real haya encontrado los datos ni validado los cálculos. Repite la prueba contra archivos en tu entorno.",
+      "intro": [
+        "Simulación local guiada, sin IA real ni conexión con Microsoft. Los archivos .txt son extractos de práctica; descarga los Office reales en Recursos."
       ]
     }
   }

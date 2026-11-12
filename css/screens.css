@@ -254,3 +254,15 @@
 .feedback.review.bad .fb-head { color: var(--warn); }
 .resume-card { padding-top: 24px; }
 .pill-partial { color: var(--blue); background: var(--blue-soft); border-color: transparent; font-size: .75rem; padding: 3px 9px; }
+
+/* Long professional lesson titles need the full phone width. */
+@media (max-width: 520px) {
+  .hero-art { display: none; }
+  .hero-text { width: 100%; }
+  .ex-portfolio select { max-width: 100%; width: 100%; }
+  .ex-portfolio textarea { width: 100%; box-sizing: border-box; }
+}
+.ex-portfolio .field { display: flex; flex-direction: column; gap: 8px; margin-block: 16px; }
+.ex-portfolio select { width: 100%; max-width: 100%; }
+.ex-portfolio .editor-inline::placeholder { color: var(--term-ink); opacity: .8; }
+.ex-portfolio details { margin-block: 16px; }

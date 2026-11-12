@@ -75,6 +75,14 @@ export function validate(ex, answer) {
         },
       };
     }
+    case 'portfolio': {
+      // Completeness of a self-assessment only. Never infer financial or semantic correctness.
+      const ok = typeof answer?.evidence === 'string' && answer.evidence.trim().length >= 40
+        && Array.isArray(answer?.scores) && answer.scores.length === ex.rubric.length
+        && answer.scores.every(n => Number.isInteger(n) && n >= 0 && n <= 3)
+        && typeof answer?.criticalErrors === 'boolean';
+      return { ok, detail: { selfAssessed: true, semanticValidation: false } };
+    }
     case 'editor': {
       const results = runChecks(String(answer ?? ''), ex.checks);
       return { ok: results.every(r => r.passed), detail: { results } };
@@ -88,6 +96,7 @@ export function validate(ex, answer) {
 export function explainFailure(ex, result) {
   const d = result.detail || {};
   switch (ex.type) {
+    case 'portfolio': return 'Añade evidencia concreta (40 caracteres como mínimo), valora todos los criterios y declara si quedan errores críticos. Se comprueba el registro, no su calidad.';
     case 'choice': return d.feedback || '';
     case 'multi': {
       const parts = [];

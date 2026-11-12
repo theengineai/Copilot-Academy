@@ -63,7 +63,7 @@ export function openMission(ctx, missionId) {
       { type: 'text', body: m.brief },
       { type: 'callout', tone: 'finance', title: 'Escenario', body: m.scenario },
       { type: 'text', title: 'Lo que vas a hacer', body: m.steps.map((s, i) => `- Paso ${i + 1}: ${s.title || s.prompt.replace(/\*\*|`/g, '').slice(0, 80)}`).join('\n') },
-      { type: 'callout', tone: 'info', body: `Recompensa: hasta **${m.xp} XP**, según los pasos que resuelvas a la primera. Si fallas, verás qué criterio no se cumple; tras dos intentos podrás ver una solución.` },
+      { type: 'callout', tone: 'info', body: `Recompensa: hasta **${m.xp} XP**, por completar el registro de evidencia y rúbrica. La aplicación no verifica el entregable; las soluciones comentadas permiten contrastar tu trabajo.` },
     ],
   };
   runSession(ctx, {
@@ -78,7 +78,7 @@ export function openMission(ctx, missionId) {
       const achievements = ctx.commit();
       return {
         icon: m.final ? 'crown' : 'flag',
-        title: m.final ? '¡Proyecto final completado!' : 'Misión cumplida',
+        title: m.final ? 'Proyecto final registrado' : 'Autoevaluación registrada',
         subtitle: m.title,
         gained: r.gained,
         achievements,

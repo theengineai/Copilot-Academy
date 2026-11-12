@@ -1,1099 +1,384 @@
 {
   "id": "m1",
-  "title": "Cómo funciona Copilot por dentro",
-  "subtitle": "De dónde salen las respuestas, por qué falla, cómo verificar, personalizarlo y proteger los datos.",
-  "level": "L2 → L3",
-  "icon": "spark",
+  "title": "Agente de primera lectura",
+  "subtitle": "Convertir metodología en un proceso contrastable desde la primera operación.",
+  "level": "Práctica avanzada",
+  "icon": "agents",
   "color": "#5B4FD6",
   "lessons": [
     {
-      "id": "l1-1",
-      "title": "Cómo encuentra Copilot la información",
-      "summary": "Qué entra en el contexto de cada respuesta y de dónde lo saca Copilot.",
-      "minutes": 7,
+      "id": "f2-l1-1",
+      "title": "Metodología que el agente puede ejecutar",
+      "summary": "Una primera lectura debe ordenar la operación sin dar por buenas las cifras del pitch.",
+      "minutes": 30,
       "objectives": [
-        "Saber qué piezas forman el contexto de una respuesta",
-        "Prever dónde buscará Copilot según la pregunta y el modo",
-        "Fijar la fuente exacta cuando importa"
+        "Produce instrucciones v1 y una nota de primera lectura de una página. Decide qué tres preguntas podrían cambiar la estructura propuesta y explica por qué. No rellenes huecos con promedios de otras operaciones.",
+        "La nota distingue hechos de hipótesis, identifica 8 histórico frente a 9 management y no suma la deuda cancelada a la nueva. Cada conclusión tiene evidencia o una limitación visible. Para otra compañía conserva el método y sustituye íntegramente el expediente del caso."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Tu papel",
-          "title": "Bienvenida al departamento financiero",
+          "kicker": "Problema profesional",
+          "title": "Resultado y contexto",
           "blocks": [
             {
               "type": "text",
-              "body": "Durante toda la academia trabajarás en el departamento financiero de **Brisa Alimentación**, una empresa de distribución **ficticia**. Estamos cerrando **octubre** y estas son las personas con las que hablarás:\n- **Ana**, directora financiera: decide y presenta al comité de dirección.\n- **Luis**, control de gestión: márgenes, presupuestos y proveedores.\n- **Marta**, tesorería: cobros, pagos y provisiones.\n\nEl problema del mes: **vendemos más de lo previsto, pero el margen cae** porque el transporte se ha encarecido."
-            },
-            {
-              "type": "tree",
-              "lines": [
-                "OneDrive/Cierre octubre/",
-                "  Informe_cierre_octubre.docx  # el informe del cierre",
-                "  Ventas_octubre.xlsx  # ventas, coste y presupuesto por región",
-                "Outlook/Hilo_tarifa_logistica.eml  # Compras avisa de una subida del transporte",
-                "Teams/Comite_cierre_3nov.meet  # reunión del comité, con transcripción",
-                "SharePoint/Finanzas/Politica_gastos_viaje.docx  # una política del equipo"
-              ],
-              "title": "Los archivos que irás usando"
-            },
-            {
-              "type": "callout",
-              "tone": "info",
-              "body": "La academia da por hecho que ya usas Copilot a diario (chat, resúmenes, / para archivos). Aquí vas a por lo que separa a un usuario habitual de uno experto. Empresa, personas y cifras son inventadas."
+              "body": "Una primera lectura debe ordenar la operación sin dar por buenas las cifras del pitch. Abre caso.docx: Levante Envases compra Murcia Pack y combina adquisición, refinanciación, capex y circulante. El resultado es una nota con hechos, cálculos, preguntas y límites; todavía no una aprobación."
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "En esta app",
-          "title": "El Copilot de la academia",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones con el expediente",
           "blocks": [
             {
               "type": "text",
-              "body": "Practicarás con un **Copilot simulado** que imita al real, con los archivos de Brisa Alimentación. Lo que cambia respecto al producto:"
-            },
-            {
-              "type": "cmds",
-              "items": [
-                {
-                  "cmd": "Barra superior",
-                  "desc": "Dónde lo usas (Chat, Word, Excel, PowerPoint, Outlook o Teams), **Trabajo / Web** y **+** para un chat nuevo.",
-                  "where": "En la app"
-                },
-                {
-                  "cmd": "Archivos",
-                  "desc": "Abre los documentos para comprobar lo que dice Copilot. Ahí verás también las etiquetas de confidencialidad.",
-                  "where": "En la app"
-                },
-                {
-                  "cmd": "Objetivos",
-                  "desc": "Encima del chat: se marcan solos. Después pulsa **Comprobar**.",
-                  "where": "En la app"
-                },
-                {
-                  "cmd": "Medidor",
-                  "desc": "Cada respuesta muestra si tu petición tiene objetivo, contexto, expectativas y fuente.",
-                  "where": "En la app"
-                }
-              ]
-            },
-            {
-              "type": "callout",
-              "tone": "info",
-              "body": "No hay IA real: cada ejercicio tiene respuestas preparadas, y Copilot te dice qué le falta si tu petición no basta."
+              "body": "La ficha inicial muestra EBITDA combinado 2025 de 8 M€ y 20 M€ de nueva deuda. El agente debe distinguirlos de los 9 M€ que management espera en 2026. Una instrucción útil exige: identificar perímetro y fecha; separar histórico de proyección; reconstruir Sources & Uses; explicar caja y repago; registrar contradicciones; terminar con información pendiente y su efecto en la decisión."
             }
           ]
         },
         {
           "type": "card",
-          "kicker": "Por dentro",
-          "title": "De la petición a la respuesta",
+          "kicker": "Procedimiento",
+          "title": "Configurar y ejecutar",
           "blocks": [
             {
-              "type": "flow",
-              "steps": [
-                {
-                  "title": "Contexto inmediato",
-                  "text": "Tu petición, la conversación, el archivo abierto y lo que añades con /."
-                },
-                {
-                  "title": "Personalización",
-                  "text": "Tus instrucciones personalizadas y lo que Copilot recuerda de ti (memoria)."
-                },
-                {
-                  "title": "Búsqueda",
-                  "text": "Modo Trabajo: Microsoft Graph (correo, reuniones, chats, archivos), siempre con tus permisos. Modo Web: Bing."
-                },
-                {
-                  "title": "Respuesta",
-                  "text": "El modelo redacta con lo encontrado y cita las fuentes que ha usado."
-                }
-              ]
-            },
+              "type": "text",
+              "body": "En Agent Builder crea un agente privado desde la sección de agentes, si está disponible. En instrucciones pega la metodología de agentes.md y define las secciones del entregable, la unidad M€ y la obligación de citar documento, página/tabla y fecha. En conocimiento incorpora solo metodologia.md como referencia estable. Añade la documentación de la operación al contexto de la prueba. Ejecuta una primera lectura y registra versión de instrucciones, fuentes y respuesta.\n\n**Herramienta, requisitos, entradas y salida.** Agent Builder en Microsoft 365 Copilot; creación habilitada y licencia/capacidad aplicable al tenant. Entradas: caso.docx, metodologia.md y agentes.md. Salida: instrucciones y primera lectura. Si no puedes crear agentes, usa un chat con las mismas instrucciones y un expediente separado: conservas el método, pierdes configuración persistente y distribución del agente.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kicker": "Cuando falla",
+          "title": "Diagnóstico y reparación",
+          "blocks": [
             {
               "type": "text",
-              "body": "Cuando no indicas la fuente, Copilot **elige** qué documentos son relevantes. Suele acertar, pero puede escoger una versión antigua o un archivo parecido. Con **/** la fuente deja de ser una apuesta."
-            },
-            {
-              "type": "callout",
-              "tone": "info",
-              "body": "Sin licencia de Microsoft 365 Copilot, Copilot Chat solo usa la web y lo que tú le das. Según la versión, el selector Trabajo/Web aparece como un botón **Work IQ**."
+              "body": "El primer resultado dice «la operación es sólida» porque EBITDA crece. Diagnóstico: falta un criterio de suficiencia, no un adjetivo mejor. Añade: «No concluir capacidad de repago sin puente de caja y calendario de deuda. Si faltan, formula preguntas y marca conclusión provisional». Repite exactamente la prueba original para comprobar si la corrección funciona."
             }
           ]
         },
         {
-          "id": "m1l1e1",
-          "type": "match",
-          "concept": "fund.grounding",
-          "prompt": "Empareja cada petición con lo que usará Copilot para responder",
-          "pairs": [
-            [
-              "«Resume este documento» (con un Word abierto)",
-              "El archivo abierto"
-            ],
-            [
-              "«¿Qué me ha pedido Ana esta semana?» (modo Trabajo)",
-              "Tu correo y tus chats vía Microsoft Graph"
-            ],
-            [
-              "«Tendencias del coste de transporte en Europa» (modo Web)",
-              "Resultados de la web"
-            ],
-            [
-              "«Mejora este párrafo: …» (texto pegado)",
-              "Solo el texto que le das"
-            ]
-          ],
-          "explain": "Prever de dónde saldrá la respuesta te dice cuánto debes revisarla y si te falta aportar contexto."
-        },
-        {
-          "id": "m1l1e2",
-          "type": "copilot",
-          "concept": "fund.grounding",
-          "prompt": "Haz una pregunta pública en modo **Web** (el IVA general en España) y vuelve a **Trabajo** para preguntar por la **provisión** citando **/Comite_cierre_3nov.meet**",
-          "setup": {
-            "files": {
-              "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n",
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n"
-            },
-            "actions": [
-              {
-                "id": "iva",
-                "when": [
-                  [
-                    "iva"
-                  ]
-                ],
-                "reply": [
-                  "El tipo general del IVA en España es el 21 %; existen tipos reducidos del 10 % y del 4 %.",
-                  "Fuente: resultados de la web."
-                ],
-                "needs": {
-                  "scope": "web",
-                  "say": {
-                    "scope": "Es información pública: en modo Trabajo Copilot priorizaría tus datos internos. Usa Web."
-                  }
-                }
-              },
-              {
-                "id": "prov",
-                "when": [
-                  [
-                    "provision"
-                  ]
-                ],
-                "reply": [
-                  "En el comité del 3 de noviembre, Marta indicó que la provisión del cliente Norte sigue sin confirmar.",
-                  "Acuerdo: Marta la confirma antes del cierre del día 10."
-                ],
-                "needs": {
-                  "scope": "work",
-                  "refs": [
-                    "Comite_cierre_3nov.meet"
-                  ]
-                },
-                "cites": [
-                  "Comite_cierre_3nov.meet"
-                ]
-              }
-            ]
-          },
-          "goals": [
-            {
-              "type": "prompt",
-              "label": "Pregunta pública en modo Web",
-              "pattern": "iva",
-              "scope": "web",
-              "hint": "Pulsa Web: ¿cuál es el tipo general del IVA en España?"
-            },
-            {
-              "type": "prompt",
-              "label": "Pregunta interna en modo Trabajo con la fuente exacta",
-              "pattern": "provision",
-              "scope": "work",
-              "refs": [
-                "Comite_cierre_3nov.meet"
-              ],
-              "hint": "Pulsa Trabajo: ¿qué se dijo de la provisión en /Comite_cierre_3nov.meet?"
-            }
-          ],
-          "solution": [
-            "::modo web",
-            "¿Cuál es el tipo general del IVA en España?",
-            "::modo trabajo",
-            "¿Qué se dijo de la provisión en /Comite_cierre_3nov.meet?"
-          ],
-          "explain": "Modo y fuente explícitos: Copilot no tiene que adivinar dónde buscar.",
-          "suggestions": [
-            "::modo web",
-            "::modo trabajo",
-            "¿Cuál es el tipo general del IVA en España? ",
-            "¿Qué se dijo de la provisión en /Comite_cierre_3nov.meet? "
-          ]
-        },
-        {
-          "id": "m1l1e3",
+          "id": "f2-1-1-decision",
           "type": "choice",
-          "concept": "fund.grounding",
-          "context": "Preguntas «¿cuál fue el margen de octubre?» y Copilot responde «30 %», citando un borrador antiguo. El informe final dice 31,5 %.",
-          "prompt": "¿Cuál es la causa más probable?",
+          "concept": "agent.method",
+          "prompt": "La lectura mezcla 8 histórico y 9 previsto. ¿Qué cambio de instrucciones ataca la causa?",
           "options": [
             {
-              "text": "Al no indicar el archivo, Copilot eligió el borrador como fuente relevante",
+              "text": "Exigir etiqueta de período, perímetro y naturaleza de cada métrica antes de compararla",
               "correct": true
             },
             {
-              "text": "Copilot no tiene acceso al informe final",
-              "feedback": "Si lo tuviera bloqueado, no citaría ningún informe; ha elegido otro."
+              "text": "Pedir una nota más extensa para aumentar el contexto",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             },
             {
-              "text": "El modelo inventa las cifras al azar",
-              "feedback": "Las cifras salen del borrador, que sí existe."
+              "text": "Fijar EBITDA 8 en las instrucciones permanentes para futuros casos",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             }
           ],
-          "explain": "Sin **/**, la búsqueda decide. Cuando la versión importa, referencia el archivo exacto."
+          "explain": "Instrucciones estables describen decisiones y salidas; los datos viven en el expediente. Una conclusión provisional es más útil que una certeza sin caja."
         },
         {
-          "id": "m1l1e4",
+          "id": "f2-1-1-sequence",
           "type": "order",
-          "concept": "fund.grounding",
-          "prompt": "Ordena lo que ocurre con una petición en modo Trabajo",
+          "concept": "agent.method",
+          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
           "items": [
-            "Copilot reúne tu petición, la conversación y lo que añades con /",
-            "Aplica tus instrucciones personalizadas y memoria",
-            "Busca en Microsoft Graph con tus permisos",
-            "Redacta la respuesta y añade las citas"
+            "Delimitar perímetro, fecha y propósito",
+            "Separar hechos, hipótesis y cálculos con fuentes",
+            "Concluir provisionalmente y priorizar información pendiente"
           ],
-          "explain": "Contexto inmediato → personalización → búsqueda → respuesta citada."
+          "explain": "La nota distingue hechos de hipótesis, identifica 8 histórico frente a 9 management y no suma la deuda cancelada a la nueva. Cada conclusión tiene evidencia o una limitación visible. Para otra compañía conserva el método y sustituye íntegramente el expediente del caso."
+        },
+        {
+          "id": "f2-1-1-portfolio",
+          "type": "portfolio",
+          "concept": "agent.method",
+          "prompt": "Produce instrucciones v1 y una nota de primera lectura de una página. Decide qué tres preguntas podrían cambiar la estructura propuesta y explica por qué. No rellenes huecos con promedios de otras operaciones.",
+          "rubric": [
+            "Método: cubre perímetro, SU, caja, riesgo y límites sin convertir hipótesis en datos.",
+            "Trazabilidad: la nota distingue 2025 histórico, 2026 management y base.",
+            "Interpretación: las preguntas priorizadas pueden cambiar la estructura.",
+            "Utilidad: instrucciones reutilizables separadas del expediente.",
+            "Crítico: no aprobar crédito ni inferir repago sin calendario y caja."
+          ],
+          "solution": "La ficha inicial muestra EBITDA combinado 2025 de 8 M€ y 20 M€ de nueva deuda. El agente debe distinguirlos de los 9 M€ que management espera en 2026. Una instrucción útil exige: identificar perímetro y fecha; separar histórico de proyección; reconstruir Sources & Uses; explicar caja y repago; registrar contradicciones; terminar con información pendiente y su efecto en la decisión.\n\nLa nota distingue hechos de hipótesis, identifica 8 histórico frente a 9 management y no suma la deuda cancelada a la nueva. Cada conclusión tiene evidencia o una limitación visible. Para otra compañía conserva el método y sustituye íntegramente el expediente del caso.",
+          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Comprobar antes de reutilizar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "La nota distingue hechos de hipótesis, identifica 8 histórico frente a 9 management y no suma la deuda cancelada a la nueva. Cada conclusión tiene evidencia o una limitación visible. Para otra compañía conserva el método y sustituye íntegramente el expediente del caso.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+            }
+          ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
+          "title": "Decisiones y técnicas",
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Saber qué piezas forman el contexto de una respuesta\n- Prever dónde buscará Copilot según la pregunta y el modo\n- Fijar la fuente exacta cuando importa"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+              "body": "Instrucciones estables describen decisiones y salidas; los datos viven en el expediente. Una conclusión provisional es más útil que una certeza sin caja."
             }
           ]
         }
       ]
     },
     {
-      "id": "l1-2",
-      "title": "Por qué no encuentra algo o se equivoca",
-      "summary": "Diagnostica los fallos típicos y aplica la corrección adecuada en cada caso.",
-      "minutes": 7,
+      "id": "f2-l1-2",
+      "title": "Conocimiento reutilizable sin contaminar operaciones",
+      "summary": "Una plantilla bien elegida ahorra trabajo; un ejemplo con cifras de otro cliente puede contaminar el análisis.",
+      "minutes": 30,
       "objectives": [
-        "Distinguir «no lo encuentra» de «se equivoca»",
-        "Diagnosticar la causa de un fallo",
-        "Reducir errores en contextos largos"
+        "Diseña una matriz de cinco fuentes y tres conflictos; decide qué documento puede sostener cada cifra y cuál solo aporta estructura. Configura una instrucción contra incorporar datos de expedientes anteriores.",
+        "Rastrea deuda neta a deuda bruta menos caja disponible; separa documentos probatorios de borradores. Para reutilizar, crea un expediente limpio y prueba una consulta que intente recuperar cifras de Levante: debe abstenerse."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Diagnóstico",
-          "title": "Dos familias de fallos",
+          "kicker": "Problema profesional",
+          "title": "Resultado y contexto",
           "blocks": [
             {
-              "type": "compare",
-              "left": {
-                "title": "No lo encuentra",
-                "items": [
-                  "No tienes permiso sobre el archivo",
-                  "Está cifrado y tu etiqueta no te da derechos de uso",
-                  "Es muy reciente y aún no está indexado",
-                  "Estás en modo Web",
-                  "La reunión no tenía transcripción"
-                ]
-              },
-              "right": {
-                "title": "Se equivoca",
-                "items": [
-                  "Mezcla versiones de un documento",
-                  "Rellena huecos con algo plausible",
-                  "Confunde real con presupuesto",
-                  "Lee mal una tabla compleja",
-                  "Pierde detalles en una conversación muy larga"
-                ]
-              }
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Cada familia se arregla distinto: si no lo encuentra, dale acceso o la fuente exacta; si se equivoca, acota, pide citas y verifica."
+              "type": "text",
+              "body": "Una plantilla bien elegida ahorra trabajo; un ejemplo con cifras de otro cliente puede contaminar el análisis. Diseña tres capas: instrucciones de comportamiento, referencias metodológicas y expediente de una sola operación. La salida será un inventario de fuentes con prioridad y vigencia."
             }
-          ]
-        },
-        {
-          "id": "m1l2e1",
-          "type": "copilot",
-          "concept": "fund.limits",
-          "prompt": "Pregunta por el **margen** de octubre. Copilot encontrará **dos versiones** del informe: resuélvelo indicando la fuente correcta con **/**",
-          "setup": {
-            "files": {
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
-              "OneDrive/Cierre octubre/Borradores/Informe_cierre_octubre_v1_borrador.docx": "BORRADOR v1 (2 de noviembre, sin revisar) · Informe de cierre de octubre\n\nVentas: 405.000 € (dato provisional).\nMargen bruto: 30 % (cálculo provisional).\nTransporte: pendiente de facturas.\n",
-              "OneDrive/Cierre octubre/Ventas_octubre.xlsx": "Región | Ventas (€) | Coste (€) | Presupuesto (€)\nNorte | 118.000 | 84.200 | 110.000\nCentro | 162.000 | 109.900 | 150.000\nSur | 132.000 | 88.100 | 128.000\n"
-            },
-            "actions": [
-              {
-                "id": "margen",
-                "when": [
-                  [
-                    "margen"
-                  ]
-                ],
-                "reply": [
-                  "Según el informe final, el margen bruto de octubre fue del 31,5 % (presupuesto: 33 %). [1]"
-                ],
-                "needs": {
-                  "refs": [
-                    "Informe_cierre_octubre.docx"
-                  ],
-                  "say": {
-                    "refs": "He encontrado dos documentos que encajan: un borrador del 2 de noviembre (margen 30 %, provisional) y el informe final. ¿Cuál uso? Referéncialo con /."
-                  }
-                },
-                "cites": [
-                  "Informe_cierre_octubre.docx"
-                ],
-                "vague": "necesito saber qué documento usar."
-              }
-            ]
-          },
-          "goals": [
-            {
-              "type": "prompt",
-              "label": "Preguntar por el margen referenciando el informe final",
-              "pattern": "margen",
-              "refs": [
-                "Informe_cierre_octubre.docx"
-              ],
-              "hint": "¿Cuál fue el margen bruto de octubre según /Informe_cierre_octubre.docx?"
-            },
-            {
-              "type": "action",
-              "label": "Copilot responde con el dato del informe final",
-              "id": "margen"
-            }
-          ],
-          "solution": [
-            "¿Cuál fue el margen bruto de octubre?",
-            "¿Cuál fue el margen bruto de octubre según /Informe_cierre_octubre.docx?"
-          ],
-          "explain": "Ante dos versiones, la respuesta correcta es fijar la fuente. Prueba primero sin / para ver el aviso.",
-          "suggestions": [
-            "¿Cuál fue el margen bruto de octubre?",
-            "¿Cuál fue el margen bruto de octubre según /Informe_cierre_octubre.docx?"
           ]
         },
         {
           "type": "card",
-          "kicker": "Contexto largo",
-          "title": "Cuando la conversación se alarga",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones con el expediente",
           "blocks": [
             {
               "type": "text",
-              "body": "Cuanto más larga la conversación y más archivos añades, más fácil es que se pierdan detalles del principio. Técnicas:\n- Divide en tareas cortas, cada una con su fuente.\n- Repite las restricciones clave en la petición final («recuerda: importes en €, sin estimar lo pendiente»).\n- Pide un **resumen del estado** y continúa en un **chat nuevo** con ese resumen."
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si una respuesta empieza a contradecir algo que ya acordasteis, no discutas: reinicia con un resumen limpio."
+              "body": "Usa la plantilla educativa one-pager.docx como estructura, pero advierte que contiene errores deliberados. Sus 20 M€ de deuda neta contradicen 20 de deuda bruta y 2 de caja post cierre. La plantilla no es una fuente financiera. El libro y la documentación de cierre deben resolver el dato; si no hay confirmación de caja disponible, presenta ambos supuestos."
             }
           ]
         },
         {
-          "id": "m1l2e2",
-          "type": "match",
-          "concept": "fund.limits",
-          "prompt": "Empareja cada síntoma con su causa más probable",
-          "pairs": [
-            [
-              "No encuentra nada de la reunión de ayer",
-              "No se activó la transcripción"
-            ],
-            [
-              "Ignora un archivo que acabas de subir",
-              "Aún no está indexado: añádelo con /"
-            ],
-            [
-              "Cita un borrador en lugar del final",
-              "Ha elegido otra versión como relevante"
-            ],
-            [
-              "Tras 40 mensajes olvida una condición del principio",
-              "Conversación demasiado larga"
-            ]
-          ],
-          "explain": "Diagnosticar bien ahorra iteraciones: cada causa tiene su remedio."
-        },
-        {
-          "id": "m1l2e3",
-          "type": "multi",
-          "concept": "fund.limits",
-          "prompt": "¿Qué reduce los errores en una tarea larga?",
-          "options": [
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar y ejecutar",
+          "blocks": [
             {
-              "text": "Dividirla en peticiones cortas con su fuente",
-              "correct": true
-            },
-            {
-              "text": "Repetir las restricciones clave al final",
-              "correct": true
-            },
-            {
-              "text": "Continuar en un chat nuevo con un resumen del estado",
-              "correct": true
-            },
-            {
-              "text": "Añadir todos los archivos posibles por si acaso",
-              "feedback": "Más ruido, más mezcla de fuentes."
+              "type": "text",
+              "body": "En la configuración revisa nombre, descripción, instrucciones y fuentes de conocimiento realmente visibles. No presupongas herramientas de cálculo ni conectores que no aparezcan. Añade metodología y plantillas depuradas; identifica ejemplos como estructura sin cifras reutilizables. Mantén los archivos de la operación identificados por compañía, fecha y versión. Define prioridad por dato: histórico documentado, hipótesis aprobada para el escenario y correo posterior que modifica esa hipótesis. La fecha más reciente no gana por sí sola.\n\n**Herramienta, requisitos, entradas y salida.** Agent Builder / chat M365 Copilot con archivos accesibles; fuentes admitidas y permisos dependen de habilitación. Entradas: modelo.xlsx, caso.docx, one-pager.docx. Salida: inventario y agente v2. Alternativa: adjuntar explícitamente copias educativas en cada chat; pierdes recuperación persistente. Ninguna configuración garantiza búsqueda exhaustiva de todos los libros ni herencia universal de etiquetas.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)\n\nSi aparece «Only use specified sources», úsalo como preferencia de recuperación, no como bloqueo absoluto del conocimiento general del modelo. La instrucción de limitar hechos al expediente debe probarse y las respuestas contrastarse. Distingue enlaces de SharePoint/OneDrive sujetos a acceso del usuario de archivos incrustados que pueden quedar accesibles a quienes reciben el agente; comprueba el alcance antes de compartir."
             }
-          ],
-          "explain": "Acotar, recordar las restricciones y reiniciar con un resumen."
+          ]
         },
         {
-          "id": "m1l2e4",
+          "type": "card",
+          "kicker": "Cuando falla",
+          "title": "Diagnóstico y reparación",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El agente cita el pitch para validar el modelo. Es una circularidad: ambas salidas vienen de la misma hipótesis. Retira el pitch como fuente de cálculo, conserva su papel de objeto a revisar y pide una tabla de origen, definición y conflicto. Una cita que no sustenta el dato no supera el control."
+            }
+          ]
+        },
+        {
+          "id": "f2-1-2-decision",
           "type": "choice",
-          "concept": "fund.limits",
-          "prompt": "Preguntas por un documento con la etiqueta «Altamente confidencial» y cifrado, y Copilot no lo usa. ¿Qué ocurre?",
+          "concept": "agent.sources",
+          "prompt": "¿Cómo usar una presentación anterior como ejemplo?",
           "options": [
             {
-              "text": "La protección del documento no te da los derechos que Copilot necesita para leerlo: es el comportamiento esperado",
+              "text": "Extraer estructura y estilo, eliminar sus cifras y marcar que no es evidencia del nuevo caso",
               "correct": true
             },
             {
-              "text": "Copilot está estropeado",
-              "feedback": "Respeta la protección del documento."
+              "text": "Añadirla como fuente prioritaria porque ya pasó un comité",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             },
             {
-              "text": "Debes quitar la etiqueta para que funcione",
-              "feedback": "Quitar protección para usar IA es justo lo que no hay que hacer."
+              "text": "Incluirla con todo su contenido y pedir al agente que ignore diferencias",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             }
           ],
-          "explain": "El cifrado y las etiquetas también limitan a Copilot. Si necesitas ese contenido, habla con quien gestiona la protección."
+          "explain": "Prioridad por tipo de dato y aprobación, no por apariencia del documento. Las plantillas enseñan estructura; no prueban cifras."
+        },
+        {
+          "id": "f2-1-2-sequence",
+          "type": "order",
+          "concept": "agent.sources",
+          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "items": [
+            "Clasificar fuentes por función y vigencia",
+            "Resolver conflictos contra la fuente adecuada al dato",
+            "Probar que el nuevo expediente no incorpora cifras anteriores"
+          ],
+          "explain": "Rastrea deuda neta a deuda bruta menos caja disponible; separa documentos probatorios de borradores. Para reutilizar, crea un expediente limpio y prueba una consulta que intente recuperar cifras de Levante: debe abstenerse."
+        },
+        {
+          "id": "f2-1-2-portfolio",
+          "type": "portfolio",
+          "concept": "agent.sources",
+          "prompt": "Diseña una matriz de cinco fuentes y tres conflictos; decide qué documento puede sostener cada cifra y cuál solo aporta estructura. Configura una instrucción contra incorporar datos de expedientes anteriores.",
+          "rubric": [
+            "Fuentes: inventario distingue plantilla, ejemplo y evidencia por dato.",
+            "Trazabilidad: deuda neta se reconstruye desde deuda bruta y caja disponible.",
+            "Interpretación: contradicciones quedan explícitas, sin promediar.",
+            "Utilidad: otro expediente puede cargarse sin cifras heredadas.",
+            "Crítico: no usar un pitch como prueba circular del modelo ni asumir aislamiento absoluto."
+          ],
+          "solution": "Usa la plantilla educativa one-pager.docx como estructura, pero advierte que contiene errores deliberados. Sus 20 M€ de deuda neta contradicen 20 de deuda bruta y 2 de caja post cierre. La plantilla no es una fuente financiera. El libro y la documentación de cierre deben resolver el dato; si no hay confirmación de caja disponible, presenta ambos supuestos.\n\nRastrea deuda neta a deuda bruta menos caja disponible; separa documentos probatorios de borradores. Para reutilizar, crea un expediente limpio y prueba una consulta que intente recuperar cifras de Levante: debe abstenerse.",
+          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Comprobar antes de reutilizar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Rastrea deuda neta a deuda bruta menos caja disponible; separa documentos probatorios de borradores. Para reutilizar, crea un expediente limpio y prueba una consulta que intente recuperar cifras de Levante: debe abstenerse.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+            }
+          ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
+          "title": "Decisiones y técnicas",
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Distinguir «no lo encuentra» de «se equivoca»\n- Diagnosticar la causa de un fallo\n- Reducir errores en contextos largos"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+              "body": "Prioridad por tipo de dato y aprobación, no por apariencia del documento. Las plantillas enseñan estructura; no prueban cifras."
             }
           ]
         }
       ]
     },
     {
-      "id": "l1-3",
-      "title": "Verificación profesional",
-      "summary": "Trazabilidad, triangulación y nivel de revisión según el riesgo.",
-      "minutes": 7,
+      "id": "f2-l1-3",
+      "title": "Pruebas que enseñan por qué falla el agente",
+      "summary": "Una respuesta convincente a un caso limpio no prueba robustez.",
+      "minutes": 30,
       "objectives": [
-        "Pedir trazabilidad de cada afirmación",
-        "Ajustar la revisión al impacto del documento",
-        "Detectar errores típicos comparando con la fuente"
+        "Ejecuta cinco pruebas y conserva una respuesta fallida. Propón una modificación concreta, repite la prueba y explica qué otros comportamientos podría deteriorar.",
+        "Una prueba pasa por comportamiento y evidencia, no por repetir una palabra. El revisor contrasta cálculos contra las fuentes. En otro expediente reserva de nuevo un caso para comprobar transferencia."
       ],
       "steps": [
         {
           "type": "card",
-          "kicker": "Método",
-          "title": "Revisar con método, no con intuición",
+          "kicker": "Problema profesional",
+          "title": "Resultado y contexto",
           "blocks": [
             {
-              "type": "cmds",
-              "items": [
-                {
-                  "cmd": "Trazabilidad",
-                  "desc": "«Tabla: afirmación, fuente y estado (confirmado, pendiente, sin fuente)».",
-                  "where": "Copilot Chat"
-                },
-                {
-                  "cmd": "Triangulación",
-                  "desc": "La cifra clave, contrastada con una segunda fuente independiente."
-                },
-                {
-                  "cmd": "Recalcular",
-                  "desc": "Un total o una fila, a mano."
-                },
-                {
-                  "cmd": "Supuestos",
-                  "desc": "«Lista los supuestos que has hecho y lo que no has podido confirmar».",
-                  "where": "Copilot Chat"
-                }
-              ],
-              "title": "Cuatro técnicas"
-            },
-            {
-              "type": "compare",
-              "left": {
-                "title": "Revisión ligera",
-                "items": [
-                  "Ideas, borradores internos",
-                  "Lectura completa y sentido común"
-                ]
-              },
-              "right": {
-                "title": "Revisión exhaustiva",
-                "items": [
-                  "Dirección, clientes, cifras oficiales",
-                  "Trazabilidad, recálculo y segunda fuente"
-                ]
-              }
+              "type": "text",
+              "body": "Una respuesta convincente a un caso limpio no prueba robustez. Construye una batería reproducible antes de usar el agente como punto de partida habitual. El entregable es un registro de prueba, observación, error y cambio de configuración."
             }
           ]
         },
         {
-          "id": "m1l3e1",
-          "type": "copilot",
-          "concept": "fund.verify",
-          "prompt": "Pide una **tabla de trazabilidad** (afirmación, fuente y estado) del cierre usando **/Informe_cierre_octubre.docx** y **/Comite_cierre_3nov.meet**",
-          "setup": {
-            "files": {
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
-              "Teams/Comite_cierre_3nov.meet": "Reunión: Comité de cierre · 3 nov 2026 · Transcripción activada\n\nAna (dirección financiera): el margen cae por el transporte; quiero alternativas antes del día 15.\nLuis (control de gestión): preparo una comparativa de tres proveedores.\nMarta (tesorería): la provisión del cliente Norte sigue sin confirmar; hablo con el área comercial.\nAcuerdo: Luis presenta la comparativa el 12 de noviembre.\nAcuerdo: Marta confirma la provisión antes del cierre del día 10.\n"
-            },
-            "actions": [
-              {
-                "id": "traza",
-                "when": [
-                  [
-                    "afirmacion",
-                    "cifra",
-                    "dato",
-                    "tabla"
-                  ]
-                ],
-                "reply": [
-                  "Afirmación | Fuente | Estado",
-                  "Ventas 412.000 € (+6 %) | Informe [1] | Confirmado",
-                  "Margen 31,5 % | Informe [1] | Confirmado",
-                  "Comparativa de proveedores el 12 nov | Comité [2] | Acordado",
-                  "Provisión del cliente Norte | Informe [1] y comité [2] | Pendiente",
-                  "Ahorro esperado con otro proveedor | — | Sin fuente: no lo incluyo"
-                ],
-                "needs": {
-                  "refs": [
-                    "Informe_cierre_octubre.docx",
-                    "Comite_cierre_3nov.meet"
-                  ],
-                  "gces": [
-                    "expectations"
-                  ]
-                },
-                "cites": [
-                  "Informe_cierre_octubre.docx",
-                  "Comite_cierre_3nov.meet"
-                ]
-              }
-            ]
-          },
-          "goals": [
+          "type": "card",
+          "kicker": "Ejemplo trabajado",
+          "title": "Decisiones con el expediente",
+          "blocks": [
             {
-              "type": "prompt",
-              "label": "Pedir la trazabilidad con las dos fuentes",
-              "refs": [
-                "Informe_cierre_octubre.docx",
-                "Comite_cierre_3nov.meet"
-              ],
-              "hint": "Haz una tabla con cada afirmación del cierre, su fuente y si está confirmada, usando /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet"
-            },
-            {
-              "type": "action",
-              "label": "Obtener la tabla de trazabilidad",
-              "id": "traza"
+              "type": "text",
+              "body": "Prueba normal: 20 de deuda y 2 de caja implican 18 neta. Ambigua: el correo dice «EBITDA 7» sin período; debe preguntar. Incompleta: falta calendario de amortización; no puede afirmar repago. Contradictoria: pitch 9 base frente a libro 8 base; debe mostrar el conflicto. Fuera de alcance: «aprueba el crédito»; debe limitarse a análisis y remitir a decisión humana."
             }
-          ],
-          "solution": [
-            "Haz una tabla con cada afirmación del cierre, su fuente y si está confirmada o pendiente, usando /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet"
-          ],
-          "explain": "La tabla convierte la revisión en una lista de comprobación y saca a la luz lo que no tiene fuente.",
-          "suggestions": [
-            "Haz una tabla con cada afirmación del cierre, su fuente y si está confirmada o pendiente, usando /Informe_cierre_octubre.docx y /Comite_cierre_3nov.meet"
           ]
         },
         {
-          "id": "m1l3e2",
-          "type": "spot",
-          "concept": "fund.verify",
-          "prompt": "Compara el resumen de Copilot con el informe original y señala las líneas incorrectas",
-          "file": "Resumen de Copilot",
-          "lines": [
-            "Ventas de 412.000 €, un 6 % sobre presupuesto",
-            "Margen bruto del 33 %, en línea con el objetivo",
-            "Transporte +18 % por el cambio de proveedor",
-            "La provisión del cliente Norte ya está confirmada",
-            "Dos clientes concentran el 27 % de las ventas"
-          ],
-          "faulty": [
-            1,
-            3
-          ],
-          "notes": {
-            "1": "El margen real es del 31,5 %; el 33 % es el presupuesto.",
-            "3": "El informe dice que está pendiente de confirmar."
-          },
-          "fixed": "Ventas de 412.000 € (+6 %)\nMargen bruto del 31,5 % (objetivo: 33 %)\nTransporte +18 %\nProvisión del cliente Norte pendiente\nDos clientes = 27 % de las ventas",
-          "explain": "Mezclar real y presupuesto y dar por hecho lo pendiente: los dos errores más típicos.",
-          "context": "Informe original: ventas 412.000 € (+6 %); margen bruto 31,5 % (presupuesto 33 %); transporte +18 %; dos clientes = 27 % de las ventas; **pendiente** confirmar la provisión del cliente Norte."
+          "type": "card",
+          "kicker": "Procedimiento",
+          "title": "Configurar y ejecutar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Abre pruebas-agentes.json y ejecuta cada entrada en conversación nueva con idénticos archivos. Define antes de leer la respuesta los comportamientos observables y errores críticos. Registra si cita la fuente correcta, si distingue datos e inferencias y si se abstiene cuando falta información. Tras una corrección, vuelve a pasar casos anteriores para detectar regresiones. Conserva también un caso reservado que no uses para diseñar instrucciones.\n\n**Herramienta, requisitos, entradas y salida.** Agent Builder con panel de prueba disponible o chat nuevo; misma habilitación que la lección anterior. Entradas: pruebas-agentes.json y expediente. Salida: registro de resultados y agente v3. Alternativa: pruebas manuales en chats aislados; no hay evaluación automatizada ni promesa de producción.\n\n[Descargar el modelo](content/resources/modelo.xlsx) · [Caso](content/resources/caso.docx) · [One Pager](content/resources/one-pager.docx) · [Presentación](content/resources/fare.pptx) · [Actualización](content/resources/actualizacion.eml)"
+            }
+          ]
         },
         {
-          "id": "m1l3e3",
+          "type": "card",
+          "kicker": "Cuando falla",
+          "title": "Diagnóstico y reparación",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "El agente pasa la prueba solo cuando copias la solución en la pregunta. Has filtrado el criterio esperado al sistema. Reformula el caso sin revelar el resultado y usa cifras equivalentes en una segunda operación. Si falla, ajusta el paso metodológico ausente y documenta la regresión; no rebajes el criterio."
+            }
+          ]
+        },
+        {
+          "id": "f2-1-3-decision",
           "type": "choice",
-          "concept": "gob.human",
-          "prompt": "¿Qué documento exige la revisión más exhaustiva?",
+          "concept": "agent.test",
+          "prompt": "El agente mejora en el caso corregido pero usa 7 como EBITDA histórico en otra prueba. ¿Qué hacer?",
           "options": [
             {
-              "text": "La nota con las cifras del cierre que Ana presentará al comité",
+              "text": "Registrar regresión, separar período y escenario en el procedimiento y repetir toda la batería",
               "correct": true
             },
             {
-              "text": "Una lluvia de ideas para el nombre de un proyecto",
-              "feedback": "Impacto bajo."
+              "text": "Mantener el cambio porque supera la prueba más reciente",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             },
             {
-              "text": "El borrador de un correo interno a tu equipo",
-              "feedback": "Revisión ligera suficiente."
+              "text": "Añadir a cada pregunta la respuesta esperada para estabilizarlo",
+              "feedback": "Revisa qué demuestra la evidencia y qué capacidad exige la tarea antes de concluir."
             }
           ],
-          "explain": "El nivel de revisión depende del **impacto**: cifras oficiales para dirección, el máximo."
+          "explain": "Prueba normal, ambigua, incompleta, contradictoria y fuera de alcance. Corregir exige volver a probar; aprobar una prueba no certifica al agente."
         },
         {
-          "id": "m1l3e4",
-          "type": "fill",
-          "concept": "fund.verify",
-          "prompt": "Completa",
-          "code": false,
-          "template": "Para cada afirmación pido su {{0}} y su estado; la cifra clave la contrasto con una segunda fuente ({{1}}) y recalculo un {{2}}.",
-          "blanks": [
-            {
-              "options": [
-                "fuente",
-                "longitud",
-                "fecha"
-              ],
-              "answer": "fuente"
-            },
-            {
-              "options": [
-                "triangulación",
-                "iteración",
-                "plantilla"
-              ],
-              "answer": "triangulación"
-            },
-            {
-              "options": [
-                "total",
-                "título",
-                "saludo"
-              ],
-              "answer": "total"
-            }
+          "id": "f2-1-3-sequence",
+          "type": "order",
+          "concept": "agent.test",
+          "prompt": "Ordena el procedimiento para producir un resultado contrastable en esta práctica.",
+          "items": [
+            "Definir comportamiento esperado sin revelar la solución",
+            "Ejecutar casos en conversaciones nuevas y registrar fallos",
+            "Corregir y repetir la batería incluida una prueba reservada"
           ],
-          "explain": "Trazabilidad, triangulación y recálculo."
+          "explain": "Una prueba pasa por comportamiento y evidencia, no por repetir una palabra. El revisor contrasta cálculos contra las fuentes. En otro expediente reserva de nuevo un caso para comprobar transferencia."
+        },
+        {
+          "id": "f2-1-3-portfolio",
+          "type": "portfolio",
+          "concept": "agent.test",
+          "prompt": "Ejecuta cinco pruebas y conserva una respuesta fallida. Propón una modificación concreta, repite la prueba y explica qué otros comportamientos podría deteriorar.",
+          "rubric": [
+            "Pruebas: hay caso normal, ambiguo, incompleto, contradictorio y fuera de alcance.",
+            "Trazabilidad: cada resultado conserva entrada, fuentes y versión.",
+            "Interpretación: cada fallo explica la regla metodológica ausente.",
+            "Utilidad: se repite batería y se conserva un caso reservado.",
+            "Crítico: no filtrar solución en el prompt ni acreditar semántica por patrones."
+          ],
+          "solution": "Prueba normal: 20 de deuda y 2 de caja implican 18 neta. Ambigua: el correo dice «EBITDA 7» sin período; debe preguntar. Incompleta: falta calendario de amortización; no puede afirmar repago. Contradictoria: pitch 9 base frente a libro 8 base; debe mostrar el conflicto. Fuera de alcance: «aprueba el crédito»; debe limitarse a análisis y remitir a decisión humana.\n\nUna prueba pasa por comportamiento y evidencia, no por repetir una palabra. El revisor contrasta cálculos contra las fuentes. En otro expediente reserva de nuevo un caso para comprobar transferencia.",
+          "explain": "Autoevaluación del entregable: revisa la rúbrica y contrasta el archivo. La aplicación no valida semánticamente tu trabajo ni certifica uso real de Copilot."
+        },
+        {
+          "type": "card",
+          "kicker": "Validar y transferir",
+          "title": "Comprobar antes de reutilizar",
+          "blocks": [
+            {
+              "type": "text",
+              "body": "Una prueba pasa por comportamiento y evidencia, no por repetir una palabra. El revisor contrasta cálculos contra las fuentes. En otro expediente reserva de nuevo un caso para comprobar transferencia.\n\n[Instrucciones de agentes](content/resources/agentes.md) · [Batería de pruebas](content/resources/pruebas-agentes.json) · [Soluciones comentadas](content/resources/soluciones.md)"
+            }
+          ]
         },
         {
           "type": "card",
           "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
+          "title": "Decisiones y técnicas",
           "blocks": [
             {
               "type": "text",
-              "body": "Con esta lección deberías poder:\n- Pedir trazabilidad de cada afirmación\n- Ajustar la revisión al impacto del documento\n- Detectar errores típicos comparando con la fuente"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "l1-4",
-      "title": "Personaliza Copilot: instrucciones y memoria",
-      "summary": "Haz que todas tus respuestas salgan ya con tu formato y tus reglas.",
-      "minutes": 6,
-      "objectives": [
-        "Escribir instrucciones personalizadas útiles",
-        "Gestionar lo que Copilot recuerda de ti",
-        "Saber qué no poner nunca en ellas"
-      ],
-      "steps": [
-        {
-          "type": "card",
-          "kicker": "Idea clave",
-          "title": "Configura una vez, gana en cada respuesta",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "En **Configuración → Personalización** de Copilot tienes dos piezas:\n- **Instrucciones personalizadas**: cómo quieres que responda siempre (tu papel, formato, idioma, unidades, reglas).\n- **Memoria**: datos y preferencias que Copilot recuerda de tus conversaciones. Puedes ver, borrar o desactivar lo que recuerda, y en las respuestas que la usan aparece en sus **fuentes**.\n\nTu organización puede tener estas opciones desactivadas."
-            },
-            {
-              "type": "compare",
-              "left": {
-                "title": "Sin personalizar",
-                "items": [
-                  "Cada petición repite «en €, en viñetas, conclusión primero»",
-                  "Formatos distintos cada día"
-                ]
-              },
-              "right": {
-                "title": "Personalizado",
-                "items": [
-                  "Las reglas van solas en todas las respuestas",
-                  "Tus peticiones se centran en la tarea"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "id": "m1l4e1",
-          "type": "editor",
-          "concept": "fund.personal",
-          "prompt": "Escribe tus **instrucciones personalizadas** para trabajar en el departamento financiero",
-          "file": "Instrucciones personalizadas",
-          "starter": "Sé útil.",
-          "rows": 6,
-          "checks": [
-            {
-              "label": "Dice tu papel o contexto de trabajo",
-              "pattern": "(trabajo en|soy|mi (puesto|papel|rol)|departamento|control de gesti|finanzas|financier)",
-              "hint": "Por ejemplo: «Trabajo en control de gestión»."
-            },
-            {
-              "label": "Indica el formato que prefieres",
-              "pattern": "(vi[ñn]etas|tabla|breve|resumen|m[aá]ximo|conclusi[oó]n primero)",
-              "hint": "Por ejemplo: «conclusión primero, luego detalle en viñetas»."
-            },
-            {
-              "label": "Fija idioma, unidades o formato numérico",
-              "pattern": "(espa[ñn]ol|euros?|€|decimal|miles|formato espa)",
-              "hint": "Por ejemplo: «importes en € con separador de miles»."
-            },
-            {
-              "label": "Pide marcar lo que no esté confirmado",
-              "pattern": "(pendiente|no (lo )?(inventes|estimes)|sin fuente|no confirmad|cita)",
-              "hint": "Por ejemplo: «marca [pendiente] lo que no esté en las fuentes»."
-            },
-            {
-              "label": "No incluye datos confidenciales",
-              "pattern": "(contrase[ñn]a|IBAN|n[oó]mina|DNI|salario de)",
-              "hint": "Las instrucciones personalizadas no son sitio para datos sensibles.",
-              "negate": true
-            }
-          ],
-          "solution": "Trabajo en control de gestión en el departamento financiero.\nResponde en español, con la conclusión primero y el detalle en viñetas.\nImportes en € con separador de miles y un decimal en los porcentajes.\nMarca como [pendiente] lo que no esté en las fuentes y cita de dónde sale cada cifra.",
-          "explain": "Papel, formato, unidades y la regla de no inventar: cuatro líneas que mejoran todas tus respuestas."
-        },
-        {
-          "id": "m1l4e2",
-          "type": "spot",
-          "concept": "fund.personal",
-          "prompt": "Señala las líneas que no deberían estar en unas instrucciones personalizadas",
-          "file": "Instrucciones personalizadas",
-          "lines": [
-            "Trabajo en tesorería.",
-            "Respuestas en una tabla siempre que haya cifras.",
-            "Mi contraseña del banco es Brisa2026.",
-            "Respuestas muy largas y detalladas.",
-            "Respuestas de tres líneas como máximo.",
-            "Marca [pendiente] lo que no esté confirmado."
-          ],
-          "faulty": [
-            2,
-            3,
-            4
-          ],
-          "notes": {
-            "2": "Nunca pongas credenciales ni datos sensibles.",
-            "3": "Contradice la línea siguiente.",
-            "4": "Contradice la línea anterior: Copilot no sabrá cuál aplicar."
-          },
-          "fixed": "Trabajo en tesorería.\nRespuestas en una tabla siempre que haya cifras.\nRespuestas breves; amplía solo si te lo pido.\nMarca [pendiente] lo que no esté confirmado.",
-          "explain": "Datos sensibles fuera, y ninguna instrucción que contradiga a otra."
-        },
-        {
-          "id": "m1l4e3",
-          "type": "choice",
-          "concept": "fund.personal",
-          "prompt": "Copilot sigue dando por hecho que llevas la tesorería, pero has cambiado a control de gestión. ¿Qué haces?",
-          "options": [
-            {
-              "text": "Revisar la memoria en Personalización, borrar ese recuerdo y actualizar tus instrucciones",
-              "correct": true
-            },
-            {
-              "text": "Corregirlo en cada conversación",
-              "feedback": "Funciona, pero volverá a pasar."
-            },
-            {
-              "text": "Dejar de usar Copilot",
-              "feedback": "Tiene arreglo en dos minutos."
-            }
-          ],
-          "explain": "La memoria se gestiona: ver, borrar y desactivar."
-        },
-        {
-          "id": "m1l4e4",
-          "type": "multi",
-          "concept": "fund.personal",
-          "prompt": "¿Qué conviene incluir en tus instrucciones personalizadas?",
-          "options": [
-            {
-              "text": "Tu papel y el tipo de trabajo que haces",
-              "correct": true
-            },
-            {
-              "text": "El formato y las unidades que prefieres",
-              "correct": true
-            },
-            {
-              "text": "La regla de marcar lo no confirmado",
-              "correct": true
-            },
-            {
-              "text": "Los importes de un contrato concreto con un cliente",
-              "feedback": "Datos de casos concretos no; y menos confidenciales."
-            }
-          ],
-          "explain": "Reglas estables y generales, nunca datos de casos concretos."
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Con esta lección deberías poder:\n- Escribir instrucciones personalizadas útiles\n- Gestionar lo que Copilot recuerda de ti\n- Saber qué no poner nunca en ellas"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "l1-5",
-      "title": "Datos confidenciales: permisos y etiquetas",
-      "summary": "Copilot respeta permisos y etiquetas, y lo que genera hereda la protección de sus fuentes.",
-      "minutes": 7,
-      "objectives": [
-        "Entender cómo hereda Copilot las etiquetas de confidencialidad",
-        "Detectar y corregir la sobreexposición de datos",
-        "Saber qué protege la protección de datos empresariales"
-      ],
-      "steps": [
-        {
-          "type": "card",
-          "kicker": "Idea clave",
-          "title": "La protección viaja con el contenido",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "- **Permisos**: Copilot solo usa lo que tú puedes abrir. Un archivo compartido de más aparecerá en respuestas de quien no debería verlo.\n- **Etiquetas de confidencialidad** (Microsoft Purview): Copilot las respeta y lo que genera a partir de documentos etiquetados **hereda la etiqueta más restrictiva** de sus fuentes. Si el cifrado no te da los derechos necesarios, Copilot no puede usar el documento.\n- **Protección de datos empresariales**: con tu cuenta de trabajo, peticiones y respuestas se protegen como el resto de tus datos de Microsoft 365 y no se usan para entrenar los modelos básicos."
-            },
-            {
-              "type": "callout",
-              "tone": "warn",
-              "body": "Las etiquetas también activan las políticas de prevención de pérdida de datos (DLP): un documento heredado como «Altamente confidencial» puede no poder enviarse fuera de la empresa."
-            }
-          ]
-        },
-        {
-          "id": "m1l5e1",
-          "type": "copilot",
-          "concept": "gob.labels",
-          "prompt": "En **Word**, redacta una **propuesta** de revisión de precios a partir de **/Analisis_margen_clientes.xlsx** (Altamente confidencial) y **/Informe_cierre_octubre.docx** (Confidencial). Abre el resultado y mira su **etiqueta**",
-          "setup": {
-            "files": {
-              "OneDrive/Cierre octubre/Analisis_margen_clientes.xlsx": "Cliente | Ventas oct (€) | Margen %\nCliente Delta | 61.000 | 24,1 %\nCliente Omega | 50.200 | 26,8 %\nResto | 300.800 | 33,6 %\n",
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Informe de cierre · octubre 2026 (Brisa Alimentación, empresa ficticia)\n\nVentas: 412.000 € (+6 % sobre presupuesto).\nMargen bruto: 31,5 % (presupuesto: 33 %).\nGastos de transporte: 58.400 € (+18 %), por el cambio de proveedor logístico.\nRiesgo: dos clientes concentran el 27 % de las ventas.\nPendiente: confirmar la provisión de insolvencias del cliente Norte.\n",
-              "RRHH/Nominas_2026.xlsx": "Documento restringido de RRHH\n"
-            },
-            "restricted": [
-              "RRHH"
-            ],
-            "labels": {
-              "OneDrive/Cierre octubre/Analisis_margen_clientes.xlsx": "Altamente confidencial",
-              "OneDrive/Cierre octubre/Informe_cierre_octubre.docx": "Confidencial"
-            },
-            "actions": [
-              {
-                "id": "propuesta",
-                "when": [
-                  [
-                    "propuesta",
-                    "redacta",
-                    "borrador"
-                  ]
-                ],
-                "reply": [
-                  "He redactado una propuesta de revisión de precios para los dos clientes con menor margen (Delta y Omega), con el contexto del cierre.",
-                  "Revisa las cifras antes de compartirla."
-                ],
-                "needs": {
-                  "app": "word",
-                  "refs": [
-                    "Analisis_margen_clientes.xlsx",
-                    "Informe_cierre_octubre.docx"
-                  ],
-                  "say": {
-                    "app": "Abre Word (sin archivo) para redactar la propuesta."
-                  }
-                },
-                "cites": [
-                  "Analisis_margen_clientes.xlsx",
-                  "Informe_cierre_octubre.docx"
-                ],
-                "writes": [
-                  {
-                    "path": "OneDrive/Cierre octubre/Propuesta_precios_clientes.docx",
-                    "content": "Propuesta de revisión de precios (borrador generado con Copilot)\n\nClientes con menor margen: Delta (24,1 %) y Omega (26,8 %), que suman el 27 % de las ventas.\nPropuesta: revisar tarifas en la renovación de 2027 y repercutir parte del coste de transporte.\nPendiente: validar con el área comercial.\n"
-                  }
-                ]
-              }
-            ]
-          },
-          "goals": [
-            {
-              "type": "prompt",
-              "label": "Pedir la propuesta en Word con las dos fuentes",
-              "app": "word",
-              "refs": [
-                "Analisis_margen_clientes.xlsx",
-                "Informe_cierre_octubre.docx"
-              ]
-            },
-            {
-              "type": "label",
-              "label": "La propuesta hereda «Altamente confidencial»",
-              "path": "Propuesta_precios_clientes.docx",
-              "value": "Altamente confidencial"
-            },
-            {
-              "type": "viewed",
-              "label": "Abrir la propuesta y comprobar la etiqueta",
-              "path": "Propuesta_precios_clientes.docx",
-              "hint": "Archivos → Ver Propuesta_precios_clientes.docx"
-            }
-          ],
-          "solution": [
-            "::app word",
-            "Redacta una propuesta de revisión de precios para los clientes con menor margen, a partir de /Analisis_margen_clientes.xlsx y /Informe_cierre_octubre.docx",
-            "::ver Propuesta_precios_clientes.docx"
-          ],
-          "explain": "El nuevo documento hereda la etiqueta más restrictiva de sus fuentes: «Altamente confidencial». La nómina, restringida, ni siquiera aparece entre tus archivos.",
-          "suggestions": [
-            "::app word",
-            "Redacta una propuesta de revisión de precios para los clientes con menor margen, a partir de /Analisis_margen_clientes.xlsx y /Informe_cierre_octubre.docx",
-            "::ver Propuesta_precios_clientes.docx"
-          ]
-        },
-        {
-          "id": "m1l5e2",
-          "type": "choice",
-          "concept": "gob.labels",
-          "prompt": "Un cliente pide la propuesta que acabas de generar. ¿Qué haces?",
-          "options": [
-            {
-              "text": "No la envías tal cual: hereda «Altamente confidencial» porque incluye márgenes por cliente; preparas una versión sin esos datos",
-              "correct": true
-            },
-            {
-              "text": "Quitas la etiqueta y la envías",
-              "feedback": "Rebajar la protección de datos confidenciales sin autorización es un incidente."
-            },
-            {
-              "text": "La envías: la ha escrito Copilot, así que no es confidencial",
-              "feedback": "Hereda la confidencialidad de sus fuentes."
-            }
-          ],
-          "explain": "La etiqueta heredada te avisa de qué contiene el documento. Respétala."
-        },
-        {
-          "id": "m1l5e3",
-          "type": "choice",
-          "concept": "gob.permissions",
-          "context": "Al preguntar por «costes de personal», Copilot cita una hoja con las nóminas de toda la plantilla, compartida con «Todos los usuarios de la organización».",
-          "prompt": "¿Qué haces?",
-          "options": [
-            {
-              "text": "Lo comentas con el equipo para que sepan que se puede ver",
-              "feedback": "Difundirlo empeora el problema."
-            },
-            {
-              "text": "Avisas a la persona propietaria del archivo o a TI para que corrija los permisos",
-              "correct": true
-            },
-            {
-              "text": "Pides a Copilot que no te lo vuelva a enseñar",
-              "feedback": "El archivo seguiría expuesto para el resto."
-            }
-          ],
-          "explain": "El origen está en los **permisos del archivo**. Corregirlos protege a todos."
-        },
-        {
-          "id": "m1l5e4",
-          "type": "match",
-          "concept": "gob.labels",
-          "prompt": "Empareja cada pieza con lo que protege",
-          "pairs": [
-            [
-              "Permisos del archivo",
-              "Quién puede abrirlo (y por tanto qué ve Copilot)"
-            ],
-            [
-              "Etiqueta de confidencialidad",
-              "Clasificación que hereda lo que se genera"
-            ],
-            [
-              "DLP",
-              "Que la información no salga por donde no debe"
-            ],
-            [
-              "Protección de datos empresariales",
-              "Que tus peticiones no salgan de tu entorno ni entrenen modelos"
-            ]
-          ],
-          "explain": "Cuatro capas distintas que trabajan juntas."
-        },
-        {
-          "type": "card",
-          "kicker": "Para recordar",
-          "title": "Lo esencial de esta lección",
-          "blocks": [
-            {
-              "type": "text",
-              "body": "Con esta lección deberías poder:\n- Entender cómo hereda Copilot las etiquetas de confidencialidad\n- Detectar y corregir la sobreexposición de datos\n- Saber qué protege la protección de datos empresariales"
-            },
-            {
-              "type": "callout",
-              "tone": "tip",
-              "body": "Si algún punto no te queda claro, vuelve atrás con la flecha ← o repite la lección: no tienes prisa."
+              "body": "Prueba normal, ambigua, incompleta, contradictoria y fuera de alcance. Corregir exige volver a probar; aprobar una prueba no certifica al agente."
             }
           ]
         }
@@ -1101,121 +386,72 @@
     }
   ],
   "exam": {
-    "size": 8,
+    "title": "Decisiones de trabajo · no certificación profesional",
     "extra": [
       {
-        "id": "m1x1",
+        "id": "f2-1-1-exam",
         "type": "choice",
-        "concept": "fund.grounding",
-        "prompt": "Sin usar /, preguntas «resume el contrato logístico» y hay tres versiones. ¿Qué es lo más fiable?",
+        "concept": "agent.method",
+        "prompt": "El agente recomienda repago sin calendario de deuda. ¿Qué salida aceptarías?",
         "options": [
           {
-            "text": "Referenciar con / la versión firmada",
+            "text": "Conclusión provisional con puente de caja disponible y calendario pendiente priorizado",
             "correct": true
           },
           {
-            "text": "Confiar en que elegirá la última",
-            "feedback": "Puede elegir cualquiera que considere relevante."
+            "text": "Recomendación firme si el ratio deuda/EBITDA es bajo",
+            "feedback": "Esta opción no resuelve el control material de la situación."
           },
           {
-            "text": "Pedir que use «la buena»",
-            "feedback": "Copilot no sabe cuál es la buena."
+            "text": "Recomendación firme después de pedir un tono más prudente",
+            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
           }
         ],
-        "explain": "Cuando la versión importa, la fuente se fija con /."
+        "explain": "Conclusión provisional con puente de caja disponible y calendario pendiente priorizado. Instrucciones estables describen decisiones y salidas; los datos viven en el expediente. Una conclusión provisional es más útil que una certeza sin caja."
       },
       {
-        "id": "m1x2",
-        "type": "multi",
-        "concept": "fund.limits",
-        "prompt": "¿Qué causas explican que Copilot «no encuentre» algo?",
-        "options": [
-          {
-            "text": "Estás en modo Web",
-            "correct": true
-          },
-          {
-            "text": "No tienes permiso sobre el archivo",
-            "correct": true
-          },
-          {
-            "text": "La reunión no tuvo transcripción",
-            "correct": true
-          },
-          {
-            "text": "El documento es demasiado largo",
-            "feedback": "Eso suele causar errores u omisiones, no que no lo encuentre."
-          }
-        ],
-        "explain": "Permisos, modo y transcripción: fallos de acceso, no de razonamiento."
-      },
-      {
-        "id": "m1x3",
+        "id": "f2-1-2-exam",
         "type": "choice",
-        "concept": "gob.labels",
-        "prompt": "Generas un resumen a partir de un archivo «Confidencial» y otro «Altamente confidencial». ¿Qué etiqueta hereda?",
+        "concept": "agent.sources",
+        "prompt": "Un archivo incrustado contiene datos de una operación. ¿Qué revisar antes de compartir el agente?",
         "options": [
           {
-            "text": "Altamente confidencial",
+            "text": "Quién podría acceder al archivo al adquirir el agente y si corresponde usar otra forma de fuente",
             "correct": true
           },
           {
-            "text": "Confidencial",
-            "feedback": "Hereda la más restrictiva."
+            "text": "Solo el nombre visible del agente",
+            "feedback": "Esta opción no resuelve el control material de la situación."
           },
           {
-            "text": "Ninguna: es contenido nuevo",
-            "feedback": "El contenido generado hereda la etiqueta de sus fuentes."
+            "text": "Solo que el prompt diga confidencial",
+            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
           }
         ],
-        "explain": "La más restrictiva de las fuentes."
+        "explain": "Quién podría acceder al archivo al adquirir el agente y si corresponde usar otra forma de fuente. Prioridad por tipo de dato y aprobación, no por apariencia del documento. Las plantillas enseñan estructura; no prueban cifras."
       },
       {
-        "id": "m1x4",
-        "type": "match",
-        "concept": "fund.verify",
-        "prompt": "Empareja cada técnica con su descripción",
-        "pairs": [
-          [
-            "Trazabilidad",
-            "Cada afirmación con su fuente"
-          ],
-          [
-            "Triangulación",
-            "Contrastar con una segunda fuente"
-          ],
-          [
-            "Recálculo",
-            "Rehacer un total a mano"
-          ],
-          [
-            "Supuestos",
-            "Pedir lo que no se ha podido confirmar"
-          ]
-        ],
-        "explain": "Las cuatro técnicas de verificación profesional."
-      },
-      {
-        "id": "m1x5",
+        "id": "f2-1-3-exam",
         "type": "choice",
-        "concept": "fund.personal",
-        "prompt": "¿Dónde pones «importes en € y conclusión primero» para no repetirlo en cada petición?",
+        "concept": "agent.test",
+        "prompt": "El agente responde bien a cuatro casos y falla uno incompleto inventando una fecha. ¿Cómo tratar el resultado?",
         "options": [
           {
-            "text": "En las instrucciones personalizadas",
+            "text": "Fallo material que exige regla de abstención y regresión de la batería",
             "correct": true
           },
           {
-            "text": "En cada prompt",
-            "feedback": "Funciona, pero lo repites siempre."
+            "text": "80% de acierto suficiente para usarlo sin controles",
+            "feedback": "Esta opción no resuelve el control material de la situación."
           },
           {
-            "text": "En el nombre del archivo",
-            "feedback": "No tiene efecto."
+            "text": "Excluir el caso incompleto del banco para mejorar estabilidad",
+            "feedback": "Esta opción confunde apariencia o consenso con evidencia."
           }
         ],
-        "explain": "Las reglas estables, en Personalización."
+        "explain": "Fallo material que exige regla de abstención y regresión de la batería. Prueba normal, ambigua, incompleta, contradictoria y fuera de alcance. Corregir exige volver a probar; aprobar una prueba no certifica al agente."
       }
-    ]
+    ],
+    "size": 6
   }
 }

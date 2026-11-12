@@ -8,7 +8,7 @@ export const CONTENT_FILES = {
   modules: ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7'].map(id => `content/modules/${id}.json`),
 };
 
-export const EXERCISE_TYPES = ['choice', 'multi', 'order', 'match', 'fill', 'spot', 'editor', 'copilot'];
+export const EXERCISE_TYPES = ['choice', 'multi', 'order', 'match', 'fill', 'spot', 'editor', 'copilot', 'portfolio'];
 
 /** Huella de los pasos de una actividad: si cambia el contenido, un avance guardado deja de ser válido. */
 export function stepsSignature(steps) {
@@ -69,6 +69,6 @@ export function buildCourse(raw) {
 /** Banco de preguntas del examen de un módulo: ejercicios de sus lecciones + preguntas exclusivas. */
 export function examPool(course, moduleId) {
   const mod = course.moduleById[moduleId];
-  const fromLessons = mod.lessons.flatMap(l => l.exercises).filter(ex => ex.type !== 'copilot' && ex.type !== 'editor');
+  const fromLessons = mod.lessons.flatMap(l => l.exercises).filter(ex => ex.type !== 'copilot' && ex.type !== 'editor' && ex.type !== 'portfolio');
   return [...(mod.exam.extra || []), ...fromLessons];
 }

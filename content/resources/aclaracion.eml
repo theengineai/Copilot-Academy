@@ -1,0 +1,9 @@
+From: cfo@levante.example
+To: analista@example.org
+Date: Wed, 11 Nov 2026 10:00:00 +0000
+Subject: Aclaraciones de cierre — ficticio
+Content-Type: text/plain; charset=utf-8
+
+Los 8 de deuda existente se cancelan en cierre. No se suman a deuda nueva 20. EBITDA 9 es management; base 8 sin sinergias. Los 3 capex y 2 NWC de Sources & Uses son iniciales y están en el balance apertura. Capex recurrente 3 y variación NWC 2026 son flujos posteriores. Pendiente aging y calendario mensual de inversiones.
+
+El NWC inicial incorpora colchón temporal 2. La liberación en 2026 no está verificada: presentar sensibilidad sin liberación.

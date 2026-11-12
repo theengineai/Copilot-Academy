@@ -2,57 +2,70 @@
 // Estrategia: responde desde la caché al instante y actualiza en segundo plano
 // (stale-while-revalidate). El workflow de despliegue sustituye VERSION por el commit.
 const VERSION = 'dev';
-const CACHE = `cpa-${VERSION}`;
+const CACHE = `cpa-financing-v2-${VERSION}`;
 
 // Lista completa de recursos. tests/pwa.test.mjs comprueba que no falta ninguno.
 const ASSETS = [
-  './',
-  './index.html',
-  './manifest.webmanifest',
-  './css/tokens.css',
-  './css/base.css',
-  './css/components.css',
-  './css/screens.css',
-  './js/app.js',
-  './js/core/util.js',
-  './js/core/state.js',
-  './js/core/course.js',
-  './js/core/validate.js',
-  './js/core/srs.js',
-  './js/core/progress.js',
-  './js/core/achievements.js',
-  './js/sim/fs.js',
-  './js/sim/parse.js',
-  './js/sim/copilot.js',
-  './js/sim/goals.js',
-  './js/ui/dom.js',
-  './js/ui/icons.js',
-  './js/ui/fx.js',
-  './js/ui/blocks.js',
-  './js/ui/chat-view.js',
-  './js/exercises/render.js',
-  './js/views/session.js',
-  './js/views/activities.js',
-  './js/views/home.js',
-  './js/views/academy.js',
-  './js/views/lab.js',
-  './js/views/missions.js',
-  './js/views/profile.js',
-  './content/course.json',
-  './content/missions.json',
-  './content/lab.json',
-  './content/modules/m1.json',
-  './content/modules/m2.json',
-  './content/modules/m3.json',
-  './content/modules/m4.json',
-  './content/modules/m5.json',
-  './content/modules/m6.json',
-  './content/modules/m7.json',
-  './icons/icon.svg',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
-  './icons/icon-maskable-512.png',
-  './icons/apple-touch-icon.png',
+  "./",
+  "./index.html",
+  "./manifest.webmanifest",
+  "./css/base.css",
+  "./css/components.css",
+  "./css/screens.css",
+  "./css/tokens.css",
+  "./js/app.js",
+  "./js/core/achievements.js",
+  "./js/core/course.js",
+  "./js/core/progress.js",
+  "./js/core/srs.js",
+  "./js/core/state.js",
+  "./js/core/util.js",
+  "./js/core/validate.js",
+  "./js/exercises/render.js",
+  "./js/sim/copilot.js",
+  "./js/sim/fs.js",
+  "./js/sim/goals.js",
+  "./js/sim/parse.js",
+  "./js/ui/blocks.js",
+  "./js/ui/chat-view.js",
+  "./js/ui/dom.js",
+  "./js/ui/fx.js",
+  "./js/ui/icons.js",
+  "./js/views/academy.js",
+  "./js/views/activities.js",
+  "./js/views/home.js",
+  "./js/views/lab.js",
+  "./js/views/missions.js",
+  "./js/views/profile.js",
+  "./js/views/session.js",
+  "./content/course.json",
+  "./content/lab.json",
+  "./content/missions.json",
+  "./content/modules/m1.json",
+  "./content/modules/m2.json",
+  "./content/modules/m3.json",
+  "./content/modules/m4.json",
+  "./content/modules/m5.json",
+  "./content/modules/m6.json",
+  "./content/modules/m7.json",
+  "./content/resources/aclaracion.eml",
+  "./content/resources/actualizacion.eml",
+  "./content/resources/agentes.md",
+  "./content/resources/capacidades.md",
+  "./content/resources/caso.docx",
+  "./content/resources/fare.pptx",
+  "./content/resources/historicos-entidades.csv",
+  "./content/resources/metodologia.md",
+  "./content/resources/modelo.xlsx",
+  "./content/resources/one-pager.docx",
+  "./content/resources/pruebas-agentes.json",
+  "./content/resources/resultados-control.json",
+  "./content/resources/soluciones.md",
+  "./icons/apple-touch-icon.png",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
+  "./icons/icon-maskable-512.png",
+  "./icons/icon.svg"
 ];
 
 self.addEventListener('install', event => {
@@ -67,7 +80,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     for (const key of await caches.keys()) {
-      if (key.startsWith('cca-') && key !== CACHE) await caches.delete(key);
+      if ((key.startsWith('cpa-') || key.startsWith('cca-')) && key !== CACHE) await caches.delete(key);
     }
     await self.clients.claim();
   })());
@@ -86,7 +99,7 @@ self.addEventListener('fetch', event => {
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
     // Las navegaciones (abrir la app, recargar) siempre usan index.html.
-    const key = request.mode === 'navigate' ? './index.html' : request;
+    const key = request.mode === 'navigate' && !url.pathname.includes('/content/resources/') ? './index.html' : request;
     const cached = await cache.match(key, { ignoreSearch: true });
     const network = fetch(request).then(response => {
       if (response.ok && response.type === 'basic') cache.put(key, response.clone());

@@ -30,6 +30,15 @@ export function renderHome(page, ctx) {
         h('span', { class: 'pill pill-xp', title: 'Experiencia' }, icon('bolt', { size: 16 }), formatNumber(state.xp)))),
   );
 
+  page.append(h('section', { class: 'card' },
+    h('h2', {}, 'Financiación corporativa · edición 2'),
+    h('p', {}, 'Agentes desde la primera operación: metodología, modelo, narrativa, revisión y actualización. Todo el caso es ficticio. Las autoevaluaciones no acreditan dominio profesional.'),
+    state.history?.length ? h('p', { class: 'callout' }, 'Tu edición anterior se ha archivado sin trasladar competencias. Puedes exportarla junto al progreso actual desde Perfil.') : null,
+    h('details', {}, h('summary', {}, 'Archivos del caso · descargar materiales'),
+    h('p', { class: 'small muted' }, 'Disponibles sin conexión tras completar la descarga inicial.'),
+    h('div', { class: 'stack' },
+      ...[['capacidades.md','Herramientas, licencias y alternativas'],['modelo.xlsx','Modelo editable con fórmulas'],['caso.docx','Caso e históricos'],['one-pager.docx','One Pager para corregir'],['fare.pptx','Presentación educativa para mejorar'],['actualizacion.eml','Correo de actualización'],['aclaracion.eml','Aclaraciones de cierre'],['historicos-entidades.csv','Históricos por entidad'],['agentes.md','Instrucciones de agentes'],['metodologia.md','Metodología'],['pruebas-agentes.json','Batería de pruebas'],['soluciones.md','Soluciones comentadas']].map(([file,label]) => h('a', { class: 'btn btn-soft', href: `content/resources/${file}`, download: file }, label))))));
+
   // Tarjeta principal: continuar.
   if (next) {
     const mod = next.module || course.moduleById[course.missionById[next.id]?.module];
@@ -39,14 +48,14 @@ export function renderHome(page, ctx) {
       h('div', { class: 'hero-text' },
         h('span', { class: 'kicker' }, mod ? `Módulo ${mod.index} · ${mod.title}` : 'Proyecto final'),
         h('h1', {}, next.title),
-        h('p', {}, lesson ? lesson.summary : next.kind === 'exam' ? 'Demuestra lo aprendido para desbloquear el siguiente módulo.' : 'Integra todo lo aprendido en un caso real.'),
+        h('p', {}, lesson ? lesson.summary : next.kind === 'exam' ? 'Contrasta decisiones para desbloquear el siguiente módulo.' : 'Integra los entregables de una operación ficticia.'),
         h('span', { class: 'btn btn-primary btn-hero' }, icon('play', { size: 18 }), (() => {
           const partial = savedProgress(state, `${next.kind}:${next.id}`);
           return partial ? `Continuar · paso ${partial.furthest + 1}` : state.xp ? 'Continuar' : 'Empezar';
         })()),
       ),
       h('div', { class: 'hero-art', 'aria-hidden': 'true' },
-        h('div', { class: 'mini-term' }, h('span', {}, 'Resume /Cierre.docx'), h('span', {}, 'en 5 puntos'), h('span', { class: 'cursor' }, '▍')),
+        h('div', { class: 'mini-term' }, h('span', {}, 'Contrasta /caso.docx'), h('span', {}, 'con /modelo.xlsx'), h('span', { class: 'cursor' }, '▍')),
         prog ? h('div', { class: 'hero-prog' }, `${prog.done}/${prog.total}`) : null),
     ));
   } else {
@@ -67,9 +76,9 @@ export function renderHome(page, ctx) {
     h('a', { class: 'card stat-card', href: '#/profile' },
       h('div', { class: 'level-badge' }, level),
       h('div', {},
-        h('span', { class: 'kicker' }, 'Nivel de dominio'),
+        h('span', { class: 'kicker' }, 'Avance de prácticas'),
         h('strong', { class: 'stat' }, levelInfo?.title || level),
-        h('span', { class: 'small muted' }, `${overallMastery(state, course)}% de dominio · rango ${rank.rank}`))),
+        h('span', { class: 'small muted' }, `${overallMastery(state, course)}% en comprobaciones · rango ${rank.rank}`))),
   ));
 
   // Semana de racha.
