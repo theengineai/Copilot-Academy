@@ -35,3 +35,11 @@ El modelo anual no acredita liquidez mensual, disponibilidad de líneas, covenan
 ## Pendiente fuera del entorno local
 
 Repetir las prácticas con licencia y habilitaciones del alumno, comprobar qué modos de edición están disponibles, probar recuperación de fuentes y abstención de los agentes, validar resultados de Analyst y Researcher contra archivos y ejecutar flujos solo en sandbox autorizado. Capturar versiones de producto/configuración y los fallos; no convertir el paso de una simulación en acreditación de dominio.
+
+## Revisión del contenido implementado
+
+Leídas las 21 lecciones nuevas y las plantillas de instrucciones, metodología, soluciones y pruebas. La secuencia presenta desde el primer módulo un agente de primera lectura; Excel enseña dependencias, staging y cambio acotado con controles; documentos relaciona narrativa y evidencia; investigación contrasta repercusión de materias primas y comparabilidad; revisión conserva el contraste contra fuentes; actualización distingue cambio del caso, herramientas y automatización; transferencia cambia el propósito económico y exige retirar cifras anteriores. El proyecto final justifica reutilizar el expediente porque evalúa una actualización adversa y defensa, en vez de repetir un cierre.
+
+Se señalaron al autor varios distractores demasiado obvios para este perfil y al autor de ejercicios la necesidad de una receta Studio concreta con entradas, salida, registro persistente y estados, además del contrato conceptual. Estas observaciones no requieren rebajar controles de consistencia o pruebas. La matriz de capacidades se preparó para distribuirse con los recursos y no quedar únicamente en documentación del repositorio.
+
+Reejecutado también `python3 tests/materials_test.py` después de las correcciones de caja: abre DOCX/PPTX/XLSX, evalúa fórmulas admitidas en tres escenarios y dos ejercicios, comprueba controles y detecta una mutación de fórmula de deuda. No es recálculo con Microsoft Excel, ni prueba de macros/vínculos (el modelo educativo declara que no los contiene).
