@@ -56,7 +56,7 @@
           "blocks": [
             {
               "type": "text",
-              "body": "Fallo: al cargar el CSV, el separador decimal convierte 17,6 en 176 o en texto. Diagnóstico: problema de importación/unidad, no de negocio. Revisa tipo de dato y configuración regional, vuelve a importar y compara sumas y ratios de control. No repares el comentario explicando un salto de EBITDA que no existe."
+              "body": "Fallo: al cargar el CSV, la configuración regional interpreta el valor 17.6 del CSV como texto o como 176. El archivo de práctica usa punto decimal; el texto de la lección presenta las cifras con coma española. Diagnóstico: problema de importación/unidad, no de negocio. Revisa tipo de dato y configuración regional, vuelve a importar y compara sumas y ratios de control. No repares el comentario explicando un salto de EBITDA que no existe."
             }
           ]
         },
