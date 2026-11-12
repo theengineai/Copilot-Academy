@@ -2,7 +2,7 @@
 // Estrategia: responde desde la caché al instante y actualiza en segundo plano
 // (stale-while-revalidate). El workflow de despliegue sustituye VERSION por el commit.
 const VERSION = 'dev';
-const CACHE = `cpa-financing-v2-${VERSION}`;
+const CACHE = `cpa-mastery-v3-${VERSION}`;
 
 // Lista completa de recursos. tests/pwa.test.mjs comprueba que no falta ninguno.
 const ASSETS = [
@@ -42,25 +42,30 @@ const ASSETS = [
   "./content/lab.json",
   "./content/missions.json",
   "./content/modules/m1.json",
+  "./content/modules/m10.json",
   "./content/modules/m2.json",
   "./content/modules/m3.json",
   "./content/modules/m4.json",
   "./content/modules/m5.json",
   "./content/modules/m6.json",
   "./content/modules/m7.json",
+  "./content/modules/m8.json",
+  "./content/modules/m9.json",
   "./content/resources/aclaracion.eml",
   "./content/resources/actualizacion.eml",
   "./content/resources/agentes.md",
   "./content/resources/capacidades.md",
-  "./content/resources/caso.docx",
-  "./content/resources/fare.pptx",
-  "./content/resources/historicos-entidades.csv",
+  "./content/resources/comparables.csv",
+  "./content/resources/documento-trabajo.docx",
+  "./content/resources/expediente.docx",
+  "./content/resources/historicos.csv",
   "./content/resources/metodologia.md",
   "./content/resources/modelo.xlsx",
-  "./content/resources/one-pager.docx",
+  "./content/resources/presentacion.pptx",
   "./content/resources/pruebas-agentes.json",
   "./content/resources/resultados-control.json",
   "./content/resources/soluciones.md",
+  "./content/resources/studio-lab.md",
   "./icons/apple-touch-icon.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",

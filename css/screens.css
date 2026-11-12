@@ -266,3 +266,11 @@
 .ex-portfolio select { width: 100%; max-width: 100%; }
 .ex-portfolio .editor-inline::placeholder { color: var(--term-ink); opacity: .8; }
 .ex-portfolio details { margin-block: 16px; }
+/* The broader curriculum has longer competency and achievement names. */
+.comp-row { gap: 8px; flex-wrap: wrap; }
+.comp-row > span:first-child { flex: 1 1 170px; min-width: 0; }
+.comp-row > span:last-child { flex: 0 0 auto; }
+.achievements { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ach { min-width: 0; }
+.ach-name { overflow-wrap: anywhere; }
+@media (min-width: 600px) { .achievements { grid-template-columns: repeat(6, minmax(0, 1fr)); } }

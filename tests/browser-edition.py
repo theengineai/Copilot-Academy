@@ -2,7 +2,7 @@ from playwright.sync_api import sync_playwright
 from pathlib import Path
 import json,os
 ROOT=Path(__file__).resolve().parents[1]
-mods=[json.loads((ROOT/f'content/modules/m{i}.json').read_text()) for i in range(1,8)]
+mods=[json.loads((ROOT/f'content/modules/m{i}.json').read_text()) for i in range(1,11)]
 missions=json.loads((ROOT/'content/missions.json').read_text())
 BASE='http://127.0.0.1:4173'
 with sync_playwright() as p:
@@ -14,11 +14,12 @@ with sync_playwright() as p:
  page.goto(BASE);page.locator('.hero').wait_for()
  page.evaluate('navigator.serviceWorker.ready');page.wait_for_timeout(1200)
  assert page.evaluate("caches.keys().then(keys=>!keys.includes('cpa-old-edition')&&!keys.includes('cca-legacy'))"),'stale caches removed'
- assert page.locator('a[download]').count()>=11
- for path in ['modelo.xlsx','caso.docx','one-pager.docx','fare.pptx','actualizacion.eml']:
+ assert page.locator('a[download]').count()>=14
+ assert 'Dominar Copilot · edición 3' in page.locator('body').inner_text()
+ for path in ['modelo.xlsx','expediente.docx','documento-trabajo.docx','presentacion.pptx','actualizacion.eml']:
   assert page.request.get(BASE+'/content/resources/'+path).status==200
- page.screenshot(path=str(ROOT/'docs/screenshots/edition-mobile.png'),full_page=True)
- page.get_by_text('Archivos del caso · descargar materiales').click()
+ page.screenshot(path=str(ROOT/'docs/screenshots/v3-mobile.png'),full_page=True)
+ page.get_by_text('Materiales y laboratorios · descargar').click()
  page.locator('a[download]').first.wait_for()
  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'), 'mobile overflow'
  # Every new activity through rendered controls, using answer keys only as a test driver.
@@ -51,9 +52,9 @@ with sync_playwright() as p:
       rows.nth(j).get_by_role('button',name='Subir').click()
    elif t=='portfolio':
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),route+' portfolio overflow'
-    if not (ROOT/'docs/screenshots/edition-portfolio.png').exists():
-     page.wait_for_timeout(400);page.screenshot(path=str(ROOT/'docs/screenshots/edition-portfolio.png'),full_page=False)
-    page.locator('textarea').first.fill('Entregable de prueba: modelo.xlsx Modelo B14 base 5,333562. EBITDA8 deuda20 neta18. Evidencia/decisiones/controles registrados. '+str(step.get('solution','')))
+    if not (ROOT/'docs/screenshots/v3-portfolio.png').exists():
+     page.wait_for_timeout(400);page.screenshot(path=str(ROOT/'docs/screenshots/v3-portfolio.png'),full_page=False)
+    page.locator('textarea').first.fill('Registro de prueba de interfaz: fuentes identificadas, contrato con entradas/salidas y comportamiento esperado. No demuestra ejecución en Microsoft. '+str(step.get('solution','')))
     for el in page.locator('select').all():
      values=el.locator('option').evaluate_all('(els)=>els.map(e=>e.value)');el.select_option('2' if '2' in values else 'no')
    elif t=='copilot':
@@ -69,8 +70,8 @@ with sync_playwright() as p:
  assert state.get('portfolio'), 'portfolio persisted'
  # fixture grants access only; it does not count as evidence of completing exercises.
  for m in mods:
-  state['exams'][m['id']]={'passed':True,'best':1}
-  for l in m['lessons']:state['lessons'][l['id']]={'completedAt':'2026-11-12','best':1}
+  state['exams'].setdefault(m['id'],{'passed':True,'best':1})
+  for l in m['lessons']:state['lessons'].setdefault(l['id'],{'completedAt':'2026-11-12','best':1})
  page.evaluate('(s)=>localStorage.setItem("cpa.state",JSON.stringify(s))',state)
  page.reload()
  for m in ([] if os.environ.get('CONTROLS_ONLY') else mods):
@@ -87,7 +88,7 @@ with sync_playwright() as p:
  with page.expect_download() as backup:page.get_by_role('button',name='Descargar copia (.json)').click()
  backup_text=Path(backup.value.path()).read_text();assert json.loads(backup_text)['state']['portfolio']
  page.get_by_role('button',name='Restaurar una copia').click();page.locator('.import-area').fill(backup_text);page.get_by_role('button',name='Restaurar',exact=True).click()
- page.get_by_label('Tema',exact=True).select_option('dark');page.screenshot(path=str(ROOT/'docs/screenshots/edition-dark.png'),full_page=True)
+ page.get_by_label('Tema',exact=True).select_option('dark');page.screenshot(path=str(ROOT/'docs/screenshots/v3-dark.png'),full_page=True)
  page.get_by_label('Tema',exact=True).select_option('light')
  # Resume and a deliberately wrong answer keep earlier learning controls exercised.
  page.goto(BASE+'/#/lesson/'+first['id']);page.locator('.act-step').wait_for();page.locator('.act-foot button').last.click();page.get_by_role('button',name='Salir',exact=True).click()
@@ -98,11 +99,11 @@ with sync_playwright() as p:
  wrong=next(i for i,o in enumerate(ex['options']) if not o.get('correct'));page.locator(f'.option[data-idx="{wrong}"]').click();page.locator('.act-foot button').last.click()
  assert 'No es correcto' in page.locator('.feedback').inner_text()
  page.get_by_role('button',name='Salir',exact=True).click()
- page.set_viewport_size({'width':1440,'height':1000});page.goto(BASE);page.locator('.hero').wait_for();page.screenshot(path=str(ROOT/'docs/screenshots/edition-desktop.png'),full_page=True)
+ page.set_viewport_size({'width':1440,'height':1000});page.goto(BASE);page.locator('.hero').wait_for();page.screenshot(path=str(ROOT/'docs/screenshots/v3-desktop.png'),full_page=True)
  ctx.set_offline(True);page.reload();page.locator('.hero').wait_for()
- statuses=page.evaluate('''async()=>{const c=await caches.keys();const cache=await caches.open(c.find(x=>x.startsWith('cpa-')));return Promise.all(['modelo.xlsx','caso.docx','one-pager.docx','fare.pptx','actualizacion.eml'].map(async f=>{const r=await cache.match('./content/resources/'+f);return [f,r?.status,(await r?.arrayBuffer())?.byteLength]}))}''')
+ statuses=page.evaluate('''async()=>{const c=await caches.keys();const cache=await caches.open(c.find(x=>x.startsWith('cpa-')));return Promise.all(['modelo.xlsx','expediente.docx','documento-trabajo.docx','presentacion.pptx','actualizacion.eml'].map(async f=>{const r=await cache.match('./content/resources/'+f);return [f,r?.status,(await r?.arrayBuffer())?.byteLength]}))}''')
  assert all(x[1]==200 and x[2]>100 for x in statuses),statuses
- page.get_by_text('Archivos del caso · descargar materiales').click()
+ page.get_by_text('Materiales y laboratorios · descargar').click()
  with page.expect_download() as d:page.locator('a[download="modelo.xlsx"]').click()
  assert Path(d.value.path()).read_bytes()[:2]==b'PK','offline download is real OOXML'
  for route in ['#/academy','#/lab','#/lesson/'+first['id']]:page.goto(BASE+'/'+route);page.wait_for_timeout(250)
@@ -111,5 +112,5 @@ with sync_playwright() as p:
  page.wait_for_function('JSON.parse(localStorage.getItem("cpa.state")).xp===0')
  assert page.evaluate('JSON.parse(localStorage.getItem("cpa.state")).xp')==0
  assert not errors,errors
- print('PASS '+('controls-only run' if os.environ.get('CONTROLS_ONLY') else 'all 21 lessons, 7 exams, 14 missions, 7 guided labs')+'; mobile/desktop/dark; wrong-answer/resume/export/import/reset; cache migration and real offline download; no JS errors')
+ print('PASS '+('controls-only run' if os.environ.get('CONTROLS_ONLY') else 'all current lessons, exams, missions and guided labs')+'; mobile/desktop/dark; wrong-answer/resume/export/import/reset; cache migration and real offline download; no JS errors')
  browser.close()

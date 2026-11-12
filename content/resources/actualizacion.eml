@@ -1,7 +1,7 @@
-From: direccion@levante.example
+From: datos@aurora.example
 To: analista@example.org
-Date: Thu, 12 Nov 2026 09:00:00 +0000
-Subject: Revision v2 del caso — ficticio
+Subject: Nuevo escenario para aprender a actualizar análisis
+Date: Fri, 13 Nov 2026 10:00:00 +0000
 Content-Type: text/plain; charset=utf-8
 
-Sustituye hipótesis 2026: ventas 61, EBITDA 7, capex recurrente 4 (antes 3), DSO 75 (antes 60). DPO e inventario sin cambios. No cambiar usos de cierre ya ejecutados. No asumir nueva financiación automática. Explica caja bajo mínimo en 2026 y negativa en 2027, y opciones pendientes; no inventes consentimiento del banco. Necesitamos delta del modelo y del pack, con registro de decisiones.
+Revisar el caso2026 usando la sensibilidad del libro: crecimiento5%, margen14%, capex8 y NWC18%. No sobrescribir histórico2025. Mantener versión base para comparar y explicar delta. No asumir que toda conclusión debe empeorar: comprobar resultados. Son inputs nuevos para una prueba, no un mandato de financiación.

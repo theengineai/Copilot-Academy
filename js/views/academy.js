@@ -13,7 +13,7 @@ export function renderAcademy(page, ctx) {
   const { course, state } = ctx;
   page.append(h('header', { class: 'page-head' },
     h('span', { class: 'kicker' }, 'Tu ruta'), h('h1', {}, 'Academia'),
-    h('p', { class: 'muted' }, `${course.modules.length} módulos de práctica financiera. Las evaluaciones abren el siguiente módulo; el portafolio requiere revisión humana.`)));
+    h('p', { class: 'muted' }, `${course.modules.length} módulos para dominar Copilot con ejemplos financieros. Las evaluaciones abren el siguiente módulo; el portafolio requiere revisión humana.`)));
 
   course.modules.forEach(mod => {
     const unlocked = isModuleUnlocked(state, course, mod.id);
